@@ -7,7 +7,6 @@
 
 [node name="MattohaSystem" type="Node" node_paths=PackedStringArray("Server", "Client")]
 script = ExtResource("1_ii6u1")
-Address = "0.0.0.0"
 Server = NodePath("MattohaServer")
 Client = NodePath("MattohaClient")
 
