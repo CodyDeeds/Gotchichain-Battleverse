@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://sc48qicivsa7"]
+
+[ext_resource type="Script" path="res://entities/player.gd" id="1_ld4xh"]
+[ext_resource type="Texture2D" uid="uid://dufuug20opfo" path="res://icon.svg" id="1_vheqr"]
+[ext_resource type="PackedScene" uid="uid://c1xnrm1nmhoeh" path="res://fsm/fsm.tscn" id="3_phq4f"]
+[ext_resource type="PackedScene" uid="uid://cwvlhyb2o24gp" path="res://fsm/states/state.tscn" id="4_mnsvv"]
+[ext_resource type="Script" path="res://fsm/states/player_normal.gd" id="5_hvyl4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4yxu"]
+size = Vector2(128, 128)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_ld4xh")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_vheqr")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q4yxu")
+
+[node name="fsm" parent="." instance=ExtResource("3_phq4f")]
+
+[node name="state" parent="fsm" instance=ExtResource("4_mnsvv")]
+script = ExtResource("5_hvyl4")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf3geilkxmp4"]
+
+[ext_resource type="Script" path="res://fx/multi_particles.gd" id="1_j4o2e"]
+[ext_resource type="PackedScene" uid="uid://btomwnxsdqbak" path="res://fx/smoke.tscn" id="2_2kdsm"]
+[ext_resource type="PackedScene" uid="uid://c264uq5egs65y" path="res://fx/firepoof.tscn" id="3_r1am6"]
+
+[node name="smoky_fire" type="Node2D"]
+script = ExtResource("1_j4o2e")
+particles = Array[PackedScene]([ExtResource("2_2kdsm"), ExtResource("3_r1am6")])

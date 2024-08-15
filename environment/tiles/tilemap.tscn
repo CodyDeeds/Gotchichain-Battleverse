@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckhk3qkyj5om5"]
+
+[ext_resource type="TileSet" uid="uid://327aqs810gaq" path="res://environment/tiles/tiles.tres" id="1_sblr2"]
+
+[node name="tilemap" type="TileMap"]
+tile_set = ExtResource("1_sblr2")
+format = 2
+layer_0/name = "Main"
+layer_1/name = "Background"
+layer_1/modulate = Color(1, 1, 1, 0.498039)
+layer_1/z_index = -100
+layer_1/tile_data = PackedInt32Array()

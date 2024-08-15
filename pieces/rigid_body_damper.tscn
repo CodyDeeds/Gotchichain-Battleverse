@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm5l005n2eu0i"]
+
+[ext_resource type="Script" path="res://pieces/rigid_body_damper.gd" id="1_i6ct5"]
+
+[node name="rigid_body_damper" type="Node"]
+script = ExtResource("1_i6ct5")

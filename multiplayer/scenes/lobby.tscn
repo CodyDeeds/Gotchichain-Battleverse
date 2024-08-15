@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6ykc6pyc5vb7"]
+
+[ext_resource type="Script" path="res://multiplayer/scenes/lobby.gd" id="1_2lsev"]
+
+[node name="lobby" type="Control" node_paths=PackedStringArray("PlayersLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2lsev")
+PlayersLabel = NodePath("label")
+
+[node name="label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -75.0
+offset_right = 231.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Players: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = 40.0
+offset_right = 157.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Start Game"
+
+[connection signal="pressed" from="button" to="." method="_on_button_pressed"]

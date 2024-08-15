@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://btomwnxsdqbak"]
+
+[ext_resource type="Texture2D" uid="uid://cfk72bpoejkl" path="res://fx/smoke.png" id="1_jm311"]
+[ext_resource type="Script" path="res://fx/transient_particles.gd" id="2_mgklb"]
+
+[sub_resource type="Curve" id="Curve_8i4ul"]
+_data = [Vector2(0, 0.486792), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_k6gka"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="smoke" type="CPUParticles2D"]
+amount = 12
+lifetime = 12.0
+explosiveness = 1.0
+texture = ExtResource("1_jm311")
+spread = 180.0
+gravity = Vector2(0, -5)
+initial_velocity_min = 4.0
+initial_velocity_max = 20.0
+damping_min = 2.0
+damping_max = 5.0
+angle_max = 360.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_8i4ul")
+color_ramp = SubResource("Gradient_k6gka")
+script = ExtResource("2_mgklb")

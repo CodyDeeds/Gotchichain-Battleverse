@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpb15pftnsksd"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_3515j"]
+[ext_resource type="Script" path="res://items/embiggener.gd" id="2_l8ixr"]
+
+[node name="embiggener" instance=ExtResource("1_3515j")]
+script = ExtResource("2_l8ixr")
+default_scale = Vector2(1, 1)
+embiggenation = Vector2(0.5, 0.5)

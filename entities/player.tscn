@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://sc48qicivsa7"]
+
+[ext_resource type="Script" path="res://entities/player.gd" id="1_ld4xh"]
+[ext_resource type="PackedScene" uid="uid://xcoi3q8tqswf" path="res://pieces/flippable.tscn" id="2_t5r7t"]
+[ext_resource type="Texture2D" uid="uid://clfitr3fd6le1" path="res://entities/gotchi.png" id="3_nlxg4"]
+[ext_resource type="PackedScene" uid="uid://c1xnrm1nmhoeh" path="res://fsm/fsm.tscn" id="3_phq4f"]
+[ext_resource type="PackedScene" uid="uid://cwvlhyb2o24gp" path="res://fsm/states/state.tscn" id="4_mnsvv"]
+[ext_resource type="PackedScene" uid="uid://so4ro78wuqio" path="res://pieces/hurtbox.tscn" id="4_yufjj"]
+[ext_resource type="Script" path="res://fsm/states/player_normal.gd" id="5_hvyl4"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="8_bj3p1"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="9_rvgwc"]
+[ext_resource type="AudioStream" uid="uid://bbc3g7djxafh" path="res://death.ogg" id="10_yhs7f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4yxu"]
+size = Vector2(32, 48)
+
+[sub_resource type="Animation" id="Animation_ambdq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flippable/sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jo1ys"]
+resource_name = "hit_flash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flippable/sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(5, 1, 5, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_usb2w"]
+_data = {
+"RESET": SubResource("Animation_ambdq"),
+"hit_flash": SubResource("Animation_jo1ys")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eikjk"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("flippable:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="player" type="CharacterBody2D"]
+collision_mask = 5
+script = ExtResource("1_ld4xh")
+max_speed = 500.0
+acceleration = 5000.0
+jump_speed = 550.0
+throw_speed = 750.0
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q4yxu")
+
+[node name="flippable" parent="." instance=ExtResource("2_t5r7t")]
+unique_name_in_owner = true
+
+[node name="sprite" type="Sprite2D" parent="flippable"]
+unique_name_in_owner = true
+position = Vector2(0, 2)
+texture = ExtResource("3_nlxg4")
+
+[node name="hand" type="Marker2D" parent="flippable"]
+unique_name_in_owner = true
+position = Vector2(48, 0)
+
+[node name="hurtbox" parent="." instance=ExtResource("4_yufjj")]
+unique_name_in_owner = true
+
+[node name="shape" type="CollisionShape2D" parent="hurtbox"]
+visible = false
+shape = SubResource("RectangleShape2D_q4yxu")
+
+[node name="fsm" parent="." instance=ExtResource("3_phq4f")]
+
+[node name="normal" parent="fsm" instance=ExtResource("4_mnsvv")]
+script = ExtResource("5_hvyl4")
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_usb2w")
+}
+
+[node name="mattoha_spawner" type="Node2D" parent="."]
+script = ExtResource("9_rvgwc")
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_eikjk")
+script = ExtResource("8_bj3p1")
+
+[node name="sound_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_yhs7f")

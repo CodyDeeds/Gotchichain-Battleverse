@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://fkenm67wmr6g"]
+
+[ext_resource type="Texture2D" uid="uid://clfitr3fd6le1" path="res://entities/gotchi.png" id="1_kk8x8"]
+
+[node name="life_icon" type="TextureRect"]
+custom_minimum_size = Vector2(32, 32)
+texture = ExtResource("1_kk8x8")
+expand_mode = 1

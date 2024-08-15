@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqpew2eit74po"]
+
+[ext_resource type="Script" path="res://gameholder.gd" id="1_arwj3"]
+[ext_resource type="PackedScene" uid="uid://bj0dd53by11qx" path="res://ui/ui.tscn" id="2_gkqd5"]
+
+[node name="gameholder" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_arwj3")
+
+[node name="viewporter" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="viewport" type="SubViewport" parent="viewporter"]
+unique_name_in_owner = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+canvas_item_default_texture_repeat = 1
+size = Vector2i(960, 540)
+render_target_update_mode = 4
+
+[node name="ui" parent="." instance=ExtResource("2_gkqd5")]

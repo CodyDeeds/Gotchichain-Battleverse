@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://csi24rucu52h8"]
+
+[ext_resource type="Script" path="res://projectiles/fireball.gd" id="1_371tt"]
+[ext_resource type="Texture2D" uid="uid://c5oxqq2nysyku" path="res://items/fireball.png" id="2_56h7i"]
+[ext_resource type="PackedScene" uid="uid://bf3geilkxmp4" path="res://fx/smoky_fire.tscn" id="2_k1pmq"]
+[ext_resource type="PackedScene" uid="uid://cw42hxgf7gg8y" path="res://pieces/rotator_to_motion.tscn" id="3_q0own"]
+[ext_resource type="Material" uid="uid://ce58aat00she4" path="res://materials/screen.tres" id="4_bsdyv"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="6_8eyot"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="7_yy64e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j41ax"]
+radius = 5.09902
+
+[sub_resource type="Curve" id="Curve_rfc4d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.118321, 1), 0.0, 0.0, 0, 0, Vector2(0.629771, 0.89434), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_h108y"]
+offsets = PackedFloat32Array(0, 0.732143, 1)
+colors = PackedColorArray(1, 1, 1, 0.4, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rk1d1"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
+[node name="fireball" type="Area2D"]
+script = ExtResource("1_371tt")
+projectile_gravity = 1200.0
+bounce_speed = 400.0
+through_walls = true
+death_scene = ExtResource("2_k1pmq")
+damage = 1.0
+
+[node name="sprite" type="Sprite2D" parent="."]
+rotation = -3.0054
+texture = ExtResource("2_56h7i")
+
+[node name="rotator_to_motion" parent="sprite" instance=ExtResource("3_q0own")]
+extra_rotation = -90.0
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j41ax")
+
+[node name="downcast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 9)
+collision_mask = 4
+
+[node name="leftcast" type="RayCast2D" parent="."]
+target_position = Vector2(-9, 0)
+collision_mask = 4
+
+[node name="rightcast" type="RayCast2D" parent="."]
+target_position = Vector2(9, 0)
+collision_mask = 4
+
+[node name="particulation" type="CPUParticles2D" parent="."]
+material = ExtResource("4_bsdyv")
+amount = 24
+randomness = 0.5
+texture = ExtResource("2_56h7i")
+emission_shape = 1
+emission_sphere_radius = 8.0
+gravity = Vector2(0, -15)
+angle_min = -15.0
+angle_max = 15.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_rfc4d")
+color_ramp = SubResource("Gradient_h108y")
+
+[node name="mattoha_spawner" type="Node2D" parent="."]
+script = ExtResource("6_8eyot")
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_rk1d1")
+script = ExtResource("7_yy64e")

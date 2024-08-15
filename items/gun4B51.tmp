@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5gu1kmj3moqs"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_ud8wh"]
+[ext_resource type="Texture2D" uid="uid://bnrrrqnlmnema" path="res://items/gun_basic.png" id="2_1507g"]
+[ext_resource type="Script" path="res://items/gun_basic.gd" id="2_cnpnn"]
+[ext_resource type="PackedScene" uid="uid://ciu55tlyejwui" path="res://projectiles/bullet_basic.tscn" id="3_w0mid"]
+
+[node name="gun_basic" node_paths=PackedStringArray("barrel") instance=ExtResource("1_ud8wh")]
+script = ExtResource("2_cnpnn")
+projectile = ExtResource("3_w0mid")
+projectile_speed = 2000.0
+projectile_spread = 5.0
+barrel = NodePath("sprite/barrel")
+can_hit_shooter = false
+rof_interval = 0.25
+
+[node name="sprite" parent="." index="0"]
+texture = ExtResource("2_1507g")
+
+[node name="barrel" type="Marker2D" parent="sprite" index="0"]
+unique_name_in_owner = true
+position = Vector2(32, 0)

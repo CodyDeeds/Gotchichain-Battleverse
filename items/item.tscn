@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://di80tn4e0x21d"]
+
+[ext_resource type="Script" path="res://items/item.gd" id="1_t3qgh"]
+[ext_resource type="Texture2D" uid="uid://bymq6uqpdbbdg" path="res://blob.png" id="2_o2ljm"]
+[ext_resource type="PackedScene" uid="uid://ckuixxcu173kv" path="res://pieces/player_detector.tscn" id="3_3mrmd"]
+[ext_resource type="PackedScene" uid="uid://cm5l005n2eu0i" path="res://pieces/rigid_body_damper.tscn" id="3_rxaio"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="5_eeukk"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="6_jee61"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rj7k3"]
+radius = 40.7922
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_04b4s"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath("flip:scale")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:lock_rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath(".:linear_velocity")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath(".:angular_velocity")
+properties/4/spawn = true
+properties/4/replication_mode = 2
+
+[node name="item" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 6
+freeze_mode = 1
+script = ExtResource("1_t3qgh")
+bonk_speed_threshhold = 400.0
+straighten_speed = 40.0
+
+[node name="flip" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="sprite" type="Sprite2D" parent="flip"]
+unique_name_in_owner = true
+texture = ExtResource("2_o2ljm")
+
+[node name="shape" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+visible = false
+polygon = PackedVector2Array(-32, -16, -16, -32, 16, -32, 32, -16, 32, 16, 16, 32, -16, 32, -32, 16)
+
+[node name="player_detector" parent="." instance=ExtResource("3_3mrmd")]
+unique_name_in_owner = true
+visible = false
+
+[node name="shape" type="CollisionShape2D" parent="player_detector"]
+shape = SubResource("CircleShape2D_rj7k3")
+
+[node name="damper" parent="." instance=ExtResource("3_rxaio")]
+unique_name_in_owner = true
+active = false
+
+[node name="mattoha_spawner" type="Node2D" parent="."]
+script = ExtResource("5_eeukk")
+HandleByServer = true
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_04b4s")
+script = ExtResource("6_jee61")

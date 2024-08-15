@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://rmlyrgx0bge6"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_okplj"]
+[ext_resource type="Script" path="res://items/gun_triple.gd" id="2_5b6cb"]
+[ext_resource type="PackedScene" uid="uid://ciu55tlyejwui" path="res://projectiles/bullet_basic.tscn" id="3_ssjw6"]
+[ext_resource type="Texture2D" uid="uid://dnts4p2xgdv6y" path="res://items/legendary_wizard_staff.png" id="4_0qu28"]
+[ext_resource type="PackedScene" uid="uid://g8dpq5tk332o" path="res://fx/bullet_shoot.tscn" id="4_a3fqi"]
+[ext_resource type="Texture2D" uid="uid://c6xa7utsvxo35" path="res://items/legendary_wizard_staff_glow.png" id="5_1h0tj"]
+[ext_resource type="Material" uid="uid://ce58aat00she4" path="res://materials/screen.tres" id="5_f60oi"]
+[ext_resource type="Texture2D" uid="uid://c0vjjpomf13tl" path="res://fx/spark_purp.png" id="7_8unoh"]
+
+[sub_resource type="Curve" id="Curve_gkdlq"]
+_data = [Vector2(0, 0.501887), 0.0, 0.0, 0, 0, Vector2(0.133588, 1), 0.0, 0.0, 0, 0, Vector2(0.790076, 0.864151), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Animation" id="Animation_scmx2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flip/sprite/glow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_inyk8"]
+resource_name = "pulsate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flip/sprite/glow:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.498039), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w46w4"]
+_data = {
+"RESET": SubResource("Animation_scmx2"),
+"pulsate": SubResource("Animation_inyk8")
+}
+
+[node name="gun_triple" instance=ExtResource("1_okplj")]
+can_sleep = false
+script = ExtResource("2_5b6cb")
+projectile = ExtResource("3_ssjw6")
+projectile_speed = 800.0
+projectile_spread = 5.0
+can_hit_shooter = false
+rof_interval = 0.1
+gun_kickback = 20.0
+player_kickback = 0.0
+shoot_particle_scene = ExtResource("4_a3fqi")
+hitbox_size = 16.0
+
+[node name="sprite" parent="flip" index="0"]
+texture = ExtResource("4_0qu28")
+
+[node name="barrel" type="Marker2D" parent="flip/sprite" index="0"]
+unique_name_in_owner = true
+position = Vector2(32, 0)
+
+[node name="glow" type="Sprite2D" parent="flip/sprite" index="1"]
+material = ExtResource("5_f60oi")
+texture = ExtResource("5_1h0tj")
+
+[node name="particulation" type="CPUParticles2D" parent="flip/sprite" index="2"]
+modulate = Color(2, 2, 2, 1)
+material = ExtResource("5_f60oi")
+position = Vector2(11, -1)
+amount = 30
+lifetime = 2.0
+lifetime_randomness = 0.5
+texture = ExtResource("7_8unoh")
+emission_shape = 1
+emission_sphere_radius = 9.0
+gravity = Vector2(0, -9.8)
+angle_max = 360.0
+scale_amount_min = 0.25
+scale_amount_max = 0.25
+scale_amount_curve = SubResource("Curve_gkdlq")
+
+[node name="animator" type="AnimationPlayer" parent="flip/sprite" index="3"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_w46w4")
+}
+autoplay = "pulsate"

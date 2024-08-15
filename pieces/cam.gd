@@ -1,0 +1,57 @@
+extends Camera2D
+
+@export var move_speed := 5.0
+@export var zoom_speed := 10.0
+## Amount of space around players that needs to remain visible
+@export var border := 256.0
+
+func _ready() -> void:
+	Game.cam = self
+
+func _process(delta: float) -> void:
+	centre_on_players(delta)
+	zoom_to_players(delta)
+
+func get_average_player_position() -> Vector2:
+	var average_position: Vector2 = Vector2()
+	var player_count := 0
+	
+	for this_player: Player in get_tree().get_nodes_in_group("players"):
+		average_position += this_player.global_position
+		player_count += 1
+	
+	if player_count > 1:
+		average_position /= player_count
+	
+	return average_position
+
+func centre_on_players(delta: float):
+	global_position = global_position.lerp(get_average_player_position(), delta * move_speed)
+
+func zoom_to_players(delta: float):
+	var default_size: Vector2 = get_viewport_rect().size
+	var rect_start: Vector2 = global_position - default_size / 2
+	var rect_end: Vector2 = global_position + default_size / 2
+	
+	for this_player: Player in get_tree().get_nodes_in_group("players"):
+		var this_pos: Vector2 = this_player.global_position
+		
+		if Input.is_action_just_pressed("test"):
+			print("From %s to %s" % [rect_start.round(), rect_end.round()])
+			print(this_pos)
+		
+		if this_pos.x < rect_start.x: rect_start.x = this_pos.x
+		if this_pos.y < rect_start.y: rect_start.y = this_pos.y
+		if this_pos.x > rect_end.x: rect_end.x = this_pos.x
+		if this_pos.y > rect_end.y: rect_end.y = this_pos.y
+	
+	if Input.is_action_just_pressed("test"):
+		print("From %s to %s" % [rect_start.round(), rect_end.round()])
+	
+	var target_size: Vector2 = rect_end - rect_start + Vector2(border, border)
+	var ratios: Vector2 = target_size / default_size
+	var target_zoom: float = 1 / max(ratios.x, ratios.y)
+	zoom = zoom.lerp(Vector2(target_zoom, target_zoom), delta * zoom_speed)
+	
+	if Input.is_action_just_pressed("test"):
+		print("Ratios %s, target %s" % [ratios, target_zoom])

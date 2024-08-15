@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy0tmtcuqhnmp"]
+
+[ext_resource type="Script" path="res://ui/main_menu.gd" id="1_i0jvg"]
+[ext_resource type="PackedScene" uid="uid://dqpew2eit74po" path="res://gameholder.tscn" id="2_cqe5s"]
+[ext_resource type="Resource" uid="uid://d127qnu4ittq0" path="res://data/maps/maps.tres" id="2_nmmnw"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i0jvg")
+gameholder_scene = ExtResource("2_cqe5s")
+maps = ExtResource("2_nmmnw")
+
+[node name="list" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="title" type="Label" parent="list"]
+layout_mode = 2
+text = "GOTCHI GAME"
+horizontal_alignment = 1
+
+[node name="start" type="Label" parent="list"]
+layout_mode = 2
+text = "press START"
+horizontal_alignment = 1

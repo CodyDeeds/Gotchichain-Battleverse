@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw42hxgf7gg8y"]
+
+[ext_resource type="Script" path="res://pieces/rotator_to_motion.gd" id="1_1d8hx"]
+
+[node name="rotator_to_motion" type="Node"]
+script = ExtResource("1_1d8hx")

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5rj82xrkotmd"]
+
+[ext_resource type="Texture2D" uid="uid://6d40cytwrsme" path="res://fx/blast.png" id="1_qv8lk"]
+[ext_resource type="Script" path="res://fx/transient_particles.gd" id="2_oaclh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l8g1m"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_es07e"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7wl1i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.103053, 0.124528), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_rjgv8"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="blast" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_l8g1m")
+amount = 20
+lifetime = 2.0
+explosiveness = 1.0
+lifetime_randomness = 0.8
+texture = ExtResource("1_qv8lk")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 200.0
+damping_min = 10.0
+damping_max = 10.0
+damping_curve = SubResource("Curve_es07e")
+angle_max = 360.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_7wl1i")
+color_ramp = SubResource("Gradient_rjgv8")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+script = ExtResource("2_oaclh")

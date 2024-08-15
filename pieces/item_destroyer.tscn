@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://e5rwu6pqniyp"]
+
+[ext_resource type="Script" path="res://pieces/item_destroyer.gd" id="1_mlh2c"]
+
+[node name="item_destroyer" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_mlh2c")

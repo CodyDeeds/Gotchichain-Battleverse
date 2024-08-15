@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://fj66ytilcyw7"]
+
+[ext_resource type="Script" path="res://multiplayer/UI/slots/lobby_slot.gd" id="1_lwfeo"]
+
+[node name="LobbySlot" type="HBoxContainer"]
+script = ExtResource("1_lwfeo")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lobby Name"
+
+[node name="Players" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2/5"
+
+[node name="JoinButton" type="Button" parent="."]
+layout_mode = 2
+text = "Join Lobby"
+
+[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg2okaoodrfss"]
+
+[ext_resource type="Script" path="res://pieces/hitbox.gd" id="1_fnj6e"]
+[ext_resource type="PackedScene" uid="uid://dxmoq6yx5wdvw" path="res://pieces/destroyer.tscn" id="2_bh3ea"]
+[ext_resource type="PackedScene" uid="uid://c0bn1iccxpify" path="res://pieces/spawner.tscn" id="2_p32u6"]
+[ext_resource type="PackedScene" uid="uid://b5rj82xrkotmd" path="res://fx/blast.tscn" id="3_u33lq"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="5_nknpm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3an8r"]
+radius = 48.0
+
+[node name="explosion" type="Area2D"]
+script = ExtResource("1_fnj6e")
+damage = 10.0
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3an8r")
+
+[node name="spawner" parent="." instance=ExtResource("2_p32u6")]
+scene = ExtResource("3_u33lq")
+auto_activate = true
+
+[node name="destroyer" parent="." instance=ExtResource("2_bh3ea")]
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="mattoha_spawner" type="Node2D" parent="."]
+script = ExtResource("5_nknpm")
+
+[connection signal="timeout" from="timer" to="destroyer" method="activate"]

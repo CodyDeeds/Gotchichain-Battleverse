@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsbl45mbdyxqa"]
+
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="1_5dd2n"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bfjpa"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("flip:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="replication_node" type="MultiplayerSynchronizer"]
+replication_config = SubResource("SceneReplicationConfig_bfjpa")
+script = ExtResource("1_5dd2n")

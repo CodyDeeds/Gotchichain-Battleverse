@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbji28y68eptm"]
+
+[ext_resource type="Script" path="res://maps/world.gd" id="1_dkv04"]
+[ext_resource type="PackedScene" uid="uid://ckhk3qkyj5om5" path="res://environment/tiles/tilemap.tscn" id="2_3iwyy"]
+[ext_resource type="PackedScene" uid="uid://m5wtpbu2ug0l" path="res://pieces/cam.tscn" id="3_rpsx0"]
+[ext_resource type="PackedScene" uid="uid://dgc7mtlcnhr6a" path="res://pieces/hitbox.tscn" id="4_r8kfl"]
+[ext_resource type="PackedScene" uid="uid://e5rwu6pqniyp" path="res://pieces/item_destroyer.tscn" id="5_j3pfs"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4qam3"]
+
+[node name="_world" type="Node2D"]
+script = ExtResource("1_dkv04")
+
+[node name="bac" type="Node2D" parent="."]
+z_index = -1000
+
+[node name="spawns" type="Node2D" parent="."]
+
+[node name="tilemap" parent="." instance=ExtResource("2_3iwyy")]
+
+[node name="cam" parent="." instance=ExtResource("3_rpsx0")]
+
+[node name="kill_floor" parent="." instance=ExtResource("4_r8kfl")]
+damage = 1e+06
+
+[node name="shape" type="CollisionShape2D" parent="kill_floor"]
+position = Vector2(0, 704)
+shape = SubResource("WorldBoundaryShape2D_4qam3")
+
+[node name="item_destroyer" parent="." instance=ExtResource("5_j3pfs")]
+
+[node name="shape" type="CollisionShape2D" parent="item_destroyer"]
+position = Vector2(0, 704)
+shape = SubResource("WorldBoundaryShape2D_4qam3")

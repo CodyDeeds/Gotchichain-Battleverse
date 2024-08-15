@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://ciu55tlyejwui"]
+
+[ext_resource type="Script" path="res://projectiles/projectile.gd" id="1_vs7mg"]
+[ext_resource type="PackedScene" uid="uid://dgkjxo67xts3g" path="res://fx/bullet_break.tscn" id="2_bcuf4"]
+[ext_resource type="Texture2D" uid="uid://dupyf446aspuo" path="res://projectiles/bullet_basic.png" id="2_piald"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="4_tfc46"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="5_fr8bc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tguig"]
+radius = 8.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3qjh6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
+[node name="bullet_basic" type="Area2D"]
+script = ExtResource("1_vs7mg")
+death_scene = ExtResource("2_bcuf4")
+damage = 1.0
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tguig")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_piald")
+
+[node name="mattoha_spawner" type="Node2D" parent="."]
+script = ExtResource("4_tfc46")
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_3qjh6")
+script = ExtResource("5_fr8bc")

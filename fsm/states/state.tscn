@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwvlhyb2o24gp"]
+
+[ext_resource type="Script" path="res://fsm/states/state.gd" id="1_4pl5l"]
+
+[node name="state" type="Node"]
+script = ExtResource("1_4pl5l")

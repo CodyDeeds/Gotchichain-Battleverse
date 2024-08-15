@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://csmpftis477wf"]
+
+[ext_resource type="Script" path="res://multiplayer/scenes/lobbies.gd" id="1_pr2mq"]
+
+[node name="lobbies" type="Control" node_paths=PackedStringArray("LobbiesContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pr2mq")
+LobbiesContainer = NodePath("margin_container/v_box_container/LobbiesContainer")
+
+[node name="margin_container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container"]
+layout_mode = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "Available Lobbies"
+
+[node name="CreateLobbyButton" type="Button" parent="margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Create New Lobby"
+
+[node name="LobbiesContainer" type="VBoxContainer" parent="margin_container/v_box_container"]
+layout_mode = 2
+
+[connection signal="pressed" from="margin_container/v_box_container/h_box_container/CreateLobbyButton" to="." method="_on_create_lobby_button_pressed"]

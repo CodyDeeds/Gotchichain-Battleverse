@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgayylruixsv"]
+
+[ext_resource type="Script" path="res://projectiles/projectile.gd" id="1_x35u6"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="2_5xqw0"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="3_eviys"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_np1rt"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
+[node name="projectile" type="Area2D"]
+script = ExtResource("1_x35u6")
+
+[node name="mattoha_spawner" type="Node2D" parent="."]
+script = ExtResource("2_5xqw0")
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_np1rt")
+script = ExtResource("3_eviys")

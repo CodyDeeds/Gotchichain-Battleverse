@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c264uq5egs65y"]
+
+[ext_resource type="Script" path="res://fx/transient_particles.gd" id="1_4bw3j"]
+[ext_resource type="Material" uid="uid://ce58aat00she4" path="res://materials/screen.tres" id="1_4o246"]
+[ext_resource type="Texture2D" uid="uid://c5oxqq2nysyku" path="res://items/fireball.png" id="2_xmwie"]
+
+[sub_resource type="Gradient" id="Gradient_ef6ss"]
+offsets = PackedFloat32Array(0, 0.446429, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0.776471, 0.776471, 1, 0, 0, 0)
+
+[node name="firepoof" type="CPUParticles2D"]
+material = ExtResource("1_4o246")
+amount = 24
+explosiveness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("2_xmwie")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 50.0
+damping_min = 15.0
+damping_max = 15.0
+angle_max = 360.0
+scale_amount_min = 0.2
+scale_amount_max = 0.75
+color_ramp = SubResource("Gradient_ef6ss")
+script = ExtResource("1_4bw3j")

@@ -1,0 +1,141 @@
+[gd_scene load_steps=8 format=3 uid="uid://juayv5m0m6w1"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_0nwfj"]
+[ext_resource type="Texture2D" uid="uid://bmyyvo1gemb4p" path="res://items/sushi_knife.png" id="2_67py5"]
+[ext_resource type="Script" path="res://items/sushi_knife.gd" id="2_a85lh"]
+[ext_resource type="PackedScene" uid="uid://dgc7mtlcnhr6a" path="res://pieces/hitbox.tscn" id="4_i7qav"]
+
+[sub_resource type="Animation" id="Animation_pnteq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitbox:active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("flip/sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("flip/sprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("flip/sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_i1l5d"]
+resource_name = "chop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitbox:active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("flip/sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(32, -40), Vector2(40, 32), Vector2(40, 24), Vector2(40, 16), Vector2(36, -4), Vector2(34, -5), Vector2(16, -5), Vector2(4, -3), Vector2(0, -1), Vector2(-1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("flip/sprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 0.523598, 0.523598, 0.261799, 0.139626, 0.0349066, -0.0698132, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("flip/sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jmax5"]
+_data = {
+"RESET": SubResource("Animation_pnteq"),
+"chop": SubResource("Animation_i1l5d")
+}
+
+[node name="sushi_knife" instance=ExtResource("1_0nwfj")]
+script = ExtResource("2_a85lh")
+bonk_damage = 1.0
+straighten_speed = 100.0
+hitbox_size = 8.0
+sprite_scale = 2.0
+
+[node name="sprite" parent="flip" index="0"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_67py5")
+hframes = 3
+
+[node name="shape" parent="." index="1"]
+polygon = PackedVector2Array(7.39104, 3.06147, 3.06147, 7.39104, -3.06147, 7.39104, -7.39104, 3.06147, -7.39104, -3.06147, -3.06147, -7.39104, 3.06147, -7.39104, 7.39104, -3.06147)
+
+[node name="hitbox" parent="." index="3" instance=ExtResource("4_i7qav")]
+damage = 2.0
+active = false
+
+[node name="shape" type="CollisionPolygon2D" parent="hitbox" index="0"]
+polygon = PackedVector2Array(48, -48, 72, -16, 72, 16, 56, 40, 32, 40, 8, 16, 8, -16)
+
+[node name="animator" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_jmax5")
+}

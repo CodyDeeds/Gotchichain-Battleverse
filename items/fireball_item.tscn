@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu4jefyrdl4ho"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_fkm41"]
+[ext_resource type="Script" path="res://items/gun.gd" id="2_nt5qd"]
+[ext_resource type="PackedScene" uid="uid://csi24rucu52h8" path="res://projectiles/fireball.tscn" id="3_qnrrm"]
+[ext_resource type="Texture2D" uid="uid://c5oxqq2nysyku" path="res://items/fireball.png" id="4_dyi4v"]
+
+[node name="fireball_item" instance=ExtResource("1_fkm41")]
+position = Vector2(-1, 0)
+can_sleep = false
+script = ExtResource("2_nt5qd")
+projectile = ExtResource("3_qnrrm")
+projectile_speed = 400.0
+projectile_spread = 5.0
+can_hit_shooter = false
+rof_interval = 0.5
+gun_kickback = 20.0
+player_kickback = 0.0
+shoot_particle_scene = null
+hitbox_size = 8.0
+
+[node name="sprite" parent="flip" index="0"]
+texture = ExtResource("4_dyi4v")

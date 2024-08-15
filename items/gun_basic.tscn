@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5gu1kmj3moqs"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_ud8wh"]
+[ext_resource type="Script" path="res://items/gun_basic.gd" id="2_cnpnn"]
+[ext_resource type="PackedScene" uid="uid://ciu55tlyejwui" path="res://projectiles/bullet_basic.tscn" id="3_w0mid"]
+[ext_resource type="PackedScene" uid="uid://g8dpq5tk332o" path="res://fx/bullet_shoot.tscn" id="4_n7mrs"]
+[ext_resource type="Texture2D" uid="uid://cn6ybpxc3kxjs" path="res://items/common_wizard_staff.png" id="4_vm3mh"]
+
+[node name="gun_basic" instance=ExtResource("1_ud8wh")]
+can_sleep = false
+script = ExtResource("2_cnpnn")
+projectile = ExtResource("3_w0mid")
+projectile_speed = 2000.0
+projectile_spread = 5.0
+can_hit_shooter = false
+rof_interval = 0.25
+gun_kickback = 20.0
+player_kickback = 0.0
+shoot_particle_scene = ExtResource("4_n7mrs")
+hitbox_size = 16.0
+
+[node name="sprite" parent="flip" index="0"]
+texture = ExtResource("4_vm3mh")
+
+[node name="barrel" type="Marker2D" parent="flip/sprite" index="0"]
+unique_name_in_owner = true
+position = Vector2(16, 0)

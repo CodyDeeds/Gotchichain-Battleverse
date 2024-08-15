@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2po6dcgero8l"]
+
+[ext_resource type="Script" path="res://fx/multi_particles.gd" id="1_ap54c"]
+
+[node name="multi_particles" type="Node2D"]
+script = ExtResource("1_ap54c")

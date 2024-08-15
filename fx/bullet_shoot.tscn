@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://g8dpq5tk332o"]
+
+[ext_resource type="Material" uid="uid://ce58aat00she4" path="res://materials/screen.tres" id="1_5yhx7"]
+[ext_resource type="Texture2D" uid="uid://dupyf446aspuo" path="res://projectiles/bullet_basic.png" id="1_8s6n3"]
+[ext_resource type="Script" path="res://fx/transient_particles.gd" id="2_11f23"]
+
+[sub_resource type="Curve" id="Curve_bkk4v"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.354962, 0.637736), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="bullet_break" type="CPUParticles2D"]
+material = ExtResource("1_5yhx7")
+lifetime = 0.5
+explosiveness = 1.0
+lifetime_randomness = 0.25
+texture = ExtResource("1_8s6n3")
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 200.0
+angle_max = 360.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_bkk4v")
+script = ExtResource("2_11f23")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://bw5ue4nimvf38"]
+
+[ext_resource type="Script" path="res://props/item_pedestal.gd" id="1_gl2sc"]
+[ext_resource type="Texture2D" uid="uid://bx4dbnyfsy8a6" path="res://props/item_pedestal.png" id="2_1vfgo"]
+[ext_resource type="PackedScene" uid="uid://3y0libgsadyw" path="res://items/grenade.tscn" id="2_vvjgs"]
+[ext_resource type="PackedScene" uid="uid://c5gu1kmj3moqs" path="res://items/gun_basic.tscn" id="3_w5t7t"]
+[ext_resource type="PackedScene" uid="uid://rmlyrgx0bge6" path="res://items/gun_triple.tscn" id="4_cd6ha"]
+[ext_resource type="PackedScene" uid="uid://bu4jefyrdl4ho" path="res://items/fireball_item.tscn" id="5_wqsv8"]
+[ext_resource type="PackedScene" uid="uid://juayv5m0m6w1" path="res://items/sushi_knife.tscn" id="6_a06a1"]
+
+[node name="item_pedestal" type="Node2D"]
+script = ExtResource("1_gl2sc")
+items = Array[PackedScene]([ExtResource("3_w5t7t"), ExtResource("4_cd6ha"), ExtResource("5_wqsv8"), ExtResource("6_a06a1"), ExtResource("2_vvjgs")])
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_1vfgo")
+
+[node name="collision" type="StaticBody2D" parent="."]
+
+[node name="shape" type="CollisionPolygon2D" parent="collision"]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-16, 17, -12, 13, 12, 13, 16, 17)
+
+[node name="spawn_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]

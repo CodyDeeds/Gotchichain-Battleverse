@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxmoq6yx5wdvw"]
+
+[ext_resource type="Script" path="res://pieces/destroyer.gd" id="1_roesk"]
+
+[node name="destroyer" type="Node"]
+script = ExtResource("1_roesk")
