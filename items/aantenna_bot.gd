@@ -13,10 +13,22 @@ func explode():
 	new_laser.global_position = global_position
 	queue_free()
 
-func get_activated():
-	super()
+@rpc("any_peer", "call_local")
+func trigger_countdown():
+	%activation_timer.start()
+	%animator.play("activate")
+	grabable = false
+	active = false
+	%glow.scale *= 2
+
+@rpc("any_peer", "call_local")
+func activate():
 	active = true
 	%glow.show()
+
+func get_activated():
+	super()
+	rpc("activate")
 
 func get_thrown():
 	super()
@@ -24,8 +36,5 @@ func get_thrown():
 
 
 func _on_player_entered() -> void:
-	if active:
-		%activation_timer.start()
-		%animator.play("activate")
-		grabable = false
-		active = false
+	if active and is_multiplayer_authority():
+		rpc("trigger_countdown")
