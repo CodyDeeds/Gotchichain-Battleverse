@@ -12,7 +12,7 @@ func _ready():
 	$AnimationPlayer.play("button_effect")
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("test"):
+	if OS.is_debug_build() and event.is_action_pressed("test"):
 		MattohaSystem.StartServer()
 		to_placeholder()
 

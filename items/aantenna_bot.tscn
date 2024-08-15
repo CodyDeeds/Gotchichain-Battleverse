@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmptfsx2xir2l"]
 
 [ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_qogao"]
-[ext_resource type="Texture2D" uid="uid://b3hlatjftd1ns" path="res://items/aantena_bot.png" id="2_6csv7"]
-[ext_resource type="Script" path="res://items/aantena_bot.gd" id="2_7qhbt"]
+[ext_resource type="Texture2D" uid="uid://b3hlatjftd1ns" path="res://items/aantenna_bot.png" id="2_6csv7"]
+[ext_resource type="Script" path="res://items/aantenna_bot.gd" id="2_vbsqv"]
 [ext_resource type="Material" uid="uid://ce58aat00she4" path="res://materials/screen.tres" id="4_unclt"]
 [ext_resource type="Texture2D" uid="uid://bqgobahtrlqvf" path="res://fx/glow.png" id="5_5gcqn"]
 
@@ -62,9 +62,9 @@ _data = {
 "idle": SubResource("Animation_5cheu")
 }
 
-[node name="aantena_bot" instance=ExtResource("1_qogao")]
+[node name="aantenna_bot" instance=ExtResource("1_qogao")]
 lock_rotation = true
-script = ExtResource("2_7qhbt")
+script = ExtResource("2_vbsqv")
 bonk_speed_threshhold = 1000.0
 straighten_speed = 100.0
 hitbox_size = 14.0
@@ -85,6 +85,9 @@ texture = ExtResource("5_5gcqn")
 
 [node name="shape" parent="." index="2"]
 polygon = PackedVector2Array(12.9343, 5.35757, 5.35757, 12.9343, -5.35757, 12.9343, -12.9343, 5.35757, -12.9343, -5.35757, -5.35757, -12.9343, 5.35757, -12.9343, 12.9343, -5.35757)
+
+[node name="player_detector" parent="." index="3"]
+visible = true
 
 [node name="activation_timer" type="Timer" parent="." index="7"]
 unique_name_in_owner = true
