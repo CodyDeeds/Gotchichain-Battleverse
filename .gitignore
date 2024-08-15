@@ -1,6 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
 *.png
+*.jpg
+*.jpeg
 *.wav
 *.ogg
 
