@@ -8,7 +8,7 @@ extends Node2D
 var cam: Camera2D = null
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !is_instance_valid(cam):
 		identify_camera()
 	reposition()

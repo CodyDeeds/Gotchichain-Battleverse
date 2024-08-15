@@ -11,6 +11,12 @@ func _ready():
 	$AnimationPlayer.play("logo_effect")
 	$AnimationPlayer.play("button_effect")
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("test"):
+		MattohaSystem.StartServer()
+		to_placeholder()
+
+
 func to_placeholder():
 	get_tree().change_scene_to_file("res://multiplayer/scenes/game_holder.tscn")
 

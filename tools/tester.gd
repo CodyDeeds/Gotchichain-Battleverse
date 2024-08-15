@@ -13,7 +13,7 @@ func _ready() -> void:
 	this_map = map_resources.pick_random()
 	game_scene = this_map.scene
 	
-	activate()
+	activate.call_deferred()
 
 func activate() -> void:
 	get_tree().change_scene_to_packed(gameholder_scene)

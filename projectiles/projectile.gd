@@ -96,7 +96,7 @@ func die():
 
 	queue_free()
 
-func _on_body_entered(what: Node2D):
+func _on_body_entered(_what: Node2D):
 	if !through_walls:
 		die()
 
