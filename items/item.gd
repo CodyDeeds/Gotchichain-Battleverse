@@ -17,6 +17,8 @@ extends RigidBody2D
 @export var sprite_scale := 1.0
 ## Whether the sprite flips vertically when facing left
 @export var flip_sprite := true
+## Whether or not this item can be grabbed
+@export var grabable := true
 
 var holder: Player = null
 var previous_holder: Player = null

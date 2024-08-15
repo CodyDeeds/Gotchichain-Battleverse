@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3hlatjftd1ns"
-path="res://.godot/imported/aantena_bot.png-335e849aa5911e9f4fd45173461c4c2b.ctex"
+path="res://.godot/imported/aantenna_bot.png-d7035f628d380aa0fc19db2cfc88acdf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/aantena_bot.png"
-dest_files=["res://.godot/imported/aantena_bot.png-335e849aa5911e9f4fd45173461c4c2b.ctex"]
+source_file="res://items/aantenna_bot.png"
+dest_files=["res://.godot/imported/aantenna_bot.png-d7035f628d380aa0fc19db2cfc88acdf.ctex"]
 
 [params]
 

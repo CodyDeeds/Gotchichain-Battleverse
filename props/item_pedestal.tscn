@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://rmlyrgx0bge6" path="res://items/gun_triple.tscn" id="4_cd6ha"]
 [ext_resource type="PackedScene" uid="uid://bu4jefyrdl4ho" path="res://items/fireball_item.tscn" id="5_wqsv8"]
 [ext_resource type="PackedScene" uid="uid://juayv5m0m6w1" path="res://items/sushi_knife.tscn" id="6_a06a1"]
-[ext_resource type="PackedScene" uid="uid://dmptfsx2xir2l" path="res://items/aantena_bot.tscn" id="7_yn706"]
+[ext_resource type="PackedScene" uid="uid://dmptfsx2xir2l" path="res://items/aantenna_bot.tscn" id="7_yn706"]
 
 [node name="item_pedestal" type="Node2D"]
 script = ExtResource("1_gl2sc")

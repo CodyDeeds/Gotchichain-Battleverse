@@ -65,7 +65,7 @@ func throw_item():
 func grab_nearest_item():
 	var hand_position := get_hand_position()
 	var target_item: Item = Util.get_nearest_group_member("items", hand_position)
-	if is_instance_valid(target_item):
+	if is_instance_valid(target_item) and target_item.grabable:
 		if hand_position.distance_squared_to(target_item.global_position) < grab_range * grab_range:
 			target_item.set_holder(self)
 			held_item = target_item
