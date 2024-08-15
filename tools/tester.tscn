@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://cds2ol1nmrq7g"]
+
+[ext_resource type="Script" path="res://tools/tester.gd" id="1_irtw6"]
+[ext_resource type="PackedScene" uid="uid://dqpew2eit74po" path="res://gameholder.tscn" id="2_j7y5h"]
+[ext_resource type="Resource" uid="uid://d127qnu4ittq0" path="res://data/maps/maps.tres" id="3_qn6qg"]
+
+[node name="tester" type="Node"]
+script = ExtResource("1_irtw6")
+gameholder_scene = ExtResource("2_j7y5h")
+maps = ExtResource("3_qn6qg")

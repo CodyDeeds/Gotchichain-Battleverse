@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmptfsx2xir2l"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_qogao"]
+[ext_resource type="Texture2D" uid="uid://b3hlatjftd1ns" path="res://items/aantena_bot.png" id="2_6csv7"]
+[ext_resource type="Script" path="res://items/aantena_bot.gd" id="2_7qhbt"]
+[ext_resource type="Material" uid="uid://ce58aat00she4" path="res://materials/screen.tres" id="4_unclt"]
+[ext_resource type="Texture2D" uid="uid://bqgobahtrlqvf" path="res://fx/glow.png" id="5_5gcqn"]
+
+[sub_resource type="Animation" id="Animation_5cheu"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flip/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_6uut5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flip/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_o07fi"]
+resource_name = "activate"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flip/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2dwk"]
+_data = {
+"RESET": SubResource("Animation_6uut5"),
+"activate": SubResource("Animation_o07fi"),
+"idle": SubResource("Animation_5cheu")
+}
+
+[node name="aantena_bot" instance=ExtResource("1_qogao")]
+lock_rotation = true
+script = ExtResource("2_7qhbt")
+bonk_speed_threshhold = 1000.0
+straighten_speed = 100.0
+hitbox_size = 14.0
+
+[node name="sprite" parent="flip" index="0"]
+texture = ExtResource("2_6csv7")
+hframes = 8
+vframes = 2
+
+[node name="glow" type="Sprite2D" parent="." index="1"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.498039)
+material = ExtResource("4_unclt")
+position = Vector2(0, -8)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_5gcqn")
+
+[node name="shape" parent="." index="2"]
+polygon = PackedVector2Array(12.9343, 5.35757, 5.35757, 12.9343, -5.35757, 12.9343, -12.9343, 5.35757, -12.9343, -5.35757, -5.35757, -12.9343, 5.35757, -12.9343, 12.9343, -5.35757)
+
+[node name="activation_timer" type="Timer" parent="." index="7"]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="animator" type="AnimationPlayer" parent="." index="8"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_v2dwk")
+}
+autoplay = "idle"
+
+[connection signal="player_entered" from="player_detector" to="." method="_on_player_entered"]
+[connection signal="timeout" from="activation_timer" to="." method="explode"]
