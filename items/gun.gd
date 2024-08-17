@@ -2,14 +2,18 @@
 class_name Gun
 extends Item
 
-@export var projectile: PackedScene = null
+## Bullets are spawned at the location of this node
+@export var barrel: Node2D = null
+@export_group("Stats")
 @export var projectile_speed := 2000.0
 @export var projectile_spread := 5.0
-@export var barrel: Node2D = null
 @export var can_hit_shooter := false
+## "Rate of Fire interval": Time between one allowed shot and the next, in seconds
 @export var rof_interval := 0.25
 @export var gun_kickback := 20.0
 @export var player_kickback := 0.0
+@export_group("Resources")
+@export var projectile: PackedScene = null
 @export var shoot_particle_scene: PackedScene = null
 
 var timer_rof := Timer.new()
@@ -60,10 +64,17 @@ func deploy_projectile(angle: float=0.0, speed_mult: float=1.0):
 
 	can_shoot = false
 	timer_rof.start()
+	
+	return new_projectile
 
 func get_activated():
 	super()
 	attempt_shoot()
+
+func reload():
+	can_shoot = true
+	timer_rof.stop()
+
 
 func _on_timer_rof_timeout():
 	can_shoot = true

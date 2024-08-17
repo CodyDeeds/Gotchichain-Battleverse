@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw5ue4nimvf38"]
+[gd_scene load_steps=10 format=3 uid="uid://bw5ue4nimvf38"]
 
 [ext_resource type="Script" path="res://props/item_pedestal.gd" id="1_gl2sc"]
 [ext_resource type="Texture2D" uid="uid://bx4dbnyfsy8a6" path="res://props/item_pedestal.png" id="2_1vfgo"]
@@ -8,10 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bu4jefyrdl4ho" path="res://items/fireball_item.tscn" id="5_wqsv8"]
 [ext_resource type="PackedScene" uid="uid://juayv5m0m6w1" path="res://items/sushi_knife.tscn" id="6_a06a1"]
 [ext_resource type="PackedScene" uid="uid://dmptfsx2xir2l" path="res://items/aantenna_bot.tscn" id="7_yn706"]
+[ext_resource type="PackedScene" uid="uid://ti0i1eh2soku" path="res://items/captain_aave_shield.tscn" id="8_xdvjo"]
 
 [node name="item_pedestal" type="Node2D"]
 script = ExtResource("1_gl2sc")
-items = Array[PackedScene]([ExtResource("3_w5t7t"), ExtResource("4_cd6ha"), ExtResource("5_wqsv8"), ExtResource("6_a06a1"), ExtResource("2_vvjgs"), ExtResource("7_yn706")])
+items = Array[PackedScene]([ExtResource("3_w5t7t"), ExtResource("4_cd6ha"), ExtResource("5_wqsv8"), ExtResource("6_a06a1"), ExtResource("2_vvjgs"), ExtResource("7_yn706"), ExtResource("8_xdvjo")])
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_1vfgo")

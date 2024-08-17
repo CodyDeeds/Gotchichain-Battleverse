@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c55nx3kyba04x"]
+
+[ext_resource type="Script" path="res://projectiles/boomerang.gd" id="1_ysbqb"]
+
+[node name="boomerang" type="Area2D"]
+script = ExtResource("1_ysbqb")

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ti0i1eh2soku"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_fw37h"]
+[ext_resource type="Script" path="res://items/captain_aave_shield.gd" id="2_o2luw"]
+[ext_resource type="PackedScene" uid="uid://c7c3g6w8jconm" path="res://projectiles/captain_aave_shield.tscn" id="3_wgqk4"]
+[ext_resource type="Texture2D" uid="uid://cty2itwf8ssa7" path="res://items/captain_aave_shield.png" id="4_07vwc"]
+
+[node name="captain_aave_shield" instance=ExtResource("1_fw37h")]
+script = ExtResource("2_o2luw")
+projectile_speed = 2000.0
+projectile_spread = 0.0
+can_hit_shooter = false
+rof_interval = 1e+06
+gun_kickback = 20.0
+player_kickback = 0.0
+projectile = ExtResource("3_wgqk4")
+shoot_particle_scene = null
+bonk_speed_threshhold = 1000.0
+straighten_speed = 100.0
+hitbox_size = 12.0
+
+[node name="sprite" parent="flip" index="0"]
+texture = ExtResource("4_07vwc")
+
+[node name="shape" parent="." index="1"]
+visible = true
+polygon = PackedVector2Array(11.0866, 4.5922, 4.5922, 11.0866, -4.5922, 11.0866, -11.0866, 4.5922, -11.0866, -4.5922, -4.5922, -11.0866, 4.5922, -11.0866, 11.0866, -4.5922)
