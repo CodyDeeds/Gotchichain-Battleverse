@@ -2,18 +2,28 @@
 class_name Player
 extends Entity
 
+@export_group("Movement")
 @export var gravity := 500.0
+## When the jump button is not held, gravity will be multiplied by this number
+@export var gravity_fast_fall_mult := 4.0
 @export var move_speed := 350.0
 @export var max_speed := 400.0
+## When jumping, horizontal speed is increased by this amount multiplicatively
+@export var jump_speed_boost := 0.5
 @export var acceleration := 2000.0
+@export var air_jumps := 1
 @export var jump_speed := 1500.0
 @export var controller := 0
+@export_group("Interaction")
 @export var grab_range := 64.0
 @export var throw_speed := 2000.0
 
 # Preload the death sound effect
+@export_group("Resources")
 @export var death_sound: AudioStream = preload("res://death.ogg")
+@export var jump_particles: PackedScene = preload("res://fx/jump.tscn")
 
+var current_air_jumps: int = air_jumps
 var held_item: Item = null
 var sound_player: AudioStreamPlayer = null
 var has_died: bool = false
@@ -34,6 +44,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !is_owner():
 		return
+	
 	# for desktop control
 	var x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if x != 0:
@@ -41,13 +52,26 @@ func _process(delta: float) -> void:
 	gravitate(delta)
 	frictutate(delta)
 	move_and_slide()
+	if is_on_floor():
+		current_air_jumps = air_jumps
 
 func get_hand_position() -> Vector2:
 	return %hand.global_position
 
 func jump():
-	if is_on_floor():
+	var succeed: Callable = func():
 		velocity.y = -jump_speed
+		velocity.x *= (jump_speed_boost + 1)
+		var new_particles = MattohaSystem.CreateInstance(jump_particles.resource_path)
+		new_particles.position = global_position
+		MattohaSystem.GetLobbyNodeFor(self).add_child(new_particles)
+	
+	if is_on_floor():
+		succeed.call()
+	else:
+		if current_air_jumps > 0 and velocity.y > -jump_speed:
+			current_air_jumps -= 1
+			succeed.call()
 
 func attempt_grab():
 	if is_instance_valid(held_item):
@@ -89,7 +113,7 @@ func gravitate(delta: float):
 	velocity.y += gravity * delta
 	if is_owner():
 		if !Input.is_joy_button_pressed(controller, JOY_BUTTON_A):
-			velocity.y += gravity * delta
+			velocity.y += gravity * delta * (gravity_fast_fall_mult) - 1
 
 func get_hurtbox() -> Hurtbox:
 	return $hurtbox

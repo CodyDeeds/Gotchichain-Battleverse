@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://blf51ljbjjkqp"]
+
+[ext_resource type="Script" path="res://pieces/transient_sprite_2d.gd" id="1_3fwyo"]
+[ext_resource type="Texture2D" uid="uid://cqi46l0jwb1fj" path="res://fx/jump.png" id="1_tvrwa"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="3_wu3au"]
+
+[node name="jump" type="Sprite2D"]
+texture = ExtResource("1_tvrwa")
+hframes = 8
+script = ExtResource("1_3fwyo")
+
+[node name="mattoha_spawner" type="Node2D" parent="."]
+script = ExtResource("3_wu3au")
