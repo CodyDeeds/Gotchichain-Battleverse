@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u6nocx3ly2pt"
-path="res://.godot/imported/auto_sprite.png-87eb71bd540570799e6712408f97ee24.ctex"
+uid="uid://chetwc28vvjqi"
+path="res://.godot/imported/transient_sprite_2d.png-0227bcfdf8b489a64d548caee78d5f5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pieces/auto_sprite.png"
-dest_files=["res://.godot/imported/auto_sprite.png-87eb71bd540570799e6712408f97ee24.ctex"]
+source_file="res://pieces/transient_sprite_2d.png"
+dest_files=["res://.godot/imported/transient_sprite_2d.png-0227bcfdf8b489a64d548caee78d5f5f.ctex"]
 
 [params]
 
