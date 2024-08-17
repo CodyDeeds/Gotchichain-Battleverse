@@ -2,6 +2,7 @@
 class_name Projectile
 extends Hitbox
 
+@export_group("Life")
 ## Number of times this projectile can hit an enemy before dissipating
 @export var hits_left := 1
 ## Amount of time this projectile lasts before dissipating
@@ -11,6 +12,7 @@ extends Hitbox
 ## Whether or not to use a raycast to check collisions
 @export var use_raycast := true
 ## Scene created when projectile is destroyed
+@export_group("Resources")
 @export var death_scene: PackedScene = null
 ## Sound effect for the projectile
 @export var projectile_sound: AudioStream = preload("res://wand.ogg")

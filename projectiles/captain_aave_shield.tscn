@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7c3g6w8jconm"]
+
+[ext_resource type="Script" path="res://projectiles/boomerang.gd" id="1_tl8d1"]
+[ext_resource type="Texture2D" uid="uid://cty2itwf8ssa7" path="res://items/captain_aave_shield.png" id="2_ty7sf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p2pox"]
+
+[sub_resource type="Animation" id="Animation_5oi6f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xr6xv"]
+resource_name = "spin"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_12ipc"]
+_data = {
+"RESET": SubResource("Animation_5oi6f"),
+"spin": SubResource("Animation_xr6xv")
+}
+
+[node name="captain_aave_shield" type="Area2D"]
+script = ExtResource("1_tl8d1")
+fly_speed = 800.0
+fly_time = 1.0
+damage = 2.0
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ty7sf")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p2pox")
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_12ipc")
+}
+autoplay = "spin"
