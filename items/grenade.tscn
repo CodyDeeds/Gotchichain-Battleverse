@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://items/grenade.gd" id="1_ayklw"]
 [ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_qjc5o"]
 [ext_resource type="Texture2D" uid="uid://wqkv1s06i8qc" path="res://items/grenade.png" id="2_5kyqg"]
-[ext_resource type="AudioStream" uid="uid://bopvgn52hpimb" path="res://bomb.ogg" id="3_adptf"]
+[ext_resource type="AudioStream" uid="uid://bopvgn52hpimb" path="res://audio/sfx/bomb.ogg" id="3_adptf"]
 [ext_resource type="PackedScene" uid="uid://c0bn1iccxpify" path="res://pieces/spawner.tscn" id="4_aev0m"]
 [ext_resource type="PackedScene" uid="uid://dg2okaoodrfss" path="res://projectiles/explosion.tscn" id="5_rdfiv"]
 [ext_resource type="PackedScene" uid="uid://bsbl45mbdyxqa" path="res://multiplayer/scenes/nodes/replication_node.tscn" id="6_1cvdm"]

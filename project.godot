@@ -60,6 +60,7 @@ enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg", "res:
 [file_customization]
 
 folder_colors={
+"res://audio/": "teal",
 "res://data/": "gray",
 "res://entities/": "purple",
 "res://environment/": "blue",
