@@ -17,7 +17,7 @@ func _handle_input(event: InputEvent):
 			father.attempt_grab()
 
 		if event.is_action_pressed("use"):
-			father.rpc("activate_item")
+			father.activate_item()
 
 func tractutate(delta: float):
 	var traction: float = 0

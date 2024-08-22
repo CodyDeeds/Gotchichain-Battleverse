@@ -104,10 +104,15 @@ func grab_item_by_path(item_path: NodePath):
 			held_item = target_item
 			#print("Player: Grabbed item ", held_item.name)
 
-@rpc("any_peer", "call_local", "reliable")
 func activate_item():
 	if is_instance_valid(held_item):
-		print("Player: Activated item ", held_item.name)
+		rpc("rpc_activate_item", held_item.global_position, held_item.global_rotation)
+
+@rpc("any_peer", "call_local", "reliable")
+func rpc_activate_item(pos: Vector2, rot: float):
+	if is_instance_valid(held_item):
+		held_item.global_position = pos
+		held_item.global_rotation = rot
 		held_item.get_activated()
 
 func frictutate(delta: float):
