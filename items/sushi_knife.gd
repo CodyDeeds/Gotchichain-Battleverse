@@ -1,7 +1,7 @@
 @tool
 extends Item
 
-@export var chop_sound: AudioStream = preload("res://knife.ogg")
+@export var chop_sound: AudioStream = preload("res://audio/sfx/knife.ogg")
 var sound_player: AudioStreamPlayer = null
 
 func _ready() -> void:
