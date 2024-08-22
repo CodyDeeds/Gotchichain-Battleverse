@@ -55,6 +55,7 @@ func _process(delta: float) -> void:
 	if is_on_floor():
 		current_air_jumps = air_jumps
 
+
 func get_hand_position() -> Vector2:
 	return %hand.global_position
 
@@ -75,10 +76,11 @@ func jump():
 
 func attempt_grab():
 	if is_instance_valid(held_item):
-		throw_item()
+		rpc("throw_item")
 	else:
 		grab_nearest_item()
 
+@rpc("any_peer", "call_local", "reliable")
 func throw_item():
 	print("Player: Threw item ", held_item.name)
 	held_item.get_thrown()
@@ -89,16 +91,24 @@ func throw_item():
 func grab_nearest_item():
 	var hand_position := get_hand_position()
 	var target_item: Item = Util.get_nearest_group_member("items", hand_position)
+	rpc("grab_item_by_path", get_path_to(target_item))
+
+@rpc("any_peer", "call_local", "reliable")
+func grab_item_by_path(item_path: NodePath):
+	print("Player grabs item %s" % item_path)
+	var hand_position := get_hand_position()
+	var target_item: Item = get_node(item_path)
 	if is_instance_valid(target_item) and target_item.grabable:
 		if hand_position.distance_squared_to(target_item.global_position) < grab_range * grab_range:
 			target_item.set_holder(self)
 			held_item = target_item
-			print("Player: Grabbed item ", held_item.name)
+			#print("Player: Grabbed item ", held_item.name)
 
+@rpc("any_peer", "call_local", "reliable")
 func activate_item():
 	if is_instance_valid(held_item):
-		held_item.get_activated()
 		print("Player: Activated item ", held_item.name)
+		held_item.get_activated()
 
 func frictutate(delta: float):
 	var friction: float = 1.0 / delta

@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7c3g6w8jconm"]
+[gd_scene load_steps=7 format=3 uid="uid://c7c3g6w8jconm"]
 
 [ext_resource type="Script" path="res://projectiles/boomerang.gd" id="1_tl8d1"]
 [ext_resource type="Texture2D" uid="uid://cty2itwf8ssa7" path="res://items/captain_aave_shield.png" id="2_ty7sf"]
-[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="3_i0wme"]
-[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="3_sf78c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2pox"]
 
@@ -65,9 +63,3 @@ libraries = {
 "": SubResource("AnimationLibrary_12ipc")
 }
 autoplay = "spin"
-
-[node name="mattoha_spawner" type="Node2D" parent="."]
-script = ExtResource("3_sf78c")
-
-[node name="mattoha_synchronizer_modifer" type="MultiplayerSynchronizer" parent="."]
-script = ExtResource("3_i0wme")
