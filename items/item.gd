@@ -94,7 +94,7 @@ func attempt_bonk():
 					can_hit_previous_holder = true
 
 func get_activated():
-	pass
+	print("Item %s activated" % name)
 
 func get_thrown():
 	pass
@@ -109,7 +109,7 @@ func set_holder(what: Player):
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_set_holder(node_path):
-	print("Item: rpc_set_holder called with node_path: ", node_path)
+	#print("Item: rpc_set_holder called with node_path: ", node_path)
 	var what: Player = null
 	if (get_tree().root.has_node(node_path)):
 		what = get_node(node_path)
@@ -122,10 +122,10 @@ func rpc_set_holder(node_path):
 
 	freeze = is_instance_valid(holder)
 	%damper.active = is_instance_valid(holder)
-	if is_instance_valid(holder):
-		print("Item: Set holder to ", holder.name)
-	else:
-		print("Item: Set holder to null")
+	#if is_instance_valid(holder):
+		#print("Item: Set holder to ", holder.name)
+	#else:
+		#print("Item: Set holder to null")
 
 func set_texture(what: Texture):
 	%sprite.texture = what

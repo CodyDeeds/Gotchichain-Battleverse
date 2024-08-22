@@ -50,7 +50,7 @@ func _ready() -> void:
 	add_child(sound_player)
 	sound_player.stream = projectile_sound
 	sound_player.volume_db = -10  # Set the volume to a quieter level
-	print("Projectile: Sound player initialized with volume: ", sound_player.volume_db)
+	#print("Projectile: Sound player initialized with volume: ", sound_player.volume_db)
 	
 	# Play the sound when the projectile is created
 	sound_player.play()

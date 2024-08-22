@@ -21,12 +21,12 @@ func _ready() -> void:
 func add_exception(what: Hurtbox):
 	if !exceptions.has(what):
 		exceptions.append(what)
-		print("Hitbox: Added exception ", what.name)
+		#print("Hitbox: Added exception ", what.name)
 
 func remove_exception(what: Hurtbox):
 	if exceptions.has(what):
 		exceptions.erase(what)
-		print("Hitbox: Removed exception ", what.name)
+		#print("Hitbox: Removed exception ", what.name)
 
 func get_overlapping_hurtboxes():
 	var output: Array[Hurtbox] = []

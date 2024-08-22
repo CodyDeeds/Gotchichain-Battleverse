@@ -4,6 +4,8 @@ extends Node2D
 @onready var UIContainer: CanvasLayer = %UIContainer
 
 func _ready():
+	Game.world = self
+	
 	if (!multiplayer.is_server()):
 		PlayerManager.spawn_player()
 		var ui = map_ui.instantiate()

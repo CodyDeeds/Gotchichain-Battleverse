@@ -25,29 +25,33 @@ func _ready() -> void:
 	timer_rof.timeout.connect(_on_timer_rof_timeout)
 
 func attempt_shoot():
+	print("Gun %s attempts shoot" % name)
 	if can_shoot:
 		shoot()
 		
 		if shoot_particle_scene:
-			var instance = MattohaSystem.CreateInstance(shoot_particle_scene.resource_path)
-			instance.position = barrel.global_position
-			instance.rotation = barrel.global_rotation
-			MattohaSystem.Client.LobbyNode.add_child(instance)
-			# var new_particles = shoot_particle_scene.instantiate()
-			# Game.deploy_instance(new_particles, barrel.global_position)
-			# new_particles.global_transform = barrel.global_transform
+			#var instance = MattohaSystem.CreateInstance(shoot_particle_scene.resource_path)
+			#instance.position = barrel.global_position
+			#instance.rotation = barrel.global_rotation
+			#MattohaSystem.Client.LobbyNode.add_child(instance)
+			var new_particles = shoot_particle_scene.instantiate()
+			Game.deploy_instance(new_particles, barrel.global_position)
+			new_particles.global_transform = barrel.global_transform
 		
 		can_shoot = false
 		timer_rof.start()
 		position.y -= gun_kickback
 
 func shoot():
+	print("Gun %s shoots" % name)
 	deploy_projectile()
 
 func deploy_projectile(angle: float=0.0, speed_mult: float=1.0):
+	print("Gun %s deploys projectile" % name)
 	if !is_instance_valid(barrel):
 		barrel = self
-	var new_projectile: Projectile = MattohaSystem.CreateInstance(projectile.resource_path)
+	var new_projectile: Projectile = projectile.instantiate()
+	#var new_projectile: Projectile = MattohaSystem.CreateInstance(projectile.resource_path)
 	new_projectile.position = barrel.global_position
 	var forward: Vector2 = barrel.global_transform.x
 	var projectile_velocity: Vector2 = forward * projectile_speed
@@ -58,10 +62,12 @@ func deploy_projectile(angle: float=0.0, speed_mult: float=1.0):
 	new_projectile.velocity = projectile_velocity
 	if !can_hit_shooter and is_instance_valid(holder):
 		new_projectile.add_exception(holder.get_hurtbox())
-
-	# Game.deploy_instance(new_projectile, barrel.global_position)
-	MattohaSystem.Client.LobbyNode.add_child(new_projectile)
-
+	
+	Game.deploy_instance(new_projectile, barrel.global_position)
+	#MattohaSystem.Client.LobbyNode.add_child(new_projectile)
+	
+	print("Resulting projectile: %s" % new_projectile)
+	
 	can_shoot = false
 	timer_rof.start()
 	
