@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://fsm/states/player_normal.gd" id="5_hvyl4"]
 [ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="8_bj3p1"]
 [ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="9_rvgwc"]
-[ext_resource type="AudioStream" uid="uid://bbc3g7djxafh" path="res://audio/sfx/death.ogg" id="10_yhs7f"]
+[ext_resource type="AudioStream" uid="uid://bbc3g7djxafh" path="res://audio/sfx/death.ogg" id="10_8aslr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4yxu"]
 size = Vector2(32, 48)
@@ -110,4 +110,4 @@ replication_config = SubResource("SceneReplicationConfig_eikjk")
 script = ExtResource("8_bj3p1")
 
 [node name="sound_player" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_yhs7f")
+stream = ExtResource("10_8aslr")

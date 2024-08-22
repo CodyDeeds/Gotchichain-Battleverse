@@ -15,7 +15,7 @@ extends Hitbox
 @export_group("Resources")
 @export var death_scene: PackedScene = null
 ## Sound effect for the projectile
-@export var projectile_sound: AudioStream = preload("res://wand.ogg")
+@export var projectile_sound: AudioStream = preload("res://audio/sfx/wand.ogg")
 
 var raycast := RayCast2D.new()
 var wallcast := RayCast2D.new()

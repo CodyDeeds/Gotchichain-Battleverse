@@ -1,7 +1,7 @@
 extends Node
 
 # Preload the background music file
-@export var music_file: AudioStream = preload("res://PixelBattle.ogg")
+@export var music_file: AudioStream = preload("res://audio/music/PixelBattle.ogg")
 
 # Define an AudioStreamPlayer
 var music_player: AudioStreamPlayer = null

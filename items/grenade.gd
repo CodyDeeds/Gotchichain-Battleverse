@@ -1,7 +1,7 @@
 @tool
 extends Item
 
-@export var explosion_sound: AudioStream = preload("res://bomb.ogg")
+@export var explosion_sound: AudioStream = preload("res://audio/sfx/bomb.ogg")
 
 var sound_player: AudioStreamPlayer = null
 var sound_timer: Timer = null

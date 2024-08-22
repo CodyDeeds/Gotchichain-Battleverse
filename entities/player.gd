@@ -20,7 +20,7 @@ extends Entity
 
 # Preload the death sound effect
 @export_group("Resources")
-@export var death_sound: AudioStream = preload("res://death.ogg")
+@export var death_sound: AudioStream = preload("res://audio/sfx/death.ogg")
 @export var jump_particles: PackedScene = preload("res://fx/jump.tscn")
 
 var current_air_jumps: int = air_jumps
