@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://sc48qicivsa7"]
+[gd_scene load_steps=17 format=3 uid="uid://sc48qicivsa7"]
 
 [ext_resource type="Script" path="res://entities/player.gd" id="1_ld4xh"]
 [ext_resource type="PackedScene" uid="uid://xcoi3q8tqswf" path="res://pieces/flippable.tscn" id="2_t5r7t"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://so4ro78wuqio" path="res://pieces/hurtbox.tscn" id="4_yufjj"]
 [ext_resource type="Script" path="res://fsm/states/player_normal.gd" id="5_hvyl4"]
 [ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="8_bj3p1"]
+[ext_resource type="Script" path="res://fsm/states/state_temporary.gd" id="8_d21vi"]
 [ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="9_rvgwc"]
 [ext_resource type="AudioStream" uid="uid://bbc3g7djxafh" path="res://audio/sfx/death.ogg" id="10_8aslr"]
 
@@ -96,6 +97,11 @@ shape = SubResource("RectangleShape2D_q4yxu")
 
 [node name="normal" parent="fsm" instance=ExtResource("4_mnsvv")]
 script = ExtResource("5_hvyl4")
+
+[node name="animation_lock" type="Node" parent="fsm"]
+unique_name_in_owner = true
+script = ExtResource("8_d21vi")
+next_state = "normal"
 
 [node name="animator" type="AnimationPlayer" parent="."]
 libraries = {
