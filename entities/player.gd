@@ -154,6 +154,13 @@ func spawn_item(res_path: String, auto_grab: bool = true):
 func get_hurtbox() -> Hurtbox:
 	return $hurtbox
 
+func set_state(what: String):
+	$fsm.set_state(what)
+
+func animation_lock(duration: float = 1):
+	%animation_lock.duration = duration
+	set_state("animation_lock")
+
 func take_damage(what: float, can_heal: bool=true):
 	super(what, can_heal)
 	if what > 0:

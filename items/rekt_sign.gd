@@ -14,15 +14,13 @@ func get_activated():
 	smack()
 
 func smack():
-	if holder:
-		if is_instance_valid(holder):
-			# So it doesn't hit the holder
-			$hitbox.add_exception(holder.get_hurtbox())
-			
-			# Use this connection to remove the above collision exception
-			$animator.animation_finished.connect(_on_animation_finished)
-			
-			$animator.play("smack")
+	if is_instance_valid(holder):
+		$hitbox.add_exception(holder.get_hurtbox())
+		# Use this connection to remove the above collision exception
+		$animator.animation_finished.connect(_on_animation_finished)
+		
+		$animator.play("smack")
+		holder.animation_lock( $animator.get_animation(&"smack").length - 0.5 )
 
 func _on_animation_finished(anim_name):
 	if anim_name == "smack":
