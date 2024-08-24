@@ -37,9 +37,10 @@ func get_overlapping_hurtboxes():
 	return output
 
 func hit_being(what):
-	print("Hitbox: Hitting being ", what.name)
+	#print("Hitbox: Hitting being ", what.name)
 	what.take_damage(damage)
 	var direction = (what.global_position - global_position).normalized()
 	var this_radial_knockback = radial_knockback * direction
 	var this_directional_knockback = directional_knockback.rotated(global_rotation)
 	what.take_knockback(this_radial_knockback + this_directional_knockback)
+	hit.emit()

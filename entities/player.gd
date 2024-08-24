@@ -39,7 +39,7 @@ func _ready() -> void:
 	sound_player.volume_db = -10  # Set volume to -10 dB for testing
 	sound_player.autoplay = false  # Ensure autoplay is off
 	sound_player.bus = "Master"  # Ensure it's on the correct audio bus
-	print("Player: Sound player initialized with volume: ", sound_player.volume_db)
+	#print("Player: Sound player initialized with volume: ", sound_player.volume_db)
 
 func _process(delta: float) -> void:
 	if !is_owner():
@@ -59,6 +59,8 @@ func _process(delta: float) -> void:
 func get_hand_position() -> Vector2:
 	return %hand.global_position
 
+# ######## ######## ######## ######## MOVEMENT ######## ######## ######## ########
+
 func jump():
 	var succeed: Callable = func():
 		velocity.y = -jump_speed
@@ -73,6 +75,23 @@ func jump():
 		if current_air_jumps > 0 and velocity.y > -jump_speed:
 			current_air_jumps -= 1
 			succeed.call()
+
+func frictutate(delta: float):
+	var friction: float = 1.0 / delta
+	if max_speed > 0:
+		friction = acceleration / max_speed
+	velocity.x -= velocity.x * friction * delta
+
+func accelerate(dir: float, delta: float):
+	velocity.x += acceleration * dir * delta
+
+func gravitate(delta: float):
+	velocity.y += gravity * delta
+	if is_owner():
+		if !Input.is_joy_button_pressed(controller, JOY_BUTTON_A):
+			velocity.y += gravity * delta * (gravity_fast_fall_mult) - 1
+
+# ######## ######## ######## ######## ITEM MANAGEMENT ######## ######## ######## ########
 
 func attempt_grab():
 	if is_instance_valid(held_item):
@@ -91,18 +110,17 @@ func throw_item():
 func grab_nearest_item():
 	var hand_position := get_hand_position()
 	var target_item: Item = Util.get_nearest_group_member("items", hand_position)
-	rpc("grab_item_by_path", get_path_to(target_item))
+	grab_item_by_path.rpc( get_path_to(target_item) )
 
 @rpc("any_peer", "call_local", "reliable")
 func grab_item_by_path(item_path: NodePath):
-	print("Player grabs item %s" % item_path)
+	Game.print_multiplayer("Player grabs item %s" % item_path)
 	var hand_position := get_hand_position()
 	var target_item: Item = get_node(item_path)
 	if is_instance_valid(target_item) and target_item.grabable:
 		if hand_position.distance_squared_to(target_item.global_position) < grab_range * grab_range:
 			target_item.set_holder(self)
 			held_item = target_item
-			#print("Player: Grabbed item ", held_item.name)
 
 func activate_item():
 	if is_instance_valid(held_item):
@@ -115,20 +133,23 @@ func rpc_activate_item(pos: Vector2, rot: float):
 		held_item.global_rotation = rot
 		held_item.get_activated()
 
-func frictutate(delta: float):
-	var friction: float = 1.0 / delta
-	if max_speed > 0:
-		friction = acceleration / max_speed
-	velocity.x -= velocity.x * friction * delta
+func spawn_item(res_path: String, auto_grab: bool = true):
+	print(res_path)
+	for i in get_children():
+		print(i.name)
+	
+	Game.print_multiplayer("Player spawns item from %s" % res_path)
+	if multiplayer.is_server():
+		var new_item: Item = MattohaSystem.CreateInstance(res_path)
+		new_item.global_position = global_position
+		MattohaSystem.GetLobbyNodeFor(self).add_child(new_item)
+		#new_item.auto_grab = new_item.get_path_to(self)
+		
+		if auto_grab and !is_instance_valid(held_item):
+			Game.print_multiplayer("Player successfully spawns item, and grabs item at %s" % get_path_to(new_item))
+			grab_item_by_path.rpc( get_path_to(new_item) )
 
-func accelerate(dir: float, delta: float):
-	velocity.x += acceleration * dir * delta
-
-func gravitate(delta: float):
-	velocity.y += gravity * delta
-	if is_owner():
-		if !Input.is_joy_button_pressed(controller, JOY_BUTTON_A):
-			velocity.y += gravity * delta * (gravity_fast_fall_mult) - 1
+# ######## ######## ######## ########  ######## ######## ######## ########
 
 func get_hurtbox() -> Hurtbox:
 	return $hurtbox

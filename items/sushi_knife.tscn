@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://juayv5m0m6w1"]
+[gd_scene load_steps=9 format=3 uid="uid://juayv5m0m6w1"]
 
 [ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_0nwfj"]
 [ext_resource type="Texture2D" uid="uid://bmyyvo1gemb4p" path="res://items/sushi_knife.png" id="2_67py5"]
 [ext_resource type="Script" path="res://items/sushi_knife.gd" id="2_a85lh"]
+[ext_resource type="AudioStream" uid="uid://crw8445gjtsg4" path="res://audio/sfx/knife.ogg" id="3_7waho"]
 [ext_resource type="PackedScene" uid="uid://dgc7mtlcnhr6a" path="res://pieces/hitbox.tscn" id="4_i7qav"]
 
 [sub_resource type="Animation" id="Animation_pnteq"]
@@ -115,6 +116,7 @@ _data = {
 
 [node name="sushi_knife" instance=ExtResource("1_0nwfj")]
 script = ExtResource("2_a85lh")
+chop_sound = ExtResource("3_7waho")
 bonk_damage = 1.0
 straighten_speed = 100.0
 hitbox_size = 8.0

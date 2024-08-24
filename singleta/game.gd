@@ -38,3 +38,6 @@ func deploy_ui_instance(what: Control, where: Vector2):
 	if is_instance_valid(ui):
 		what.position = where
 		ui.add_child(what)
+
+func print_multiplayer(what: String):
+	print("Session %s: %s" % [multiplayer.get_unique_id(), what])
