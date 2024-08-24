@@ -19,6 +19,8 @@ extends RigidBody2D
 @export var flip_sprite := true
 ## Whether or not this item can be grabbed
 @export var grabable := true
+## The player that will automatically grab this item
+@export var auto_grab: NodePath = ""
 
 var holder: Player = null
 var previous_holder: Player = null
@@ -31,6 +33,11 @@ func _ready() -> void:
 	if !Engine.is_editor_hint():
 		set_hitbox_size(hitbox_size)
 		PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_RAY)
+		
+		if has_node(auto_grab):
+			var player: Player = get_node(auto_grab)
+			player.held_item = self
+			holder = player
 
 func _process(delta: float) -> void:
 	%sprite.scale = Vector2(sprite_scale, sprite_scale)
@@ -94,7 +101,8 @@ func attempt_bonk():
 					can_hit_previous_holder = true
 
 func get_activated():
-	print("Item %s activated" % name)
+	Game.print_multiplayer("Item %s activated" % name)
+	pass
 
 func get_thrown():
 	pass
@@ -109,7 +117,7 @@ func set_holder(what: Player):
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_set_holder(node_path):
-	#print("Item: rpc_set_holder called with node_path: ", node_path)
+	Game.print_multiplayer("Item: rpc_set_holder called with node path %s " % node_path)
 	var what: Player = null
 	if (get_tree().root.has_node(node_path)):
 		what = get_node(node_path)

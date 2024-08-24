@@ -25,7 +25,6 @@ func _ready() -> void:
 	timer_rof.timeout.connect(_on_timer_rof_timeout)
 
 func attempt_shoot():
-	print("Gun %s attempts shoot" % name)
 	if can_shoot:
 		shoot()
 		
@@ -43,11 +42,9 @@ func attempt_shoot():
 		position.y -= gun_kickback
 
 func shoot():
-	print("Gun %s shoots" % name)
 	deploy_projectile()
 
 func deploy_projectile(angle: float=0.0, speed_mult: float=1.0):
-	print("Gun %s deploys projectile" % name)
 	if !is_instance_valid(barrel):
 		barrel = self
 	var new_projectile: Projectile = projectile.instantiate()
@@ -65,8 +62,6 @@ func deploy_projectile(angle: float=0.0, speed_mult: float=1.0):
 	
 	Game.deploy_instance(new_projectile, barrel.global_position)
 	#MattohaSystem.Client.LobbyNode.add_child(new_projectile)
-	
-	print("Resulting projectile: %s" % new_projectile)
 	
 	can_shoot = false
 	timer_rof.start()

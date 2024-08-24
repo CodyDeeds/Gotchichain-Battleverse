@@ -47,6 +47,7 @@ _data = {
 script = ExtResource("1_tl8d1")
 fly_speed = 800.0
 fly_time = 1.0
+return_speed = 2000.0
 hits_left = 1000
 duration = 1000.0
 through_walls = true

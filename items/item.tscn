@@ -26,6 +26,9 @@ properties/3/replication_mode = 2
 properties/4/path = NodePath(".:angular_velocity")
 properties/4/spawn = true
 properties/4/replication_mode = 2
+properties/5/path = NodePath(".:auto_grab")
+properties/5/spawn = true
+properties/5/replication_mode = 2
 
 [node name="item" type="RigidBody2D"]
 collision_layer = 2

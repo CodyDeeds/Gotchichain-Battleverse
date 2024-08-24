@@ -38,10 +38,6 @@ var father: Node2D = null
 signal collected
 
 
-func _ready() -> void:
-	super()
-	print("Boomerang: Ready")
-
 func _process(delta: float) -> void:
 	super(delta)
 	state_age += delta
