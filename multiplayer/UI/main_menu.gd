@@ -1,5 +1,7 @@
 extends Control
 
+@export var gameholder_scene: PackedScene
+
 func _ready():
 	MattohaSystem.Client.ConnectedToServer.connect(_on_connected)
 	multiplayer.connection_failed.connect(_on_connection_failed)
@@ -17,6 +19,16 @@ func _input(event: InputEvent) -> void:
 		to_placeholder()
 
 
+
+func enter_local_game() -> void:
+	var map_resources = BigData.maps.load_all()
+	var this_map: MapData
+	this_map = map_resources.pick_random()
+	var game_scene = this_map.scene
+	
+	get_tree().change_scene_to_packed(gameholder_scene)
+	Game.map = game_scene
+
 func to_placeholder():
 	get_tree().change_scene_to_file("res://multiplayer/scenes/game_holder.tscn")
 
@@ -26,6 +38,9 @@ func _on_server_button_pressed():
 
 func _on_client_button_pressed():
 	MattohaSystem.StartClient()
+
+func _on_local_pressed() -> void:
+	enter_local_game()
 
 func _on_connected():
 	MattohaSystem.Client.SetPlayerData({"lives": [0, 0, 0]})
@@ -41,3 +56,4 @@ func _setup_animation():
 		sprite_frames.add_frame("default", load("res://multiplayer/UI/Gotchi-" + str(i) + ".png"))
 	animated_sprite.frames = sprite_frames
 	animated_sprite.play()
+

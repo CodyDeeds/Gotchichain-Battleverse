@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bov2gw34h5hrj"]
+[gd_scene load_steps=14 format=3 uid="uid://bov2gw34h5hrj"]
 
 [ext_resource type="Script" path="res://multiplayer/UI/main_menu.gd" id="1_nbq3q"]
+[ext_resource type="PackedScene" uid="uid://dqpew2eit74po" path="res://gameholder.tscn" id="2_hf1c8"]
 [ext_resource type="Texture2D" uid="uid://bb6dl50v7hj2i" path="res://multiplayer/UI/backdrop.png" id="2_qwni7"]
 [ext_resource type="Texture2D" uid="uid://dijkbyhcgoxqi" path="res://multiplayer/UI/logo.png" id="3_abcd"]
 [ext_resource type="Texture2D" uid="uid://ch220m010oin8" path="res://multiplayer/UI/Gotchi-1.png" id="4_hmh6v"]
@@ -52,6 +53,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nbq3q")
+gameholder_scene = ExtResource("2_hf1c8")
 
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -105,6 +107,11 @@ modulate = Color(1, 0.596078, 1, 1)
 layout_mode = 2
 text = "Join Battleverse"
 
+[node name="local" type="Button" parent="v_box_container"]
+modulate = Color(1, 0.596078, 1, 1)
+layout_mode = 2
+text = "Local Game"
+
 [node name="rich_text_label" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 392.0
@@ -126,3 +133,4 @@ CNTRL + R TO RESTART
 M = Mute Music"
 
 [connection signal="pressed" from="v_box_container/ClientButton" to="." method="_on_client_button_pressed"]
+[connection signal="pressed" from="v_box_container/local" to="." method="_on_local_pressed"]
