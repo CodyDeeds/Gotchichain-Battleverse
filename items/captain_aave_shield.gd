@@ -7,7 +7,7 @@ func deploy_projectile(angle: float = 0.0, speed_mult: float = 1.0):
 	new_projectile.father = holder
 	
 	if is_instance_valid(holder):
-		new_projectile.collected.connect(holder.spawn_item.bind(scene_file_path))
+		new_projectile.collected.connect(holder.spawn_item.bind( load(scene_file_path) ))
 	queue_free()
 
 

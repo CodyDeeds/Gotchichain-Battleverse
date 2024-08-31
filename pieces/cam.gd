@@ -1,3 +1,4 @@
+class_name MainCamera
 extends Camera2D
 
 @export var move_speed := 5.0
@@ -55,3 +56,8 @@ func zoom_to_players(delta: float):
 	
 	if Input.is_action_just_pressed("test"):
 		print("Ratios %s, target %s" % [ratios, target_zoom])
+
+func get_area():
+	var size: Vector2 = get_viewport().get_visible_rect().size
+	size /= zoom
+	return Rect2(global_position - size/2, size)

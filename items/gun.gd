@@ -33,7 +33,7 @@ func attempt_shoot():
 			#instance.position = barrel.global_position
 			#instance.rotation = barrel.global_rotation
 			#MattohaSystem.Client.LobbyNode.add_child(instance)
-			var new_particles = shoot_particle_scene.instantiate()
+			var new_particles = Game.create_instance(shoot_particle_scene)
 			Game.deploy_instance(new_particles, barrel.global_position)
 			new_particles.global_transform = barrel.global_transform
 		
@@ -47,7 +47,7 @@ func shoot():
 func deploy_projectile(angle: float=0.0, speed_mult: float=1.0):
 	if !is_instance_valid(barrel):
 		barrel = self
-	var new_projectile: Projectile = projectile.instantiate()
+	var new_projectile: Projectile = Game.create_instance(projectile)
 	#var new_projectile: Projectile = MattohaSystem.CreateInstance(projectile.resource_path)
 	new_projectile.position = barrel.global_position
 	var forward: Vector2 = barrel.global_transform.x

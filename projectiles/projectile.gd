@@ -46,14 +46,14 @@ func _ready() -> void:
 	raycast.set_collision_mask_value(3, true)
 	
 	# Initialize and configure the sound player
-	sound_player = AudioStreamPlayer.new()
-	add_child(sound_player)
-	sound_player.stream = projectile_sound
-	sound_player.volume_db = -10  # Set the volume to a quieter level
+	#sound_player = AudioStreamPlayer.new()
+	#add_child(sound_player)
+	#sound_player.stream = projectile_sound
+	#sound_player.volume_db = -10  # Set the volume to a quieter level
 	#print("Projectile: Sound player initialized with volume: ", sound_player.volume_db)
 	
 	# Play the sound when the projectile is created
-	sound_player.play()
+	#sound_player.play()
 
 func _process(delta: float) -> void:
 	velocity += acceleration * delta
@@ -88,13 +88,12 @@ func die():
 	active = false
 	
 	# Play the sound when the projectile dies
-	sound_player.play()
+	#sound_player.play()
 
 	if death_scene:
 		if (!multiplayer.is_server()):
-			var instance = MattohaSystem.CreateInstance(death_scene.resource_path) as Node2D
-			instance.position = global_position
-			MattohaSystem.Client.LobbyNode.add_child(instance)
+			var instance = Game.create_instance(death_scene)
+			Game.deploy_instance(instance, global_position)
 
 	queue_free()
 

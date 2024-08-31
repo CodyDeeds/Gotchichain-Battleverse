@@ -19,9 +19,11 @@ func spawn_item():
 		this_item = force_item
 	else:
 		this_item = items.pick_random()
-	var new_item: Item = MattohaSystem.CreateInstance(this_item.resource_path)
-	new_item.global_position = position
-	MattohaSystem.GetLobbyNodeFor(self).add_child(new_item)
+	#var new_item: Item = MattohaSystem.CreateInstance(this_item.resource_path)
+	var new_item: Item = Game.create_instance(this_item)
+	#new_item.global_position = position
+	#MattohaSystem.GetLobbyNodeFor(self).add_child(new_item)
+	Game.deploy_instance(new_item, position)
 	new_item.apply_central_impulse(Vector2(0, -item_jump_speed))
 	new_item.tree_exiting.connect(_on_item_slain)
 	current_item = new_item

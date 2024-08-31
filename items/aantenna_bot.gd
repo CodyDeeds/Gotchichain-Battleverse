@@ -9,9 +9,8 @@ const obj_space_laser = preload("res://projectiles/space_laser.tscn")
 
 func explode():
 	if multiplayer.get_unique_id() == get_multiplayer_authority():
-		var new_laser = MattohaSystem.CreateInstance(obj_space_laser.resource_path)
-		new_laser.global_position = global_position
-		MattohaSystem.GetLobbyNodeFor(self).add_child(new_laser)
+		var new_laser = Game.create_instance(obj_space_laser)
+		Game.deploy_instance(new_laser, global_position)
 	queue_free()
 
 @rpc("any_peer", "call_local")

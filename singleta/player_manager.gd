@@ -10,24 +10,31 @@ const obj_player = preload ("res://entities/player.tscn")
 func _ready() -> void:
 	Events.player_died.connect(_on_player_died)
 
+
 func start():
 	add_players.call_deferred(player_count)
 
 func end():
 	players = []
 
-func add_players(_count: int):
-	pass
+func add_players(count: int):
+	for i in range(count):
+		var new_player: Player = spawn_player()
+		if !Game.is_multiplayer:
+			new_player.controller = i
 
 func delayed_spawn(time: float):
 	var timer := get_tree().create_timer(time)
 	timer.timeout.connect(spawn_player.bind())
 
 func spawn_player():
-	var instance = MattohaSystem.CreateInstance("res://entities/player.tscn") as Node2D
+	var new_player: Player = Game.create_instance( obj_player )
+	#var instance = MattohaSystem.CreateInstance("res://entities/player.tscn") as Node2D
 	var farthest_spawn = PlayerManager.get_furthest_spawn()
-	instance.global_position = farthest_spawn.global_position
-	MattohaSystem.Client.LobbyNode.add_child(instance)
+	#new_player.global_position = farthest_spawn.global_position
+	#MattohaSystem.Client.LobbyNode.add_child(instance)
+	Game.deploy_instance(new_player, farthest_spawn.global_position)
+	return new_player
 
 func count_living_players() -> int:
 	return get_living_players().size()

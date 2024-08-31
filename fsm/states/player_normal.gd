@@ -6,7 +6,7 @@ func _step(delta: float):
 	tractutate(delta)
 
 func _handle_input(event: InputEvent):
-	if (!MattohaSystem.IsNodeOwner(self)):
+	if (Game.is_multiplayer and !MattohaSystem.IsNodeOwner(self)):
 		return
 	
 	if event.device == father.controller:

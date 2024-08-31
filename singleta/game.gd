@@ -6,6 +6,7 @@ var ui: Control = null
 var cam: Camera2D = null
 var map: PackedScene = null
 var afoot := false
+var is_multiplayer: bool = false
 
 func _ready() -> void:
 	# DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -28,6 +29,12 @@ func end():
 
 func return_to_menu():
 	get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+
+func create_instance(what: PackedScene):
+	if multiplayer:
+		return MattohaSystem.CreateInstance(what.resource_path)
+	else:
+		return what.instantiate()
 
 func deploy_instance(what: Node2D, where: Vector2):
 	if is_instance_valid(world):

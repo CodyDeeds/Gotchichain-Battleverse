@@ -3,6 +3,7 @@ extends Control
 @export var gameholder_scene: PackedScene
 
 func _ready():
+	Game.is_multiplayer = false
 	MattohaSystem.Client.ConnectedToServer.connect(_on_connected)
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	if (MattohaSystem.IsServerBuild):
@@ -21,6 +22,7 @@ func _input(event: InputEvent) -> void:
 
 
 func enter_local_game() -> void:
+	Game.is_multiplayer = false
 	var map_resources = BigData.maps.load_all()
 	var this_map: MapData
 	this_map = map_resources.pick_random()
@@ -30,6 +32,7 @@ func enter_local_game() -> void:
 	Game.map = game_scene
 
 func to_placeholder():
+	Game.is_multiplayer = true
 	get_tree().change_scene_to_file("res://multiplayer/scenes/game_holder.tscn")
 
 func _on_server_button_pressed():
@@ -37,6 +40,7 @@ func _on_server_button_pressed():
 	call_deferred("to_placeholder")
 
 func _on_client_button_pressed():
+	Game.is_multiplayer = true
 	MattohaSystem.StartClient()
 
 func _on_local_pressed() -> void:

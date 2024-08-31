@@ -34,6 +34,5 @@ func _on_hitbox_hit():
 	var new_sprite: TransientSprite2D = TransientSprite2D.new()
 	new_sprite.texture = rekt_sprite
 	new_sprite.hframes = 8
-	MattohaSystem.GetLobbyNodeFor(self).add_child(new_sprite)
-	new_sprite.position = %rektsplosion_spawn.global_position
+	Game.deploy_instance(new_sprite, %rektsplosion_spawn.global_position)
 	new_sprite.scale = %rektsplosion_spawn.scale

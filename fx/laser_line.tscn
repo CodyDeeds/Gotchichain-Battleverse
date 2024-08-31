@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmcxaku8l05rv"]
+
+[ext_resource type="Texture2D" uid="uid://ewqq83cdhfsc" path="res://fx/laser.png" id="1_nckpd"]
+
+[node name="laser_line" type="Line2D"]
+points = PackedVector2Array(0, 0, 400, 400)
+texture = ExtResource("1_nckpd")
+texture_mode = 1
