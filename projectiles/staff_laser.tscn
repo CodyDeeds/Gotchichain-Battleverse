@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://fgsau8rrmxsr"]
+
+[ext_resource type="Script" path="res://projectiles/laser.gd" id="1_rjvtk"]
+[ext_resource type="PackedScene" uid="uid://g8dpq5tk332o" path="res://fx/bullet_shoot.tscn" id="2_chq5a"]
+[ext_resource type="PackedScene" uid="uid://bfpprtlkau7c" path="res://fx/blast_small.tscn" id="3_xtw1e"]
+[ext_resource type="PackedScene" uid="uid://dmcxaku8l05rv" path="res://fx/laser_line.tscn" id="4_43vix"]
+
+[node name="staff_laser" type="Area2D"]
+script = ExtResource("1_rjvtk")
+start_fx_scene = ExtResource("2_chq5a")
+end_fx_scene = ExtResource("2_chq5a")
+line_fx_scene = ExtResource("3_xtw1e")
+particle_density = 0.08
+line_scene = ExtResource("4_43vix")
+duration = 0.25
+damage = 1.0
+radial_knockback = 1000.0

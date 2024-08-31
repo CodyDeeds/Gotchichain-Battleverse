@@ -65,9 +65,8 @@ func jump():
 	var succeed: Callable = func():
 		velocity.y = -jump_speed
 		velocity.x *= (jump_speed_boost + 1)
-		var new_particles = MattohaSystem.CreateInstance(jump_particles.resource_path)
-		new_particles.position = global_position
-		MattohaSystem.GetLobbyNodeFor(self).add_child(new_particles)
+		var new_particles = Game.create_instance(jump_particles)
+		Game.deploy_instance(new_particles, global_position)
 	
 	if is_on_floor():
 		succeed.call()
@@ -133,16 +132,11 @@ func rpc_activate_item(pos: Vector2, rot: float):
 		held_item.global_rotation = rot
 		held_item.get_activated()
 
-func spawn_item(res_path: String, auto_grab: bool = true):
-	print(res_path)
-	for i in get_children():
-		print(i.name)
-	
-	Game.print_multiplayer("Player spawns item from %s" % res_path)
+func spawn_item(item: PackedScene, auto_grab: bool = true):
+	Game.print_multiplayer("Player spawns item from %s" % item.resource_path)
 	if multiplayer.is_server():
-		var new_item: Item = MattohaSystem.CreateInstance(res_path)
-		new_item.global_position = global_position
-		MattohaSystem.GetLobbyNodeFor(self).add_child(new_item)
+		var new_item: Item = Game.create_instance(item)
+		Game.deploy_instance(new_item, global_position)
 		#new_item.auto_grab = new_item.get_path_to(self)
 		
 		if auto_grab and !is_instance_valid(held_item):
