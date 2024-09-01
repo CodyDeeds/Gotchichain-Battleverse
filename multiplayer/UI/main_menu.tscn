@@ -102,15 +102,20 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="local" type="Button" parent="v_box_container"]
+modulate = Color(1, 0.596078, 1, 1)
+layout_mode = 2
+text = "Local Game"
+
 [node name="ClientButton" type="Button" parent="v_box_container"]
 modulate = Color(1, 0.596078, 1, 1)
 layout_mode = 2
 text = "Join Battleverse"
 
-[node name="local" type="Button" parent="v_box_container"]
+[node name="host" type="Button" parent="v_box_container"]
 modulate = Color(1, 0.596078, 1, 1)
 layout_mode = 2
-text = "Local Game"
+text = "Host server"
 
 [node name="rich_text_label" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -132,5 +137,6 @@ text = "[A]: jump
 CNTRL + R TO RESTART
 M = Mute Music"
 
-[connection signal="pressed" from="v_box_container/ClientButton" to="." method="_on_client_button_pressed"]
 [connection signal="pressed" from="v_box_container/local" to="." method="_on_local_pressed"]
+[connection signal="pressed" from="v_box_container/ClientButton" to="." method="_on_client_button_pressed"]
+[connection signal="pressed" from="v_box_container/host" to="." method="_on_host_pressed"]

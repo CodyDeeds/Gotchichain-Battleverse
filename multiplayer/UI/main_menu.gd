@@ -14,11 +14,6 @@ func _ready():
 	$AnimationPlayer.play("logo_effect")
 	$AnimationPlayer.play("button_effect")
 
-func _input(event: InputEvent) -> void:
-	if OS.is_debug_build() and event.is_action_pressed("test"):
-		MattohaSystem.StartServer()
-		to_placeholder()
-
 
 
 func enter_local_game() -> void:
@@ -46,6 +41,10 @@ func _on_client_button_pressed():
 func _on_local_pressed() -> void:
 	enter_local_game()
 
+func _on_host_pressed() -> void:
+	MattohaSystem.StartServer()
+	to_placeholder()
+
 func _on_connected():
 	MattohaSystem.Client.SetPlayerData({"lives": [0, 0, 0]})
 	get_tree().change_scene_to_file("res://multiplayer/scenes/lobbies.tscn")
@@ -60,4 +59,5 @@ func _setup_animation():
 		sprite_frames.add_frame("default", load("res://multiplayer/UI/Gotchi-" + str(i) + ".png"))
 	animated_sprite.frames = sprite_frames
 	animated_sprite.play()
+
 

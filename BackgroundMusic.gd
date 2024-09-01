@@ -24,7 +24,8 @@ func _ready():
 	# Play the music
 	music_player.play()
 	
-	toggle_mute()
+	if OS.is_debug_build():
+		toggle_mute()
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == Key.KEY_M:
