@@ -20,7 +20,6 @@ func end():
 func add_players(count: int):
 	for i in range(count):
 		add_player()
-		var new_player: Player = spawn_player(i)
 
 func add_player():
 	var new_player: PlayerStats = PlayerStats.new()
@@ -34,6 +33,8 @@ func add_player():
 	players.append(new_player)
 	
 	Events.player_added.emit(new_player.controller)
+	
+	print("%s added" % new_player.name)
 
 func delayed_spawn(player: int, time: float):
 	var timer := get_tree().create_timer(time)
@@ -81,7 +82,7 @@ func get_furthest_spawn() -> Node2D:
 		# If this spawn is furthest than any other, reset the list
 		if closest_player_distance > max_distance:
 			max_distance = closest_player_distance
-			furthest_spawns = []
+			furthest_spawns = [this_spawn]
 		# If this spawn is the joint furthest, add it to the list
 		elif closest_player_distance == max_distance:
 			furthest_spawns.append(this_spawn)
@@ -100,6 +101,7 @@ func _on_player_died(which: int):
 		else:
 			MattohaSystem.Client.SetPlayerData({"lives": []})
 	else:
+		print("Player %s died" % which)
 		players[which].lives.pop_front()
 		if players[which].lives.size() > 0:
 			delayed_spawn(which, spawn_delay)

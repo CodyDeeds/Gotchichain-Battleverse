@@ -174,7 +174,10 @@ func die() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func emit_die_signal_rpc():
-	Events.player_died.emit(get_multiplayer_authority())
+	if Game.is_multiplayer:
+		Events.player_died.emit(get_multiplayer_authority())
+	else:
+		Events.player_died.emit(controller)
 
 func is_owner():
 	return multiplayer.get_unique_id() == get_multiplayer_authority()

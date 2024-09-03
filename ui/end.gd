@@ -3,7 +3,7 @@ extends Control
 const MAIN_SCENE_PATH = "res://multiplayer/UI/main_menu.tscn"
 
 func _ready() -> void:
-	if Game.multiplayer:
+	if Game.is_multiplayer:
 		if MattohaSystem.Client.CurrentPlayer["lives"].size() > 0:
 			%announcement.text = "You win!"
 		else:
