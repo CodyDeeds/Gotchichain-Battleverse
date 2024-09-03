@@ -19,22 +19,34 @@ func end():
 
 func add_players(count: int):
 	for i in range(count):
-		var new_player: Player = spawn_player()
-		if !Game.is_multiplayer:
-			new_player.controller = i
+		add_player()
+		var new_player: Player = spawn_player(i)
 
-func delayed_spawn(time: float):
+func add_player():
+	var new_player: PlayerStats = PlayerStats.new()
+	
+	new_player.controller = players.size()
+	new_player.name = "Player %s" % (new_player.controller + 1)
+	var player_object: Player = spawn_player(new_player.controller)
+	if player_object:
+		new_player.object = player_object
+	
+	players.append(new_player)
+	
+	Events.player_added.emit(new_player.controller)
+
+func delayed_spawn(player: int, time: float):
 	var timer := get_tree().create_timer(time)
-	timer.timeout.connect(spawn_player.bind())
+	timer.timeout.connect(spawn_player.bind(player))
 
-func spawn_player():
-	var new_player: Player = Game.create_instance( obj_player )
-	#var instance = MattohaSystem.CreateInstance("res://entities/player.tscn") as Node2D
-	var farthest_spawn = PlayerManager.get_furthest_spawn()
-	#new_player.global_position = farthest_spawn.global_position
-	#MattohaSystem.Client.LobbyNode.add_child(instance)
-	Game.deploy_instance(new_player, farthest_spawn.global_position)
-	return new_player
+func spawn_player(which: int):
+	var furthest_spawn = get_furthest_spawn()
+	if is_instance_valid(furthest_spawn):
+		var new_player = obj_player.instantiate()
+		new_player.controller = which
+		Game.deploy_instance(new_player, furthest_spawn.global_position)
+		return new_player
+	return null
 
 func count_living_players() -> int:
 	return get_living_players().size()
@@ -50,15 +62,47 @@ func get_living_players() -> Array[PlayerStats]:
 
 func get_furthest_spawn() -> Node2D:
 	var spawn_points = get_tree().get_nodes_in_group("spawn_points")
-	return spawn_points.pick_random()
+	
+	var max_distance: float = 0
+	var furthest_spawns: Array = []
+	
+	# Roll over each spawn point and judge them
+	for i in range(spawn_points.size()):
+		var this_spawn: Node2D = spawn_points[i]
+		
+		# Roll over each player and take note of the closest one
+		var players = get_tree().get_nodes_in_group("players")
+		var closest_player_distance: float = 1000000000
+		
+		for j in range(players.size()):
+			var this_player: Player = players[j]
+			closest_player_distance = min(closest_player_distance, this_player.global_position.distance_to(this_spawn.global_position))
+		
+		# If this spawn is furthest than any other, reset the list
+		if closest_player_distance > max_distance:
+			max_distance = closest_player_distance
+			furthest_spawns = []
+		# If this spawn is the joint furthest, add it to the list
+		elif closest_player_distance == max_distance:
+			furthest_spawns.append(this_spawn)
+	
+	return furthest_spawns.pick_random()
 
 func _on_player_died(which: int):
-	print("Player %s died" % which)
-	if (multiplayer.get_unique_id() != which):
-		return
-	if (MattohaSystem.Client.CurrentPlayer["lives"].size() > 1):
-		MattohaSystem.Client.CurrentPlayer["lives"].pop_front()
-		MattohaSystem.Client.SetPlayerData({"lives": MattohaSystem.Client.CurrentPlayer["lives"]})
-		delayed_spawn(spawn_delay)
+	if Game.is_multiplayer:
+		print("A player died in session %s" % multiplayer.get_unique_id())
+		if (multiplayer.get_unique_id() != which):
+			return
+		if (MattohaSystem.Client.CurrentPlayer["lives"].size() > 1):
+			MattohaSystem.Client.CurrentPlayer["lives"].pop_front()
+			MattohaSystem.Client.SetPlayerData({"lives": MattohaSystem.Client.CurrentPlayer["lives"]})
+			delayed_spawn(0, spawn_delay)
+		else:
+			MattohaSystem.Client.SetPlayerData({"lives": []})
 	else:
-		MattohaSystem.Client.SetPlayerData({"lives": []})
+		players[which].lives.pop_front()
+		if players[which].lives.size() > 0:
+			delayed_spawn(which, spawn_delay)
+		else:
+			if count_living_players() == 1:
+				get_tree().change_scene_to_file("res://ui/end.tscn")

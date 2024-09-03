@@ -3,10 +3,13 @@ extends Control
 const MAIN_SCENE_PATH = "res://multiplayer/UI/main_menu.tscn"
 
 func _ready() -> void:
-	if MattohaSystem.Client.CurrentPlayer["lives"].size() > 0:
-		%announcement.text = "You win!"
+	if Game.multiplayer:
+		if MattohaSystem.Client.CurrentPlayer["lives"].size() > 0:
+			%announcement.text = "You win!"
+		else:
+			%announcement.text = "You got rekt fren!"
 	else:
-		%announcement.text = "You got rekt fren!"
+		%announcement.text = "Player %s is the winner!" % PlayerManager.get_living_players()[0].controller
 
 	# Connect the button signal
 	%button.pressed.connect(_on_button_pressed)
