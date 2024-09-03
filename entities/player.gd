@@ -165,17 +165,7 @@ func die() -> void:
 	if has_died:
 		return
 	has_died = true
-
-	# Play the death sound and wait for it to finish before removing the player
-	if sound_player and death_sound:
-		sound_player.stop()  # Ensure any previous sound is stopped
-		sound_player.volume_db = -10  # Ensure volume is set to an audible level
-		sound_player.play()
-		print("Player: Death sound played with volume: ", sound_player.volume_db)
-		await get_tree().create_timer(death_sound.get_length()).timeout
-	else:
-		print("Player: Death sound or sound player not initialized correctly")
-
+	
 	var peers = MattohaSystem.Client.GetLobbyPlayersIds()
 	for peer_id in peers:
 		rpc_id(peer_id, "emit_die_signal_rpc")
