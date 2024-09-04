@@ -13,7 +13,7 @@ extends Entity
 @export var acceleration := 2000.0
 @export var air_jumps := 1
 @export var jump_speed := 1500.0
-@export var controller := 0
+@export var controller := 0  # Default to 0 for Player 1, change to 1 for Player 2, etc.
 @export_group("Interaction")
 @export var grab_range := 64.0
 @export var throw_speed := 2000.0
@@ -45,8 +45,8 @@ func _process(delta: float) -> void:
 	if !is_owner():
 		return
 	
-	# for desktop control
-	var x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	# This is where the input handling for each player is updated
+	var x = Input.get_action_strength("move_right", controller) - Input.get_action_strength("move_left", controller)
 	if x != 0:
 		velocity.x = x * move_speed
 	gravitate(delta)
@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 func get_hand_position() -> Vector2:
 	return %hand.global_position
 
-# ######## ######## ######## ######## MOVEMENT ######## ######## ######## ########
+# ######## ######## ######## ######## MOVEMENT ######## ######## ########
 
 func jump():
 	var succeed: Callable = func():
