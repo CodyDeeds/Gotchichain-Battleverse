@@ -9,6 +9,7 @@ func _handle_input(event: InputEvent):
 	if (Game.is_multiplayer and !MattohaSystem.IsNodeOwner(self)):
 		return
 	
+	# Ensure that inputs are processed only if they match the player's controller
 	if event.device == father.controller:
 		if event.is_action_pressed("jump"):
 			father.jump()
