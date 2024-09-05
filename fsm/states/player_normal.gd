@@ -7,7 +7,7 @@ func _step(delta: float):
 	if (Game.is_multiplayer and !father.is_owner()):
 		return
 	
-	tractutate(delta)
+	tractutate()
 
 func _handle_input(event: InputEvent):
 	if (Game.is_multiplayer and !father.is_owner()):
@@ -28,7 +28,7 @@ func _handle_input(event: InputEvent):
 		if event.is_action_pressed("use"):
 			father.activate_item.rpc_id(1)
 
-func tractutate(delta: float):
+func tractutate():
 	var traction: float = 0
 	
 	traction = Input.get_action_strength("move_right", father.controller) - Input.get_action_strength("move_left", father.controller)
