@@ -40,10 +40,13 @@ func delayed_spawn(player: int, time: float):
 	var timer := get_tree().create_timer(time)
 	timer.timeout.connect(spawn_player.bind(player))
 
-func spawn_player(which: int) -> Player:
+func spawn_player(which: int, player_owner: int = 1) -> Player:
 	var furthest_spawn = get_furthest_spawn()
 	if is_instance_valid(furthest_spawn):
 		var new_player = obj_player.instantiate()
+		if player_owner > 1:
+			new_player.name = "player_%s" % player_owner
+			new_player.multiplayer_owner = player_owner
 		new_player.controller = which
 		Game.deploy_instance(new_player, furthest_spawn.global_position)
 		return new_player
@@ -72,11 +75,11 @@ func get_furthest_spawn() -> Node2D:
 		var this_spawn: Node2D = spawn_points[i]
 		
 		# Roll over each player and take note of the closest one
-		var players = get_tree().get_nodes_in_group("players")
+		var these_players = get_tree().get_nodes_in_group("players")
 		var closest_player_distance: float = 1000000000
 		
-		for j in range(players.size()):
-			var this_player: Player = players[j]
+		for j in range(these_players.size()):
+			var this_player: Player = these_players[j]
 			closest_player_distance = min(closest_player_distance, this_player.global_position.distance_to(this_spawn.global_position))
 		
 		# If this spawn is furthest than any other, reset the list

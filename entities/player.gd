@@ -23,8 +23,12 @@ extends Entity
 @export var death_sound: AudioStream = preload("res://audio/sfx/death.ogg")
 @export var jump_particles: PackedScene = preload("res://fx/jump.tscn")
 
-## The session ID that controls this player. Different from the multiplayer authority, as that is always the server
-var multiplayer_owner: int = 1
+## The session ID that controls this player, one of the clients. Different from the multiplayer authority, as that is always the server
+@export var multiplayer_owner: int = 1
+## Speed with which this player is intentionally moving
+var traction: float = 0
+## Whether the player is slow-falling or fast-falling
+var floating: bool = false
 var current_air_jumps: int = air_jumps
 var held_item: Item = null
 var sound_player: AudioStreamPlayer = null
@@ -46,18 +50,14 @@ func _ready() -> void:
 	set_multiplayer_authority(1)
 
 func _process(delta: float) -> void:
-	if !is_owner():
-		return
-	
-	# This is where the input handling for each player is updated
-	var x = Input.get_action_strength("move_right", controller) - Input.get_action_strength("move_left", controller)
-	if x != 0:
-		velocity.x = x * move_speed
-	gravitate(delta)
-	frictutate(delta)
-	move_and_slide()
-	if is_on_floor():
-		current_air_jumps = air_jumps
+	# Physics-y simulation aspects on server only
+	if is_multiplayer_authority():
+		gravitate(delta)
+		frictutate(delta)
+		accelerate(traction, delta)
+		move_and_slide()
+		if is_on_floor():
+			current_air_jumps = air_jumps
 
 
 func get_hand_position() -> Vector2:
@@ -84,6 +84,10 @@ func rpc_jump_succeed():
 	var new_particles = Game.create_instance(jump_particles)
 	Game.deploy_instance(new_particles, global_position)
 
+@rpc("any_peer", "call_remote", "unreliable")
+func rpc_tractutate(new_traction: float):
+	traction = new_traction
+
 func frictutate(delta: float):
 	var friction: float = 1.0 / delta
 	if max_speed > 0:
@@ -95,9 +99,12 @@ func accelerate(dir: float, delta: float):
 
 func gravitate(delta: float):
 	velocity.y += gravity * delta
-	if is_owner():
-		if !Input.is_joy_button_pressed(controller, JOY_BUTTON_A):
-			velocity.y += gravity * delta * (gravity_fast_fall_mult) - 1
+	if !floating:
+		velocity.y += gravity * delta * (gravity_fast_fall_mult) - 1
+
+@rpc("any_peer", "call_remote", "reliable")
+func rpc_set_floating(what: bool):
+	floating = what
 
 # ######## ######## ######## ######## ITEM MANAGEMENT ######## ######## ######## ########
 
@@ -107,7 +114,7 @@ func attempt_grab():
 	#Game.print_multiplayer("Attempting to grab item")
 	if is_instance_valid(held_item):
 		#Game.print_multiplayer("Cannot grab; item in hand")
-		rpc("throw_item")
+		throw_item.rpc()
 	else:
 		#Game.print_multiplayer("No item in hand")
 		grab_nearest_item()
@@ -207,7 +214,9 @@ func emit_die_signal_rpc():
 		Events.player_died.emit(controller)
 
 func is_owner():
-	#print("Player's authority is %s, this session is ID %s" % [get_multiplayer_authority(), multiplayer.get_unique_id()])
+	#Game.print_multiplayer("Player %s has owner %s" % [get_path(), multiplayer_owner])
+	if !Game.is_multiplayer:
+		return true
 	return multiplayer_owner == multiplayer.get_unique_id()
 
 # Ensure to call this function when the player picks up an item

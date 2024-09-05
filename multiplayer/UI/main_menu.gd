@@ -11,8 +11,8 @@ func _ready():
 		MattohaSystem.StartServer()
 		call_deferred("to_placeholder")
 	_setup_animation()
-	$AnimationPlayer.play("logo_effect")
-	$AnimationPlayer.play("button_effect")
+	#$AnimationPlayer.play("logo_effect")
+	#$AnimationPlayer.play("button_effect")
 
 
 

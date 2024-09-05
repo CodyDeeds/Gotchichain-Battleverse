@@ -6,18 +6,26 @@ extends Node2D
 func _ready():
 	Game.world = self
 	
-	if (!multiplayer.is_server()):
-		var new_player: Player = PlayerManager.spawn_player(0)
-		new_player.multiplayer_owner = multiplayer.get_unique_id()
-		#Game.print_multiplayer("Arena: Spawned player with owner %s, authority %s. is owner: %s" % [multiplayer.get_unique_id(), new_player.get_multiplayer_authority(), new_player.is_owner()])
+	if !multiplayer.is_server():
+		rpc_add_new_player.bind( multiplayer.get_unique_id() ).rpc_id(1)
 		var ui = map_ui.instantiate()
 		UIContainer.add_child(ui)
 
 func _process(_delta):
 	check_player_lives()
 
+
+@rpc("any_peer", "call_remote", "reliable")
+func rpc_add_new_player(peer: int):
+	add_player.rpc(peer)
+
+@rpc("authority", "call_local", "reliable")
+func add_player(peer: int):
+	var new_player: Player = PlayerManager.spawn_player(0, peer)
+	Game.print_multiplayer("Arena: Spawned player with owner %s, authority %s. is owner: %s" % [peer, new_player.get_multiplayer_authority(), new_player.is_owner()])
+
 func check_player_lives():
-	if (multiplayer.is_server()):
+	if multiplayer.is_server():
 		var lobby_id = MattohaSystem.ExtractLobbyId(self.get_path())
 		var players = MattohaSystem.Server.GetLobbyPlayers(lobby_id)
 		var should_end = false
