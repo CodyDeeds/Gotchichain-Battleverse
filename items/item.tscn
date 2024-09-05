@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://di80tn4e0x21d"]
+[gd_scene load_steps=8 format=3 uid="uid://di80tn4e0x21d"]
 
 [ext_resource type="Script" path="res://items/item.gd" id="1_t3qgh"]
 [ext_resource type="Texture2D" uid="uid://bymq6uqpdbbdg" path="res://blob.png" id="2_o2ljm"]
 [ext_resource type="PackedScene" uid="uid://ckuixxcu173kv" path="res://pieces/player_detector.tscn" id="3_3mrmd"]
 [ext_resource type="PackedScene" uid="uid://cm5l005n2eu0i" path="res://pieces/rigid_body_damper.tscn" id="3_rxaio"]
 [ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="5_eeukk"]
-[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="6_jee61"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rj7k3"]
 radius = 40.7922
@@ -67,4 +66,3 @@ HandleByServer = true
 
 [node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_04b4s")
-script = ExtResource("6_jee61")
