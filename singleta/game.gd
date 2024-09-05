@@ -46,5 +46,11 @@ func deploy_ui_instance(what: Control, where: Vector2):
 		what.position = where
 		ui.add_child(what)
 
+func call_server(what: Callable):
+	if is_multiplayer:
+		what.rpc_id(1)
+	else:
+		what.call()
+
 func print_multiplayer(what: String):
 	print("Session %s: %s" % [multiplayer.get_unique_id(), what])

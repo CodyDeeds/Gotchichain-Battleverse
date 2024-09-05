@@ -19,7 +19,8 @@ func trigger_countdown():
 	%animator.play("activate")
 	grabable = false
 	active = false
-	%glow.scale *= 2
+	%glow.scale *= 1.5
+	%glow.modulate.a *= 2
 
 @rpc("any_peer", "call_local")
 func activate():
