@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://sc48qicivsa7"]
+[gd_scene load_steps=15 format=3 uid="uid://sc48qicivsa7"]
 
 [ext_resource type="Script" path="res://entities/player.gd" id="1_ld4xh"]
 [ext_resource type="PackedScene" uid="uid://xcoi3q8tqswf" path="res://pieces/flippable.tscn" id="2_t5r7t"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://so4ro78wuqio" path="res://pieces/hurtbox.tscn" id="4_yufjj"]
 [ext_resource type="Script" path="res://fsm/states/player_normal.gd" id="5_hvyl4"]
 [ext_resource type="Script" path="res://fsm/states/state_temporary.gd" id="8_d21vi"]
-[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="9_rvgwc"]
 [ext_resource type="AudioStream" uid="uid://bbc3g7djxafh" path="res://audio/sfx/death.ogg" id="10_8aslr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4yxu"]
@@ -61,6 +60,9 @@ properties/1/replication_mode = 2
 properties/2/path = NodePath("flippable:scale")
 properties/2/spawn = true
 properties/2/replication_mode = 2
+properties/3/path = NodePath(".:multiplayer_owner")
+properties/3/spawn = true
+properties/3/replication_mode = 2
 
 [node name="player" type="CharacterBody2D"]
 collision_mask = 5
@@ -107,9 +109,6 @@ auto_proceed = false
 libraries = {
 "": SubResource("AnimationLibrary_usb2w")
 }
-
-[node name="mattoha_spawner" type="Node2D" parent="."]
-script = ExtResource("9_rvgwc")
 
 [node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eikjk")
