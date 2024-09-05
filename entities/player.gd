@@ -81,7 +81,7 @@ func attempt_jump():
 func rpc_jump_succeed():
 	velocity.y = -jump_speed
 	velocity.x *= (jump_speed_boost + 1)
-	var new_particles = Game.create_instance(jump_particles)
+	var new_particles = jump_particles.instantiate()
 	Game.deploy_instance(new_particles, global_position)
 
 @rpc("any_peer", "call_remote", "unreliable")
@@ -153,11 +153,14 @@ func rpc_grab_item_by_path(item_path: NodePath):
 	target_item.set_holder(self)
 	held_item = target_item
 
+## Run on server only
+@rpc("any_peer", "call_remote", "reliable")
 func activate_item():
 	if is_instance_valid(held_item):
-		rpc("rpc_activate_item", held_item.global_position, held_item.global_rotation)
+		rpc_activate_item.rpc(held_item.global_position, held_item.global_rotation)
 
-@rpc("any_peer", "call_local", "reliable")
+## This function assumes there is a valid held item
+@rpc("authority", "call_local", "reliable")
 func rpc_activate_item(pos: Vector2, rot: float):
 	# Position and rotation are that of the held item
 	# They are sent in order to ensure consistent placement of the item before activation
