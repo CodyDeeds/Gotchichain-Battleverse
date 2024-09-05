@@ -40,7 +40,7 @@ func delayed_spawn(player: int, time: float):
 	var timer := get_tree().create_timer(time)
 	timer.timeout.connect(spawn_player.bind(player))
 
-func spawn_player(which: int):
+func spawn_player(which: int) -> Player:
 	var furthest_spawn = get_furthest_spawn()
 	if is_instance_valid(furthest_spawn):
 		var new_player = obj_player.instantiate()

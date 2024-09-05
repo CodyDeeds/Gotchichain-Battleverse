@@ -7,7 +7,9 @@ func _ready():
 	Game.world = self
 	
 	if (!multiplayer.is_server()):
-		PlayerManager.spawn_player()
+		var new_player: Player = PlayerManager.spawn_player(0)
+		new_player.multiplayer_owner = multiplayer.get_unique_id()
+		#Game.print_multiplayer("Arena: Spawned player with owner %s, authority %s. is owner: %s" % [multiplayer.get_unique_id(), new_player.get_multiplayer_authority(), new_player.is_owner()])
 		var ui = map_ui.instantiate()
 		UIContainer.add_child(ui)
 

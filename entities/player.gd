@@ -23,6 +23,8 @@ extends Entity
 @export var death_sound: AudioStream = preload("res://audio/sfx/death.ogg")
 @export var jump_particles: PackedScene = preload("res://fx/jump.tscn")
 
+## The session ID that controls this player. Different from the multiplayer authority, as that is always the server
+var multiplayer_owner: int = 1
 var current_air_jumps: int = air_jumps
 var held_item: Item = null
 var sound_player: AudioStreamPlayer = null
@@ -40,6 +42,8 @@ func _ready() -> void:
 	sound_player.autoplay = false  # Ensure autoplay is off
 	sound_player.bus = "Master"  # Ensure it's on the correct audio bus
 	#print("Player: Sound player initialized with volume: ", sound_player.volume_db)
+	
+	set_multiplayer_authority(1)
 
 func _process(delta: float) -> void:
 	if !is_owner():
@@ -61,19 +65,24 @@ func get_hand_position() -> Vector2:
 
 # ######## ######## ######## ######## MOVEMENT ######## ######## ########
 
-func jump():
-	var succeed: Callable = func():
-		velocity.y = -jump_speed
-		velocity.x *= (jump_speed_boost + 1)
-		var new_particles = Game.create_instance(jump_particles)
-		Game.deploy_instance(new_particles, global_position)
-	
+## Checks to see if it can jump, and does so if possible
+## Meant to run on the server only, calling [code]rpc_jump_succeed[/code] on all clients if the jump is successful
+@rpc("any_peer", "call_remote", "reliable")
+func attempt_jump():
 	if is_on_floor():
-		succeed.call()
+		rpc_jump_succeed.rpc()
 	else:
 		if current_air_jumps > 0 and velocity.y > -jump_speed:
 			current_air_jumps -= 1
-			succeed.call()
+			rpc_jump_succeed.rpc()
+
+## Jumps unconditionally without checks for if it's on the ground or not
+@rpc("authority", "call_local", "reliable")
+func rpc_jump_succeed():
+	velocity.y = -jump_speed
+	velocity.x *= (jump_speed_boost + 1)
+	var new_particles = Game.create_instance(jump_particles)
+	Game.deploy_instance(new_particles, global_position)
 
 func frictutate(delta: float):
 	var friction: float = 1.0 / delta
@@ -127,6 +136,8 @@ func activate_item():
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_activate_item(pos: Vector2, rot: float):
+	# Position and rotation are that of the held item
+	# They are sent in order to ensure consistent placement of the item before activation
 	if is_instance_valid(held_item):
 		held_item.global_position = pos
 		held_item.global_rotation = rot
@@ -180,7 +191,8 @@ func emit_die_signal_rpc():
 		Events.player_died.emit(controller)
 
 func is_owner():
-	return multiplayer.get_unique_id() == get_multiplayer_authority()
+	#print("Player's authority is %s, this session is ID %s" % [get_multiplayer_authority(), multiplayer.get_unique_id()])
+	return multiplayer_owner == multiplayer.get_unique_id()
 
 # Ensure to call this function when the player picks up an item
 func _on_item_pickup(item):

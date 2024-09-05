@@ -6,13 +6,13 @@ func _step(delta: float):
 	tractutate(delta)
 
 func _handle_input(event: InputEvent):
-	if (Game.is_multiplayer and !MattohaSystem.IsNodeOwner(self)):
+	if (Game.is_multiplayer and !father.is_owner()):
 		return
 	
 	# Ensure that inputs are processed only if they match the player's controller
 	if event.device == father.controller:
 		if event.is_action_pressed("jump"):
-			father.jump()
+			father.attempt_jump.rpc_id(1)
 
 		if event.is_action_pressed("grab"):
 			father.attempt_grab()
