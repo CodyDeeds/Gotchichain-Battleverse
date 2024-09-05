@@ -121,7 +121,7 @@ func attempt_grab():
 
 @rpc("any_peer", "call_local", "reliable")
 func throw_item():
-	Game.print_multiplayer("Player: Threw item %s" % held_item.name)
+	#Game.print_multiplayer("Player: Threw item %s" % held_item.name)
 	held_item.get_thrown()
 	held_item.set_holder(null)
 	held_item.apply_central_impulse(Vector2(throw_speed, 0) * $flippable.scale)

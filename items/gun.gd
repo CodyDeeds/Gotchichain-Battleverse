@@ -18,6 +18,7 @@ extends Item
 
 var timer_rof := Timer.new()
 var can_shoot := true
+var shots_taken: int = 0
 
 func _ready() -> void:
 	add_child(timer_rof)
@@ -53,7 +54,8 @@ func deploy_projectile(angle: float=0.0, speed_mult: float=1.0):
 	var forward: Vector2 = barrel.global_transform.x
 	var projectile_velocity: Vector2 = forward * projectile_speed
 	var radian_angle := deg_to_rad(projectile_spread)
-	projectile_velocity = projectile_velocity.rotated(randf_range( - radian_angle, radian_angle))
+	var rng_factor: float = sin( round(global_position.x + global_position.y*7) + shots_taken )
+	projectile_velocity = projectile_velocity.rotated(radian_angle * rng_factor)
 	projectile_velocity = projectile_velocity.rotated(deg_to_rad(angle))
 	projectile_velocity *= speed_mult
 	new_projectile.velocity = projectile_velocity
@@ -65,6 +67,8 @@ func deploy_projectile(angle: float=0.0, speed_mult: float=1.0):
 	
 	can_shoot = false
 	timer_rof.start()
+	
+	shots_taken += 1
 	
 	return new_projectile
 
