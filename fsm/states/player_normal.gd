@@ -1,6 +1,12 @@
 @tool
 extends State
 
+
+# This data probably doesn't belong in the player_normal state. consider movint it elsewhere
+var left_pressed: bool = false
+var right_pressed: bool = false
+
+
 func _step(delta: float):
 	super(delta)
 	
@@ -17,20 +23,35 @@ func _handle_input(event: InputEvent):
 	if event.device == father.controller:
 		if event.is_action_pressed("jump"):
 			#Game.print_multiplayer("Player jumps")
-			father.attempt_jump.rpc_id(1)
-			father.rpc_set_floating.bind(true).rpc_id(1)
+			Game.call_server( father.attempt_jump )
+			Game.call_server( father.rpc_set_floating.bind(true) )
 		if event.is_action_released("jump"):
-			father.rpc_set_floating.bind(false).rpc_id(1)
+			Game.call_server( father.rpc_set_floating.bind(false) )
 		
 		if event.is_action_pressed("grab"):
-			father.attempt_grab.rpc_id(1)
+			Game.call_server( father.attempt_grab )
 		
 		if event.is_action_pressed("use"):
-			father.activate_item.rpc_id(1)
+			Game.call_server( father.activate_item )
+		
+		if event.is_action_pressed("move_left"):
+			left_pressed = true
+		if event.is_action_released("move_left"):
+			left_pressed = false
+		
+		if event.is_action_pressed("move_right"):
+			right_pressed = true
+		if event.is_action_released("move_right"):
+			right_pressed = false
 
 func tractutate():
 	var traction: float = 0
 	
-	traction = Input.get_action_strength("move_right", father.controller) - Input.get_action_strength("move_left", father.controller)
+	if left_pressed:
+		traction -= 1
+	if right_pressed:
+		traction += 1
+	traction += Input.get_joy_axis(father.controller, JOY_AXIS_LEFT_X)
+	traction = clamp(traction, -1, 1)
 	
-	father.rpc_tractutate.bind(traction).rpc_id(1)
+	Game.call_server( father.rpc_tractutate.bind(traction) )
