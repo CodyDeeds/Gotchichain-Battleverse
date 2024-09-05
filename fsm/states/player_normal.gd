@@ -16,7 +16,7 @@ func _handle_input(event: InputEvent):
 	# Ensure that inputs are processed only if they match the player's controller
 	if event.device == father.controller:
 		if event.is_action_pressed("jump"):
-			Game.print_multiplayer("Player jumps")
+			#Game.print_multiplayer("Player jumps")
 			father.attempt_jump.rpc_id(1)
 			father.rpc_set_floating.bind(true).rpc_id(1)
 		if event.is_action_released("jump"):
@@ -26,7 +26,7 @@ func _handle_input(event: InputEvent):
 			father.attempt_grab.rpc_id(1)
 		
 		if event.is_action_pressed("use"):
-			father.activate_item()
+			father.activate_item.rpc_id(1)
 
 func tractutate(delta: float):
 	var traction: float = 0
