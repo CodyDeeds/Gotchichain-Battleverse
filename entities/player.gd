@@ -101,34 +101,50 @@ func gravitate(delta: float):
 
 # ######## ######## ######## ######## ITEM MANAGEMENT ######## ######## ######## ########
 
+## Run on server only, checks to see if a valid item is nearby and grabs it if so
+@rpc("any_peer", "call_remote", "reliable")
 func attempt_grab():
+	#Game.print_multiplayer("Attempting to grab item")
 	if is_instance_valid(held_item):
+		#Game.print_multiplayer("Cannot grab; item in hand")
 		rpc("throw_item")
 	else:
+		#Game.print_multiplayer("No item in hand")
 		grab_nearest_item()
 
 @rpc("any_peer", "call_local", "reliable")
 func throw_item():
-	print("Player: Threw item ", held_item.name)
+	Game.print_multiplayer("Player: Threw item %s" % held_item.name)
 	held_item.get_thrown()
 	held_item.set_holder(null)
 	held_item.apply_central_impulse(Vector2(throw_speed, 0) * $flippable.scale)
 	held_item = null
 
-func grab_nearest_item():
+## Also checks if there is a valid nearest item. if not, grabs nothing and returns false
+func grab_nearest_item() -> bool:
 	var hand_position := get_hand_position()
 	var target_item: Item = Util.get_nearest_group_member("items", hand_position)
-	grab_item_by_path.rpc( get_path_to(target_item) )
+	
+	if !is_instance_valid(target_item):
+		#Game.print_multiplayer("Cannot grab, no target item")
+		return false
+	if !target_item.grabable:
+		#Game.print_multiplayer("Cannot grab, nearest item is not grabable")
+		return false
+	if hand_position.distance_squared_to(target_item.global_position) > grab_range * grab_range:
+		#Game.print_multiplayer("Cannot grab, nearest item is too distant")
+		return false
+	
+	#Game.print_multiplayer("Grabbed item %s successfully" % [target_item.name])
+	rpc_grab_item_by_path.rpc( get_path_to(target_item) )
+	return true
 
-@rpc("any_peer", "call_local", "reliable")
-func grab_item_by_path(item_path: NodePath):
+@rpc("authority", "call_local", "reliable")
+func rpc_grab_item_by_path(item_path: NodePath):
 	Game.print_multiplayer("Player grabs item %s" % item_path)
-	var hand_position := get_hand_position()
 	var target_item: Item = get_node(item_path)
-	if is_instance_valid(target_item) and target_item.grabable:
-		if hand_position.distance_squared_to(target_item.global_position) < grab_range * grab_range:
-			target_item.set_holder(self)
-			held_item = target_item
+	target_item.set_holder(self)
+	held_item = target_item
 
 func activate_item():
 	if is_instance_valid(held_item):
@@ -152,7 +168,7 @@ func spawn_item(item: PackedScene, auto_grab: bool = true):
 		
 		if auto_grab and !is_instance_valid(held_item):
 			Game.print_multiplayer("Player successfully spawns item, and grabs item at %s" % get_path_to(new_item))
-			grab_item_by_path.rpc( get_path_to(new_item) )
+			rpc_grab_item_by_path.rpc( get_path_to(new_item) )
 
 # ######## ######## ######## ########  ######## ######## ######## ########
 

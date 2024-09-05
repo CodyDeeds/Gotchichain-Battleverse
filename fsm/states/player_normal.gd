@@ -15,7 +15,7 @@ func _handle_input(event: InputEvent):
 			father.attempt_jump.rpc_id(1)
 
 		if event.is_action_pressed("grab"):
-			father.attempt_grab()
+			father.attempt_grab.rpc_id(1)
 
 		if event.is_action_pressed("use"):
 			father.activate_item()

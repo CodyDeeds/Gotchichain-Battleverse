@@ -117,7 +117,7 @@ func set_holder(what: Player):
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_set_holder(node_path):
-	Game.print_multiplayer("Item: rpc_set_holder called with node path %s " % node_path)
+	#Game.print_multiplayer("Item: rpc_set_holder called with node path %s " % node_path)
 	var what: Player = null
 	if (get_tree().root.has_node(node_path)):
 		what = get_node(node_path)
