@@ -32,8 +32,8 @@ func add_player(which: int = -1, player_owner: int = 1) -> PlayerStats:
 	new_player.name = "Player %s" % (new_player.controller + 1)
 	new_player.multiplayer_owner = player_owner
 	
-	Game.print_multiplayer("%s added" % new_player.name)
-	print_stack()
+	#Game.print_multiplayer("%s added" % new_player.name)
+	#print_stack()
 	
 	players.append(new_player)
 	spawn_player(new_player.controller)
@@ -55,7 +55,7 @@ func spawn_player(which: int):
 
 @rpc("authority", "call_local", "reliable")
 func rpc_spawn_player(which: int, player_owner: int, where: Vector2):
-	Game.print_multiplayer("Spawning player %s at %s" % [which, where])
+	#Game.print_multiplayer("Spawning player %s at %s" % [which, where])
 	while which >= players.size():
 		players.append(PlayerStats.new())
 	
@@ -72,7 +72,7 @@ func rpc_spawn_player(which: int, player_owner: int, where: Vector2):
 	
 	Game.deploy_instance(new_player, where)
 	
-	Game.print_multiplayer("Player's path is %s" % new_player.get_path())
+	#Game.print_multiplayer("Player's path is %s" % new_player.get_path())
 
 func count_living_players() -> int:
 	return get_living_players().size()
@@ -129,7 +129,7 @@ func send_player_stats():
 
 @rpc("authority", "call_remote", "reliable")
 func rpc_set_player_stats(what: Array):
-	Game.print_multiplayer("Setting stats to %s" % what)
+	#Game.print_multiplayer("Setting stats to %s" % what)
 	for i in range(what.size()):
 		var these_stats: PlayerStats = PlayerStats.unserialise( what[i] )
 		

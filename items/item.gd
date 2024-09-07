@@ -101,7 +101,7 @@ func attempt_bonk():
 					can_hit_previous_holder = true
 
 func get_activated():
-	Game.print_multiplayer("Item %s activated" % name)
+	#Game.print_multiplayer("Item %s activated" % name)
 	pass
 
 func get_thrown():

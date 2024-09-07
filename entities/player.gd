@@ -148,7 +148,7 @@ func grab_nearest_item() -> bool:
 
 @rpc("authority", "call_local", "reliable")
 func rpc_grab_item_by_path(item_path: NodePath):
-	Game.print_multiplayer("Player grabs item %s" % item_path)
+	#Game.print_multiplayer("Player grabs item %s" % item_path)
 	var target_item: Item = get_node(item_path)
 	target_item.set_holder(self)
 	held_item = target_item
@@ -170,14 +170,14 @@ func rpc_activate_item(pos: Vector2, rot: float):
 		held_item.get_activated()
 
 func spawn_item(item: PackedScene, auto_grab: bool = true):
-	Game.print_multiplayer("Player spawns item from %s" % item.resource_path)
+	#Game.print_multiplayer("Player spawns item from %s" % item.resource_path)
 	if multiplayer.is_server():
 		var new_item: Item = Game.create_instance(item)
 		Game.deploy_instance(new_item, global_position)
 		#new_item.auto_grab = new_item.get_path_to(self)
 		
 		if auto_grab and !is_instance_valid(held_item):
-			Game.print_multiplayer("Player successfully spawns item, and grabs item at %s" % get_path_to(new_item))
+			#Game.print_multiplayer("Player successfully spawns item, and grabs item at %s" % get_path_to(new_item))
 			rpc_grab_item_by_path.rpc( get_path_to(new_item) )
 
 # ######## ######## ######## ########  ######## ######## ######## ########
