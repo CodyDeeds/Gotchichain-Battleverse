@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapData" load_steps=3 format=3 uid="uid://bm4sxeoj6pxlw"]
+
+[ext_resource type="PackedScene" uid="uid://da5junaar6e3t" path="res://maps/mirror.tscn" id="1_npu5g"]
+[ext_resource type="Script" path="res://data/maps/map_data.gd" id="2_1dck5"]
+
+[resource]
+script = ExtResource("2_1dck5")
+scene = ExtResource("1_npu5g")
+name = "Mirror"
