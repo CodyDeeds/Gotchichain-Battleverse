@@ -54,5 +54,7 @@ static func unserialise(data: Array) -> PlayerStats:
 		output.object = null
 	else:
 		output.object = Game.get_node(object_path)
+		if output.object == null:
+			Game.print_multiplayer("ERROR: No object at %s" % object_path)
 	
 	return output
