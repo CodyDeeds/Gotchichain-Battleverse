@@ -10,6 +10,8 @@ func _ready():
 
 	MattohaSystem.Client.LoadLobbyPlayers()
 	refresh_players_label()
+	
+	%button.grab_focus()
 
 func refresh_players_label():
 	var players_count = MattohaSystem.Client.CurrentLobbyPlayers.size()

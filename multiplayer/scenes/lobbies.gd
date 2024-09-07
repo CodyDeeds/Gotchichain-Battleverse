@@ -7,6 +7,8 @@ func _ready():
 	MattohaSystem.Client.LoadAvailableLobbiesSucceed.connect(_on_load_available_lobbies_succeed)
 	MattohaSystem.Client.JoinLobbySucceed.connect(_on_join_lobby)
 	MattohaSystem.Client.LoadAvailableLobbies()
+	
+	%create_lobby_button.grab_focus()
 
 func _on_load_available_lobbies_succeed(lobbies):
 	for slot in LobbiesContainer.get_children():
