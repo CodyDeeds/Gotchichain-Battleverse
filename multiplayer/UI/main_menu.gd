@@ -18,13 +18,14 @@ func _ready():
 
 func enter_local_game() -> void:
 	Game.is_multiplayer = false
-	var map_resources = BigData.maps.load_all()
-	var this_map: MapData
-	this_map = map_resources.pick_random()
-	var game_scene = this_map.scene
+	#var map_resources = BigData.maps.load_all()
+	#var this_map: MapData
+	#this_map = map_resources.pick_random()
+	#var game_scene = this_map.scene
 	
 	get_tree().change_scene_to_packed(gameholder_scene)
-	Game.map = game_scene
+	#get_tree().change_scene_to_file("res://multiplayer/scenes/game_holder.tscn")
+	#Game.map = game_scene
 
 func to_placeholder():
 	Game.is_multiplayer = true

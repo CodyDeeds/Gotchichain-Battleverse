@@ -9,7 +9,7 @@ func _ready():
 	Game.world = self
 	
 	# If this is a client, request the addition of a new player object
-	if !multiplayer.is_server():
+	if Game.is_multiplayer and !multiplayer.is_server():
 		request_map()
 		rpc_add_new_player.bind( multiplayer.get_unique_id() ).rpc_id(1)
 		var ui = map_ui.instantiate()

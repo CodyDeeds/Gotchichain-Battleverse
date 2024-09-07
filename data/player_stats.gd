@@ -34,7 +34,7 @@ func serialise() -> Array:
 	
 	return output
 
-static func unserialise(data: Array) -> PlayerStats:
+static func deserialise(data: Array) -> PlayerStats:
 	#Game.print_multiplayer("Unpacking %s" % [data])
 	var output: PlayerStats = PlayerStats.new()
 	

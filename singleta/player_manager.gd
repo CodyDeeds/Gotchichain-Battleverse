@@ -33,7 +33,6 @@ func add_player(which: int = -1, player_owner: int = 1) -> PlayerStats:
 	new_player.multiplayer_owner = player_owner
 	
 	#Game.print_multiplayer("%s added" % new_player.name)
-	#print_stack()
 	
 	players.append(new_player)
 	spawn_player(new_player.controller)
@@ -131,7 +130,7 @@ func send_player_stats():
 func rpc_set_player_stats(what: Array):
 	#Game.print_multiplayer("Setting stats to %s" % what)
 	for i in range(what.size()):
-		var these_stats: PlayerStats = PlayerStats.unserialise( what[i] )
+		var these_stats: PlayerStats = PlayerStats.deserialise( what[i] )
 		
 		if i >= players.size():
 			players.append(these_stats)

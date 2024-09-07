@@ -40,6 +40,8 @@ func deploy_instance(what: Node2D, where: Vector2):
 	if is_instance_valid(world):
 		what.position = where
 		world.add_child(what)
+	else:
+		push_error("Attempting to deploy %s at %s, but no world exists" % [what, where])
 
 func deploy_ui_instance(what: Control, where: Vector2):
 	if is_instance_valid(ui):

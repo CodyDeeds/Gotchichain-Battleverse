@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://bov2gw34h5hrj"]
 
 [ext_resource type="Script" path="res://multiplayer/UI/main_menu.gd" id="1_nbq3q"]
-[ext_resource type="PackedScene" uid="uid://dqpew2eit74po" path="res://gameholder.tscn" id="2_hf1c8"]
 [ext_resource type="Texture2D" uid="uid://bb6dl50v7hj2i" path="res://multiplayer/UI/backdrop.png" id="2_qwni7"]
+[ext_resource type="PackedScene" uid="uid://bc3bmou81qqv6" path="res://multiplayer/maps/multiplayer_arena.tscn" id="2_rhaxb"]
 [ext_resource type="Texture2D" uid="uid://dijkbyhcgoxqi" path="res://multiplayer/UI/logo.png" id="3_abcd"]
 [ext_resource type="Texture2D" uid="uid://ch220m010oin8" path="res://multiplayer/UI/Gotchi-1.png" id="4_hmh6v"]
 [ext_resource type="Texture2D" uid="uid://cl2j3po14wv64" path="res://multiplayer/UI/Gotchi-2.png" id="5_oirsd"]
@@ -53,7 +53,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nbq3q")
-gameholder_scene = ExtResource("2_hf1c8")
+gameholder_scene = ExtResource("2_rhaxb")
 
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 1
