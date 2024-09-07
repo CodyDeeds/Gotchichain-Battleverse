@@ -53,4 +53,7 @@ func call_server(what: Callable):
 		what.call()
 
 func print_multiplayer(what: String):
-	print("Session %s: %s" % [multiplayer.get_unique_id(), what])
+	if is_multiplayer:
+		print("Session %s: %s" % [multiplayer.get_unique_id(), what])
+	else:
+		print("Local game: %s" % what)
