@@ -107,7 +107,8 @@ modulate = Color(1, 0.596078, 1, 1)
 layout_mode = 2
 text = "Local Game"
 
-[node name="ClientButton" type="Button" parent="v_box_container"]
+[node name="client" type="Button" parent="v_box_container"]
+unique_name_in_owner = true
 modulate = Color(1, 0.596078, 1, 1)
 layout_mode = 2
 text = "Join Battleverse"
@@ -138,5 +139,5 @@ CNTRL + R TO RESTART
 M = Mute Music"
 
 [connection signal="pressed" from="v_box_container/local" to="." method="_on_local_pressed"]
-[connection signal="pressed" from="v_box_container/ClientButton" to="." method="_on_client_button_pressed"]
+[connection signal="pressed" from="v_box_container/client" to="." method="_on_client_button_pressed"]
 [connection signal="pressed" from="v_box_container/host" to="." method="_on_host_pressed"]
