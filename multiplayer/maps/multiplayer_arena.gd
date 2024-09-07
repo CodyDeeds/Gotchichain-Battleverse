@@ -61,7 +61,7 @@ func add_player(peer: int):
 	Game.print_multiplayer("Arena: Spawned player with owner %s, authority %s. is owner: %s" % [peer, new_player.multiplayer_owner, new_player.object.is_owner()])
 
 func check_player_lives():
-	if multiplayer.is_server():
+	if Game.is_multiplayer and multiplayer.is_server():
 		var lobby_id = MattohaSystem.ExtractLobbyId(self.get_path())
 		var players = MattohaSystem.Server.GetLobbyPlayers(lobby_id)
 		var should_end = false
@@ -74,7 +74,7 @@ func check_player_lives():
 		if (should_end):
 			print("Should end")
 			for player in players:
-				rpc_id(player["Id"], "end_game_rpc")
+				end_game_rpc.rpc_id(player["Id"])
 				MattohaSystem.Server.RemovePlayerFromLobby(player["Id"])
 			call_deferred("queue_free")
 
