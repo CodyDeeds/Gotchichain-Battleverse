@@ -1,7 +1,11 @@
 class_name Laser
-extends Projectile
+extends Hitbox
 
 
+## Where this laser is pointing
+@export var direction: Vector2 = Vector2(1, 0)
+## How long this laser lasts
+@export var duration: float = 0.3
 ## The laser will reach no further than this
 @export var max_length: float = 999999
 ## The width of the beam
@@ -28,7 +32,8 @@ var laser_vector: Vector2 = Vector2()
 
 
 func _ready() -> void:
-	# Overriding a lot of the default projectile behaviour
+	super()
+	
 	setup_nodes()
 	setup_line()
 	setup_fx()
@@ -44,7 +49,7 @@ func setup_nodes():
 	var new_raycast: RayCast2D = RayCast2D.new()
 	add_child(new_raycast)
 	new_raycast.global_rotation = 0
-	new_raycast.target_position = velocity.normalized() * max_length
+	new_raycast.target_position = direction.normalized() * max_length
 	new_raycast.collision_mask = 4
 	cast(new_raycast)
 
@@ -121,3 +126,6 @@ func cast(ray: RayCast2D):
 	new_shape.rotation = relative.angle()
 	
 	laser_vector = relative*2
+
+func die():
+	queue_free()

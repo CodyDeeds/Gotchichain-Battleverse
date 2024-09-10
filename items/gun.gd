@@ -48,29 +48,43 @@ func shoot():
 func deploy_projectile(angle: float=0.0, speed_mult: float=1.0):
 	if !is_instance_valid(barrel):
 		barrel = self
-	var new_projectile: Projectile = Game.create_instance(projectile)
-	#var new_projectile: Projectile = MattohaSystem.CreateInstance(projectile.resource_path)
-	new_projectile.position = barrel.global_position
-	var forward: Vector2 = barrel.global_transform.x
-	var projectile_velocity: Vector2 = forward * projectile_speed
-	var radian_angle := deg_to_rad(projectile_spread)
-	var rng_factor: float = sin( round(global_position.x + global_position.y*7) + shots_taken )
-	projectile_velocity = projectile_velocity.rotated(radian_angle * rng_factor)
-	projectile_velocity = projectile_velocity.rotated(deg_to_rad(angle))
-	projectile_velocity *= speed_mult
-	new_projectile.velocity = projectile_velocity
-	if !can_hit_shooter and is_instance_valid(holder):
-		new_projectile.add_exception(holder.get_hurtbox())
+	var new_shot: Node2D = Game.create_instance(projectile)
 	
-	Game.deploy_instance(new_projectile, barrel.global_position)
-	#MattohaSystem.Client.LobbyNode.add_child(new_projectile)
+	if new_shot is Projectile:
+		#var new_shot: Projectile = MattohaSystem.CreateInstance(projectile.resource_path)
+		new_shot.position = barrel.global_position
+		var forward: Vector2 = barrel.global_transform.x
+		var projectile_velocity: Vector2 = forward * projectile_speed
+		var radian_angle := deg_to_rad(projectile_spread)
+		var rng_factor: float = sin( round(global_position.x + global_position.y*7) + shots_taken )
+		projectile_velocity = projectile_velocity.rotated(radian_angle * rng_factor)
+		projectile_velocity = projectile_velocity.rotated(deg_to_rad(angle))
+		projectile_velocity *= speed_mult
+		new_shot.velocity = projectile_velocity
+		if !can_hit_shooter and is_instance_valid(holder):
+			new_shot.add_exception(holder.get_hurtbox())
+	
+	if new_shot is Laser:
+		new_shot.position = barrel.global_position
+		var forward: Vector2 = barrel.global_transform.x
+		var radian_angle := deg_to_rad(projectile_spread)
+		var rng_factor: float = sin( round(global_position.x + global_position.y*7) + shots_taken )
+		forward = forward.rotated(radian_angle * rng_factor)
+		forward = forward.rotated(deg_to_rad(angle))
+		new_shot.direction = forward
+		
+		if !can_hit_shooter and is_instance_valid(holder):
+			new_shot.add_exception(holder.get_hurtbox())
+	
+	Game.deploy_instance(new_shot, barrel.global_position)
+	#MattohaSystem.Client.LobbyNode.add_child(new_shot)
 	
 	can_shoot = false
 	timer_rof.start()
 	
 	shots_taken += 1
 	
-	return new_projectile
+	return new_shot
 
 func get_activated():
 	super()

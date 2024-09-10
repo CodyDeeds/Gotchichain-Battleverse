@@ -17,6 +17,8 @@ func _ready() -> void:
 	
 	set_collision_layer_value(5, true)
 	set_collision_mask_value(6, true)
+	
+	print("Hitbox %s deployed" % name)
 
 func add_exception(what: Hurtbox):
 	if !exceptions.has(what):
@@ -37,7 +39,7 @@ func get_overlapping_hurtboxes():
 	return output
 
 func hit_being(what):
-	#print("Hitbox: Hitting being ", what.name)
+	print("Hitbox of %s: Hitting being %s" % [name, what.name])
 	what.take_damage(damage)
 	var direction = (what.global_position - global_position).normalized()
 	var this_radial_knockback = radial_knockback * direction
