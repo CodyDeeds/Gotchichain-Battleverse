@@ -121,6 +121,16 @@ func get_player_index(what: Player) -> int:
 			return i
 	return -1
 
+func get_current_player_index() -> int:
+	if !Game.is_multiplayer:
+		return -1
+	
+	for i in range(players.size()):
+		if players[i].multiplayer_owner == multiplayer.get_unique_id():
+			return i
+	
+	return -1
+
 func send_player_stats():
 	var these_stats: Array = []
 	for i in range(players.size()):
@@ -162,6 +172,11 @@ func rpc_set_player_lives(which: int, lives: Array):
 	
 	player_stats_updated.emit()
 
+func attempt_end():
+	if !Game.is_multiplayer or is_multiplayer_authority():
+		if count_living_players() <= 1:
+			Game.rpc_end_game.rpc()
+
 
 func _on_player_died(which: int):
 	if !Game.is_multiplayer or is_multiplayer_authority():
@@ -174,5 +189,4 @@ func _on_player_died(which: int):
 		if lives.size() > 0:
 			delayed_spawn(which, spawn_delay)
 		else:
-			if count_living_players() == 1:
-				get_tree().change_scene_to_file("res://ui/end.tscn")
+			attempt_end()
