@@ -23,6 +23,7 @@ func end():
 func add_players(count: int):
 	for i in range(count):
 		add_player()
+	player_stats_updated.emit()
 
 ## For when a player first joins the game
 func add_player(which: int = -1, player_owner: int = 1) -> PlayerStats:
