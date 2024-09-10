@@ -18,7 +18,7 @@ useSenderID=true
 
 [application]
 
-config/name="GotchiGame"
+config/name="Gotchichain Battleverse"
 config/tags=PackedStringArray("games")
 run/main_scene="res://multiplayer/UI/main_menu.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
