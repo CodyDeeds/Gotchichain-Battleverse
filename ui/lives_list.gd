@@ -7,7 +7,6 @@ class_name LivesList
 
 func _ready() -> void:
 	PlayerManager.player_stats_updated.connect(update_lives)
-	update_lives()
 
 
 func update_lives():

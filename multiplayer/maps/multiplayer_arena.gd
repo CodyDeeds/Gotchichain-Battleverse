@@ -12,10 +12,11 @@ func _ready():
 	if Game.is_multiplayer and !multiplayer.is_server():
 		request_map()
 		rpc_add_new_player.bind( multiplayer.get_unique_id() ).rpc_id(1)
-		var ui = map_ui.instantiate()
-		UIContainer.add_child(ui)
 	else:
 		deploy_random_map()
+	
+	var ui = map_ui.instantiate()
+	UIContainer.add_child(ui)
 
 
 func deploy_random_map():

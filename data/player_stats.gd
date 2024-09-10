@@ -38,6 +38,9 @@ static func deserialise(data: Array) -> PlayerStats:
 	#Game.print_multiplayer("Unpacking %s" % [data])
 	var output: PlayerStats = PlayerStats.new()
 	
+	output.lives = []
+	output.health = []
+	
 	var numbers: PackedInt32Array = data[0]
 	output.name = data[1]
 	var object_path: NodePath = data[2]

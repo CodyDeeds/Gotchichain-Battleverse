@@ -12,7 +12,7 @@ func _ready() -> void:
 	else:
 		%announcement.text = "Player %s is the winner!" % PlayerManager.get_living_players()[0].controller
 
-	# Connect the button signal
+	%button.grab_focus()
 	%button.pressed.connect(_on_button_pressed)
 
 func _on_button_pressed() -> void:
