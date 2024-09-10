@@ -3,7 +3,7 @@ extends Control
 @export var gameholder_scene: PackedScene
 
 func _ready():
-	PlayerManager.end()
+	Game.end()
 	Game.is_multiplayer = false
 	MattohaSystem.Client.ConnectedToServer.connect(_on_connected)
 	multiplayer.connection_failed.connect(_on_connection_failed)
@@ -13,6 +13,7 @@ func _ready():
 		call_deferred("to_placeholder")
 	_setup_animation()
 	%client.grab_focus()
+	%host.visible = OS.is_debug_build()
 	#$AnimationPlayer.play("logo_effect")
 	#$AnimationPlayer.play("button_effect")
 
