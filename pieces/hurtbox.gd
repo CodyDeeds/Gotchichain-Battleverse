@@ -49,13 +49,13 @@ func is_compatible_hitbox(what: Hitbox) -> bool:
 	return false
 
 func _on_area_entered(what: Area2D):
-	#print("Hurtbox: Area entered by ", what.name)
+	#print("Hurtbox: Area entered by ", what.get_parent().name)
 	if what is Hitbox and !overlapping_hitboxes.has(what) and is_compatible_hitbox(what):
 		overlapping_hitboxes.append(what)
 		#print("Hurtbox: Added hitbox ", what.name)
 
 func _on_area_exited(what: Area2D):
-	#print("Hurtbox: Area exited by ", what.name)
+	#print("Hurtbox: Area exited by ", what.get_parent().name)
 	if overlapping_hitboxes.has(what):
 		overlapping_hitboxes.erase(what)
 		#print("Hurtbox: Removed hitbox ", what.name)

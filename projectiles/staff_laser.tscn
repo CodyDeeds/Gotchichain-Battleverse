@@ -7,11 +7,11 @@
 
 [node name="staff_laser" type="Area2D"]
 script = ExtResource("1_rjvtk")
+duration = 0.25
 start_fx_scene = ExtResource("2_chq5a")
 end_fx_scene = ExtResource("2_chq5a")
 line_fx_scene = ExtResource("3_xtw1e")
 particle_density = 0.08
 line_scene = ExtResource("4_43vix")
-duration = 0.25
 damage = 1.0
 radial_knockback = 1000.0
