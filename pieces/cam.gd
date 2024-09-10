@@ -37,25 +37,15 @@ func zoom_to_players(delta: float):
 	for this_player: Player in get_tree().get_nodes_in_group("players"):
 		var this_pos: Vector2 = this_player.global_position
 		
-		if Input.is_action_just_pressed("test"):
-			print("From %s to %s" % [rect_start.round(), rect_end.round()])
-			print(this_pos)
-		
 		if this_pos.x < rect_start.x: rect_start.x = this_pos.x
 		if this_pos.y < rect_start.y: rect_start.y = this_pos.y
 		if this_pos.x > rect_end.x: rect_end.x = this_pos.x
 		if this_pos.y > rect_end.y: rect_end.y = this_pos.y
 	
-	if Input.is_action_just_pressed("test"):
-		print("From %s to %s" % [rect_start.round(), rect_end.round()])
-	
 	var target_size: Vector2 = rect_end - rect_start + Vector2(border, border)
 	var ratios: Vector2 = target_size / default_size
 	var target_zoom: float = 1 / max(ratios.x, ratios.y)
 	zoom = zoom.lerp(Vector2(target_zoom, target_zoom), delta * zoom_speed)
-	
-	if Input.is_action_just_pressed("test"):
-		print("Ratios %s, target %s" % [ratios, target_zoom])
 
 func get_area():
 	var size: Vector2 = get_viewport().get_visible_rect().size

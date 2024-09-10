@@ -3,9 +3,11 @@ extends Resource
 
 @export var controller := 0
 # Using an array in case we want to have different traits on different lives, like different gotchis
-@export var lives: Array = [0]
+@export var lives: Array = [0, 0, 0]
 # Using an array here too in case we want different traits on different health, like some kind of bomb health that damages nearby enemies when lost
 @export var health: Array = [0, 0, 0, 0, 0]
+
+@export var max_health: int = 5
 @export var name := "Player X"
 @export var multiplayer_owner: int = 1
 

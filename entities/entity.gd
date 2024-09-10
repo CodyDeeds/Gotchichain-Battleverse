@@ -6,6 +6,10 @@ var hp := max_hp
 var limit_hp := true
 var dead := false
 
+
+signal hp_changed(new_hp: float)
+
+
 func set_hp(what: float):
 	hp = what
 
@@ -14,6 +18,10 @@ func set_hp(what: float):
 
 	if limit_hp:
 		hp = min(hp, max_hp)
+	
+	# Using an array here rather than the actual value in case of multiple types of hearts that need keeping track of a la Isaac
+	# Not changing the regular HP variable to an array yet because that hasn't been made yet and might not be for a while
+	hp_changed.emit( get_health_array() )
 
 func take_damage(what: float, can_heal: bool=true):
 	if !can_heal:
@@ -25,6 +33,12 @@ func die():
 	var peers = MattohaSystem.Client.GetLobbyPlayersIds()
 	for peer_id in peers:
 		rpc_id(peer_id, "rpc_die")
+
+func get_health_array() -> Array:
+	var output_hp: Array = []
+	for i in range(hp):
+		output_hp.append(0)
+	return output_hp
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_die():

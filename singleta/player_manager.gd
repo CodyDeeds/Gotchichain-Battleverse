@@ -71,8 +71,11 @@ func rpc_spawn_player(which: int, player_owner: int, where: Vector2):
 		new_player.name = "player_%s" % which
 	new_player.controller = which
 	players[which].object = new_player
+	players[which].health = new_player.get_health_array()
 	
 	Game.deploy_instance(new_player, where)
+	
+	player_stats_updated.emit()
 	
 	#Game.print_multiplayer("Player's path is %s" % new_player.get_path())
 
@@ -191,3 +194,12 @@ func _on_player_died(which: int):
 			delayed_spawn(which, spawn_delay)
 		else:
 			attempt_end()
+
+func _on_player_hp_changed(new_hp: Array, player_id: int):
+	if players.size() > player_id:
+		players[player_id].health = new_hp.duplicate()
+	
+	if Game.is_multiplayer or true:
+		rpc_set_player_health.bind(player_id, new_hp).rpc()
+	else:
+		player_stats_updated.emit()

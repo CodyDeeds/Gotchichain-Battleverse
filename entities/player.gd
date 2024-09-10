@@ -47,6 +47,8 @@ func _ready() -> void:
 	sound_player.bus = "Master"  # Ensure it's on the correct audio bus
 	#print("Player: Sound player initialized with volume: ", sound_player.volume_db)
 	
+	hp_changed.connect(PlayerManager._on_player_hp_changed.bind(get_id()))
+	
 	set_multiplayer_authority(1)
 
 func _process(delta: float) -> void:
@@ -211,16 +213,20 @@ func die() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func emit_die_signal_rpc():
-	if Game.is_multiplayer:
-		Events.player_died.emit(PlayerManager.get_player_index(self))
-	else:
-		Events.player_died.emit(controller)
+	Events.player_died.emit(get_id())
 
 func is_owner():
 	#Game.print_multiplayer("Player %s has owner %s" % [get_path(), multiplayer_owner])
 	if !Game.is_multiplayer:
 		return true
 	return multiplayer_owner == multiplayer.get_unique_id()
+
+## Returns this player's position in the PlayerManager.players array
+func get_id() -> int:
+	if Game.is_multiplayer:
+		return PlayerManager.get_player_index(self)
+	else:
+		return controller
 
 # Ensure to call this function when the player picks up an item
 func _on_item_pickup(item):

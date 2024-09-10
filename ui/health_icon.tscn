@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjkykxhg3x81q"]
+
+[ext_resource type="Script" path="res://ui/health_icon.gd" id="1_wexa1"]
+[ext_resource type="Texture2D" uid="uid://uxeikqehfnpg" path="res://ui/heart.png" id="2_o6rr2"]
+[ext_resource type="Script" path="res://pieces/auto_sprite_2d.gd" id="3_mjxfr"]
+[ext_resource type="Texture2D" uid="uid://bwxql4umepyy6" path="res://ui/heart_empty.png" id="4_73uxw"]
+
+[sub_resource type="Animation" id="Animation_iqtpf"]
+resource_name = "wiggle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("full:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 8), Vector2(8, 10), Vector2(10, 7), Vector2(7, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("full:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0698132, -0.0698132]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("full:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.5, 0.9, 1.3, 1.4, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.973958, 0.973958), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5c47h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("full:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7.5, 7.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("full:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("full:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7gx5"]
+_data = {
+"RESET": SubResource("Animation_5c47h"),
+"wiggle": SubResource("Animation_iqtpf")
+}
+
+[node name="health_icon" type="Control"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wexa1")
+
+[node name="full" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(7.5, 7.5)
+texture = ExtResource("2_o6rr2")
+hframes = 5
+script = ExtResource("3_mjxfr")
+
+[node name="empty" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(7.5, 7.5)
+texture = ExtResource("4_73uxw")
+
+[node name="animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_n7gx5")
+}
+autoplay = "wiggle"
