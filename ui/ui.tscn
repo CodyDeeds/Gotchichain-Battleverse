@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj0dd53by11qx"]
+[gd_scene load_steps=5 format=3 uid="uid://bj0dd53by11qx"]
 
 [ext_resource type="PackedScene" uid="uid://burfconx6ui6c" path="res://ui/lives_list.tscn" id="1_fetkw"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_wband"]
 [ext_resource type="PackedScene" uid="uid://fkenm67wmr6g" path="res://ui/life_icon.tscn" id="2_5c4uc"]
+[ext_resource type="PackedScene" uid="uid://bjkykxhg3x81q" path="res://ui/health_icon.tscn" id="4_p74mj"]
 
 [node name="ui" type="Control"]
 layout_mode = 3
@@ -27,6 +28,7 @@ layout_mode = 2
 [node name="lives_list_0" parent="all/upperbar" instance=ExtResource("1_fetkw")]
 layout_mode = 2
 life_icon = ExtResource("2_5c4uc")
+health_icon = ExtResource("4_p74mj")
 
 [node name="control" type="Control" parent="all/upperbar"]
 layout_mode = 2
@@ -36,6 +38,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 alignment = 2
 life_icon = ExtResource("2_5c4uc")
+health_icon = ExtResource("4_p74mj")
 player = 1
 
 [node name="middle_bit" type="Control" parent="all"]
@@ -62,6 +65,8 @@ layout_mode = 2
 [node name="lives_list_2" parent="all/underbar" instance=ExtResource("1_fetkw")]
 layout_mode = 2
 life_icon = ExtResource("2_5c4uc")
+health_icon = ExtResource("4_p74mj")
+flipped = true
 player = 2
 
 [node name="control" type="Control" parent="all/underbar"]
@@ -72,4 +77,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 alignment = 2
 life_icon = ExtResource("2_5c4uc")
+health_icon = ExtResource("4_p74mj")
+flipped = true
 player = 3
