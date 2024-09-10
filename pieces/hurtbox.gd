@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 		if overlapping_hitboxes.size() > 0:
 			for i in range(overlapping_hitboxes.size()):
 				var this_hitbox: Hitbox = overlapping_hitboxes[i]
-				if this_hitbox.active:
+				if this_hitbox.active and is_compatible_hitbox(this_hitbox):
 					get_hit_by(this_hitbox)
 					break
 
@@ -40,12 +40,18 @@ func get_hit_by(what: Hitbox):
 	what.hit.emit(self)
 	what.hit_being(father)
 	invuln_time = invuln_duration
+	if what.hit_interval > 0:
+		what.temporary_exceptions[self] = what.hit_interval
+		print("New temporary exceptions: %s" % [what.temporary_exceptions])
 
 func is_compatible_hitbox(what: Hitbox) -> bool:
+	print("Checking temporary exceptions against %s: %s" % [self, what.temporary_exceptions])
+	if what.exceptions.has(self) or what.temporary_exceptions.has(self):
+		return false
+	
 	for i in what.teams:
 		if teams.has(i):
-			if !what.exceptions.has(self):
-				return true
+			return true
 	return false
 
 func _on_area_entered(what: Area2D):
