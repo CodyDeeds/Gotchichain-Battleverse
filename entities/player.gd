@@ -13,6 +13,8 @@ extends Entity
 @export var acceleration := 2000.0
 @export var air_jumps := 1
 @export var jump_speed := 1500.0
+## Speed with which the player drops through platforms
+@export var drop_speed := 300.0
 @export var controller := 0  # Default to 0 for Player 1, change to 1 for Player 2, etc.
 @export_group("Interaction")
 @export var grab_range := 64.0
@@ -30,6 +32,8 @@ var traction: float = 0
 ## Whether the player is slow-falling or fast-falling
 var floating: bool = false
 var current_air_jumps: int = air_jumps
+## Whether the player has dropped to increase speed while falling
+var has_dropped: bool = false
 var held_item: Item = null
 var sound_player: AudioStreamPlayer = null
 var has_died: bool = false
@@ -38,6 +42,8 @@ func _init() -> void:
 	add_to_group("players")
 
 func _ready() -> void:
+	super()
+	
 	# Initialize and configure the sound player
 	sound_player = AudioStreamPlayer.new()
 	add_child(sound_player)
@@ -60,6 +66,7 @@ func _process(delta: float) -> void:
 		move_and_slide()
 		if is_on_floor():
 			current_air_jumps = air_jumps
+			has_dropped = false
 
 
 func get_hand_position() -> Vector2:
@@ -103,6 +110,18 @@ func gravitate(delta: float):
 	velocity.y += gravity * delta
 	if !floating:
 		velocity.y += gravity * delta * (gravity_fast_fall_mult) - 1
+
+## Checks to see if it can drop through a platform, and does so if possible
+@rpc("any_peer", "call_remote", "reliable")
+func attempt_drop():
+	if is_on_floor() or !has_dropped:
+		rpc_drop.rpc()
+		has_dropped = true
+
+@rpc("authority", "call_local", "reliable")
+func rpc_drop():
+	position.y += 1
+	velocity.y = max(drop_speed, velocity.y + drop_speed)
 
 @rpc("any_peer", "call_remote", "reliable")
 func rpc_set_floating(what: bool):

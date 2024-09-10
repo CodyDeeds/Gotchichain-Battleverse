@@ -42,10 +42,8 @@ func get_hit_by(what: Hitbox):
 	invuln_time = invuln_duration
 	if what.hit_interval > 0:
 		what.temporary_exceptions[self] = what.hit_interval
-		print("New temporary exceptions: %s" % [what.temporary_exceptions])
 
 func is_compatible_hitbox(what: Hitbox) -> bool:
-	print("Checking temporary exceptions against %s: %s" % [self, what.temporary_exceptions])
 	if what.exceptions.has(self) or what.temporary_exceptions.has(self):
 		return false
 	

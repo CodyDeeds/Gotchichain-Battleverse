@@ -23,7 +23,10 @@ func _handle_input(event: InputEvent):
 	if event.device == father.controller:
 		if event.is_action_pressed("jump"):
 			#Game.print_multiplayer("Player jumps")
-			Game.call_server( father.attempt_jump )
+			if Input.is_action_pressed("move_down"):
+				Game.call_server( father.attempt_drop )
+			else:
+				Game.call_server( father.attempt_jump )
 			Game.call_server( father.rpc_set_floating.bind(true) )
 		if event.is_action_released("jump"):
 			Game.call_server( father.rpc_set_floating.bind(false) )
