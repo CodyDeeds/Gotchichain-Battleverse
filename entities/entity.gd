@@ -10,6 +10,10 @@ var dead := false
 signal hp_changed(new_hp: float)
 
 
+func _ready() -> void:
+	pass
+
+
 func set_hp(what: float):
 	hp = what
 

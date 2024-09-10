@@ -22,8 +22,6 @@ func _ready() -> void:
 	
 	set_collision_layer_value(5, true)
 	set_collision_mask_value(6, true)
-	
-	print("Hitbox %s deployed" % name)
 
 func _process(delta: float) -> void:
 	for this_hurtbox in temporary_exceptions:
