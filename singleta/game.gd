@@ -25,6 +25,12 @@ func start():
 func end():
 	if afoot:
 		PlayerManager.end()
+		
+		multiplayer.multiplayer_peer.close()
+		MattohaSystem.Server.Players = {}
+		MattohaSystem.Server.Lobbies = {}
+		MattohaSystem.Server.SpawnedNodes = {}
+		MattohaSystem.Server.RemovedSceneNodes = {}
 		afoot = false
 
 func return_to_menu():
