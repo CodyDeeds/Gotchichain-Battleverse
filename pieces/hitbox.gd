@@ -4,10 +4,15 @@ extends Area2D
 
 @export var teams: Array[int] = [0]
 @export var damage := 0.0
+## Amount of time after hitting something, after which that same target can be hit again
+@export var hit_interval: float = 0.0
 @export var radial_knockback := 500.0
 @export var directional_knockback := Vector2()
 @export var active := true
 @export var exceptions: Array[Hurtbox] = []
+
+## Keys are hurtboxes, values are times in seconds
+var temporary_exceptions: Dictionary = {}
 
 signal hit
 
@@ -19,6 +24,13 @@ func _ready() -> void:
 	set_collision_mask_value(6, true)
 	
 	print("Hitbox %s deployed" % name)
+
+func _process(delta: float) -> void:
+	for this_hurtbox in temporary_exceptions:
+		temporary_exceptions[this_hurtbox] -= delta
+		if temporary_exceptions[this_hurtbox] <= 0:
+			temporary_exceptions.erase(this_hurtbox)
+
 
 func add_exception(what: Hurtbox):
 	if !exceptions.has(what):
@@ -39,7 +51,7 @@ func get_overlapping_hurtboxes():
 	return output
 
 func hit_being(what):
-	print("Hitbox of %s: Hitting being %s" % [name, what.name])
+	#print("Hitbox of %s: Hitting being %s" % [name, what.name])
 	what.take_damage(damage)
 	var direction = (what.global_position - global_position).normalized()
 	var this_radial_knockback = radial_knockback * direction
