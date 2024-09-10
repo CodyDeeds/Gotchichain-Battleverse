@@ -14,5 +14,5 @@ func _on_create_lobby_succeed(_lobby):
 	get_tree().change_scene_to_file("res://multiplayer/scenes/lobby.tscn")
 
 func _on_create_lobby_button_pressed():
-	var lobby_data = {"Name": lobbyNameInput.text, "MaxPlayers": 2}
+	var lobby_data = {"Name": lobbyNameInput.text, "MaxPlayers": 4}
 	MattohaSystem.Client.CreateLobby(lobby_data, GameScene.resource_path)

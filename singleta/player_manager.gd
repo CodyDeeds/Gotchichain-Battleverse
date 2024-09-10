@@ -7,6 +7,8 @@ var player_count := 2
 
 const obj_player = preload ("res://entities/player.tscn")
 
+signal player_stats_updated
+
 func _ready() -> void:
 	Events.player_died.connect(_on_player_died)
 
@@ -143,16 +145,22 @@ func rpc_set_player_stats(what: Array):
 	
 	while players.size() > what.size():
 		players.pop_back()
+	
+	player_stats_updated.emit()
 
 @rpc("authority", "call_local", "reliable")
 func rpc_set_player_health(which: int, health: Array):
 	if which < players.size():
 		players[which].health = health
+	
+	player_stats_updated.emit()
 
 @rpc("authority", "call_local", "reliable")
 func rpc_set_player_lives(which: int, lives: Array):
 	if which < players.size():
 		players[which].lives = lives
+	
+	player_stats_updated.emit()
 
 
 func _on_player_died(which: int):

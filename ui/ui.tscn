@@ -4,22 +4,19 @@
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_wband"]
 [ext_resource type="PackedScene" uid="uid://fkenm67wmr6g" path="res://ui/life_icon.tscn" id="2_5c4uc"]
 
-[node name="ui" type="Control" node_paths=PackedStringArray("lives_list1", "lives_list2")]
+[node name="ui" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
 size_flags_horizontal = 6
 script = ExtResource("1_wband")
-lives_list1 = NodePath("all/upperbar/lives_list1")
-lives_list2 = NodePath("all/upperbar/lives_list2")
 
 [node name="all" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 47.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -27,7 +24,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="lives_list1" parent="all/upperbar" instance=ExtResource("1_fetkw")]
+[node name="lives_list_0" parent="all/upperbar" instance=ExtResource("1_fetkw")]
 layout_mode = 2
 life_icon = ExtResource("2_5c4uc")
 
@@ -35,17 +32,44 @@ life_icon = ExtResource("2_5c4uc")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="lives_list2" parent="all/upperbar" instance=ExtResource("1_fetkw")]
+[node name="lives_list_1" parent="all/upperbar" instance=ExtResource("1_fetkw")]
 layout_mode = 2
 alignment = 2
 life_icon = ExtResource("2_5c4uc")
 player = 1
 
-[node name="controls" type="RichTextLabel" parent="all"]
+[node name="middle_bit" type="Control" parent="all"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="controls" type="RichTextLabel" parent="all/middle_bit"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 51.0
+grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "[wave][A]: jump
 [B]: pick up/throw item
 [X]: use item[/wave]"
 fit_content = true
+
+[node name="underbar" type="HBoxContainer" parent="all"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="lives_list_2" parent="all/underbar" instance=ExtResource("1_fetkw")]
+layout_mode = 2
+life_icon = ExtResource("2_5c4uc")
+player = 2
+
+[node name="control" type="Control" parent="all/underbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lives_list_3" parent="all/underbar" instance=ExtResource("1_fetkw")]
+layout_mode = 2
+alignment = 2
+life_icon = ExtResource("2_5c4uc")
+player = 3

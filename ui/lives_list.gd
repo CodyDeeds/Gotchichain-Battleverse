@@ -4,9 +4,16 @@ class_name LivesList
 @export var life_icon: PackedScene
 @export var player: int = 0
 
-func update_lives(lives: Array):
+
+func _ready() -> void:
+	PlayerManager.player_stats_updated.connect(update_lives)
+	update_lives()
+
+
+func update_lives():
 	clear_lives()
-	add_lives(lives)
+	if PlayerManager.players.size() > player:
+		add_lives( PlayerManager.players[player].lives )
 
 func clear_lives():
 	for i in get_children():
