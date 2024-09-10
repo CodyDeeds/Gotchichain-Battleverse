@@ -3,6 +3,7 @@ extends Control
 @export var gameholder_scene: PackedScene
 
 func _ready():
+	PlayerManager.end()
 	Game.is_multiplayer = false
 	MattohaSystem.Client.ConnectedToServer.connect(_on_connected)
 	multiplayer.connection_failed.connect(_on_connection_failed)
