@@ -59,3 +59,7 @@ func print_multiplayer(what: String):
 		print("Session %s: %s" % [multiplayer.get_unique_id(), what])
 	else:
 		print("Local game: %s" % what)
+
+@rpc("authority", "call_local", "reliable")
+func rpc_end_game():
+	get_tree().change_scene_to_file("res://ui/end.tscn")

@@ -17,9 +17,6 @@ func _ready():
 	else:
 		deploy_random_map()
 
-func _process(_delta):
-	check_player_lives()
-
 
 func deploy_random_map():
 	var map_resources = BigData.maps.load_all()
