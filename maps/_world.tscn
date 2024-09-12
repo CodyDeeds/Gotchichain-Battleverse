@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbji28y68eptm"]
+[gd_scene load_steps=8 format=3 uid="uid://bbji28y68eptm"]
 
 [ext_resource type="Script" path="res://maps/world.gd" id="1_dkv04"]
 [ext_resource type="PackedScene" uid="uid://ckhk3qkyj5om5" path="res://environment/tiles/tilemap.tscn" id="2_3iwyy"]
 [ext_resource type="PackedScene" uid="uid://m5wtpbu2ug0l" path="res://pieces/cam.tscn" id="3_rpsx0"]
+[ext_resource type="TileSet" uid="uid://blgxdfvhllia0" path="res://environment/tiles/tiles_large.tres" id="3_vyet3"]
 [ext_resource type="PackedScene" uid="uid://dgc7mtlcnhr6a" path="res://pieces/hitbox.tscn" id="4_r8kfl"]
 [ext_resource type="PackedScene" uid="uid://e5rwu6pqniyp" path="res://pieces/item_destroyer.tscn" id="5_j3pfs"]
 
@@ -15,6 +16,9 @@ script = ExtResource("1_dkv04")
 z_index = -1000
 
 [node name="spawns" type="Node2D" parent="."]
+
+[node name="tilemap_large" parent="." instance=ExtResource("2_3iwyy")]
+tile_set = ExtResource("3_vyet3")
 
 [node name="tilemap" parent="." instance=ExtResource("2_3iwyy")]
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://blh0rv0tao166"]
+
+[ext_resource type="Script" path="res://pieces/auto_sprite_2d.gd" id="1_ecqfi"]
+[ext_resource type="Texture2D" uid="uid://damuicfvxk15d" path="res://props/banner_ghst.png" id="1_rxa15"]
+
+[node name="banner_ghst" type="Sprite2D"]
+texture = ExtResource("1_rxa15")
+hframes = 4
+script = ExtResource("1_ecqfi")
+animation_speed = 5.0

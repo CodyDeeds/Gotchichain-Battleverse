@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cekm25jns2ryj"]
+
+[ext_resource type="Script" path="res://props/prop_line.gd" id="1_cri3w"]
+[ext_resource type="PackedScene" uid="uid://davjcglecdqq2" path="res://props/tree.tscn" id="2_xuhqg"]
+
+[node name="treeline" type="Node2D"]
+script = ExtResource("1_cri3w")
+props = Array[PackedScene]([ExtResource("2_xuhqg")])
