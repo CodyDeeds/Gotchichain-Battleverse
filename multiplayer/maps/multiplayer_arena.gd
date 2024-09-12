@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var map_ui: PackedScene
+@export var force_map: String = ""
+
 @onready var UIContainer: CanvasLayer = %UIContainer
 
 var current_map_name: String = ""
@@ -23,7 +25,12 @@ func deploy_random_map():
 	var map_resources = BigData.maps.load_all()
 	var this_map = map_resources.pick_random() as MapData
 	current_map_name = this_map.name
-	rpc_deploy_map_by_name.bind(this_map.name).rpc()
+	
+	if OS.is_debug_build() and BigData.get_map_from_name(force_map) != null:
+		print("Deploying %s" % force_map)
+		rpc_deploy_map_by_name.bind(force_map).rpc()
+	else:
+		rpc_deploy_map_by_name.bind(this_map.name).rpc()
 
 func request_map():
 	rpc_send_current_map.bind( multiplayer.get_unique_id() ).rpc()
@@ -35,12 +42,9 @@ func rpc_send_current_map(peer: int):
 
 @rpc("authority", "call_local", "reliable")
 func rpc_deploy_map_by_name(what: String):
-	var map_resources = BigData.maps.load_all()
-	for this_map in map_resources:
-		if this_map.name == what:
-			Game.map = this_map.scene
-			deploy_map(this_map.scene)
-			break
+	var this_map: MapData = BigData.get_map_from_name(what)
+	Game.map = this_map.scene
+	deploy_map(this_map.scene)
 
 func deploy_map(what: PackedScene):
 	var new_map = what.instantiate()

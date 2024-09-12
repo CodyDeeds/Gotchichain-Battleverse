@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnrjue3yrwi3c"]
+
+[ext_resource type="Texture2D" uid="uid://dsrn5famqfkqs" path="res://props/fountain.png" id="1_ltgut"]
+[ext_resource type="Texture2D" uid="uid://dfopo0tieq738" path="res://props/fountain_water.png" id="2_cv6rp"]
+[ext_resource type="Script" path="res://pieces/auto_sprite_2d.gd" id="3_0jlwi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojlly"]
+size = Vector2(384, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayrwx"]
+size = Vector2(96, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06yas"]
+size = Vector2(192, 24)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_cilr4"]
+a = Vector2(-112, -8)
+b = Vector2(112, -8)
+
+[node name="fountain" type="Node2D"]
+
+[node name="collision" type="StaticBody2D" parent="."]
+
+[node name="shape0" type="CollisionShape2D" parent="collision"]
+position = Vector2(0, 48)
+shape = SubResource("RectangleShape2D_ojlly")
+
+[node name="shape1" type="CollisionShape2D" parent="collision"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_ayrwx")
+
+[node name="shape2" type="CollisionShape2D" parent="collision"]
+position = Vector2(0, -52)
+shape = SubResource("RectangleShape2D_06yas")
+
+[node name="collision_water" type="StaticBody2D" parent="."]
+position = Vector2(0, -296)
+
+[node name="shape" type="CollisionShape2D" parent="collision_water"]
+shape = SubResource("SegmentShape2D_cilr4")
+one_way_collision = true
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_ltgut")
+
+[node name="sprite_water" type="Sprite2D" parent="."]
+position = Vector2(0, -192)
+texture = ExtResource("2_cv6rp")
+hframes = 4
+script = ExtResource("3_0jlwi")
