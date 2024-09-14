@@ -3,6 +3,7 @@ extends Item
 
 
 @export var rekt_sprite: Texture2D = null
+@export var impact_sfx: StringName = &"rekt_sign"
 
 
 func _ready() -> void:
@@ -21,6 +22,16 @@ func smack():
 		
 		$animator.play("smack")
 		holder.animation_lock( $animator.get_animation(&"smack").length - 0.5 )
+
+func activate_hitbox():
+	%hitbox.active = true
+	var timer := get_tree().create_timer(.1)
+	timer.timeout.connect(func():
+		%hitbox.active = false
+	)
+	
+	GlobalSound.play_sfx_2d(impact_sfx, global_position)
+	$camera_shaker.activate()
 
 func _on_animation_finished(anim_name):
 	if anim_name == "smack":

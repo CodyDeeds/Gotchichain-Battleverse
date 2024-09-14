@@ -54,15 +54,16 @@ _data = {
 [node name="gun_triple" instance=ExtResource("1_okplj")]
 can_sleep = false
 script = ExtResource("2_5b6cb")
-projectile = ExtResource("3_ssjw6")
 projectile_speed = 800.0
 projectile_spread = 5.0
 can_hit_shooter = false
 rof_interval = 0.1
 gun_kickback = 20.0
 player_kickback = 0.0
+projectile = ExtResource("3_ssjw6")
 shoot_particle_scene = ExtResource("4_a3fqi")
 hitbox_size = 16.0
+activation_sfx = &"wand"
 
 [node name="sprite" parent="flip" index="0"]
 texture = ExtResource("4_0qu28")
