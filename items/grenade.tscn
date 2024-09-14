@@ -88,6 +88,7 @@ explosion_sound = &"blast_small"
 beep_sound = &"beep"
 hitbox_size = 16.0
 sprite_scale = 2.0
+rare_throw_sfx = null
 
 [node name="sprite" parent="flip" index="0"]
 scale = Vector2(2, 2)

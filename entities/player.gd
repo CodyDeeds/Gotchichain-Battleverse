@@ -22,8 +22,9 @@ extends Entity
 
 # Preload the death sound effect
 @export_group("Resources")
-@export var death_sound: StringName = &"death"
-@export var hit_sound: StringName = &"player_hit"
+@export var death_sfx: StringName = &"death"
+@export var hit_sfx: StringName = &"player_hit"
+@export var jump_sfx: StringName = &"player_jump"
 @export var jump_particles: PackedScene = preload("res://fx/jump.tscn")
 
 ## The session ID that controls this player, one of the clients. Different from the multiplayer authority, as that is always the server
@@ -84,6 +85,7 @@ func rpc_jump_succeed():
 	velocity.x *= (jump_speed_boost + 1)
 	var new_particles = jump_particles.instantiate()
 	Game.deploy_instance(new_particles, global_position)
+	GlobalSound.play_sfx_2d(jump_sfx, global_position)
 
 @rpc("any_peer", "call_remote", "unreliable")
 func rpc_tractutate(new_traction: float):
@@ -209,7 +211,7 @@ func take_damage(what: float, can_heal: bool=true):
 	super(what, can_heal)
 	if what > 0:
 		$animator.play("hit_flash")
-		GlobalSound.play_sfx_2d(hit_sound, global_position)
+		GlobalSound.play_sfx_2d(hit_sfx, global_position)
 		#print("Player: Took damage ", what)
 
 func die() -> void:

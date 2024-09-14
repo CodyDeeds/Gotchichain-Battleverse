@@ -159,3 +159,23 @@ func get_random_child(parent: Node) -> Node:
 	else:
 		var index := randi() % child_count
 		return children[index]
+
+func get_ending_int(what: String) -> int:
+	var this_pos: int = what.length() - 1
+	var this_char: String = what.substr(this_pos, 1)
+	var digit: int = 0
+	var output: int = -1
+	
+	while this_char.is_valid_int() and this_pos >= 0:
+		# If there's any valid ints, start at zero.
+		# Otherwise we're returning -1 by default
+		if digit == 0:
+			output = 0
+		
+		output += int(this_char) * int(pow(10, digit))
+		
+		digit += 1
+		this_pos -= 1
+		this_char = what.substr(this_pos, 1)
+	
+	return output
