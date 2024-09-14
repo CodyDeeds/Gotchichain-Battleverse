@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://1a5c83jt6m37"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_ypwhf"]
+
+[resource]
+script = ExtResource("1_ypwhf")
+base_folder = "res://audio/sfx"
+includes = Array[String](["*.ogg", "*.wav"])
+excludes = Array[String]([])
+paths = Array[String](["res://audio/sfx/bomb.ogg", "res://audio/sfx/death.ogg", "res://audio/sfx/knife.ogg", "res://audio/sfx/wand.ogg"])

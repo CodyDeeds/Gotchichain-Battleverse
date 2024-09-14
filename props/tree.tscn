@@ -6,4 +6,5 @@
 [node name="tree" type="Sprite2D"]
 texture = ExtResource("1_jiwqe")
 hframes = 4
+frame = 2
 script = ExtResource("1_pu3rb")
