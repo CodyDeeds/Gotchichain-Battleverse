@@ -22,7 +22,7 @@ extends RigidBody2D
 ## The player that will automatically grab this item
 @export var auto_grab: NodePath = ""
 
-@export_group("resources")
+@export_group("Resources")
 ## SFX to play when this item is activated
 @export var activation_sfx: StringName = &""
 ## SFX to play when this item is destroyed

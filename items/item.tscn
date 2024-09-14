@@ -36,6 +36,8 @@ freeze_mode = 1
 script = ExtResource("1_t3qgh")
 bonk_speed_threshhold = 400.0
 straighten_speed = 40.0
+grab_sfx = &"pickup"
+throw_sfx = &"chuck"
 
 [node name="flip" type="Node2D" parent="."]
 unique_name_in_owner = true
