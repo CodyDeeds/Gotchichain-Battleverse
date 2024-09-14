@@ -13,6 +13,10 @@ func _process(delta: float) -> void:
 	centre_on_players(delta)
 	zoom_to_players(delta)
 
+
+func shake(amount: float, direction: float = randf_range(0, 2*PI)):
+	position += Vector2(amount, 0).rotated(direction)
+
 func get_average_player_position() -> Vector2:
 	var average_position: Vector2 = Vector2()
 	var player_count := 0

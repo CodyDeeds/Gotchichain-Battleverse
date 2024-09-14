@@ -109,7 +109,6 @@ shape = SubResource("RectangleShape2D_g21vx")
 texture = ExtResource("3_xa464")
 offset = Vector2(0, 96)
 hframes = 4
-frame = 1
 script = ExtResource("4_aqc1r")
 
 [node name="animator" type="AnimationPlayer" parent="."]
