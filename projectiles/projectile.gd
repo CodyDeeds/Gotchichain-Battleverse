@@ -14,15 +14,20 @@ extends Hitbox
 ## Scene created when projectile is destroyed
 @export_group("Resources")
 @export var death_scene: PackedScene = null
-## Sound effect for the projectile
-@export var projectile_sound: AudioStream = preload("res://audio/sfx/wand.ogg")
+## SFX to play when the projectile is shot
+@export var creation_sound: StringName = &""
+## SFX to play when the projectile is destroyed
+## Left empty, it is the same as [code]creation_sound[/code]
+@export var death_sound: StringName = &""
+## If less than this much time has passed since creation, the death sound will not play
+@export var death_sound_min_delay: float = 0.5
 
 var raycast := RayCast2D.new()
 var wallcast := RayCast2D.new()
 var velocity := Vector2()
 var acceleration := Vector2()
+var age: float = 0
 var dead := false
-var sound_player: AudioStreamPlayer = null
 
 func _ready() -> void:
 	super()
@@ -45,17 +50,11 @@ func _ready() -> void:
 	raycast.set_collision_mask_value(1, false)
 	raycast.set_collision_mask_value(3, true)
 	
-	# Initialize and configure the sound player
-	#sound_player = AudioStreamPlayer.new()
-	#add_child(sound_player)
-	#sound_player.stream = projectile_sound
-	#sound_player.volume_db = -10  # Set the volume to a quieter level
-	#print("Projectile: Sound player initialized with volume: ", sound_player.volume_db)
-	
-	# Play the sound when the projectile is created
-	#sound_player.play()
+	GlobalSound.play_sfx_2d(creation_sound, global_position)
 
 func _process(delta: float) -> void:
+	age += delta
+	
 	velocity += acceleration * delta
 	var predicted_target: Hurtbox = null
 	if use_raycast:
@@ -76,6 +75,7 @@ func _process(delta: float) -> void:
 	if duration <= 0:
 		die()
 
+
 func hit_being(what):
 	super(what)
 	
@@ -87,13 +87,16 @@ func die():
 	dead = true
 	active = false
 	
-	# Play the sound when the projectile dies
-	#sound_player.play()
-
 	if death_scene:
 		if (!multiplayer.is_server()):
 			var instance = Game.create_instance(death_scene)
 			Game.deploy_instance(instance, global_position)
+	
+	if age >= death_sound_min_delay:
+		if death_sound == &"":
+			GlobalSound.play_sfx_2d(creation_sound, global_position)
+		else:
+			GlobalSound.play_sfx_2d(death_sound, global_position)
 
 	queue_free()
 

@@ -22,6 +22,16 @@ extends RigidBody2D
 ## The player that will automatically grab this item
 @export var auto_grab: NodePath = ""
 
+@export_group("resources")
+## SFX to play when this item is activated
+@export var activation_sfx: StringName = &""
+## SFX to play when this item is destroyed
+@export var destruction_sfx: StringName = &""
+## SFX to play when this item is grabbed
+@export var grab_sfx: StringName = &""
+## SFX to play when this item is thrown
+@export var throw_sfx: StringName = &""
+
 var holder: Player = null
 var previous_holder: Player = null
 var can_hit_previous_holder: bool = false
@@ -38,6 +48,8 @@ func _ready() -> void:
 			var player: Player = get_node(auto_grab)
 			player.held_item = self
 			holder = player
+	
+	tree_exiting.connect(_on_slain)
 
 func _process(delta: float) -> void:
 	%sprite.scale = Vector2(sprite_scale, sprite_scale)
@@ -102,10 +114,10 @@ func attempt_bonk():
 
 func get_activated():
 	#Game.print_multiplayer("Item %s activated" % name)
-	pass
+	GlobalSound.play_sfx_2d(activation_sfx, global_position)
 
 func get_thrown():
-	pass
+	GlobalSound.play_sfx_2d(throw_sfx, global_position)
 
 func set_holder(what: Player):
 	var peers = MattohaSystem.Client.GetLobbyPlayersIds()
@@ -122,12 +134,16 @@ func rpc_set_holder(node_path):
 	if (get_tree().root.has_node(node_path)):
 		what = get_node(node_path)
 		set_multiplayer_authority(what.get_multiplayer_authority())
+	
 	if holder and !is_instance_valid(what):
 		previous_holder = holder
 		can_hit_previous_holder = false
-
+	
+	if is_instance_valid(what) and holder != what:
+		GlobalSound.play_sfx_2d(grab_sfx, global_position)
+	
 	holder = what
-
+	
 	freeze = is_instance_valid(holder)
 	%damper.active = is_instance_valid(holder)
 	#if is_instance_valid(holder):
@@ -158,3 +174,6 @@ func set_sprite_scale(what: float):
 # Ensure to call this function when the knife is picked up
 func _on_player_pickup(player):
 	set_holder(player)
+
+func _on_slain():
+	GlobalSound.play_sfx_2d(destruction_sfx, global_position)

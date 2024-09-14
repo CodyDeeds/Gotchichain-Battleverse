@@ -22,7 +22,8 @@ extends Entity
 
 # Preload the death sound effect
 @export_group("Resources")
-@export var death_sound: AudioStream = preload("res://audio/sfx/death.ogg")
+@export var death_sound: StringName = &"death"
+@export var hit_sound: StringName = &"player_hit"
 @export var jump_particles: PackedScene = preload("res://fx/jump.tscn")
 
 ## The session ID that controls this player, one of the clients. Different from the multiplayer authority, as that is always the server
@@ -208,7 +209,8 @@ func take_damage(what: float, can_heal: bool=true):
 	super(what, can_heal)
 	if what > 0:
 		$animator.play("hit_flash")
-		print("Player: Took damage ", what)
+		GlobalSound.play_sfx_2d(hit_sound, global_position)
+		#print("Player: Took damage ", what)
 
 func die() -> void:
 	if has_died:
