@@ -31,6 +31,8 @@ extends RigidBody2D
 @export var grab_sfx: StringName = &""
 ## SFX to play when this item is thrown
 @export var throw_sfx: StringName = &""
+## SFX to play when this item is thrown 1% of the time
+@export var rare_throw_sfx: StringName = &""
 
 var holder: Player = null
 var previous_holder: Player = null
@@ -117,7 +119,10 @@ func get_activated():
 	GlobalSound.play_sfx_2d(activation_sfx, global_position)
 
 func get_thrown():
-	GlobalSound.play_sfx_2d(throw_sfx, global_position)
+	if randf() * 100 < 1:
+		GlobalSound.play_sfx_2d(rare_throw_sfx, global_position)
+	else:
+		GlobalSound.play_sfx_2d(throw_sfx, global_position)
 
 func set_holder(what: Player):
 	var peers = MattohaSystem.Client.GetLobbyPlayersIds()

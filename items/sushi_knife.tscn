@@ -123,6 +123,7 @@ activation_sfx = null
 destruction_sfx = null
 grab_sfx = null
 throw_sfx = null
+rare_throw_sfx = null
 
 [node name="sprite" parent="flip" index="0"]
 scale = Vector2(2, 2)

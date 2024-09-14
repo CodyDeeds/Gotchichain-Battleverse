@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bhlekr4k1gay5"
-path="res://.godot/imported/farts0_1.wav-953c9f27f93a5341a3312f4571d00809.sample"
+path="res://.godot/imported/fart1.wav-e5cdff26bd1a8afb3a5bf71b873288bd.sample"
 
 [deps]
 
-source_file="res://audio/sfx/farts0_1.wav"
-dest_files=["res://.godot/imported/farts0_1.wav-953c9f27f93a5341a3312f4571d00809.sample"]
+source_file="res://audio/sfx/fart1.wav"
+dest_files=["res://.godot/imported/fart1.wav-e5cdff26bd1a8afb3a5bf71b873288bd.sample"]
 
 [params]
 
