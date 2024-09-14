@@ -38,6 +38,7 @@ bonk_speed_threshhold = 400.0
 straighten_speed = 40.0
 grab_sfx = &"pickup"
 throw_sfx = &"chuck"
+rare_throw_sfx = &"fart"
 
 [node name="flip" type="Node2D" parent="."]
 unique_name_in_owner = true

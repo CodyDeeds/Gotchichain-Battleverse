@@ -18,6 +18,7 @@ player_kickback = 0.0
 projectile = ExtResource("3_8whjd")
 shoot_particle_scene = ExtResource("4_n7mrs")
 hitbox_size = 16.0
+activation_sfx = &"laser"
 
 [node name="sprite" parent="flip" index="0"]
 texture = ExtResource("4_vm3mh")
