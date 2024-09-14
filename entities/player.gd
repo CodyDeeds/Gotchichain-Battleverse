@@ -52,7 +52,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Physics-y simulation aspects on server only
-	if is_multiplayer_authority():
+	if !Game.is_multiplayer or is_multiplayer_authority():
 		gravitate(delta)
 		frictutate(delta)
 		accelerate(traction, delta)
