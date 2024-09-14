@@ -1,15 +1,6 @@
 @tool
 extends Item
 
-@export var chop_sound: AudioStream = preload("res://audio/sfx/knife.ogg")
-var sound_player: AudioStreamPlayer = null
-
-func _ready() -> void:
-	# Initialize and configure the sound player
-	sound_player = AudioStreamPlayer.new()
-	add_child(sound_player)
-	sound_player.stream = chop_sound
-	sound_player.volume_db = -15  # Set the volume to a quieter level
 
 func get_activated():
 	super()
@@ -17,7 +8,7 @@ func get_activated():
 
 func chop():
 	if holder:
-		if is_instance_valid(holder):
+		if is_instance_valid(holder) and !$animator.is_playing():
 			# Add the holder to exceptions before playing the chop animation
 			$hitbox.add_exception(holder.get_hurtbox())
 
@@ -27,7 +18,7 @@ func chop():
 			# Play the chop animation
 			$animator.play("chop")
 			# Play the chop sound
-			sound_player.play()
+			GlobalSound.play_sfx_2d("knife", global_position)
 
 func _on_animation_finished(anim_name):
 	if anim_name == "chop":
