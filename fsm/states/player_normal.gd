@@ -11,12 +11,16 @@ func _enter():
 	super()
 	
 	for i in Input.get_connected_joypads():
-		var laterality: float = Input.get_joy_axis(i, JOY_AXIS_LEFT_X)
-		if abs(laterality) > InputMap.action_get_deadzone(&"move_left"):
-			if laterality < 0:
-				left_pressed = true
-			if laterality > 0:
-				right_pressed = true
+		if i == father.controller and father.is_owner():
+			var laterality: float = Input.get_joy_axis(i, JOY_AXIS_LEFT_X)
+			if abs(laterality) > InputMap.action_get_deadzone(&"move_left"):
+				if laterality < 0:
+					left_pressed = true
+				if laterality > 0:
+					right_pressed = true
+			else:
+				left_pressed = Input.is_action_pressed("move_left")
+				right_pressed = Input.is_action_pressed("move_right")
 
 func _step(delta: float):
 	super(delta)
