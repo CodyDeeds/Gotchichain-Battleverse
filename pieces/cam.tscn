@@ -5,3 +5,7 @@
 [node name="cam" type="Camera2D"]
 ignore_rotation = false
 script = ExtResource("1_iu8tf")
+
+[node name="ear" type="AudioListener2D" parent="."]
+unique_name_in_owner = true
+current = true

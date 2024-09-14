@@ -8,33 +8,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g21vx"]
 size = Vector2(16, 40)
 
-[sub_resource type="Animation" id="Animation_0mrfj"]
-resource_name = "wiggle_left"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.798133), Vector2(1, 0.798133), Vector2(1, 0.975355), Vector2(1, 0.975355), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:skew")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.349066, -0.349066, -0.0426157, 0.0418879, 0.0]
-}
-
 [sub_resource type="Animation" id="Animation_qyhcp"]
 length = 0.001
 tracks/0/type = "value"
@@ -60,6 +33,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0mrfj"]
+resource_name = "wiggle_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.798133), Vector2(1, 0.798133), Vector2(1, 0.975355), Vector2(1, 0.975355), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.349066, -0.349066, -0.0426157, 0.0418879, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_vyqvo"]
@@ -109,6 +109,7 @@ shape = SubResource("RectangleShape2D_g21vx")
 texture = ExtResource("2_r03sm")
 offset = Vector2(0, -32)
 hframes = 4
+frame = 1
 script = ExtResource("1_0o1jm")
 
 [node name="animator" type="AnimationPlayer" parent="."]
