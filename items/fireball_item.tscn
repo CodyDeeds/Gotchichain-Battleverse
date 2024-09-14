@@ -9,15 +9,19 @@
 position = Vector2(-1, 0)
 can_sleep = false
 script = ExtResource("2_nt5qd")
-projectile = ExtResource("3_qnrrm")
 projectile_speed = 400.0
 projectile_spread = 5.0
 can_hit_shooter = false
 rof_interval = 0.5
 gun_kickback = 20.0
 player_kickback = 0.0
+projectile = ExtResource("3_qnrrm")
 shoot_particle_scene = null
-hitbox_size = 8.0
+hitbox_size = 7.0
 
 [node name="sprite" parent="flip" index="0"]
 texture = ExtResource("4_dyi4v")
+
+[node name="shape" parent="." index="1"]
+visible = true
+polygon = PackedVector2Array(6.46716, 2.67878, 2.67878, 6.46716, -2.67878, 6.46716, -6.46716, 2.67878, -6.46716, -2.67878, -2.67879, -6.46716, 2.67879, -6.46716, 6.46716, -2.67878)

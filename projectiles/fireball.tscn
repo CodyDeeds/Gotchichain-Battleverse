@@ -33,7 +33,8 @@ projectile_gravity = 1200.0
 bounce_speed = 400.0
 through_walls = true
 death_scene = ExtResource("2_k1pmq")
-creation_sound = &"fireball"
+creation_sound = &"fireball_throw"
+death_sound = &"fireball_hit"
 damage = 1.0
 
 [node name="sprite" type="Sprite2D" parent="."]
