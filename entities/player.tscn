@@ -71,6 +71,7 @@ max_speed = 500.0
 acceleration = 5000.0
 jump_speed = 550.0
 throw_speed = 750.0
+death_sound = &"player_death"
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_q4yxu")

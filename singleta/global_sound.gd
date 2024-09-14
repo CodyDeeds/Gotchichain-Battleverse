@@ -29,6 +29,8 @@ func play_sfx(what: StringName):
 		var controller: SFXController = create_sfx_controller( what )
 		# Configure controller here
 		new_sfx.add_child(controller)
+	elif what != &"":
+		push_warning("Attempting to play nonexistent SFX %s" % what)
 
 func play_sfx_2d(what: StringName, where: Vector2):
 	if all_sfx.has(what):
@@ -38,3 +40,5 @@ func play_sfx_2d(what: StringName, where: Vector2):
 		var controller: SFXController = create_sfx_controller( what )
 		# Configure controller here
 		new_sfx.add_child(controller)
+	elif what != &"":
+		push_warning("Attempting to play nonexistent SFX %s" % what)
