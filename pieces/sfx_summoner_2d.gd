@@ -9,12 +9,12 @@ extends Node2D
 @export_group("SFX")
 @export var sfx: StringName = &""
 @export_range(0, 2) var volume: float = 1
-@export var minimum_pitch: float = 0:
+@export var minimum_pitch: float = 1:
 	set(what):
 		minimum_pitch = what
 		if maximum_pitch < minimum_pitch:
 			maximum_pitch = minimum_pitch
-@export var maximum_pitch: float = 0:
+@export var maximum_pitch: float = 1:
 	set(what):
 		maximum_pitch = what
 		if minimum_pitch > maximum_pitch:
