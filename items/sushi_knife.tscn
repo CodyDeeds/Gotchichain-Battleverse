@@ -119,6 +119,10 @@ bonk_damage = 1.0
 straighten_speed = 100.0
 hitbox_size = 8.0
 sprite_scale = 2.0
+activation_sfx = null
+destruction_sfx = null
+grab_sfx = null
+throw_sfx = null
 
 [node name="sprite" parent="flip" index="0"]
 scale = Vector2(2, 2)

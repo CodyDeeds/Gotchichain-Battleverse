@@ -10,6 +10,7 @@ radius = 8.0
 [node name="bullet_basic" type="Area2D"]
 script = ExtResource("1_vs7mg")
 death_scene = ExtResource("2_bcuf4")
+death_sound = &"wand"
 damage = 1.0
 
 [node name="shape" type="CollisionShape2D" parent="."]
