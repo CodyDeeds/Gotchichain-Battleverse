@@ -1,3 +1,4 @@
+@tool
 @icon("res://items/gun.png")
 class_name Gun
 extends Item
