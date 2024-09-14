@@ -44,15 +44,6 @@ func _init() -> void:
 func _ready() -> void:
 	super()
 	
-	# Initialize and configure the sound player
-	sound_player = AudioStreamPlayer.new()
-	add_child(sound_player)
-	sound_player.stream = death_sound
-	sound_player.volume_db = -10  # Set volume to -10 dB for testing
-	sound_player.autoplay = false  # Ensure autoplay is off
-	sound_player.bus = "Master"  # Ensure it's on the correct audio bus
-	#print("Player: Sound player initialized with volume: ", sound_player.volume_db)
-	
 	hp_changed.connect(PlayerManager._on_player_hp_changed.bind(get_id()))
 	
 	set_multiplayer_authority(1)
@@ -228,7 +219,9 @@ func die() -> void:
 	for peer_id in peers:
 		rpc_id(peer_id, "emit_die_signal_rpc")
 	super()
-	print("Player: Died")
+	
+	GlobalSound.play_sfx_2d(&"death", global_position)
+	#print("Player: Died")
 
 @rpc("any_peer", "call_local", "reliable")
 func emit_die_signal_rpc():

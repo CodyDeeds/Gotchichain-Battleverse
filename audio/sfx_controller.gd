@@ -4,6 +4,7 @@ extends Node
 
 @export var stream: AudioStream = null
 @export var transient: bool = true
+@export var autoplay: bool = true
 
 
 func _ready() -> void:
@@ -15,6 +16,8 @@ func activate():
 	if father is AudioStreamPlayer or father is AudioStreamPlayer2D or father is AudioStreamPlayer3D:
 		father.stream = stream
 		father.finished.connect(_on_finished)
+		if autoplay:
+			father.play()
 
 
 func _on_finished():
