@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://3y0libgsadyw"]
+[gd_scene load_steps=10 format=3 uid="uid://3y0libgsadyw"]
 
 [ext_resource type="Script" path="res://items/grenade.gd" id="1_ayklw"]
 [ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_qjc5o"]
 [ext_resource type="Texture2D" uid="uid://wqkv1s06i8qc" path="res://items/grenade.png" id="2_5kyqg"]
-[ext_resource type="AudioStream" uid="uid://bopvgn52hpimb" path="res://audio/sfx/bomb.ogg" id="3_adptf"]
 [ext_resource type="PackedScene" uid="uid://c0bn1iccxpify" path="res://pieces/spawner.tscn" id="4_aev0m"]
 [ext_resource type="PackedScene" uid="uid://dg2okaoodrfss" path="res://projectiles/explosion.tscn" id="5_rdfiv"]
 [ext_resource type="PackedScene" uid="uid://bsbl45mbdyxqa" path="res://multiplayer/scenes/nodes/replication_node.tscn" id="6_1cvdm"]
@@ -13,22 +12,10 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("flip/sprite:frame")
+tracks/0/path = NodePath(".:sprite_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:sprite_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -41,37 +28,49 @@ length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("flip/sprite:frame")
+tracks/0/path = NodePath(".:sprite_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 1, 1.1, 2, 2.1, 2.5, 2.6, 3, 3.1, 3.4, 3.5, 3.6, 3.7, 3.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:sprite_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 3, 3.8, 3.9, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [2.0, 2.0, 2.2, 2.0, 4.0]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(4),
-"transitions": PackedFloat32Array(1),
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.5, 3, 3.5, 3.7, 3.9, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"flash"
+}, {
+"args": [],
+"method": &"flash"
+}, {
+"args": [],
+"method": &"flash"
+}, {
+"args": [],
+"method": &"flash"
+}, {
+"args": [],
+"method": &"flash"
+}, {
+"args": [],
+"method": &"flash"
+}, {
+"args": [],
+"method": &"flash"
+}, {
+"args": [],
+"method": &"flash"
+}, {
 "args": [],
 "method": &"explode"
 }]
@@ -85,7 +84,8 @@ _data = {
 
 [node name="grenade" instance=ExtResource("1_qjc5o")]
 script = ExtResource("1_ayklw")
-explosion_sound = ExtResource("3_adptf")
+explosion_sound = &"blast_small"
+beep_sound = &"beep"
 hitbox_size = 16.0
 sprite_scale = 2.0
 
