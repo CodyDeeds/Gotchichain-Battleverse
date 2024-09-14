@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://3y0libgsadyw"]
+[gd_scene load_steps=11 format=3 uid="uid://3y0libgsadyw"]
 
 [ext_resource type="Script" path="res://items/grenade.gd" id="1_ayklw"]
 [ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_qjc5o"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c0bn1iccxpify" path="res://pieces/spawner.tscn" id="4_aev0m"]
 [ext_resource type="PackedScene" uid="uid://dg2okaoodrfss" path="res://projectiles/explosion.tscn" id="5_rdfiv"]
 [ext_resource type="PackedScene" uid="uid://bsbl45mbdyxqa" path="res://multiplayer/scenes/nodes/replication_node.tscn" id="6_1cvdm"]
+[ext_resource type="Script" path="res://pieces/camera_shaker.gd" id="7_rwugt"]
 
 [sub_resource type="Animation" id="Animation_leocu"]
 length = 0.001
@@ -88,7 +89,6 @@ explosion_sound = &"blast_small"
 beep_sound = &"beep"
 hitbox_size = 16.0
 sprite_scale = 2.0
-rare_throw_sfx = null
 
 [node name="sprite" parent="flip" index="0"]
 scale = Vector2(2, 2)
@@ -108,3 +108,6 @@ libraries = {
 }
 
 [node name="replication_node2" parent="." index="7" instance=ExtResource("6_1cvdm")]
+
+[node name="camera_shaker" type="Node" parent="." index="9"]
+script = ExtResource("7_rwugt")

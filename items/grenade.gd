@@ -35,6 +35,6 @@ func explode():
 func rpc_explode():
 	%explosion_spawner.activate()
 	GlobalSound.play_sfx_2d(explosion_sound, global_position)
-	#print("Grenade: Explosion triggered, waiting for sound to finish")
+	$camera_shaker.activate()
 	queue_free()  # Ensure grenade is removed immediately after the explosion
 
