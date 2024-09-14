@@ -7,6 +7,17 @@ var left_pressed: bool = false
 var right_pressed: bool = false
 
 
+func _enter():
+	super()
+	
+	for i in Input.get_connected_joypads():
+		var laterality: float = Input.get_joy_axis(i, JOY_AXIS_LEFT_X)
+		if abs(laterality) > InputMap.action_get_deadzone(&"move_left"):
+			if laterality < 0:
+				left_pressed = true
+			if laterality > 0:
+				right_pressed = true
+
 func _step(delta: float):
 	super(delta)
 	

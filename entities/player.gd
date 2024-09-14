@@ -204,6 +204,7 @@ func set_state(what: String):
 	$fsm.set_state(what)
 
 func animation_lock(duration: float = 1):
+	traction = 0
 	%animation_lock.duration = duration
 	set_state("animation_lock")
 
