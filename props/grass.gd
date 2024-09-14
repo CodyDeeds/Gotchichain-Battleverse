@@ -8,3 +8,5 @@ func _on_player_detector_player_entered() -> void:
 	
 	%animator.stop()
 	%animator.play(animation)
+	
+	GlobalSound.play_sfx_2d(&"rustle", global_position)
