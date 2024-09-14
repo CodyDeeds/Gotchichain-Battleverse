@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5gqgm58sw2ie"]
+[gd_scene load_steps=15 format=3 uid="uid://5gqgm58sw2ie"]
 
 [ext_resource type="Texture2D" uid="uid://tvobp88f1yo7" path="res://fx/space_laser_0.png" id="1_aetjf"]
 [ext_resource type="Texture2D" uid="uid://bjurmb1m46k26" path="res://fx/space_laser_1.png" id="2_jmoq7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://pieces/destroyer.gd" id="5_rsitw"]
 [ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="6_7xorc"]
 [ext_resource type="Script" path="res://pieces/camera_shaker.gd" id="7_65hmk"]
+[ext_resource type="Script" path="res://pieces/sfx_summoner_2d.gd" id="8_b6lbe"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oagas"]
 particles_animation = true
@@ -313,3 +314,9 @@ script = ExtResource("6_7xorc")
 [node name="camera_shaker" type="Node" parent="."]
 script = ExtResource("7_65hmk")
 auto_activate = true
+
+[node name="sfx_summoner_2d" type="Node2D" parent="."]
+script = ExtResource("8_b6lbe")
+auto_play = true
+one_shot = true
+sfx = &"blast_small"

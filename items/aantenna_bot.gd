@@ -26,6 +26,11 @@ func trigger_countdown():
 func activate():
 	active = true
 	%glow.show()
+	%sfx_beep.activate()
+
+func warn():
+	%sfx_warning.activate()
+	#%sfx_warning.minimum_pitch += 0.05
 
 func get_activated():
 	super()
