@@ -48,7 +48,7 @@ func create_sfx_controller(what: StringName) -> SFXController:
 	new_controller.stream = get_sfx(what)
 	return new_controller
 
-func play_sfx(what: StringName):
+func play_sfx(what: StringName) -> SFX:
 	if sfx_exists(what):
 		var new_sfx: SFX = SFX.new()
 		get_tree().get_root().add_child(new_sfx)
@@ -56,10 +56,12 @@ func play_sfx(what: StringName):
 		var controller: SFXController = create_sfx_controller( what )
 		# Configure controller here
 		new_sfx.add_child(controller)
+		return new_sfx
 	elif what != &"":
 		push_warning("Attempting to play nonexistent SFX %s" % what)
+	return null
 
-func play_sfx_2d(what: StringName, where: Vector2):
+func play_sfx_2d(what: StringName, where: Vector2) -> SFX2D:
 	if sfx_exists(what):
 		var new_sfx: SFX2D = SFX2D.new()
 		Game.deploy_instance(new_sfx, where)
@@ -67,5 +69,7 @@ func play_sfx_2d(what: StringName, where: Vector2):
 		var controller: SFXController = create_sfx_controller( what )
 		# Configure controller here
 		new_sfx.add_child(controller)
+		return new_sfx
 	elif what != &"":
 		push_warning("Attempting to play nonexistent SFX %s" % what)
+	return null
