@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwurg83rbjq7n"]
+
+[ext_resource type="Script" path="res://props/grass.gd" id="1_1wlqd"]
+[ext_resource type="Texture2D" uid="uid://bjspojax7l6ya" path="res://props/rock.png" id="2_die1k"]
+[ext_resource type="Script" path="res://pieces/random_sprite_2d.gd" id="4_wqdm3"]
+
+[node name="rock" type="Node2D"]
+script = ExtResource("1_1wlqd")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("2_die1k")
+offset = Vector2(0, -32)
+hframes = 4
+frame = 1
+script = ExtResource("4_wqdm3")

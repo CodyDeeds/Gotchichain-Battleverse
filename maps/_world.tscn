@@ -21,6 +21,10 @@ z_index = -1000
 tile_set = ExtResource("3_vyet3")
 
 [node name="tilemap" parent="." instance=ExtResource("2_3iwyy")]
+layer_1/name = "Transparent"
+layer_2/name = "Background"
+layer_2/z_index = -200
+layer_2/tile_data = PackedInt32Array()
 
 [node name="cam" parent="." instance=ExtResource("3_rpsx0")]
 
