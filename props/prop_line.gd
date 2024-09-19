@@ -27,20 +27,23 @@ func deploy():
 	if props.size() <= 0:
 		return
 	
-	var i: float = 0
+	var i: float = generate_interval(.5)
 	var direction: Vector2 = line.normalized()
 	var length: float = line.length()
 	
 	while i <= length:
-		var this_interval: float = interval * randf_range( 1 - randomness, 1 + randomness )
-		i += this_interval
-		
 		var this_prop = props.pick_random()
 		if this_prop:
 			var new_prop = this_prop.instantiate()
 			add_child(new_prop)
 			new_prop.position = i * direction
+		
+		var this_interval: float = generate_interval()
+		i += this_interval
 
+
+func generate_interval(multiplier: float = 1) -> float:
+	return interval * randf_range( 1 - randomness, 1 + randomness ) * multiplier
 
 func set_props(what: Array[PackedScene]):
 	props = what
