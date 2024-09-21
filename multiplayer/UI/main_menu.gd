@@ -1,6 +1,7 @@
 extends Control
 
 @export var gameholder_scene: PackedScene
+@export var qr_scene: PackedScene  # Add this line
 
 func _ready():
 	Game.end()
@@ -17,18 +18,9 @@ func _ready():
 	#$AnimationPlayer.play("logo_effect")
 	#$AnimationPlayer.play("button_effect")
 
-
-
 func enter_local_game() -> void:
 	Game.is_multiplayer = false
-	#var map_resources = BigData.maps.load_all()
-	#var this_map: MapData
-	#this_map = map_resources.pick_random()
-	#var game_scene = this_map.scene
-	
-	get_tree().change_scene_to_packed(gameholder_scene)
-	#get_tree().change_scene_to_file("res://multiplayer/scenes/game_holder.tscn")
-	#Game.map = game_scene
+	get_tree().change_scene_to_file("res://multiplayer/scenes/qr_scene.tscn")  # Change this line to navigate to the QR code scene
 
 func to_placeholder():
 	Game.is_multiplayer = true

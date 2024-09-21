@@ -1,16 +1,20 @@
 extends Control
 
 const MAIN_SCENE_PATH = "res://multiplayer/UI/main_menu.tscn"
+const SERVER_URL = "http://localhost:3000"
 
 func _ready() -> void:
 	if Game.is_multiplayer:
 		var these_stats: PlayerStats = PlayerManager.players[ PlayerManager.get_current_player_index() ]
 		if these_stats.lives.size() > 0:
 			%announcement.text = "You win!"
+			_distribute_rewards(these_stats.controller)
 		else:
 			%announcement.text = "You got rekt fren!"
 	else:
-		%announcement.text = "Player %s is the winner!" % PlayerManager.get_living_players()[0].controller
+		var winner = PlayerManager.get_living_players()[0]
+		%announcement.text = "Player %s is the winner!" % winner.controller
+		_distribute_rewards(winner.controller)
 
 	%button.grab_focus()
 	%button.pressed.connect(_on_button_pressed)
@@ -32,3 +36,17 @@ func log_out():
 		print("Player logged out.")
 	else:
 		print("MattohaClient instance not found")
+
+func _distribute_rewards(winner_address: String) -> void:
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.request_completed.connect(_on_distribute_rewards_completed)
+	var url = "%s/distribute_rewards" % SERVER_URL
+	var data = {"winnerAddress": winner_address}
+	http_request.request(url, [], true, HTTPClient.METHOD_POST, JSON.print(data))
+
+func _on_distribute_rewards_completed(result, response_code, headers, body):
+	if response_code == 200:
+		print("Rewards distributed successfully")
+	else:
+		print("Failed to distribute rewards")

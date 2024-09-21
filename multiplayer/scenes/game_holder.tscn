@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6h0sr4gkjndm"]
+[gd_scene load_steps=3 format=3 uid="uid://some_unique_id"]
 
-[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaGameHolder.cs" id="1_4ha63"]
+[ext_resource type="Script" path="res://multiplayer/scenes/game_holder.gd" id="1_abcde"]
 
-[node name="GameHolder" type="Node2D"]
-script = ExtResource("1_4ha63")
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 768.0
+script =
