@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://dk8dxksu1ve8l"]
+[gd_scene load_steps=11 format=3 uid="uid://dk8dxksu1ve8l"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_alyma"]
 [ext_resource type="PackedScene" uid="uid://38t5en2plwcs" path="res://environment/backgrounds/scenes/synth.tscn" id="2_b75tb"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="2_yvgh4"]
 [ext_resource type="PackedScene" uid="uid://bqh5236050acv" path="res://props/banner_upright_ghst.tscn" id="4_0btt3"]
 [ext_resource type="PackedScene" uid="uid://c7m825vkhnx1y" path="res://props/prop_line.tscn" id="5_gaqf0"]
+[ext_resource type="PackedScene" uid="uid://sbqdxoss82ai" path="res://props/tree_fore.tscn" id="5_xxhne"]
 [ext_resource type="PackedScene" uid="uid://djfcga5sttkmg" path="res://props/grass.tscn" id="6_s67t3"]
 [ext_resource type="PackedScene" uid="uid://bmkqhiu8bpnlf" path="res://props/vine.tscn" id="7_llvoa"]
 [ext_resource type="PackedScene" uid="uid://bwurg83rbjq7n" path="res://props/rock.tscn" id="8_m4ejx"]
+[ext_resource type="PackedScene" uid="uid://d4biu70476cyu" path="res://fx/gotchi_glow.tscn" id="10_hc0cf"]
 
 [node name="central_tower" instance=ExtResource("1_alyma")]
 
@@ -40,47 +42,59 @@ position = Vector2(0, 320)
 
 [node name="props" type="Node2D" parent="." index="7"]
 
-[node name="banner_ghst0" parent="props" index="0" instance=ExtResource("4_0btt3")]
+[node name="treelineL" parent="props" index="0" instance=ExtResource("5_gaqf0")]
+position = Vector2(-768, 256)
+props = Array[PackedScene]([ExtResource("5_xxhne")])
+line = Vector2(448, 0)
+interval = 96.0
+
+[node name="treelineR" parent="props" index="1" instance=ExtResource("5_gaqf0")]
+position = Vector2(304, 256)
+props = Array[PackedScene]([ExtResource("5_xxhne")])
+line = Vector2(448, 0)
+interval = 96.0
+
+[node name="banner_ghst0" parent="props" index="2" instance=ExtResource("4_0btt3")]
 position = Vector2(-704, 336)
 
-[node name="banner_ghst1" parent="props" index="1" instance=ExtResource("4_0btt3")]
+[node name="banner_ghst1" parent="props" index="3" instance=ExtResource("4_0btt3")]
 position = Vector2(-448, 336)
 
-[node name="banner_ghst2" parent="props" index="2" instance=ExtResource("4_0btt3")]
+[node name="banner_ghst2" parent="props" index="4" instance=ExtResource("4_0btt3")]
 position = Vector2(448, 336)
 
-[node name="banner_ghst3" parent="props" index="3" instance=ExtResource("4_0btt3")]
+[node name="banner_ghst3" parent="props" index="5" instance=ExtResource("4_0btt3")]
 position = Vector2(704, 336)
 
-[node name="grass" parent="props" index="4" instance=ExtResource("5_gaqf0")]
+[node name="grass" parent="props" index="6" instance=ExtResource("5_gaqf0")]
 position = Vector2(-768, 384)
 props = Array[PackedScene]([ExtResource("6_s67t3")])
 line = Vector2(1536, 0)
 interval = 12.0
 randomness = 0.9
 
-[node name="vines" parent="props" index="5" instance=ExtResource("5_gaqf0")]
+[node name="vines" parent="props" index="7" instance=ExtResource("5_gaqf0")]
 position = Vector2(-256, 496)
 props = Array[PackedScene]([ExtResource("7_llvoa")])
 line = Vector2(1024, 0)
 randomness = 0.9
 
-[node name="rocks0" parent="props" index="6" instance=ExtResource("5_gaqf0")]
+[node name="rocks0" parent="props" index="8" instance=ExtResource("5_gaqf0")]
 position = Vector2(-192, 896)
 props = Array[PackedScene]([ExtResource("8_m4ejx")])
 line = Vector2(256, 0)
 
-[node name="rocks1" parent="props" index="7" instance=ExtResource("5_gaqf0")]
+[node name="rocks1" parent="props" index="9" instance=ExtResource("5_gaqf0")]
 position = Vector2(-384, 768)
 props = Array[PackedScene]([ExtResource("8_m4ejx")])
 line = Vector2(128, 0)
 
-[node name="rocks2" parent="props" index="8" instance=ExtResource("5_gaqf0")]
+[node name="rocks2" parent="props" index="10" instance=ExtResource("5_gaqf0")]
 position = Vector2(128, 768)
 props = Array[PackedScene]([ExtResource("8_m4ejx")])
 line = Vector2(384, 0)
 
-[node name="rocks_bac" parent="props" index="9" instance=ExtResource("5_gaqf0")]
+[node name="rocks_bac" parent="props" index="11" instance=ExtResource("5_gaqf0")]
 modulate = Color(0.35805, 0.1722, 0.42, 1)
 z_index = -150
 position = Vector2(-320, 896)
@@ -88,3 +102,8 @@ scale = Vector2(4, 4)
 props = Array[PackedScene]([ExtResource("8_m4ejx")])
 line = Vector2(128, 0)
 interval = 16.0
+
+[node name="gotchi_glow" parent="props" index="12" instance=ExtResource("10_hc0cf")]
+modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(0, -1408)
+scale = Vector2(2, 2)
