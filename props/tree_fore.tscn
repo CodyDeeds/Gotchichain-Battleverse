@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://sbqdxoss82ai"]
+
+[ext_resource type="Texture2D" uid="uid://cqiw5lowy6f62" path="res://props/trees_fore.png" id="1_hgsxc"]
+[ext_resource type="Script" path="res://pieces/random_sprite_2d.gd" id="2_1cg0x"]
+
+[node name="tree" type="Sprite2D"]
+texture = ExtResource("1_hgsxc")
+hframes = 3
+script = ExtResource("2_1cg0x")
