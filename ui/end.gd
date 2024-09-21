@@ -41,7 +41,7 @@ func _distribute_rewards(winner: int) -> void:
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(_on_distribute_rewards_completed)
-	var winner_address: String = ""
+	var winner_address: String = PlayerManager.players[winner].address
 	var url = "%s/distribute_rewards" % SERVER_URL
 	var data = {"winnerAddress": winner_address}
 	http_request.request(url, [], HTTPClient.METHOD_POST, JSON.stringify(data))

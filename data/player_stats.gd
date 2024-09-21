@@ -10,6 +10,7 @@ extends Resource
 @export var max_health: int = 5
 @export var name := "Player X"
 @export var multiplayer_owner: int = 1
+@export var address: String = ""
 
 var object: Player = null
 

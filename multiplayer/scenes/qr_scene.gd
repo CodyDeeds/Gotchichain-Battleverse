@@ -27,6 +27,10 @@ func _ready():
 	# Initial deposit check
 	_check_for_deposits.call_deferred()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("test"):
+		_start_game()
+
 # Function to check for deposits
 func _check_for_deposits() -> void:
 	print("Checking for deposits...")
@@ -71,12 +75,12 @@ func _start_game() -> void:
 	print("Starting game in local mode...")
 	Game.is_multiplayer = false  # Ensure local mode is set
 	
-	var scene_path = "res://multiplayer/scenes/game_holder.tscn"
-	var result = get_tree().change_scene(scene_path)
+	var scene_path = "res://multiplayer/maps/multiplayer_arena.tscn"
+	var result = get_tree().change_scene_to_file(scene_path)
 	print("Change scene result: ", result)
 	if result != OK:
 		print("Failed to change scene: ", result)
-		_update_log("Failed to change scene: " + str(result))
+		_update_log("Failed to change scene: Error " + str(result))
 	else:
 		print("Successfully changed to game holder scene.")
 

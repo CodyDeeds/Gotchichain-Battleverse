@@ -141,9 +141,12 @@ let depositsConfirmed = false;
 
 // Endpoint to check for deposits
 app.get('/check_deposits', (req, res) => {
+    console.log(`Checking for deposits`)
     if (depositsConfirmed) {
+        console.log(`Confirmed`)
         res.json({ result: "deposits_confirmed" });
     } else {
+        console.log(`Awaiting...`)
         res.json({ result: "waiting_for_deposits" });
     }
 });
@@ -153,7 +156,7 @@ app.post('/start_game', (req, res) => {
     const { player1, player2 } = req.body;
     console.log(`Starting game with Player 1: ${player1} and Player 2: ${player2}`);
     depositsConfirmed = true;
-    res.status(200).json({ success: true, message: 'Game started' });
+    res.status(200).json({ success: true, message: 'Game started', "player1": player1, "player2": player2 });
 });
 
 let logs = [];
