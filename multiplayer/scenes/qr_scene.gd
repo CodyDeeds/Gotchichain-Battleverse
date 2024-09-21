@@ -5,7 +5,7 @@ extends Control
 
 # References to UI elements and nodes
 @onready var texture_rect: TextureRect = %image
-@onready var log_label: Label = %log_label
+@onready var log_list: Control = %log_list
 @onready var http_request: HTTPRequest = $http_request
 @onready var timer: Timer = $timer
 
@@ -15,9 +15,6 @@ func _ready():
 	# Display the QR code
 	var qr_texture = preload("res://qr.png")
 	texture_rect.texture = qr_texture
-	
-	# Initialize log label
-	log_label.text = "Logs will appear here..."
 	
 	# Connect HTTPRequest signal using Godot 4's syntax
 	http_request.request_completed.connect(_on_deposit_request_completed)
@@ -86,4 +83,35 @@ func _start_game() -> void:
 # Function to update the log label with new messages
 func _update_log(message: String) -> void:
 	print("Updating log: ", message)
-	log_label.text += "\n" + message
+	
+	# Function to resize the container of the label to the size of the label
+	var resize_container: Callable = func(what: Control):
+		if what.get_child_count() > 0:
+			what.custom_minimum_size.y = what.get_child(0).size.y
+	
+	# Create and configure the label container
+	var log_container: Control = Control.new()
+	log_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	
+	# Create and configure the label itself
+	var log_label: Label = Label.new()
+	log_label.text = message
+	log_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	log_label.pivot_offset = log_label.size / 2
+	
+	# Animate the label on arrival
+	var animation_duration: float = 0.5
+	var tween: Tween = create_tween()
+	log_label.scale = Vector2(1.2, 1.2)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(log_label, ^"scale", Vector2(1, 1), animation_duration)
+	log_label.position.x += 128
+	tween.parallel().tween_property(log_label, ^"position", Vector2(), animation_duration)
+	
+	# Place the new nodes into the scene
+	log_container.add_child(log_label)
+	log_list.add_child(log_container)
+	
+	# Call the aforementioned resizing function
+	resize_container.bind(log_container).call_deferred()
