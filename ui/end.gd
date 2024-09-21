@@ -37,13 +37,14 @@ func log_out():
 	else:
 		print("MattohaClient instance not found")
 
-func _distribute_rewards(winner_address: String) -> void:
+func _distribute_rewards(winner: int) -> void:
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(_on_distribute_rewards_completed)
+	var winner_address: String = ""
 	var url = "%s/distribute_rewards" % SERVER_URL
 	var data = {"winnerAddress": winner_address}
-	http_request.request(url, [], true, HTTPClient.METHOD_POST, JSON.print(data))
+	http_request.request(url, [], HTTPClient.METHOD_POST, JSON.stringify(data))
 
 func _on_distribute_rewards_completed(result, response_code, headers, body):
 	if response_code == 200:
