@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dk8dxksu1ve8l"]
+[gd_scene load_steps=14 format=3 uid="uid://dk8dxksu1ve8l"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_alyma"]
 [ext_resource type="PackedScene" uid="uid://38t5en2plwcs" path="res://environment/backgrounds/scenes/synth.tscn" id="2_b75tb"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://blh0rv0tao166" path="res://props/banner_ghst.tscn" id="7_uighp"]
 [ext_resource type="PackedScene" uid="uid://bwurg83rbjq7n" path="res://props/rock.tscn" id="8_m4ejx"]
 [ext_resource type="PackedScene" uid="uid://d4biu70476cyu" path="res://fx/gotchi_glow.tscn" id="10_hc0cf"]
+[ext_resource type="PackedScene" uid="uid://cpehn2suvmu61" path="res://fx/light_beam.tscn" id="13_fj7h5"]
 
 [node name="central_tower" instance=ExtResource("1_alyma")]
 
@@ -116,11 +117,91 @@ props = Array[PackedScene]([ExtResource("8_m4ejx")])
 line = Vector2(128, 0)
 interval = 16.0
 
-[node name="gotchi_glow" parent="props" index="15" instance=ExtResource("10_hc0cf")]
+[node name="vine" parent="props" index="15" instance=ExtResource("7_llvoa")]
+position = Vector2(-208, -704)
+
+[node name="tree" parent="props" index="16" instance=ExtResource("5_xxhne")]
+modulate = Color(0.737255, 0.290196, 0.607843, 1)
+position = Vector2(656, 624)
+scale = Vector2(1, -1)
+frame = 2
+
+[node name="fx" type="Node2D" parent="." index="8"]
+
+[node name="gotchi_glow" parent="fx" index="0" instance=ExtResource("10_hc0cf")]
 modulate = Color(1, 1, 1, 0.498039)
 position = Vector2(0, -1408)
 scale = Vector2(2, 2)
 colour = Color(0.737255, 0.290196, 0.607843, 1)
 
-[node name="vine" parent="props" index="16" instance=ExtResource("7_llvoa")]
-position = Vector2(-208, -704)
+[node name="beams" type="Node2D" parent="fx" index="1"]
+
+[node name="light_beam_small0" parent="fx/beams" index="0" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.121569)
+position = Vector2(-112, -40)
+height = 32.0
+length = 256.0
+
+[node name="light_beam_small1" parent="fx/beams" index="1" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.121569)
+position = Vector2(112, -40)
+height = 32.0
+length = 256.0
+
+[node name="light_beam_small2" parent="fx/beams" index="2" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.121569)
+position = Vector2(-112, -328)
+height = 32.0
+length = 256.0
+
+[node name="light_beam_small3" parent="fx/beams" index="3" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.121569)
+position = Vector2(-112, -616)
+height = 32.0
+length = 256.0
+
+[node name="light_beam_small4" parent="fx/beams" index="4" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.121569)
+position = Vector2(112, -616)
+height = 32.0
+length = 256.0
+
+[node name="light_beam_mid0" parent="fx/beams" index="5" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(-160, -48)
+
+[node name="light_beam_mid1" parent="fx/beams" index="6" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(160, -48)
+
+[node name="light_beam_mid2" parent="fx/beams" index="7" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(-160, -624)
+
+[node name="light_beam_mid3" parent="fx/beams" index="8" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(160, -624)
+
+[node name="light_beam_large0" parent="fx/beams" index="9" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(-64, -64)
+height = 100.0
+length = 768.0
+
+[node name="light_beam_large1" parent="fx/beams" index="10" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(64, -64)
+height = 100.0
+length = 768.0
+
+[node name="light_beam_large2" parent="fx/beams" index="11" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(-64, -640)
+height = 100.0
+length = 768.0
+
+[node name="light_beam_large3" parent="fx/beams" index="12" instance=ExtResource("13_fj7h5")]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(64, -640)
+height = 100.0
+length = 768.0

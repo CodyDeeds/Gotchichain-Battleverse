@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpehn2suvmu61"]
+
+[ext_resource type="Script" path="res://fx/light_beam.gd" id="1_wt5sl"]
+[ext_resource type="Texture2D" uid="uid://8o07in2wfk7c" path="res://fx/gradient_window.png" id="2_egojb"]
+
+[node name="light_beam" type="Node2D"]
+script = ExtResource("1_wt5sl")
+texture = ExtResource("2_egojb")
+
+[node name="polygon" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_egojb")
+polygon = PackedVector2Array(0, -32, 0, 32, 362.039, 394.039, 362.039, 330.039)
+uv = PackedVector2Array(0, 8, 0, 0, 64, 0, 64, 8)
