@@ -590,4 +590,3 @@ function sendLog(message) {
 
 // // Poll for new deposits every 30 seconds (adjust as needed)
 // // setInterval(checkForDeposits, 30000);
-
