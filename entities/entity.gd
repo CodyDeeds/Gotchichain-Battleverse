@@ -34,6 +34,8 @@ func take_damage(what: float, can_heal: bool=true):
 	set_hp(hp - what)
 
 func die():
+	if !is_inside_tree():
+		return
 	var peers = MattohaSystem.Client.GetLobbyPlayersIds()
 	for peer_id in peers:
 		rpc_id(peer_id, "rpc_die")

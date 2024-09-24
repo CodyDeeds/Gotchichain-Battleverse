@@ -61,6 +61,9 @@ func _process(delta: float) -> void:
 			current_air_jumps = air_jumps
 			has_dropped = false
 
+	# Debug command to die for Player One
+	if controller == 0 and Input.is_action_just_pressed("debug_die"):
+		die()
 
 func get_hand_position() -> Vector2:
 	return %hand.global_position
@@ -219,6 +222,9 @@ func die() -> void:
 	if has_died:
 		return
 	has_died = true
+	
+	if !is_inside_tree():
+		return
 	
 	var peers = MattohaSystem.Client.GetLobbyPlayersIds()
 	for peer_id in peers:

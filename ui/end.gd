@@ -5,17 +5,30 @@ const SERVER_URL = "http://localhost:3000"
 
 func _ready() -> void:
 	if Game.is_multiplayer:
-		var these_stats: PlayerStats = PlayerManager.players[ PlayerManager.get_current_player_index() ]
+		var these_stats: PlayerStats = PlayerManager.players[PlayerManager.get_current_player_index()]
+		print("Current player stats: ", these_stats)
 		if these_stats.lives.size() > 0:
 			%announcement.text = "You win!"
-			_distribute_rewards(these_stats.controller)
+			print("Player 1 wins! Address: ", these_stats.address)  # Debugging line
+			_distribute_rewards(these_stats.address)
 		else:
 			%announcement.text = "You got rekt fren!"
 	else:
 		var winner = PlayerManager.get_living_players()[0]
-		%announcement.text = "Player %s is the winner!" % winner.controller
-		_distribute_rewards(winner.controller)
-
+		if winner:
+			print("Winner object: ", winner)  # Debug the winner object
+			print("Winner address: ", winner.address)  # Check if the address is missing
+			if winner.address == "" or winner.address == null:
+				print("Error: Winner address is empty or null, cannot distribute rewards.")  # Handle the missing address
+				%announcement.text = "No valid winner address!"
+			else:
+				%announcement.text = "Player %s is the winner!" % winner.controller
+				print("Winner is Player %s with address: %s" % [winner.controller, winner.address])  # Debugging line
+				_distribute_rewards(winner.address)
+		else:
+			print("No living players found!")  # Debugging line
+			%announcement.text = "No winner found!"
+			
 	%button.grab_focus()
 	%button.pressed.connect(_on_button_pressed)
 
@@ -37,16 +50,29 @@ func log_out():
 	else:
 		print("MattohaClient instance not found")
 
-func _distribute_rewards(winner: int) -> void:
+func _distribute_rewards(winner_address: String) -> void:
+	if winner_address == "" or winner_address == null:
+		print("Error: Winner address is empty or null, cannot distribute rewards.")
+		return
+	
+	print("Winner address: ", winner_address)  # Debugging line
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(_on_distribute_rewards_completed)
-	var winner_address: String = PlayerManager.players[winner].address
-	var url = "%s/distribute_rewards" % SERVER_URL
-	var data = {"winnerAddress": winner_address}
-	http_request.request(url, [], HTTPClient.METHOD_POST, JSON.stringify(data))
+	var url = "%s/game_over" % SERVER_URL
+	var data = {
+		"winner": winner_address
+	}
+	print("Sending request to URL: ", url)
+	print("Request data: ", JSON.stringify(data))
+	var headers = ["Content-Type: application/json"]  # Ensure the correct headers are set
+	var err = http_request.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(data))
+	if err != OK:
+		print("Failed to send request: ", err)
 
-func _on_distribute_rewards_completed(result, response_code, headers, body):
+func _on_distribute_rewards_completed(_result, response_code, _headers, body):
+	print("Response code: ", response_code)
+	print("Response body: ", body.get_string_from_utf8())
 	if response_code == 200:
 		print("Rewards distributed successfully")
 	else:
