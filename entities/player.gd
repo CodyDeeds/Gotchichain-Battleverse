@@ -49,6 +49,11 @@ func _ready() -> void:
 	hp_changed.connect(PlayerManager._on_player_hp_changed.bind(get_id()))
 	
 	set_multiplayer_authority(1)
+	
+	if Game.is_multiplayer:
+		%number.hide()
+	else:
+		%number.text = "P%s" % (controller + 1)
 
 func _process(delta: float) -> void:
 	# Physics-y simulation aspects on server only

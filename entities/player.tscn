@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://sc48qicivsa7"]
+[gd_scene load_steps=16 format=3 uid="uid://sc48qicivsa7"]
 
 [ext_resource type="Script" path="res://entities/player.gd" id="1_ld4xh"]
 [ext_resource type="PackedScene" uid="uid://xcoi3q8tqswf" path="res://pieces/flippable.tscn" id="2_t5r7t"]
@@ -12,6 +12,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4yxu"]
 size = Vector2(32, 48)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dsr01"]
+font_size = 24
 
 [sub_resource type="Animation" id="Animation_ambdq"]
 length = 0.001
@@ -104,6 +107,17 @@ unique_name_in_owner = true
 script = ExtResource("8_d21vi")
 next_state = "normal"
 auto_proceed = false
+
+[node name="number" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -48.0
+offset_top = -64.0
+offset_right = 48.0
+offset_bottom = -30.0
+text = "P1"
+label_settings = SubResource("LabelSettings_dsr01")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="animator" type="AnimationPlayer" parent="."]
 libraries = {
