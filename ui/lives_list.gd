@@ -3,7 +3,8 @@ class_name LivesList
 
 @export var life_icon: PackedScene
 @export var health_icon: PackedScene
-@export var flipped: bool = false
+@export var flipped_h: bool = false
+@export var flipped_v: bool = false
 @export var player: int = 0
 
 var hearts: Array = []
@@ -12,10 +13,27 @@ var hearts: Array = []
 func _ready() -> void:
 	PlayerManager.player_stats_updated.connect(update_lives)
 	PlayerManager.player_stats_updated.connect(update_health)
+	PlayerManager.player_stats_updated.connect(update_title)
 	
-	if flipped:
+	if flipped_v:
+		move_child(%lives, 0)
 		move_child(%health, 0)
+	
+	if flipped_h:
+		%title.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		%lives.alignment = ALIGNMENT_END
+		%health.alignment = ALIGNMENT_END
 
+
+func update_title():
+	if PlayerManager.players.size() > player:
+		var address: String = PlayerManager.players[player].address
+		if address == "":
+			%title.text = "P%s" % (player+1)
+		else:
+			var start: String = address.substr(0, 7)
+			var end: String = address.substr( address.length()-5-1 )
+			%title.text = "P%s - %s...%s" % [(player+1), start, end]
 
 func update_lives():
 	clear_lives()

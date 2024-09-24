@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://burfconx6ui6c"]
+[gd_scene load_steps=3 format=3 uid="uid://burfconx6ui6c"]
 
 [ext_resource type="Script" path="res://ui/lives_list.gd" id="1_6e7tq"]
+[ext_resource type="Theme" uid="uid://d2creo5xuvdkv" path="res://ui/style/theme_technical.tres" id="2_3l7ey"]
 
 [node name="lives_list" type="VBoxContainer"]
 script = ExtResource("1_6e7tq")
+
+[node name="title" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_3l7ey")
 
 [node name="lives" type="HBoxContainer" parent="."]
 unique_name_in_owner = true

@@ -39,6 +39,7 @@ layout_mode = 2
 alignment = 2
 life_icon = ExtResource("2_5c4uc")
 health_icon = ExtResource("4_p74mj")
+flipped_h = true
 player = 1
 
 [node name="middle_bit" type="Control" parent="all"]
@@ -66,7 +67,7 @@ layout_mode = 2
 layout_mode = 2
 life_icon = ExtResource("2_5c4uc")
 health_icon = ExtResource("4_p74mj")
-flipped = true
+flipped_v = true
 player = 2
 
 [node name="control" type="Control" parent="all/underbar"]
@@ -78,5 +79,6 @@ layout_mode = 2
 alignment = 2
 life_icon = ExtResource("2_5c4uc")
 health_icon = ExtResource("4_p74mj")
-flipped = true
+flipped_h = true
+flipped_v = true
 player = 3
