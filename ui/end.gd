@@ -18,11 +18,13 @@ func _ready() -> void:
 		if winner:
 			print("Winner object: ", winner)  # Debug the winner object
 			print("Winner address: ", winner.address)  # Check if the address is missing
+			%announcement.text = "Player %s is the GOTCHICHAIN BATTLECHAMP!" % (winner.controller + 1)
 			if winner.address == "" or winner.address == null:
 				print("Error: Winner address is empty or null, cannot distribute rewards.")  # Handle the missing address
-				%announcement.text = "No valid winner address!"
 			else:
-				%announcement.text = "Player %s is the winner!" % winner.controller
+				if winner.address != "":
+					%address.show()
+					%address.text = "Address: %s" % winner.address
 				print("Winner is Player %s with address: %s" % [winner.controller, winner.address])  # Debugging line
 				_distribute_rewards(winner.address)
 		else:
@@ -69,11 +71,18 @@ func _distribute_rewards(winner_address: String) -> void:
 	var err = http_request.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(data))
 	if err != OK:
 		print("Failed to send request: ", err)
+	else:
+		%button.disabled = true
+		%status.text = "Sending prize..."
+		%status.show()
 
 func _on_distribute_rewards_completed(_result, response_code, _headers, body):
 	print("Response code: ", response_code)
 	print("Response body: ", body.get_string_from_utf8())
 	if response_code == 200:
 		print("Rewards distributed successfully")
+		%status.text = "Sent prize!"
 	else:
 		print("Failed to distribute rewards")
+		%status.text = "Failed to send :("
+	%button.disabled = false

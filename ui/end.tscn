@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0oihfs8rlrvj"]
+[gd_scene load_steps=4 format=3 uid="uid://c0oihfs8rlrvj"]
 
 [ext_resource type="Script" path="res://ui/end.gd" id="1_08a6k"]
+[ext_resource type="Texture2D" uid="uid://cpn6wrgfymph1" path="res://ui/end_bac.png" id="2_vvkou"]
+[ext_resource type="Theme" uid="uid://d2creo5xuvdkv" path="res://ui/style/theme_technical.tres" id="3_pqoy4"]
 
 [node name="end" type="Control"]
 layout_mode = 3
@@ -11,11 +13,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_08a6k")
 
+[node name="bac" type="TextureRect" parent="."]
+modulate = Color(0.5, 0.5, 0.5, 1)
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 540.0
+texture = ExtResource("2_vvkou")
+
 [node name="all" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -26,7 +39,22 @@ layout_mode = 2
 text = "PLAYER WINS!"
 horizontal_alignment = 1
 
+[node name="address" type="Label" parent="all"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("3_pqoy4")
+horizontal_alignment = 1
+
+[node name="status" type="Label" parent="all"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+
 [node name="button" type="Button" parent="all"]
 unique_name_in_owner = true
+modulate = Color(1, 0.596078, 1, 1)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Return to Main Screen"
