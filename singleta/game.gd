@@ -9,13 +9,18 @@ var afoot := false
 var is_multiplayer: bool = false
 
 func _ready() -> void:
-	# DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	pass
+	if !OS.is_debug_build():
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.keycode == KEY_ESCAPE:
 			get_tree().quit()
+		if OS.is_debug_build() and event.keycode == KEY_F4 and event.pressed:
+			if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN or DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			else:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func start():
 	if !afoot:
