@@ -76,7 +76,8 @@ folder_colors={
 "res://props/": "blue",
 "res://singleta/": "gray",
 "res://tools/": "gray",
-"res://ui/": "green"
+"res://ui/": "green",
+"res://ui/style/": "teal"
 }
 
 [input]

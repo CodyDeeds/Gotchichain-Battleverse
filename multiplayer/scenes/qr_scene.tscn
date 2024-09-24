@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5k6h6k785wyn"]
+[gd_scene load_steps=9 format=3 uid="uid://c5k6h6k785wyn"]
 
 [ext_resource type="Script" path="res://multiplayer/scenes/qr_scene.gd" id="1_abcde"]
 [ext_resource type="Texture2D" uid="uid://w3acdk514tpf" path="res://qr.png" id="1_ifhj7"]
 [ext_resource type="Texture2D" uid="uid://bovr3740r846u" path="res://ui/insert_coin.png" id="2_3ir0q"]
+[ext_resource type="Texture2D" uid="uid://c6bo31m5yik2y" path="res://multiplayer/scenes/insert_coin_bac.png" id="2_qwnyx"]
+[ext_resource type="Theme" uid="uid://d2creo5xuvdkv" path="res://ui/style/theme_technical.tres" id="5_8g088"]
 
 [sub_resource type="Animation" id="Animation_knq2q"]
 length = 0.001
@@ -47,20 +49,36 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
-offset_right = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_abcde")
 check_interval = 7.5
 
-[node name="container" type="VBoxContainer" parent="."]
+[node name="bac" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_qwnyx")
+
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = -32.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="instruction" type="RichTextLabel" parent="container"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[wave][center]Send 100 GLTR to the below address to join the game"
+fit_content = true
 
 [node name="title" type="Control" parent="container"]
 layout_mode = 2
@@ -87,9 +105,16 @@ texture = ExtResource("1_ifhj7")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="spacing" type="Control" parent="container"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
 [node name="log_scroller" type="ScrollContainer" parent="container"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+theme = ExtResource("5_8g088")
 
 [node name="log_list" type="VBoxContainer" parent="container/log_scroller"]
 unique_name_in_owner = true
