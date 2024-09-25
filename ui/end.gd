@@ -86,3 +86,8 @@ func _on_distribute_rewards_completed(_result, response_code, _headers, body):
 		print("Failed to distribute rewards")
 		%status.text = "Failed to send :("
 	%button.disabled = false
+
+func _on_game_over(winner: String, amount_won: float, amount_bet: float) -> void:
+	print("Game over. Winner: ", winner, " Amount won: ", amount_won, " Amount bet: ", amount_bet)
+	%status.text = "Winner: " + winner + "\nAmount won: " + str(amount_won) + " GLTR\nAmount bet: " + str(amount_bet) + " GLTR"
+	%button.disabled = false

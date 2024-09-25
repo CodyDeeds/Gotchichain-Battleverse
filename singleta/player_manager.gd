@@ -3,6 +3,8 @@ extends Node
 var players: Array[PlayerStats] = []
 var player1_address: String = ""
 var player2_address: String = ""
+var player1_bet: float = 0.0
+var player2_bet: float = 0.0
 ## Time between a player dying and respawning
 var spawn_delay := 3.0
 var player_count := 2

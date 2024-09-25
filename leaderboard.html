@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            font-family: 'Press Start 2P', cursive;
+            color: #fff;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: #1a1a1a;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid #4b0082;
+            text-align: left;
+            font-size: 16px;
+            color: #fff;
+        }
+        th {
+            background-color: #6a0dad;
+            font-size: 18px;
+        }
+        td {
+            background-color: #2a2a2a;
+        }
+        th, td:first-child {
+            text-align: center;
+        }
+        td:nth-child(2) {
+            color: #ff69b4;
+        }
+        td:nth-child(3) {
+            color: #7fffd4;
+        }
+        tr:nth-child(even) td {
+            background-color: #333;
+        }
+        /* Button Style */
+        .play-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: #ff69b4;
+            color: #fff;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .play-button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>Game Leaderboard</h1>
+            <div id="prize-pool-info">
+                <h2>Prize Pool: <span id="prize-pool-amount">0</span> GLTR</h2>
+                <h3>Distribution:</h3>
+                <ul id="distribution-list">
+                    <!-- Distribution amounts will be inserted here -->
+                </ul>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Address</th>
+                        <th>Winnings</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                    <!-- Leaderboard data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function fetchLeaderboard() {
+            try {
+                const response = await fetch('/leaderboard');
+                const { leaderboard, prizePool, distribution } = await response.json();
+                const tbody = document.getElementById('leaderboard-body');
+                const prizePoolAmount = document.getElementById('prize-pool-amount');
+                const distributionList = document.getElementById('distribution-list');
+
+                tbody.innerHTML = '';
+                leaderboard.forEach((entry, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${entry.address}</td>
+                        <td>${entry.winnings}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+
+                prizePoolAmount.textContent = prizePool;
+                distributionList.innerHTML = '';
+                distribution.forEach((amount, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Rank ${index + 1}: ${amount} GLTR`;
+                    distributionList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error fetching leaderboard:', error);
+            }
+        }
+
+        // Fetch leaderboard immediately and then at regular intervals
+        fetchLeaderboard();
+        setInterval(fetchLeaderboard, 10000); // Refresh every 10 seconds
+    </script>
+</body>
+</html>
