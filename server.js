@@ -256,7 +256,7 @@ statusApp.get('/game_status', (req, res) => {
 });
 
 // Addresses for prize pool and DAO
-const prizePoolAddress = '0xf6F32187f249912e516c83Ebfc6305bb5bFde307';
+const prizePoolAddress = '0xFe1ddCE7A75918AB0D7fB006142Db9e17e59d82C';
 const daoAddress = '0xb208f8BB431f580CC4b216826AFfB128cd1431aB';
 
 // Prize pool amount
