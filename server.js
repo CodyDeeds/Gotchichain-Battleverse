@@ -298,6 +298,9 @@ app.post('/game_over', async (req, res) => {
         const daoTax = taxableAmount * 0.05;
         const netPayout = totalPayout - prizePoolTax - daoTax;
 
+        // Log the after-tax winnings
+        console.log(`Winner: ${winner}, Amount Won (after tax): ${netPayout}`);
+
         // Send the net payout to the winner
         await sendTokens(winner, netPayout);
 
