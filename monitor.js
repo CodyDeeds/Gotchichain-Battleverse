@@ -6,7 +6,7 @@ const axios = require('axios');
 const web3 = new Web3(`wss://polygon-mainnet.infura.io/ws/v3/${process.env.INFURA_PROJECT_ID}`);
 
 // Target address to monitor for incoming GLTR transfers
-const targetAddress = '0x1d960A270a71Ce1448BA4E1D00af73EA29A994d3'.toLowerCase();
+const targetAddress = '0x9f0C4024E700463F0C2Ae7Da5D8E15Ed67eCbF8b'.toLowerCase();
 
 // GLTR Token contract address
 const gltrTokenAddress = '0x3801C3B3B5c98F88a9c9005966AA96aa440B9Afc'.toLowerCase();
