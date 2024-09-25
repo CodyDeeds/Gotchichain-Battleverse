@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0oihfs8rlrvj"]
+[gd_scene load_steps=5 format=3 uid="uid://c0oihfs8rlrvj"]
 
 [ext_resource type="Script" path="res://ui/end.gd" id="1_08a6k"]
 [ext_resource type="Texture2D" uid="uid://cpn6wrgfymph1" path="res://ui/end_bac.png" id="2_vvkou"]
 [ext_resource type="Theme" uid="uid://d2creo5xuvdkv" path="res://ui/style/theme_technical.tres" id="3_pqoy4"]
+[ext_resource type="Theme" uid="uid://cq70oxn5vov4x" path="res://ui/style/theme_main.tres" id="4_42tii"]
 
 [node name="end" type="Control"]
 layout_mode = 3
@@ -12,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_08a6k")
+address_theme = ExtResource("3_pqoy4")
 
 [node name="bac" type="TextureRect" parent="."]
 modulate = Color(0.5, 0.5, 0.5, 1)
@@ -33,11 +35,14 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="announcement" type="Label" parent="all"]
+[node name="announcement" type="RichTextLabel" parent="all"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "PLAYER WINS!"
-horizontal_alignment = 1
+theme = ExtResource("4_42tii")
+theme_type_variation = &"RichTextLabelLarge"
+bbcode_enabled = true
+text = "[shake][center]PLAYER WINS!"
+fit_content = true
 
 [node name="address" type="Label" parent="all"]
 unique_name_in_owner = true
@@ -58,3 +63,23 @@ modulate = Color(1, 0.596078, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Return to Main Screen"
+
+[node name="spacing" type="Control" parent="all"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="hbox" type="HBoxContainer" parent="all"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="spacingL" type="Control" parent="all/hbox"]
+layout_mode = 2
+
+[node name="leaderboard" type="VBoxContainer" parent="all/hbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+
+[node name="spacingR" type="Control" parent="all/hbox"]
+layout_mode = 2

@@ -1,0 +1,5 @@
+[gd_resource type="Theme" format=3 uid="uid://cq70oxn5vov4x"]
+
+[resource]
+RichTextLabelLarge/base_type = &"RichTextLabel"
+RichTextLabelLarge/font_sizes/normal_font_size = 32
