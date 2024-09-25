@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://multiplayer/scenes/qr_scene.gd" id="1_abcde"]
 [ext_resource type="Texture2D" uid="uid://w3acdk514tpf" path="res://qr.png" id="1_ifhj7"]
-[ext_resource type="Texture2D" uid="uid://bovr3740r846u" path="res://ui/insert_coin.png" id="2_3ir0q"]
 [ext_resource type="Texture2D" uid="uid://c6bo31m5yik2y" path="res://multiplayer/scenes/insert_coin_bac.png" id="2_qwnyx"]
+[ext_resource type="Texture2D" uid="uid://d0dk40squorpr" path="res://ui/insert_gltr.png" id="3_31oig"]
 [ext_resource type="Theme" uid="uid://d2creo5xuvdkv" path="res://ui/style/theme_technical.tres" id="5_8g088"]
 
 [sub_resource type="Animation" id="Animation_knq2q"]
@@ -32,10 +32,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_josk7"]
@@ -77,7 +77,7 @@ grow_vertical = 2
 [node name="instruction" type="RichTextLabel" parent="container"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[wave][center]Send 100 GLTR to the below address to join the game"
+text = "[wave][center]Send at least 100 GLTR to the below address to join the game"
 fit_content = true
 
 [node name="title" type="Control" parent="container"]
@@ -87,8 +87,8 @@ size_flags_stretch_ratio = 0.5
 
 [node name="sprite" type="Sprite2D" parent="container/title"]
 position = Vector2(448, 32)
-texture = ExtResource("2_3ir0q")
-hframes = 12
+texture = ExtResource("3_31oig")
+hframes = 16
 
 [node name="animator" type="AnimationPlayer" parent="container/title/sprite"]
 libraries = {

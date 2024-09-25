@@ -110,10 +110,14 @@ func _distribute_rewards(winner_address: String) -> void:
 
 func _on_distribute_rewards_completed(_result, response_code, _headers, body):
 	print("Rewards response code: ", response_code)
-	print("Response body: ", body.get_string_from_utf8())
+	var body_string: String = body.get_string_from_utf8()
+	print("Response body: ", body_string)
 	if response_code == 200:
+		var dict: Dictionary = JSON.parse_string(body_string)
+		var winnings: int = dict["amount_won"]
+		
 		print("Rewards distributed successfully")
-		%status.text = "Sent prize!"
+		%status.text = "Sent prize of %s GLTR!" % [winnings]
 	else:
 		print("Failed to distribute rewards")
 		%status.text = "Failed to send :("
@@ -132,7 +136,6 @@ func _on_leaderboard_returned(_result, response_code, _headers, body):
 		%leaderboard.add_child(title)
 		
 		var board: Dictionary = JSON.parse_string(body_string)
-		print("Response dictionary: %s" % board)
 		var winners: Array = board["leaderboard"]
 		for i in range(winners.size()):
 			_add_leaderboard_entry(winners[i], i+1)
