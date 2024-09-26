@@ -12,10 +12,6 @@ extends Control
 func _ready():
 	print("QR Scene ready, initializing...")
 	
-	# Display the QR code
-	var qr_texture = preload("res://qr.png")
-	texture_rect.texture = qr_texture
-	
 	# Connect HTTPRequest signal using Godot 4's syntax
 	http_request.request_completed.connect(_on_deposit_request_completed)
 	

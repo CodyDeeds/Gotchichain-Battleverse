@@ -73,7 +73,6 @@ func _request_leaderboard():
 func _add_leaderboard_entry(what: Dictionary, pos: int):
 	var address: String = what["address"]
 	var winnings: int = what["winnings"]
-	var output: String = "" % [address, winnings]
 	
 	var hbox: HBoxContainer = HBoxContainer.new()
 	%leaderboard.add_child(hbox)
@@ -133,11 +132,18 @@ func _on_leaderboard_returned(_result, response_code, _headers, body):
 		var dict: Dictionary = JSON.parse_string(body_string)
 		var prize_pool: int = dict["prizePool"]
 		
-		var title: RichTextLabel = RichTextLabel.new()
-		title.bbcode_enabled = true
-		title.text = "[shake][center]PRIZE POOL OF %s GLTR TO BE DISTRIBUTED\nTO THE GREATEST CHAMPS:[/center][/shake]" % [prize_pool]
-		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		%leaderboard.add_child(title)
+		if prize_pool > 0:
+			var title: RichTextLabel = RichTextLabel.new()
+			title.bbcode_enabled = true
+			title.text = "[shake][center]PRIZE POOL OF %s GLTR TO BE DISTRIBUTED\nTO THE GREATEST CHAMPS:[/center][/shake]" % [prize_pool]
+			title.fit_content = true
+			%leaderboard.add_child(title)
+		else:
+			var title: RichTextLabel = RichTextLabel.new()
+			title.bbcode_enabled = true
+			title.text = "[center]THE GREATEST CHAMPS[/center]"
+			title.fit_content = true
+			%leaderboard.add_child(title)
 		
 		var divider: HSeparator = HSeparator.new()
 		%leaderboard.add_child(divider)
