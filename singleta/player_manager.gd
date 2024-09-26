@@ -52,6 +52,9 @@ func add_player(controller: int = -1, player_owner: int = 1, address: String = "
 	players.append(new_player)
 	spawn_player(new_player.controller)
 	send_player_stats()
+	
+	if is_instance_valid( new_player.object ):
+		new_player.object.animation_lock(0.25)
 
 	Events.player_added.emit(new_player.controller)
 
