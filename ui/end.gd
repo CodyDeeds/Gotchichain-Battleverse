@@ -130,13 +130,19 @@ func _on_leaderboard_returned(_result, response_code, _headers, body):
 	print("Response body: ", body_string)
 	
 	if response_code == 200:
-		var title: Label = Label.new()
-		title.text = "THE GREATEST CHAMPS"
+		var dict: Dictionary = JSON.parse_string(body_string)
+		var prize_pool: int = dict["prizePool"]
+		
+		var title: RichTextLabel = RichTextLabel.new()
+		title.bbcode_enabled = true
+		title.text = "[shake][center]PRIZE POOL OF %s GLTR TO BE DISTRIBUTED\nTO THE GREATEST CHAMPS:[/center][/shake]" % [prize_pool]
 		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		%leaderboard.add_child(title)
 		
-		var board: Dictionary = JSON.parse_string(body_string)
-		var winners: Array = board["leaderboard"]
+		var divider: HSeparator = HSeparator.new()
+		%leaderboard.add_child(divider)
+		
+		var winners: Array = dict["leaderboard"]
 		for i in range(winners.size()):
 			_add_leaderboard_entry(winners[i], i+1)
 
