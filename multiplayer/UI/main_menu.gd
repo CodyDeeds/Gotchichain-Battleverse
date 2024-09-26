@@ -21,6 +21,12 @@ func _ready():
 	if OS.has_feature("arcade"):
 		enter_arcade_mode()
 
+func _input(event: InputEvent) -> void:
+	if OS.has_feature("arcade") and event is InputEventJoypadButton:
+		if event.button_index == JOY_BUTTON_START and event.pressed:
+			enter_local_game()
+
+
 func enter_arcade_mode():
 	%client.hide()
 	%host.hide()
