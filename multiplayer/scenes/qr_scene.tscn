@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://c5k6h6k785wyn"]
 
 [ext_resource type="Script" path="res://multiplayer/scenes/qr_scene.gd" id="1_abcde"]
-[ext_resource type="Texture2D" uid="uid://w3acdk514tpf" path="res://qr.png" id="1_ifhj7"]
 [ext_resource type="Texture2D" uid="uid://c6bo31m5yik2y" path="res://multiplayer/scenes/insert_coin_bac.png" id="2_qwnyx"]
 [ext_resource type="Texture2D" uid="uid://d0dk40squorpr" path="res://ui/insert_gltr.png" id="3_31oig"]
+[ext_resource type="Texture2D" uid="uid://bdetkigwtxcog" path="res://qr2.png" id="4_nsgfe"]
 [ext_resource type="Theme" uid="uid://d2creo5xuvdkv" path="res://ui/style/theme_technical.tres" id="5_8g088"]
 
 [sub_resource type="Animation" id="Animation_knq2q"]
@@ -101,7 +101,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-texture = ExtResource("1_ifhj7")
+texture = ExtResource("4_nsgfe")
 expand_mode = 1
 stretch_mode = 5
 
