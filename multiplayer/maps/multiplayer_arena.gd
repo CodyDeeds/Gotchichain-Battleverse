@@ -28,9 +28,9 @@ func deploy_random_map():
 	
 	if OS.is_debug_build() and BigData.get_map_from_name(force_map) != null:
 		print("Deploying %s" % force_map)
-		rpc_deploy_map_by_name.bind(force_map).rpc()
+		Game.call_server( rpc_deploy_map_by_name.bind(force_map) )
 	else:
-		rpc_deploy_map_by_name.bind(this_map.name).rpc()
+		Game.call_server( rpc_deploy_map_by_name.bind(this_map.name) )
 
 func request_map():
 	rpc_send_current_map.bind( multiplayer.get_unique_id() ).rpc()
