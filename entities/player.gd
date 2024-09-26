@@ -161,6 +161,8 @@ func grab_nearest_item() -> bool:
 	if !target_item.grabable:
 		#Game.print_multiplayer("Cannot grab, nearest item is not grabable")
 		return false
+	if is_instance_valid(target_item.holder):
+		return false
 	if hand_position.distance_squared_to(target_item.global_position) > grab_range * grab_range:
 		#Game.print_multiplayer("Cannot grab, nearest item is too distant")
 		return false
