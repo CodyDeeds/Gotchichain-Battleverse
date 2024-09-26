@@ -17,6 +17,18 @@ func _ready():
 	%host.visible = OS.is_debug_build()
 	#$AnimationPlayer.play("logo_effect")
 	#$AnimationPlayer.play("button_effect")
+	
+	if OS.has_feature("arcade"):
+		enter_arcade_mode()
+
+func enter_arcade_mode():
+	%client.hide()
+	%host.hide()
+	%local.grab_focus()
+	%local.text = "ENTER GAME"
+	%no_controller.hide()
+	%pc_controls.hide()
+	%arcade_controls.show()
 
 func enter_local_game() -> void:
 	Game.is_multiplayer = false

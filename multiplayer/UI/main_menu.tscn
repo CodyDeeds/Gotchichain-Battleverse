@@ -103,6 +103,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="local" type="Button" parent="v_box_container"]
+unique_name_in_owner = true
 modulate = Color(1, 0.596078, 1, 1)
 layout_mode = 2
 text = "Local Game"
@@ -119,7 +120,8 @@ modulate = Color(1, 0.596078, 1, 1)
 layout_mode = 2
 text = "Host server"
 
-[node name="rich_text_label" type="RichTextLabel" parent="."]
+[node name="no_controller" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 392.0
 offset_top = 3.0
@@ -127,7 +129,8 @@ offset_right = 727.0
 offset_bottom = 125.0
 text = "NO CONTROLLER = REKT"
 
-[node name="rich_text_label2" type="RichTextLabel" parent="."]
+[node name="pc_controls" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 777.0
 offset_top = 60.0
@@ -138,6 +141,18 @@ text = "[A]: jump
 [X]: use item
 CNTRL + R TO RESTART
 M = Mute Music"
+
+[node name="arcade_controls" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 777.0
+offset_top = 60.0
+offset_right = 1003.0
+offset_bottom = 224.0
+text = "[A]: jump
+[B]: pick up/throw
+[X]: use item"
 
 [connection signal="pressed" from="v_box_container/local" to="." method="_on_local_pressed"]
 [connection signal="pressed" from="v_box_container/client" to="." method="_on_client_button_pressed"]
