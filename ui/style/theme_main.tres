@@ -1,5 +1,10 @@
-[gd_resource type="Theme" format=3 uid="uid://cq70oxn5vov4x"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cq70oxn5vov4x"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pd6ty"]
+color = Color(1, 0.68, 0.984, 1)
 
 [resource]
+HSeparator/styles/separator = SubResource("StyleBoxLine_pd6ty")
+Label/colors/font_color = Color(1, 0.68, 0.984, 1)
 RichTextLabelLarge/base_type = &"RichTextLabel"
 RichTextLabelLarge/font_sizes/normal_font_size = 32
