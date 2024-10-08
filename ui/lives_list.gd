@@ -14,15 +14,18 @@ func _ready() -> void:
 	PlayerManager.player_stats_updated.connect(update_lives)
 	PlayerManager.player_stats_updated.connect(update_health)
 	PlayerManager.player_stats_updated.connect(update_title)
+	PlayerManager.player_stats_updated.connect(update_money)
 	
 	if flipped_v:
 		move_child(%lives, 0)
 		move_child(%health, 0)
+		move_child(%money, 0)
 	
 	if flipped_h:
 		%title.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		%lives.alignment = ALIGNMENT_END
 		%health.alignment = ALIGNMENT_END
+		%money.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 
 
 func update_title():

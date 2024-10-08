@@ -6,6 +6,8 @@ extends Node2D
 ## Item will be thrown upward plus or minus this random angle value in degrees
 @export var item_random_angle: float = 30.0
 
+@export var cost: int = 1000
+
 
 func deploy_item():
 	var this_item: PackedScene = BigData.get_all_items().pick_random()
@@ -16,7 +18,11 @@ func deploy_item():
 	new_item.apply_central_impulse(impulse)
 
 
-func _on_interactable_activated(_player: int) -> void:
-	%sprite.frame = 1
-	%interactable.active = false
-	deploy_item()
+func _on_interactable_activated(player: int) -> void:
+	if PlayerManager.players.size() > player:
+		var available_money: int = PlayerManager.players[player].money
+		if available_money >= cost:
+			PlayerManager.players[player].money -= cost
+			%sprite.frame = 1
+			%interactable.active = false
+			deploy_item()

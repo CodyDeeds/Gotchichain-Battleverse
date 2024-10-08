@@ -7,7 +7,7 @@ extends Resource
 # Using an array here too in case we want different traits on different health, like some kind of bomb health that damages nearby enemies when lost
 @export var health: Array = [0, 0, 0, 0, 0]
 
-@export var money: int = 10000
+@export var money: int = 10000: set = set_money
 
 @export var max_health: int = 5
 @export var name := "Player X"
@@ -15,6 +15,8 @@ extends Resource
 @export var address: String = ""
 
 var object: Player = null
+
+signal money_changed
 
 
 func serialise() -> Array:
@@ -68,3 +70,8 @@ static func deserialise(data: Array) -> PlayerStats:
 			Game.print_multiplayer("ERROR: No object at %s" % object_path)
 	
 	return output
+
+
+func set_money(what: int):
+	money = what
+	money_changed.emit()

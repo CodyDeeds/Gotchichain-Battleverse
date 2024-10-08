@@ -36,7 +36,7 @@ func add_players(count: int):
 ## Modified add_player method to handle addresses
 func add_player(controller: int = -1, player_owner: int = 1, address: String = "") -> PlayerStats:
 	var new_player: PlayerStats = PlayerStats.new()
-
+	
 	new_player.controller = players.size()
 	if controller >= 0:
 		new_player.controller = controller
@@ -48,16 +48,18 @@ func add_player(controller: int = -1, player_owner: int = 1, address: String = "
 		print("Address assigned for %s: %s" % [new_player.name, new_player.address])
 	else:
 		print("Address not provided for player %s, defaulting to empty string." % new_player.name)
-
+	
 	players.append(new_player)
 	spawn_player(new_player.controller)
 	send_player_stats()
 	
 	if is_instance_valid( new_player.object ):
 		new_player.object.animation_lock(0.25)
-
+	
 	Events.player_added.emit(new_player.controller)
-
+	
+	new_player.money_changed.connect(func(): player_stats_updated.emit())
+	
 	return new_player
 
 func delayed_spawn(player: int, time: float):
@@ -73,7 +75,9 @@ func spawn_player(which: int):
 @rpc("authority", "call_local", "reliable")
 func rpc_spawn_player(which: int, player_owner: int, where: Vector2):
 	while which >= players.size():
-		players.append(PlayerStats.new())
+		var new_player_stats := PlayerStats.new()
+		new_player_stats.money_changed.connect(func(): player_stats_updated.emit())
+		players.append(new_player_stats)
 	
 	var new_player: Player = obj_player.instantiate()
 	if player_owner > 1:
