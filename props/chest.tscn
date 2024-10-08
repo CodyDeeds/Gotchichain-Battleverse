@@ -14,6 +14,9 @@ texture = ExtResource("1_lx0vx")
 hframes = 2
 
 [node name="interactable" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("3_bv5dh")
+title = "Chest"
+verb = "Buy"
 
 [connection signal="activated" from="interactable" to="." method="_on_interactable_activated"]

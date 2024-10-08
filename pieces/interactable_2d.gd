@@ -26,12 +26,20 @@ func _process(delta: float) -> void:
 		cull_tooltip()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("move_down"):
+	if event.is_action_pressed("move_down") and is_valid():
 		if Game.is_multiplayer:
 			pass
 		else:
 			activate(event.device)
 
+
+func is_valid():
+	if !active:
+		return false
+	if !is_nearest_interactable():
+		return false
+	
+	return true
 
 ## If player is -1, will check if it's the closest to any player
 ## Otherwise, will check if it's closest to the specific player

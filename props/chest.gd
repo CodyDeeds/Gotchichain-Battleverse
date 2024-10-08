@@ -1,5 +1,22 @@
 extends Node2D
 
 
+## Speed with which the item is thrown out of the chest on opening
+@export var item_jump_speed: float = 500.0
+## Item will be thrown upward plus or minus this random angle value in degrees
+@export var item_random_angle: float = 30.0
+
+
+func deploy_item():
+	var this_item: PackedScene = BigData.get_all_items().pick_random()
+	var new_item: Item = Game.create_instance(this_item)
+	Game.deploy_instance(new_item, global_position)
+	var impulse: Vector2 = Vector2(0, -item_jump_speed)
+	impulse = impulse.rotated( deg_to_rad(randf_range(-item_random_angle, item_random_angle)) )
+	new_item.apply_central_impulse(impulse)
+
+
 func _on_interactable_activated(_player: int) -> void:
 	%sprite.frame = 1
+	%interactable.active = false
+	deploy_item()
