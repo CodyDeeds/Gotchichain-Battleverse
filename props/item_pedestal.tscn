@@ -1,19 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bw5ue4nimvf38"]
+[gd_scene load_steps=3 format=3 uid="uid://bw5ue4nimvf38"]
 
 [ext_resource type="Script" path="res://props/item_pedestal.gd" id="1_gl2sc"]
 [ext_resource type="Texture2D" uid="uid://bx4dbnyfsy8a6" path="res://props/item_pedestal.png" id="2_1vfgo"]
-[ext_resource type="PackedScene" uid="uid://3y0libgsadyw" path="res://items/grenade.tscn" id="2_vvjgs"]
-[ext_resource type="PackedScene" uid="uid://c5gu1kmj3moqs" path="res://items/gun_basic.tscn" id="3_w5t7t"]
-[ext_resource type="PackedScene" uid="uid://rmlyrgx0bge6" path="res://items/gun_triple.tscn" id="4_cd6ha"]
-[ext_resource type="PackedScene" uid="uid://bu4jefyrdl4ho" path="res://items/fireball_item.tscn" id="5_wqsv8"]
-[ext_resource type="PackedScene" uid="uid://juayv5m0m6w1" path="res://items/sushi_knife.tscn" id="6_a06a1"]
-[ext_resource type="PackedScene" uid="uid://dmptfsx2xir2l" path="res://items/aantenna_bot.tscn" id="7_yn706"]
-[ext_resource type="PackedScene" uid="uid://ti0i1eh2soku" path="res://items/captain_aave_shield.tscn" id="8_xdvjo"]
-[ext_resource type="PackedScene" uid="uid://cm24a21eqfvsk" path="res://items/rekt_sign.tscn" id="9_gjev2"]
 
 [node name="item_pedestal" type="Node2D"]
 script = ExtResource("1_gl2sc")
-items = Array[PackedScene]([ExtResource("3_w5t7t"), ExtResource("4_cd6ha"), ExtResource("5_wqsv8"), ExtResource("6_a06a1"), ExtResource("2_vvjgs"), ExtResource("7_yn706"), ExtResource("8_xdvjo"), ExtResource("9_gjev2")])
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_1vfgo")

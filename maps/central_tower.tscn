@@ -124,7 +124,6 @@ position = Vector2(-208, -704)
 modulate = Color(0.737255, 0.290196, 0.607843, 1)
 position = Vector2(656, 624)
 scale = Vector2(1, -1)
-frame = 1
 
 [node name="fx" type="Node2D" parent="." index="8"]
 

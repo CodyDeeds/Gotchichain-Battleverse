@@ -1,0 +1,176 @@
+[gd_scene load_steps=11 format=3 uid="uid://cndamv85x22ou"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_bq1b4"]
+[ext_resource type="Script" path="res://items/uranium_rod.gd" id="2_ktj1g"]
+[ext_resource type="Texture2D" uid="uid://cc53ocurio5d7" path="res://items/uranium_rod.png" id="3_ksocf"]
+[ext_resource type="Texture2D" uid="uid://bqgobahtrlqvf" path="res://fx/glow.png" id="3_w38q8"]
+
+[sub_resource type="Animation" id="Animation_862k3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flip/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rdleu"]
+resource_name = "play"
+length = 1.6
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flip/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ydpsu"]
+_data = {
+"RESET": SubResource("Animation_862k3"),
+"play": SubResource("Animation_rdleu")
+}
+
+[sub_resource type="Animation" id="Animation_2b5ww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glow_activate:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glow_activate:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glow_activate:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_ulm0h"]
+resource_name = "flash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glow_activate:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glow_activate:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 0, 0.74902), Color(0, 1, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glow_activate:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.35, 0.35), Vector2(0.4, 0.4), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n5v1f"]
+_data = {
+"RESET": SubResource("Animation_2b5ww"),
+"flash": SubResource("Animation_ulm0h")
+}
+
+[node name="uranium_rod" instance=ExtResource("1_bq1b4")]
+can_sleep = false
+script = ExtResource("2_ktj1g")
+damage = 1.0
+hit_range = 96.0
+hit_delay = 2.0
+bonk_speed_threshhold = 1000.0
+straighten_speed = 100.0
+hitbox_size = 10.0
+pools = Array[int]([1])
+grab_sfx = &""
+throw_sfx = &""
+rare_throw_sfx = &""
+
+[node name="glow_charge" type="Sprite2D" parent="." index="0"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_w38q8")
+
+[node name="glow_activate" type="Sprite2D" parent="." index="1"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_w38q8")
+
+[node name="sprite" parent="flip" index="0"]
+texture = ExtResource("3_ksocf")
+hframes = 8
+
+[node name="shape" parent="." index="3"]
+polygon = PackedVector2Array(9.2388, 3.82683, 3.82683, 9.2388, -3.82683, 9.2388, -9.2388, 3.82683, -9.2388, -3.82683, -3.82684, -9.2388, 3.82684, -9.23879, 9.2388, -3.82683)
+
+[node name="animator" type="AnimationPlayer" parent="." index="8"]
+libraries = {
+"": SubResource("AnimationLibrary_ydpsu")
+}
+autoplay = "play"
+
+[node name="flash_animator" type="AnimationPlayer" parent="." index="9"]
+libraries = {
+"": SubResource("AnimationLibrary_n5v1f")
+}
