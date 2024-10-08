@@ -18,3 +18,8 @@ layout_mode = 2
 [node name="health" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="money" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_3l7ey")

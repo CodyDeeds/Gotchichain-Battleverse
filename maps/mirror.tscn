@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://da5junaar6e3t"]
+[gd_scene load_steps=11 format=3 uid="uid://da5junaar6e3t"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_655hd"]
 [ext_resource type="PackedScene" uid="uid://38t5en2plwcs" path="res://environment/backgrounds/scenes/synth.tscn" id="2_7d3ux"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c7m825vkhnx1y" path="res://props/prop_line.tscn" id="7_75wnh"]
 [ext_resource type="PackedScene" uid="uid://djfcga5sttkmg" path="res://props/grass.tscn" id="8_ufh4r"]
 [ext_resource type="PackedScene" uid="uid://bmkqhiu8bpnlf" path="res://props/vine.tscn" id="9_ks10q"]
+[ext_resource type="PackedScene" uid="uid://dlh2fcbilafwe" path="res://props/chest.tscn" id="10_8m81f"]
 
 [node name="mirror" instance=ExtResource("1_655hd")]
 
@@ -94,3 +95,6 @@ props = Array[PackedScene]([ExtResource("9_ks10q")])
 line = Vector2(128, 0)
 interval = 16.0
 randomness = 1.0
+
+[node name="chest" parent="props" index="14" instance=ExtResource("10_8m81f")]
+position = Vector2(56, 112)

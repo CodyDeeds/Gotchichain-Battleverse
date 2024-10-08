@@ -164,6 +164,12 @@ func rpc_set_player_lives(which: int, lives: Array):
 		players[which].lives = lives
 	player_stats_updated.emit()
 
+@rpc("authority", "call_local", "reliable")
+func rpc_set_player_money(which: int, money: int):
+	if which < players.size():
+		players[which].money = money
+	player_stats_updated.emit()
+
 func attempt_end():
 	if !Game.is_multiplayer or is_multiplayer_authority():
 		if count_living_players() <= 1:

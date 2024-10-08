@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlh2fcbilafwe"]
+
+[ext_resource type="Texture2D" uid="uid://bao84rbjf88jy" path="res://props/chest.png" id="1_lx0vx"]
+[ext_resource type="Script" path="res://props/chest.gd" id="1_snaa6"]
+[ext_resource type="Script" path="res://pieces/interactable_2d.gd" id="3_bv5dh"]
+
+[node name="chest" type="Node2D"]
+script = ExtResource("1_snaa6")
+
+[node name="sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+texture = ExtResource("1_lx0vx")
+hframes = 2
+
+[node name="interactable" type="Node2D" parent="."]
+script = ExtResource("3_bv5dh")
+
+[connection signal="activated" from="interactable" to="." method="_on_interactable_activated"]

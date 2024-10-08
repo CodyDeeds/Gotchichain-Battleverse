@@ -44,6 +44,11 @@ func clear_lives():
 	for i in %lives.get_children():
 		i.queue_free()
 
+func update_money():
+	if PlayerManager.players.size() > player:
+		var money: int = PlayerManager.players[player].money
+		%money.text = "$%s" % [money]
+
 func add_lives(lives: Array):
 	for i in lives.size():
 		var new_icon = life_icon.instantiate()
