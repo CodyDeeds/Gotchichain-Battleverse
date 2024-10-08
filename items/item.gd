@@ -3,6 +3,11 @@
 class_name Item
 extends RigidBody2D
 
+enum POOLS {
+	PEDESTAL,
+	CHEST,
+}
+
 ## Speed above which this item will bonk players hit by it
 @export var bonk_speed_threshhold := 1000.0
 ## Damage dealt to players at which this item is thrown
@@ -23,7 +28,10 @@ extends RigidBody2D
 @export var auto_grab: NodePath = ""
 
 @export_group("Config")
+## If left blank, ID will default to the node's name
 @export var id: String = ""
+## Situations in which the item can appear
+@export var pools: Array[POOLS] = [POOLS.PEDESTAL, POOLS.CHEST]
 
 @export_group("Resources")
 ## SFX to play when this item is activated

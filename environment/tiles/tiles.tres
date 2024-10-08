@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://327aqs810gaq"]
+[gd_resource type="TileSet" load_steps=20 format=3 uid="uid://327aqs810gaq"]
 
 [ext_resource type="Texture2D" uid="uid://cjwmwd3smea27" path="res://environment/tiles/grid.png" id="1_5g28s"]
 [ext_resource type="PackedScene" uid="uid://bw5ue4nimvf38" path="res://props/item_pedestal.tscn" id="1_tc2yk"]
+[ext_resource type="PackedScene" uid="uid://dlh2fcbilafwe" path="res://props/chest.tscn" id="2_t238d"]
 [ext_resource type="Texture2D" uid="uid://c60al8p4pbc68" path="res://environment/tiles/bricks.png" id="3_j2b1j"]
 [ext_resource type="Texture2D" uid="uid://c1pj2v0ii487v" path="res://environment/tiles/platform.png" id="4_8wlyi"]
 [ext_resource type="Texture2D" uid="uid://8evxwnm3645n" path="res://environment/tiles/bacgrid.png" id="5_tvamy"]
@@ -12,6 +13,7 @@
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_q4l5n"]
 scenes/1/scene = ExtResource("1_tc2yk")
+scenes/2/scene = ExtResource("2_t238d")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dupe5"]
 texture = ExtResource("1_5g28s")

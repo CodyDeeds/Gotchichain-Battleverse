@@ -16,7 +16,7 @@ func spawn_item():
 	if force_item:
 		this_item = force_item
 	else:
-		this_item = BigData.get_all_items().pick_random()
+		this_item = BigData.get_random_item_from_pool(Item.POOLS.PEDESTAL)
 	#var new_item: Item = MattohaSystem.CreateInstance(this_item.resource_path)
 	var new_item: Item = Game.create_instance(this_item)
 	#new_item.global_position = position

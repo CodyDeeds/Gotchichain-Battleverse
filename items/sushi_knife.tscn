@@ -119,6 +119,7 @@ bonk_damage = 1.0
 straighten_speed = 100.0
 hitbox_size = 8.0
 sprite_scale = 2.0
+pools = Array[int]([1])
 
 [node name="sprite" parent="flip" index="0"]
 scale = Vector2(2, 2)

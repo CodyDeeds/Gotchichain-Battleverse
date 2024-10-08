@@ -113,6 +113,7 @@ impact_sfx = &"rekt_sign"
 bonk_speed_threshhold = 1000.0
 straighten_speed = 100.0
 sprite_scale = 2.0
+pools = Array[int]([0])
 
 [node name="sprite" parent="flip" index="0"]
 scale = Vector2(2, 2)

@@ -63,6 +63,7 @@ player_kickback = 0.0
 projectile = ExtResource("3_ssjw6")
 shoot_particle_scene = ExtResource("4_a3fqi")
 hitbox_size = 16.0
+pools = Array[int]([1])
 activation_sfx = &"wand"
 
 [node name="sprite" parent="flip" index="0"]

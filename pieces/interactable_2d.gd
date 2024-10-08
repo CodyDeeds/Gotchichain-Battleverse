@@ -58,6 +58,9 @@ func get_nearest_interactable(player: int, allow_out_of_range: bool = false):
 		return null
 	
 	var this_player: Player = PlayerManager.players[player].object
+	if !is_instance_valid(this_player):
+		return null
+	
 	var all_interactables = get_tree().get_nodes_in_group(&"interactables")
 	var nearest_interactable: Interactable2D = null
 	# Nearest distance squared
