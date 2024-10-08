@@ -7,6 +7,8 @@ extends Resource
 # Using an array here too in case we want different traits on different health, like some kind of bomb health that damages nearby enemies when lost
 @export var health: Array = [0, 0, 0, 0, 0]
 
+@export var money: int = 10000
+
 @export var max_health: int = 5
 @export var name := "Player X"
 @export var multiplayer_owner: int = 1
@@ -25,6 +27,7 @@ func serialise() -> Array:
 	var numbers: PackedInt32Array = PackedInt32Array()
 	numbers.append(controller)
 	numbers.append(multiplayer_owner)
+	numbers.append(money)
 	numbers.append(lives.size())
 	for i in lives:
 		numbers.append(i)
@@ -50,10 +53,11 @@ static func deserialise(data: Array) -> PlayerStats:
 	
 	output.controller = numbers[0]
 	output.multiplayer_owner = numbers[1]
-	var life_count: int = numbers[2]
+	output.money = numbers[2]
+	var life_count: int = numbers[3]
 	for i in range(life_count):
-		output.lives.append(numbers[3 + i])
-	for i in range(3 + life_count, numbers.size()):
+		output.lives.append(numbers[4 + i])
+	for i in range(4 + life_count, numbers.size()):
 		output.health.append(numbers[i])
 	
 	if object_path == ^"":
