@@ -1,7 +1,5 @@
 extends Node2D
 
-## List of items that can spawn at this pedestal
-@export var items: Array[PackedScene] = []
 ## Speed with which items jump when they appear from this pedestal
 @export var item_jump_speed := 200.0
 ## If set, this item will always spawn from this pedestal. If not, will randomly select from [code]items[/code]
@@ -18,7 +16,7 @@ func spawn_item():
 	if force_item:
 		this_item = force_item
 	else:
-		this_item = items.pick_random()
+		this_item = BigData.get_all_items().pick_random()
 	#var new_item: Item = MattohaSystem.CreateInstance(this_item.resource_path)
 	var new_item: Item = Game.create_instance(this_item)
 	#new_item.global_position = position

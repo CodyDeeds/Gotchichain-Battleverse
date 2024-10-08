@@ -22,6 +22,9 @@ extends RigidBody2D
 ## The player that will automatically grab this item
 @export var auto_grab: NodePath = ""
 
+@export_group("Config")
+@export var id: String = ""
+
 @export_group("Resources")
 ## SFX to play when this item is activated
 @export var activation_sfx: StringName = &""
@@ -40,6 +43,8 @@ var can_hit_previous_holder: bool = false
 
 func _init() -> void:
 	add_to_group("items")
+	if id == "":
+		id = name
 
 func _ready() -> void:
 	if !Engine.is_editor_hint():
@@ -68,6 +73,13 @@ func _process(delta: float) -> void:
 			if freeze:
 				freeze = false
 				set_holder(null)
+
+
+func get_id() -> String:
+	if id == "":
+		return name
+	else:
+		return id
 
 func flip_with_holder():
 	var hand_relative_pos: float = (holder.get_hand_position() - holder.global_position).x
