@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://svmeqwv5ueqr"]
+
+[ext_resource type="PackedScene" uid="uid://c6i8k5ik2anim" path="res://pieces/moving_element_straight.tscn" id="1_n814h"]
+[ext_resource type="PackedScene" uid="uid://piuwu5cpi8wm" path="res://props/moving_platform.tscn" id="2_6dvxg"]
+
+[node name="kong_platform" instance=ExtResource("1_n814h")]
+speed = 0.08
+
+[node name="moving_platform" parent="." index="1" instance=ExtResource("2_6dvxg")]

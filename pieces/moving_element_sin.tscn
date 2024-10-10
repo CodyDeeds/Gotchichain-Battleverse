@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl4hrtbeuotdo"]
+
+[ext_resource type="Script" path="res://pieces/moving_element_sin.gd" id="1_by6sj"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="2_o5la5"]
+
+[node name="moving_element_sin" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_by6sj")
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+script = ExtResource("2_o5la5")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6i8k5ik2anim"]
+
+[ext_resource type="Script" path="res://pieces/moving_element_straight.gd" id="1_ho6mf"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="2_ip1gx"]
+
+[node name="moving_element_straight" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_ho6mf")
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+script = ExtResource("2_ip1gx")

@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqufq5lpfiuis"]
+[gd_scene load_steps=6 format=3 uid="uid://dqufq5lpfiuis"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_mrcsm"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="2_fjjf3"]
+[ext_resource type="Script" path="res://pieces/spawner.gd" id="3_p3cbe"]
+[ext_resource type="PackedScene" uid="uid://svmeqwv5ueqr" path="res://maps/kong_platform.tscn" id="4_li2vk"]
+
+[sub_resource type="Curve2D" id="Curve2D_dii2p"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 296, 0, 0, 0, 0, 0, -576)
+}
+point_count = 2
 
 [node name="kong" instance=ExtResource("1_mrcsm")]
 
@@ -22,3 +30,37 @@ position = Vector2(0, -640)
 
 [node name="tilemap" parent="." index="3"]
 layer_0/tile_data = PackedInt32Array(917489, 9, 0, 851982, 131081, 0, 917490, 65545, 0, 917491, 65545, 0, 917492, 65545, 0, 917493, 65545, 0, 917494, 65545, 0, 917495, 65545, 0, 917496, 65545, 0, 917497, 65545, 0, 917498, 65545, 0, 917499, 65545, 0, 917500, 65545, 0, 917501, 65545, 0, 917502, 65545, 0, 917503, 65545, 0, 851968, 65545, 0, 851969, 65545, 0, 851970, 65545, 0, 851971, 65545, 0, 851972, 65545, 0, 851973, 65545, 0, 851974, 65545, 0, 851975, 65545, 0, 851976, 65545, 0, 851977, 65545, 0, 851978, 65545, 0, 851979, 65545, 0, 851980, 65545, 0, 851981, 65545, 0, 393201, 9, 0, 327694, 131081, 0, 393206, 131081, 0, 327689, 9, 0, 327690, 65545, 0, 327691, 65545, 0, 327692, 65545, 0, 327693, 65545, 0, 393205, 65545, 0, 393204, 65545, 0, 393203, 65545, 0, 393202, 65545, 0, 655348, 9, 0, 589825, 131081, 0, 589824, 65545, 0, 655359, 65545, 0, 655358, 65545, 0, 655357, 65545, 0, 655356, 65545, 0, 655355, 65545, 0, 655354, 65545, 0, 655353, 65545, 0, 655352, 65545, 0, 655351, 65545, 0, 655350, 65545, 0, 655349, 65545, 0, -196599, 9, 0, -196594, 131081, 0, -720882, 131081, 0, -720887, 9, 0, -720883, 65545, 0, -720884, 65545, 0, -720885, 65545, 0, -720886, 65545, 0, -196598, 65545, 0, -196597, 65545, 0, -196596, 65545, 0, -196595, 65545, 0, -1245170, 131081, 0, -1245171, 65545, 0, -1245172, 65545, 0, -1245173, 65545, 0, -1245174, 65545, 0, -1245175, 65545, 0, -1245176, 65545, 0, -1245177, 65545, 0, -1245178, 65545, 0, -1245179, 65545, 0, -1245180, 65545, 0, -1245181, 65545, 0, -1245182, 65545, 0, -1245183, 65545, 0, -1245184, 65545, 0, -1179649, 65545, 0, -1179650, 65545, 0, -1179651, 65545, 0, -1179652, 65545, 0, -1179653, 65545, 0, -1179654, 65545, 0, -1179655, 65545, 0, -1179656, 65545, 0, -1179657, 65545, 0, -1179658, 65545, 0, -1179659, 65545, 0, -1179660, 65545, 0, -1179661, 65545, 0, -1179662, 65545, 0, -1179663, 9, 0, 65526, 9, 0, 65531, 131081, 0, 65530, 65545, 0, 65529, 65545, 0, 65528, 65545, 0, 65527, 65545, 0, -262154, 9, 0, -262153, 131081, 0, -262146, 131081, 0, -262147, 9, 0, -655375, 9, 0, -655365, 131081, 0, -655366, 65545, 0, -655367, 65545, 0, -655368, 65545, 0, -655369, 65545, 0, -655370, 65545, 0, -655371, 65545, 0, -655372, 65545, 0, -655373, 65545, 0, -655374, 65545, 0, -786420, 0, 65536, 262156, 0, 65536, 786443, 0, 65536, 851956, 0, 65536, -1245196, 0, 131072, -1310709, 0, 131072)
+
+[node name="platforms" type="Node2D" parent="." index="7"]
+
+[node name="path0" type="Path2D" parent="platforms" index="0"]
+position = Vector2(0, -8.14679)
+scale = Vector2(1, 1.02752)
+curve = SubResource("Curve2D_dii2p")
+
+[node name="spawner" type="Node2D" parent="platforms/path0" index="0"]
+position = Vector2(0, 296)
+script = ExtResource("3_p3cbe")
+scene = ExtResource("4_li2vk")
+spawn_as_sibling = true
+
+[node name="timer" type="Timer" parent="platforms/path0/spawner" index="0"]
+wait_time = 4.0
+autostart = true
+
+[node name="platform0" parent="platforms/path0" index="1" instance=ExtResource("4_li2vk")]
+position = Vector2(0, 16.9621)
+progress = 279.04
+
+[node name="platform1" parent="platforms/path0" index="2" instance=ExtResource("4_li2vk")]
+position = Vector2(0, -262.081)
+progress = 558.08
+
+[node name="platform2" parent="platforms/path0" index="3" instance=ExtResource("4_li2vk")]
+position = Vector2(0, -541.149)
+progress = 837.12
+
+[node name="platform3" parent="platforms/path0" index="4" instance=ExtResource("4_li2vk")]
+position = Vector2(0, 296)
+
+[connection signal="timeout" from="platforms/path0/spawner/timer" to="platforms/path0/spawner" method="activate"]
