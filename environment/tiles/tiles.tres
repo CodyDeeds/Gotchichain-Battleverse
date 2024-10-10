@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=20 format=3 uid="uid://327aqs810gaq"]
+[gd_resource type="TileSet" load_steps=22 format=3 uid="uid://327aqs810gaq"]
 
 [ext_resource type="Texture2D" uid="uid://cjwmwd3smea27" path="res://environment/tiles/grid.png" id="1_5g28s"]
 [ext_resource type="PackedScene" uid="uid://bw5ue4nimvf38" path="res://props/item_pedestal.tscn" id="1_tc2yk"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://vk6j3xkjyojx" path="res://environment/tiles/fence.png" id="7_i23ux"]
 [ext_resource type="Texture2D" uid="uid://cxsjnn0psd4or" path="res://environment/tiles/frustum.png" id="8_3j8m0"]
 [ext_resource type="Texture2D" uid="uid://b74jxhb4ni7ij" path="res://environment/tiles/arches.png" id="9_osa21"]
+[ext_resource type="Texture2D" uid="uid://d3jo310buaiem" path="res://environment/tiles/beam.png" id="11_xdi0t"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_q4l5n"]
 scenes/1/scene = ExtResource("1_tc2yk")
@@ -2109,6 +2110,25 @@ texture_region_size = Vector2i(32, 32)
 8:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:3/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsgud"]
+texture = ExtResource("11_xdi0t")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 4
@@ -2131,3 +2151,4 @@ sources/5 = SubResource("TileSetAtlasSource_e30pu")
 sources/6 = SubResource("TileSetAtlasSource_q6aq3")
 sources/7 = SubResource("TileSetAtlasSource_sg1ij")
 sources/8 = SubResource("TileSetAtlasSource_ogtto")
+sources/9 = SubResource("TileSetAtlasSource_nsgud")

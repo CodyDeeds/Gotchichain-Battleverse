@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapData" load_steps=3 format=3 uid="uid://ch2dtbf0taj4b"]
+
+[ext_resource type="PackedScene" uid="uid://dqufq5lpfiuis" path="res://maps/kong.tscn" id="1_7l0s6"]
+[ext_resource type="Script" path="res://data/maps/map_data.gd" id="2_fdynb"]
+
+[resource]
+script = ExtResource("2_fdynb")
+scene = ExtResource("1_7l0s6")
+name = "Kong"
