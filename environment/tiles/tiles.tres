@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=22 format=3 uid="uid://327aqs810gaq"]
+[gd_resource type="TileSet" load_steps=24 format=3 uid="uid://327aqs810gaq"]
 
 [ext_resource type="Texture2D" uid="uid://cjwmwd3smea27" path="res://environment/tiles/grid.png" id="1_5g28s"]
 [ext_resource type="PackedScene" uid="uid://bw5ue4nimvf38" path="res://props/item_pedestal.tscn" id="1_tc2yk"]
 [ext_resource type="PackedScene" uid="uid://dlh2fcbilafwe" path="res://props/chest.tscn" id="2_t238d"]
 [ext_resource type="Texture2D" uid="uid://c60al8p4pbc68" path="res://environment/tiles/bricks.png" id="3_j2b1j"]
 [ext_resource type="Texture2D" uid="uid://c1pj2v0ii487v" path="res://environment/tiles/platform.png" id="4_8wlyi"]
+[ext_resource type="Texture2D" uid="uid://c81y7rnys6t0u" path="res://environment/tiles/steel_scaffold.png" id="4_bsrmd"]
 [ext_resource type="Texture2D" uid="uid://8evxwnm3645n" path="res://environment/tiles/bacgrid.png" id="5_tvamy"]
 [ext_resource type="Texture2D" uid="uid://d015vu6wi5gij" path="res://environment/tiles/bricks_grey.png" id="6_hpjec"]
 [ext_resource type="Texture2D" uid="uid://vk6j3xkjyojx" path="res://environment/tiles/fence.png" id="7_i23ux"]
@@ -489,6 +490,28 @@ texture_region_size = Vector2i(32, 32)
 8:4/0/terrains_peering_bit/bottom_side = 0
 8:4/0/terrains_peering_bit/left_side = 0
 8:4/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xtosc"]
+texture = ExtResource("4_bsrmd")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4byos"]
 texture = ExtResource("3_j2b1j")
@@ -2152,3 +2175,4 @@ sources/6 = SubResource("TileSetAtlasSource_q6aq3")
 sources/7 = SubResource("TileSetAtlasSource_sg1ij")
 sources/8 = SubResource("TileSetAtlasSource_ogtto")
 sources/9 = SubResource("TileSetAtlasSource_nsgud")
+sources/10 = SubResource("TileSetAtlasSource_xtosc")

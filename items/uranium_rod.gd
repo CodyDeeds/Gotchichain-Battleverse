@@ -37,7 +37,7 @@ func get_valid_targets():
 	var output: Array = []
 	
 	if is_instance_valid(holder):
-		for this_player in get_tree().get_nodes_in_group("players"):
+		for this_player in get_tree().get_nodes_in_group(&"entities"):
 			if this_player != holder:
 				var this_d2: float = this_player.global_position.distance_squared_to(global_position)
 				if this_d2 < hit_range*hit_range:

@@ -40,7 +40,8 @@ var sound_player: AudioStreamPlayer = null
 var has_died: bool = false
 
 func _init() -> void:
-	add_to_group("players")
+	super()
+	add_to_group(&"players")
 
 func _ready() -> void:
 	super()

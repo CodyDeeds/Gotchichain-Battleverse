@@ -70,7 +70,6 @@ properties/3/replication_mode = 2
 [node name="player" type="CharacterBody2D"]
 collision_mask = 5
 script = ExtResource("1_ld4xh")
-gravity = null
 gravity_fast_fall_mult = null
 move_speed = null
 max_speed = 500.0
@@ -83,9 +82,13 @@ controller = null
 grab_range = null
 throw_speed = 750.0
 death_sfx = &"player_death"
+hit_sfx = null
+jump_sfx = null
+jump_particles = null
 multiplayer_owner = null
 max_hp = null
 limit_hp = null
+gravity = null
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_q4yxu")

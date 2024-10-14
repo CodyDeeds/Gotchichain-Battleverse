@@ -16,6 +16,9 @@ var dead := false
 signal hp_changed(new_hp: float)
 
 
+func _init():
+	add_to_group(&"entities")
+
 func _ready() -> void:
 	pass
 
