@@ -135,6 +135,7 @@ next_state = "leap"
 auto_proceed = false
 
 [node name="leap" type="Node" parent="fsm"]
+unique_name_in_owner = true
 script = ExtResource("8_byoh1")
 leap_velocity = Vector2(150, -200)
 animation = "leap"

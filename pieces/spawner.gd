@@ -28,3 +28,5 @@ func activate():
 	
 	if one_shot:
 		queue_free()
+	
+	return new_scene

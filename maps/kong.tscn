@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cmx6qvbdqkg5h" path="res://environment/backgrounds/scenes/city.tscn" id="2_qpqyb"]
 [ext_resource type="Script" path="res://pieces/spawner.gd" id="3_p3cbe"]
 [ext_resource type="PackedScene" uid="uid://svmeqwv5ueqr" path="res://maps/kong_platform.tscn" id="4_li2vk"]
-[ext_resource type="PackedScene" uid="uid://bnama2m0ylxhb" path="res://entities/enemies/firefrog.tscn" id="6_0pcpg"]
+[ext_resource type="PackedScene" uid="uid://d335p47x0406a" path="res://props/barrel_fire.tscn" id="6_iqv8p"]
 
 [sub_resource type="Curve2D" id="Curve2D_dii2p"]
 _data = {
@@ -68,7 +68,17 @@ progress = 837.12
 [node name="platform3" parent="platforms/path0" index="4" instance=ExtResource("4_li2vk")]
 position = Vector2(0, 296)
 
-[node name="firefrog" parent="." index="8" instance=ExtResource("6_0pcpg")]
-position = Vector2(-288, -192)
+[node name="props" type="Node2D" parent="." index="8"]
+
+[node name="barrel_fire0" parent="props" index="0" instance=ExtResource("6_iqv8p")]
+position = Vector2(-320, -392)
+
+[node name="barrel_fire1" parent="props" index="1" instance=ExtResource("6_iqv8p")]
+position = Vector2(448, 120)
+flipped = true
+
+[node name="barrel_fire2" parent="props" index="2" instance=ExtResource("6_iqv8p")]
+position = Vector2(-160, -40)
+flipped = true
 
 [connection signal="timeout" from="platforms/path0/spawner/timer" to="platforms/path0/spawner" method="activate"]

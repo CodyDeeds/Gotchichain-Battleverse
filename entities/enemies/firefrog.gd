@@ -7,6 +7,10 @@ func _ready() -> void:
 	tree_exiting.connect(_on_tree_exiting)
 
 
+func set_flip(what: bool):
+	%leap.flipped = what
+
+
 func _on_hitbox_hit() -> void:
 	velocity.y -= 50
 
