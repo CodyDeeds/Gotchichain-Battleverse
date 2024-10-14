@@ -29,6 +29,7 @@ script = ExtResource("3_r2vot")
 
 [node name="player_detector" parent="." instance=ExtResource("4_gkqds")]
 unique_name_in_owner = true
+continuously_report = false
 
 [node name="shape" type="CollisionShape2D" parent="player_detector"]
 shape = SubResource("CircleShape2D_pseup")
