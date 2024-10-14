@@ -149,6 +149,7 @@ func set_holder(what: Player):
 	var node_path = ""
 	if (what != null):
 		node_path = what.get_path()
+	%shape.disabled = what != null
 	for peer_id in peers:
 		rpc_id(peer_id, "rpc_set_holder", node_path)
 
