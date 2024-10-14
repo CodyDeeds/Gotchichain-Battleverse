@@ -3,6 +3,8 @@ extends RigidBody2D
 
 var value: int = 100
 
+const fx_scene = preload("res://fx/coin_collect.tscn")
+
 
 func _ready() -> void:
 	apply_central_impulse( Vector2(0, randf_range(-600, -100)).rotated(randf_range(-.5, .5)) )
@@ -22,5 +24,9 @@ func _on_player_detector_player_entered() -> void:
 		var id: int = player.get_id()
 		if PlayerManager.players.size() > id:
 			PlayerManager.players[id].money += value
+	
+	var new_fx = fx_scene.instantiate()
+	Game.deploy_instance(new_fx, global_position)
+	new_fx.scale = scale
 	
 	queue_free()

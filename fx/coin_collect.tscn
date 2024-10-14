@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck70t5xk8yvve"]
+
+[ext_resource type="Texture2D" uid="uid://brf5oia2j1gkc" path="res://fx/coin_collect.png" id="1_cotvu"]
+[ext_resource type="Script" path="res://pieces/auto_sprite_2d.gd" id="1_rxp1h"]
+[ext_resource type="Script" path="res://pieces/destroyer.gd" id="3_5kcmd"]
+
+[node name="coin_collect" type="Sprite2D"]
+texture = ExtResource("1_cotvu")
+hframes = 4
+script = ExtResource("1_rxp1h")
+
+[node name="destroyer" type="Node" parent="."]
+script = ExtResource("3_5kcmd")
+
+[connection signal="finished" from="." to="destroyer" method="activate"]
