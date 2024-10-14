@@ -17,23 +17,23 @@ func _ready() -> void:
 func deploy_coin(this_value: int, size: float):
 	var new_coin = Game.create_instance(coin_scene)
 	new_coin.value = this_value
-	new_coin.scale = Vector2(size, size)
 	var pos: Vector2 = global_position
 	pos += Vector2(randf()*8, 0).rotated(randf() * 2*PI)
 	Game.deploy_instance(new_coin, pos)
+	new_coin.change_scale(size)
 
 func die():
 	super()
 	
 	while value >= 1000:
-		deploy_coin(1000, 1.2)
+		deploy_coin(1000, 2.0)
 		value -= 1000
 	while value >= 100:
-		deploy_coin(100, 1.0)
+		deploy_coin(100, 1.5)
 		value -= 100
 	while value >= 10:
-		deploy_coin(10, 0.6)
+		deploy_coin(10, 1.0)
 		value -= 10
 	while value >= 1:
-		deploy_coin(1, 0.4)
+		deploy_coin(1, 0.5)
 		value -= 1
