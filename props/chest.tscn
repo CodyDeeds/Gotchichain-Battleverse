@@ -6,9 +6,6 @@
 
 [node name="chest" type="Node2D"]
 script = ExtResource("1_snaa6")
-item_jump_speed = null
-item_random_angle = null
-cost = null
 
 [node name="sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -31,4 +28,10 @@ offset_bottom = 48.0
 bbcode_enabled = true
 text = "$100"
 
+[node name="timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
 [connection signal="activated" from="interactable" to="." method="_on_interactable_activated"]
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
