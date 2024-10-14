@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmx6qvbdqkg5h"]
+
+[ext_resource type="Script" path="res://pieces/parallaxor.gd" id="1_6g5so"]
+[ext_resource type="Texture2D" uid="uid://c5tk4v680fksi" path="res://environment/backgrounds/city_background.png" id="2_srl2q"]
+[ext_resource type="Texture2D" uid="uid://bypmmjw0r5637" path="res://environment/backgrounds/city_distant.png" id="3_ytoye"]
+[ext_resource type="Texture2D" uid="uid://bilqxk4qs6urb" path="res://environment/backgrounds/city_mid.png" id="4_0ccjm"]
+[ext_resource type="Texture2D" uid="uid://oa4myy0kna7j" path="res://environment/backgrounds/city_fore.png" id="5_unyni"]
+
+[node name="city" type="Node2D"]
+
+[node name="background" type="Node2D" parent="."]
+script = ExtResource("1_6g5so")
+limits = Rect2(-100000, 0, 200000, 0)
+
+[node name="image" type="Sprite2D" parent="background"]
+modulate = Color(0.388235, 0.388235, 0.388235, 1)
+position = Vector2(920, 540)
+texture = ExtResource("2_srl2q")
+region_enabled = true
+region_rect = Rect2(0, 0, 19200, 10800)
+
+[node name="distant" type="Node2D" parent="."]
+script = ExtResource("1_6g5so")
+move_scale = Vector2(0.95, 1)
+scale_scale = 0.9
+limits = Rect2(-100000, 0, 200000, 0)
+
+[node name="image" type="Sprite2D" parent="distant"]
+modulate = Color(0.839216, 0.839216, 0.839216, 1)
+position = Vector2(920, 540)
+texture = ExtResource("3_ytoye")
+region_enabled = true
+region_rect = Rect2(0, 0, 19200, 10800)
+
+[node name="mid" type="Node2D" parent="."]
+script = ExtResource("1_6g5so")
+move_scale = Vector2(0.9, 1)
+scale_scale = 0.85
+limits = Rect2(-100000, 0, 200000, 0)
+
+[node name="image" type="Sprite2D" parent="mid"]
+modulate = Color(0.839216, 0.839216, 0.839216, 1)
+position = Vector2(920, 540)
+texture = ExtResource("4_0ccjm")
+region_enabled = true
+region_rect = Rect2(0, 0, 19200, 10800)
+
+[node name="fore" type="Node2D" parent="."]
+script = ExtResource("1_6g5so")
+move_scale = Vector2(0.8, 1)
+scale_scale = 0.8
+limits = Rect2(-100000, 0, 200000, 0)
+
+[node name="image" type="Sprite2D" parent="fore"]
+modulate = Color(0.839216, 0.839216, 0.839216, 1)
+position = Vector2(920, 540)
+texture = ExtResource("5_unyni")
+region_enabled = true
+region_rect = Rect2(0, 0, 19200, 10800)

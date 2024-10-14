@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqufq5lpfiuis"]
+[gd_scene load_steps=7 format=3 uid="uid://dqufq5lpfiuis"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_mrcsm"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="2_fjjf3"]
+[ext_resource type="PackedScene" uid="uid://cmx6qvbdqkg5h" path="res://environment/backgrounds/scenes/city.tscn" id="2_qpqyb"]
 [ext_resource type="Script" path="res://pieces/spawner.gd" id="3_p3cbe"]
 [ext_resource type="PackedScene" uid="uid://svmeqwv5ueqr" path="res://maps/kong_platform.tscn" id="4_li2vk"]
 
@@ -12,6 +13,9 @@ _data = {
 point_count = 2
 
 [node name="kong" instance=ExtResource("1_mrcsm")]
+
+[node name="city" parent="bac" index="0" instance=ExtResource("2_qpqyb")]
+modulate = Color(0.4536, 0.3472, 0.56, 1)
 
 [node name="spawn_point0" parent="spawns" index="0" instance=ExtResource("2_fjjf3")]
 position = Vector2(-384, -384)
@@ -49,7 +53,7 @@ wait_time = 4.0
 autostart = true
 
 [node name="platform0" parent="platforms/path0" index="1" instance=ExtResource("4_li2vk")]
-position = Vector2(0, 16.9621)
+position = Vector2(0, 16.9622)
 progress = 279.04
 
 [node name="platform1" parent="platforms/path0" index="2" instance=ExtResource("4_li2vk")]
