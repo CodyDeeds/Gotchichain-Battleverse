@@ -1,9 +1,15 @@
 class_name Entity
 extends CharacterBody2D
 
-var max_hp := 5.0
+
+## Maximum and default HP of this entity
+@export var max_hp := 5.0
+## Whether or not its HP can exceed the maximum
+@export var limit_hp := true
+
+@export var gravity := 500.0
+
 var hp := max_hp
-var limit_hp := true
 var dead := false
 
 
@@ -13,6 +19,15 @@ signal hp_changed(new_hp: float)
 func _ready() -> void:
 	pass
 
+func _process(delta: float) -> void:
+	gravitate(delta)
+
+func _physics_process(delta: float) -> void:
+	move_and_slide()
+
+
+func gravitate(delta: float):
+	velocity.y += gravity * delta
 
 func set_hp(what: float):
 	hp = what

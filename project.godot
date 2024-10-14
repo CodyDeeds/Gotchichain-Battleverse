@@ -206,6 +206,7 @@ debug_die={
 2d_physics/layer_4="Ethereal"
 2d_physics/layer_5="Hitboxes"
 2d_physics/layer_6="Hurtboxes"
+2d_physics/layer_7="Enemies"
 
 [physics]
 

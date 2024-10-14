@@ -2132,7 +2132,7 @@ texture_region_size = Vector2i(32, 32)
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 7
+physics_layer_0/collision_mask = 71
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Grid"
 terrain_set_0/terrain_0/color = Color(0.635294, 0.423529, 0.670588, 1)

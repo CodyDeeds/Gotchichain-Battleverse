@@ -3,7 +3,6 @@ class_name Player
 extends Entity
 
 @export_group("Movement")
-@export var gravity := 500.0
 ## When the jump button is not held, gravity will be multiplied by this number
 @export var gravity_fast_fall_mult := 4.0
 @export var move_speed := 350.0
@@ -58,10 +57,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Physics-y simulation aspects on server only
 	if !Game.is_multiplayer or is_multiplayer_authority():
-		gravitate(delta)
+		super(delta)
 		frictutate(delta)
 		accelerate(traction, delta)
-		move_and_slide()
+		#move_and_slide()
 		if is_on_floor():
 			current_air_jumps = air_jumps
 			has_dropped = false
@@ -91,9 +90,11 @@ func attempt_jump():
 func rpc_jump_succeed():
 	velocity.y = -jump_speed
 	velocity.x *= (jump_speed_boost + 1)
-	var new_particles = jump_particles.instantiate()
-	Game.deploy_instance(new_particles, global_position)
-	GlobalSound.play_sfx_2d(jump_sfx, global_position)
+	if jump_particles:
+		var new_particles = jump_particles.instantiate()
+		Game.deploy_instance(new_particles, global_position)
+	if jump_sfx:
+		GlobalSound.play_sfx_2d(jump_sfx, global_position)
 
 @rpc("any_peer", "call_remote", "unreliable")
 func rpc_tractutate(new_traction: float):
@@ -109,7 +110,7 @@ func accelerate(dir: float, delta: float):
 	velocity.x += acceleration * dir * delta
 
 func gravitate(delta: float):
-	velocity.y += gravity * delta
+	super(delta)
 	if !floating:
 		velocity.y += gravity * delta * (gravity_fast_fall_mult) - 1
 
