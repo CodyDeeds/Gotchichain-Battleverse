@@ -5,7 +5,7 @@ func _ready() -> void:
 	super()
 	
 	tree_exiting.connect(_on_tree_exiting)
-	GlobalSound.play_sfx_2d(&"fireball_throw", global_position)
+	#GlobalSound.play_sfx_2d(&"fireball_throw", global_position)
 
 
 func set_flip(what: bool):

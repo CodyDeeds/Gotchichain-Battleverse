@@ -92,6 +92,7 @@ autoplay = "idle"
 next/erupt = &"idle"
 
 [node name="spawn_timer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 8.0
 autostart = true
 
