@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqufq5lpfiuis"]
+[gd_scene load_steps=14 format=3 uid="uid://dqufq5lpfiuis"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_mrcsm"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="2_fjjf3"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d335p47x0406a" path="res://props/barrel_fire.tscn" id="6_iqv8p"]
 [ext_resource type="PackedScene" uid="uid://cl4hrtbeuotdo" path="res://pieces/moving_element_sin.tscn" id="6_qsm5f"]
 [ext_resource type="PackedScene" uid="uid://piuwu5cpi8wm" path="res://props/moving_platform.tscn" id="7_5s62w"]
+[ext_resource type="Texture2D" uid="uid://cddilf7hq4hll" path="res://props/crane_hook.png" id="8_uaiyw"]
 
 [sub_resource type="Curve2D" id="Curve2D_dii2p"]
 _data = {
@@ -98,6 +99,10 @@ interval = 12.0
 
 [node name="moving_platform" parent="platforms/path_left/moving_element_sin" index="1" instance=ExtResource("7_5s62w")]
 
+[node name="crane_hook" type="Sprite2D" parent="platforms/path_left/moving_element_sin" index="2"]
+position = Vector2(0, -136)
+texture = ExtResource("8_uaiyw")
+
 [node name="path_right_lower" type="Path2D" parent="platforms" index="2"]
 curve = SubResource("Curve2D_kja1h")
 
@@ -111,7 +116,11 @@ position = Vector2(-48, 0)
 [node name="moving_platform1" parent="platforms/path_right_lower/moving_element_sin" index="2" instance=ExtResource("7_5s62w")]
 position = Vector2(48, 0)
 
-[node name="barrel_fire" parent="platforms/path_right_lower/moving_element_sin" index="3" instance=ExtResource("6_iqv8p")]
+[node name="crane_hook" type="Sprite2D" parent="platforms/path_right_lower/moving_element_sin" index="3"]
+position = Vector2(0, -136)
+texture = ExtResource("8_uaiyw")
+
+[node name="barrel_fire" parent="platforms/path_right_lower/moving_element_sin" index="4" instance=ExtResource("6_iqv8p")]
 position = Vector2(64, -48)
 flipped = true
 
@@ -124,6 +133,10 @@ interval = 30.0
 phase = 0.5
 
 [node name="moving_platform" parent="platforms/path_right_upper/moving_element_sin" index="1" instance=ExtResource("7_5s62w")]
+
+[node name="crane_hook" type="Sprite2D" parent="platforms/path_right_upper/moving_element_sin" index="2"]
+position = Vector2(0, -136)
+texture = ExtResource("8_uaiyw")
 
 [node name="props" type="Node2D" parent="." index="8"]
 
