@@ -26,7 +26,7 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
 		PlayerManager.get_player(0).bet = 1000
-		PlayerManager.get_player(0).bet = 2000
+		PlayerManager.get_player(1).bet = 2000
 		_start_game()
 
 # Function to check for deposits

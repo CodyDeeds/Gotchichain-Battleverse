@@ -89,6 +89,6 @@ func distribute_value():
 		total_weight += i.value_weight
 	for i in all_sources:
 		var this_fraction: float = i.value_weight / total_weight
-		i.value = int( round( total_value / this_fraction ) )
+		i.value = int( round( total_value * this_fraction ) )
 	
 	has_distributed_value = true

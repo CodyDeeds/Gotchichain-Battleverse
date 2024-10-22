@@ -29,6 +29,7 @@ layer_2/tile_data = PackedInt32Array()
 [node name="cam" parent="." instance=ExtResource("3_rpsx0")]
 
 [node name="kill_floor" parent="." instance=ExtResource("4_r8kfl")]
+teams = Array[int]([0, -1])
 damage = 1e+06
 
 [node name="shape" type="CollisionShape2D" parent="kill_floor"]
