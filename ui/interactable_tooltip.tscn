@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccmbhqdp3jbcc"]
+[gd_scene load_steps=11 format=3 uid="uid://ccmbhqdp3jbcc"]
 
 [ext_resource type="Script" path="res://ui/interactable_tooltip.gd" id="1_mvbia"]
+[ext_resource type="Texture2D" uid="uid://ckc4wmarfvpsw" path="res://ui/down_arrow.png" id="2_5c2sj"]
 [ext_resource type="Theme" uid="uid://cq70oxn5vov4x" path="res://ui/style/theme_main.tres" id="2_yo1rn"]
 [ext_resource type="Theme" uid="uid://d2creo5xuvdkv" path="res://ui/style/theme_technical.tres" id="3_3ili7"]
+[ext_resource type="Script" path="res://pieces/auto_sprite_2d.gd" id="3_c6xba"]
 [ext_resource type="Script" path="res://pieces/destroyer.gd" id="3_sq1s3"]
 
 [sub_resource type="Animation" id="Animation_3c33v"]
@@ -185,7 +187,15 @@ _data = {
 scale = Vector2(1e-05, 1)
 script = ExtResource("1_mvbia")
 
+[node name="arrow" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_5c2sj")
+hframes = 2
+script = ExtResource("3_c6xba")
+animation_speed = 2.0
+
 [node name="list" type="VBoxContainer" parent="."]
+visible = false
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
