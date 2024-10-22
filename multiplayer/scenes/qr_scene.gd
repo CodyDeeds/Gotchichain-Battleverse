@@ -25,6 +25,8 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
+		PlayerManager.players[0].bet = 1000
+		PlayerManager.players[1].bet = 2000
 		_start_game()
 
 # Function to check for deposits
@@ -76,12 +78,14 @@ func _on_deposit_request_completed(_result: int, response_code: int, _headers: A
 						var player1_bet = response_data["player1Bet"]
 						print("Player 1 Address: ", player1_address, " Bet: ", player1_bet)
 						_update_log("Player 1 Address: " + player1_address + " is ready with bet: " + str(player1_bet) + " GLTR.")
+						PlayerManager.players[0].bet = player1_bet
 						PlayerManager.player1_address = player1_address  # Update PlayerManager
 					if response_data.has("player2") and response_data.has("player2Bet"):
 						var player2_address = response_data["player2"]
 						var player2_bet = response_data["player2Bet"]
 						print("Player 2 Address: ", player2_address, " Bet: ", player2_bet)
 						_update_log("Player 2 Address: " + player2_address + " is ready with bet: " + str(player2_bet) + " GLTR.")
+						PlayerManager.players[1].bet = player2_bet
 						PlayerManager.player2_address = player2_address  # Update PlayerManager
 					
 					_start_game()

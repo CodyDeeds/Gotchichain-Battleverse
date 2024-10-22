@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://d335p47x0406a"]
+[gd_scene load_steps=8 format=3 uid="uid://d335p47x0406a"]
 
 [ext_resource type="Script" path="res://props/barrel_fire.gd" id="1_f0rbm"]
 [ext_resource type="Texture2D" uid="uid://b6fdmdp4p4e8c" path="res://props/barrel_fire.png" id="1_rgtxs"]
-[ext_resource type="Script" path="res://pieces/spawner.gd" id="3_lkt3a"]
-[ext_resource type="PackedScene" uid="uid://bnama2m0ylxhb" path="res://entities/enemies/firefrog.tscn" id="4_8gnqw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwpxi"]
 size = Vector2(32, 52)
@@ -77,12 +75,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_rgtxs")
 hframes = 4
 
-[node name="spawner" type="Node2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, -32)
-script = ExtResource("3_lkt3a")
-scene = ExtResource("4_8gnqw")
-
 [node name="animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
@@ -90,10 +82,3 @@ libraries = {
 }
 autoplay = "idle"
 next/erupt = &"idle"
-
-[node name="spawn_timer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 8.0
-autostart = true
-
-[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]

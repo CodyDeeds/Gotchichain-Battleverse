@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://wngdx64y7qt8"]
+
+[ext_resource type="Texture2D" uid="uid://dqrjcx88nupj4" path="res://props/crates.png" id="1_248ou"]
+[ext_resource type="Script" path="res://pieces/random_sprite_2d.gd" id="2_55wlq"]
+
+[node name="crate" type="Sprite2D"]
+texture = ExtResource("1_248ou")
+hframes = 4
+frame = 2
+script = ExtResource("2_55wlq")

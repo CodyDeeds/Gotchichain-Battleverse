@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqufq5lpfiuis"]
+[gd_scene load_steps=17 format=3 uid="uid://dqufq5lpfiuis"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_mrcsm"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="2_fjjf3"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cl4hrtbeuotdo" path="res://pieces/moving_element_sin.tscn" id="6_qsm5f"]
 [ext_resource type="PackedScene" uid="uid://piuwu5cpi8wm" path="res://props/moving_platform.tscn" id="7_5s62w"]
 [ext_resource type="Texture2D" uid="uid://cddilf7hq4hll" path="res://props/crane_hook.png" id="8_uaiyw"]
+[ext_resource type="PackedScene" uid="uid://c7m825vkhnx1y" path="res://props/prop_line.tscn" id="10_vr55q"]
+[ext_resource type="PackedScene" uid="uid://wngdx64y7qt8" path="res://props/crate.tscn" id="11_cjb46"]
+[ext_resource type="PackedScene" uid="uid://bnama2m0ylxhb" path="res://entities/enemies/firefrog.tscn" id="12_dh710"]
 
 [sub_resource type="Curve2D" id="Curve2D_dii2p"]
 _data = {
@@ -139,6 +142,7 @@ position = Vector2(0, -136)
 texture = ExtResource("8_uaiyw")
 
 [node name="props" type="Node2D" parent="." index="8"]
+z_index = -1
 
 [node name="barrel_fire0" parent="props" index="0" instance=ExtResource("6_iqv8p")]
 position = Vector2(-320, -392)
@@ -150,5 +154,58 @@ flipped = true
 [node name="barrel_fire2" parent="props" index="2" instance=ExtResource("6_iqv8p")]
 position = Vector2(-160, -40)
 flipped = true
+
+[node name="crates0_bac" parent="props" index="3" instance=ExtResource("10_vr55q")]
+position = Vector2(-384, 352)
+scale = Vector2(2, 2)
+props = Array[PackedScene]([ExtResource("11_cjb46")])
+line = Vector2(400, 0)
+interval = 128.0
+
+[node name="crates0" parent="props" index="4" instance=ExtResource("10_vr55q")]
+position = Vector2(-400, 384)
+props = Array[PackedScene]([ExtResource("11_cjb46")])
+line = Vector2(800, 0)
+interval = 64.0
+
+[node name="crates1" parent="props" index="5" instance=ExtResource("10_vr55q")]
+position = Vector2(-400, -640)
+props = Array[PackedScene]([ExtResource("11_cjb46")])
+line = Vector2(800, 0)
+interval = 64.0
+
+[node name="crates2" parent="props" index="6" instance=ExtResource("10_vr55q")]
+position = Vector2(-496, -1376)
+props = Array[PackedScene]([ExtResource("11_cjb46")])
+line = Vector2(400, 0)
+interval = 64.0
+
+[node name="crates3" parent="props" index="7" instance=ExtResource("10_vr55q")]
+position = Vector2(96, -1376)
+props = Array[PackedScene]([ExtResource("11_cjb46")])
+line = Vector2(400, 0)
+interval = 64.0
+
+[node name="crane_hook0" type="Sprite2D" parent="props" index="8"]
+position = Vector2(-256, -1856)
+texture = ExtResource("8_uaiyw")
+
+[node name="crane_hook1" type="Sprite2D" parent="props" index="9"]
+position = Vector2(256, -1856)
+texture = ExtResource("8_uaiyw")
+
+[node name="enemies" type="Node2D" parent="." index="9"]
+
+[node name="firefrog0" parent="enemies" index="0" instance=ExtResource("12_dh710")]
+position = Vector2(-320, -424)
+
+[node name="firefrog1" parent="enemies" index="1" instance=ExtResource("12_dh710")]
+position = Vector2(448, -160)
+
+[node name="firefrog2" parent="enemies" index="2" instance=ExtResource("12_dh710")]
+position = Vector2(-160, -72)
+
+[node name="firefrog3" parent="enemies" index="3" instance=ExtResource("12_dh710")]
+position = Vector2(704, 368)
 
 [connection signal="timeout" from="platforms/path0/spawner/timer" to="platforms/path0/spawner" method="activate"]
