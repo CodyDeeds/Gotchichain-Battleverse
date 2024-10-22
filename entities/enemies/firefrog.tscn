@@ -127,13 +127,6 @@ scale_amount_max = 6.0
 scale_amount_curve = SubResource("Curve_jb100")
 color = Color(0.980392, 0.415686, 0.0392157, 1)
 
-[node name="jump_cast" type="RayCast2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, -64)
-enabled = false
-target_position = Vector2(0, 128)
-collision_mask = 4
-
 [node name="fsm" type="Node" parent="."]
 script = ExtResource("6_ry5pt")
 
@@ -147,6 +140,8 @@ auto_proceed = false
 unique_name_in_owner = true
 script = ExtResource("8_byoh1")
 leap_velocity = Vector2(150, -200)
+allowed_height_variance = null
+max_distance = null
 animation = "leap"
 next_state = "idle"
 auto_proceed = false
