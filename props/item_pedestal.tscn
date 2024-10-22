@@ -14,6 +14,7 @@ texture = ExtResource("2_1vfgo")
 [node name="shape" type="CollisionPolygon2D" parent="collision"]
 position = Vector2(0, -1)
 polygon = PackedVector2Array(-16, 17, -12, 13, 12, 13, 16, 17)
+one_way_collision = true
 
 [node name="spawn_timer" type="Timer" parent="."]
 wait_time = 3.0
