@@ -28,19 +28,21 @@ func add_players(count: int):
 	# Ensure we are adding two players
 	if count >= 2:
 		add_player(0, 1, player1_address)  # Player 1 gets player1_address
-		add_player(1, 2, player2_address)  # Player 2 gets player2_address
+		add_player(1, 1, player2_address)  # Player 2 gets player2_address
 	else:
 		print("Player count is less than 2, unable to add both players.")
 	player_stats_updated.emit()
 
 ## Modified add_player method to handle addresses
-func add_player(controller: int = -1, player_owner: int = 1, address: String = "") -> PlayerStats:
-	var new_player: PlayerStats = PlayerStats.new()
+func add_player(index: int, player_owner: int = 1, address: String = "") -> PlayerStats:
+	if index < 0:
+		index = players.size() - 1
+	var new_player: PlayerStats = get_player(index)
 	
-	new_player.controller = players.size()
-	if controller >= 0:
-		new_player.controller = controller
-	new_player.name = "Player %s" % (new_player.controller + 1)
+	new_player.controller = index
+	#if controller >= 0:
+		#new_player.controller = controller
+	new_player.name = "Player %s" % (index + 1)
 	new_player.multiplayer_owner = player_owner
 	
 	if address != "":
@@ -49,14 +51,13 @@ func add_player(controller: int = -1, player_owner: int = 1, address: String = "
 	else:
 		print("Address not provided for player %s, defaulting to empty string." % new_player.name)
 	
-	players.append(new_player)
-	spawn_player(new_player.controller)
+	spawn_player(index)
 	send_player_stats()
 	
 	if is_instance_valid( new_player.object ):
 		new_player.object.animation_lock(0.25)
 	
-	Events.player_added.emit(new_player.controller)
+	Events.player_added.emit(index)
 	
 	new_player.money_changed.connect(func(): player_stats_updated.emit())
 	
@@ -71,6 +72,11 @@ func spawn_player(which: int):
 	var furthest_spawn = get_furthest_spawn()
 	if is_instance_valid(furthest_spawn):
 		rpc_spawn_player.bind(which, players[which].multiplayer_owner, furthest_spawn.global_position).rpc()
+
+func get_player(which: int) -> PlayerStats:
+	while players.size() < which + 1:
+		players.append(PlayerStats.new())
+	return players[which]
 
 @rpc("authority", "call_local", "reliable")
 func rpc_spawn_player(which: int, player_owner: int, where: Vector2):

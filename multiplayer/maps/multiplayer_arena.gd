@@ -54,12 +54,12 @@ func deploy_map(what: PackedScene):
 @rpc("any_peer", "call_remote", "reliable")
 func rpc_add_new_player(peer: int):
 	#add_player.rpc(peer)
-	var new_player: PlayerStats = PlayerManager.add_player(0, peer)
+	var new_player: PlayerStats = PlayerManager.add_player(-1, peer)
 	Game.print_multiplayer("Arena: Spawned player with owner %s, authority %s. is owner: %s" % [peer, new_player.multiplayer_owner, new_player.object.is_owner()])
 
 @rpc("authority", "call_local", "reliable")
 func add_player(peer: int):
-	var new_player: PlayerStats = PlayerManager.add_player(0, peer)
+	var new_player: PlayerStats = PlayerManager.add_player(-1, peer)
 	Game.print_multiplayer("Arena: Spawned player with owner %s, authority %s. is owner: %s" % [peer, new_player.multiplayer_owner, new_player.object.is_owner()])
 
 func check_player_lives():
