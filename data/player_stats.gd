@@ -8,7 +8,7 @@ extends Resource
 @export var health: Array = [0, 0, 0, 0, 0]
 
 @export var bet: int = 0
-@export var money: int = 10000: set = set_money
+@export var money: int = 0: set = set_money
 
 @export var max_health: int = 5
 @export var name := "Player X"

@@ -90,6 +90,12 @@ func rpc_spawn_player(which: int, player_owner: int, where: Vector2):
 	Game.deploy_instance(new_player, where)
 	player_stats_updated.emit()
 
+func get_total_bet() -> int:
+	var output: int = 0
+	for this_player in players:
+		output += this_player.bet
+	return output
+
 func count_living_players() -> int:
 	return get_living_players().size()
 

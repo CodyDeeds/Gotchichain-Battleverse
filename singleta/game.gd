@@ -7,6 +7,7 @@ var cam: Camera2D = null
 var map: PackedScene = null
 var afoot := false
 var is_multiplayer: bool = false
+var has_distributed_value: bool = false
 
 func _ready() -> void:
 	if !OS.is_debug_build():
@@ -26,6 +27,7 @@ func start():
 	if !afoot:
 		PlayerManager.start()
 		afoot = true
+		has_distributed_value = false
 
 func end():
 	if afoot:
@@ -37,6 +39,7 @@ func end():
 		MattohaSystem.Server.SpawnedNodes = {}
 		MattohaSystem.Server.RemovedSceneNodes = {}
 		afoot = false
+		has_distributed_value = false
 
 func return_to_menu():
 	get_tree().change_scene_to_file("res://ui/main_menu.tscn")
@@ -74,3 +77,18 @@ func print_multiplayer(what: String):
 @rpc("authority", "call_local", "reliable")
 func rpc_end_game():
 	get_tree().change_scene_to_file("res://ui/end.tscn")
+
+func distribute_value():
+	if has_distributed_value:
+		return
+	
+	var total_value: float = float( PlayerManager.get_total_bet() )
+	var total_weight: float = 0
+	var all_sources = get_tree().get_nodes_in_group(&"value_sources")
+	for i in all_sources:
+		total_weight += i.value_weight
+	for i in all_sources:
+		var this_fraction: float = i.value_weight / total_weight
+		i.value = int( round( total_value / this_fraction ) )
+	
+	has_distributed_value = true

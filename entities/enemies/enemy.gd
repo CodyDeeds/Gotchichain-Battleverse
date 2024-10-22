@@ -6,13 +6,21 @@ extends Entity
 ## e.g. if every enemy has a weight of 1, the value is split equally
 ## but if one enemy has a weight of 2, it gets double as much as any other enemy
 @export var value_weight: float = 1
-@export var value: int = 500
+@export var value: int = 0
 @export var flying: bool = false
 
 var last_grounded_position: Vector2 = Vector2()
 
 const coin_scene = preload("res://props/coin.tscn")
 
+
+func _init():
+	super()
+	add_to_group(&"enemies")
+	# The value_sources group is specifically for things that derive value from player bets like enemies
+	# They must exist from the very start of the game or the distribution may be inaccurate
+	# Each must have a `value` and `value_weight` variable; int and float respectively
+	add_to_group(&"value_sources")
 
 func _ready() -> void:
 	super()
@@ -38,6 +46,8 @@ func deploy_coin(this_value: int, size: float):
 
 func die():
 	super()
+	
+	Game.distribute_value()
 	
 	while value >= 1000:
 		deploy_coin(1000, 2.0)
