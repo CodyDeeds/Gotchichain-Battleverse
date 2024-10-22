@@ -1,10 +1,6 @@
 extends Node
 
 var players: Array[PlayerStats] = []
-var player1_address: String = ""
-var player2_address: String = ""
-var player1_bet: float = 0.0
-var player2_bet: float = 0.0
 ## Time between a player dying and respawning
 var spawn_delay := 3.0
 var player_count := 2
@@ -27,8 +23,8 @@ func end():
 func add_players(count: int):
 	# Ensure we are adding two players
 	if count >= 2:
-		add_player(0, 1, player1_address)  # Player 1 gets player1_address
-		add_player(1, 1, player2_address)  # Player 2 gets player2_address
+		add_player(0, 1)
+		add_player(1, 1)
 	else:
 		print("Player count is less than 2, unable to add both players.")
 	player_stats_updated.emit()

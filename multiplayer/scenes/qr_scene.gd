@@ -61,32 +61,32 @@ func _on_deposit_request_completed(_result: int, response_code: int, _headers: A
 						var player1_bet = response_data["player1Bet"]
 						print("Player 1 Address: ", player1_address, " Bet: ", player1_bet)
 						_update_log("Player 1 Address: " + player1_address + " is ready with bet: " + str(player1_bet) + " GLTR.")
-						PlayerManager.player1_address = player1_address  # Update PlayerManager
+						PlayerManager.get_player(0).address = player1_address
 				"player2_ready":
 					if response_data.has("player2") and response_data.has("player2Bet"):
 						var player2_address = response_data["player2"]
 						var player2_bet = response_data["player2Bet"]
 						print("Player 2 Address: ", player2_address, " Bet: ", player2_bet)
 						_update_log("Player 2 Address: " + player2_address + " is ready with bet: " + str(player2_bet) + " GLTR.")
-						PlayerManager.player2_address = player2_address  # Update PlayerManager
+						PlayerManager.get_player(1).address = player2_address
 				"deposits_confirmed":
 					print("Deposits made, starting the game...")
 					_update_log("Deposits made, starting the game...")
-
+					
 					if response_data.has("player1") and response_data.has("player1Bet"):
 						var player1_address = response_data["player1"]
 						var player1_bet = response_data["player1Bet"]
 						print("Player 1 Address: ", player1_address, " Bet: ", player1_bet)
 						_update_log("Player 1 Address: " + player1_address + " is ready with bet: " + str(player1_bet) + " GLTR.")
-						PlayerManager.players[0].bet = player1_bet
-						PlayerManager.player1_address = player1_address  # Update PlayerManager
+						PlayerManager.get_player(0).bet = player1_bet
+						PlayerManager.get_player(0).address = player1_address
 					if response_data.has("player2") and response_data.has("player2Bet"):
 						var player2_address = response_data["player2"]
 						var player2_bet = response_data["player2Bet"]
 						print("Player 2 Address: ", player2_address, " Bet: ", player2_bet)
 						_update_log("Player 2 Address: " + player2_address + " is ready with bet: " + str(player2_bet) + " GLTR.")
-						PlayerManager.players[1].bet = player2_bet
-						PlayerManager.player2_address = player2_address  # Update PlayerManager
+						PlayerManager.get_player(1).bet = player2_bet
+						PlayerManager.get_player(1).address = player2_address
 					
 					_start_game()
 				"waiting_for_deposits":
