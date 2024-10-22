@@ -13,6 +13,7 @@ end_fx_scene = ExtResource("2_chq5a")
 line_fx_scene = ExtResource("3_xtw1e")
 particle_density = 0.08
 line_scene = ExtResource("4_43vix")
+teams = Array[int]([0, -1])
 damage = 1.0
 hit_interval = 1.0
 radial_knockback = 1000.0

@@ -4,3 +4,4 @@
 
 [node name="boomerang" type="Area2D"]
 script = ExtResource("1_ysbqb")
+teams = Array[int]([0, -1])

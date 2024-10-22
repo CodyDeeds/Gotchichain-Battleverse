@@ -12,6 +12,7 @@ script = ExtResource("1_vs7mg")
 death_scene = ExtResource("2_bcuf4")
 death_sound = &"magic_hit"
 death_sound_min_delay = 0.1
+teams = Array[int]([0, -1])
 damage = 1.0
 
 [node name="shape" type="CollisionShape2D" parent="."]

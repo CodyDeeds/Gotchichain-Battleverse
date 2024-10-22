@@ -290,6 +290,7 @@ anim_speed_max = 1.0
 [node name="hitbox" type="Area2D" parent="."]
 visible = false
 script = ExtResource("4_k4ut6")
+teams = Array[int]([0, -1])
 damage = 4.0
 
 [node name="laser" type="CollisionShape2D" parent="hitbox"]

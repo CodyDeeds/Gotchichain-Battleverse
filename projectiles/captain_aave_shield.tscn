@@ -51,6 +51,7 @@ return_speed = 2000.0
 hits_left = 1000
 duration = 1000.0
 through_walls = true
+teams = Array[int]([0, -1])
 damage = 2.0
 
 [node name="sprite" type="Sprite2D" parent="."]

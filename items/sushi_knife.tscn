@@ -130,6 +130,7 @@ hframes = 3
 polygon = PackedVector2Array(7.39104, 3.06147, 3.06147, 7.39104, -3.06147, 7.39104, -7.39104, 3.06147, -7.39104, -3.06147, -3.06147, -7.39104, 3.06147, -7.39104, 7.39104, -3.06147)
 
 [node name="hitbox" parent="." index="3" instance=ExtResource("4_i7qav")]
+teams = Array[int]([0, -1])
 damage = 2.0
 active = false
 

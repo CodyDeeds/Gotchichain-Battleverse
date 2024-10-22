@@ -35,6 +35,7 @@ through_walls = true
 death_scene = ExtResource("2_k1pmq")
 creation_sound = &"fireball_throw"
 death_sound = &"fireball_hit"
+teams = Array[int]([0, -1])
 damage = 1.0
 
 [node name="sprite" type="Sprite2D" parent="."]

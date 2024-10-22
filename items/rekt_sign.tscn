@@ -127,6 +127,7 @@ scale = Vector2(2, 2)
 [node name="hitbox" type="Area2D" parent="." index="3"]
 unique_name_in_owner = true
 script = ExtResource("3_e8rfm")
+teams = Array[int]([0, -1])
 damage = 1e+06
 radial_knockback = 2000.0
 active = false
