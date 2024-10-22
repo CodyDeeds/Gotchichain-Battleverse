@@ -1,0 +1,152 @@
+[gd_scene load_steps=13 format=3 uid="uid://clfloi25mmp6f"]
+
+[ext_resource type="Texture2D" uid="uid://b5mtfnwlo31n0" path="res://entities/enemies/tentacle.png" id="1_pp0eq"]
+[ext_resource type="Script" path="res://entities/enemies/tentacle.gd" id="1_redww"]
+[ext_resource type="PackedScene" uid="uid://ckuixxcu173kv" path="res://pieces/player_detector.tscn" id="2_c24ir"]
+[ext_resource type="Script" path="res://pieces/hurtbox.gd" id="2_jx3ai"]
+[ext_resource type="Script" path="res://pieces/hitbox.gd" id="3_0lre0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eb86c"]
+size = Vector2(112, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cl2od"]
+size = Vector2(32, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcp0h"]
+size = Vector2(256, 128)
+
+[sub_resource type="Animation" id="Animation_lphk7"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_mc1tj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qp7tc"]
+resource_name = "attacc"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"activate_hitbox"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d5use"]
+_data = {
+"RESET": SubResource("Animation_mc1tj"),
+"attacc": SubResource("Animation_qp7tc"),
+"idle": SubResource("Animation_lphk7")
+}
+
+[node name="tentacle" type="CharacterBody2D"]
+script = ExtResource("1_redww")
+
+[node name="shape" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-16, 32, -8, 16, 8, 16, 16, 32)
+
+[node name="hurtbox" type="Area2D" parent="."]
+script = ExtResource("2_jx3ai")
+teams = Array[int]([-1])
+
+[node name="shape_right" type="CollisionShape2D" parent="hurtbox"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(40, 24)
+shape = SubResource("RectangleShape2D_eb86c")
+
+[node name="shape_left" type="CollisionShape2D" parent="hurtbox"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-40, 24)
+shape = SubResource("RectangleShape2D_eb86c")
+
+[node name="shape_up" type="CollisionShape2D" parent="hurtbox"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_cl2od")
+
+[node name="flippable" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="player_detector" parent="flippable" instance=ExtResource("2_c24ir")]
+unique_name_in_owner = true
+
+[node name="shape" type="CollisionShape2D" parent="flippable/player_detector"]
+visible = false
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_gcp0h")
+
+[node name="hitbox" type="Area2D" parent="flippable"]
+unique_name_in_owner = true
+script = ExtResource("3_0lre0")
+damage = 2.0
+radial_knockback = 0.0
+directional_knockback = Vector2(0, -1000)
+active = false
+
+[node name="shape" type="CollisionPolygon2D" parent="flippable/hitbox"]
+visible = false
+polygon = PackedVector2Array(0, 32, 0, -56, 48, -56, 72, -40, 88, -16, 88, 32)
+
+[node name="sprite" type="Sprite2D" parent="flippable"]
+position = Vector2(32, -32)
+texture = ExtResource("1_pp0eq")
+hframes = 4
+vframes = 3
+
+[node name="animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_d5use")
+}
+autoplay = "idle"
+next/attacc = &"idle"
+
+[connection signal="player_within" from="flippable/player_detector" to="." method="_on_player_detector_player_within"]
