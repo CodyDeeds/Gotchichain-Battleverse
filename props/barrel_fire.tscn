@@ -64,6 +64,8 @@ _data = {
 script = ExtResource("1_f0rbm")
 
 [node name="collision" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 67
 
 [node name="shape" type="CollisionShape2D" parent="collision"]
 position = Vector2(0, 14)
