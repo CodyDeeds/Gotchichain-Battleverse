@@ -52,8 +52,6 @@ func jump():
 	var target_position: Vector2 = find_valid_platform()
 	var relative_position: Vector2 = target_position - father.global_position
 	
-	#print( "Frog %s jumping %s" % [father.name, relative_position.round()] )
-	
 	if abs(relative_position.x) < 16:
 		flipped = !flipped
 		target_position = find_valid_platform()

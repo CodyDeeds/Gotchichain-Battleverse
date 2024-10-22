@@ -2,7 +2,13 @@ class_name Enemy
 extends Entity
 
 
+## The share of total value awarded by killing this enemy
+## e.g. if every enemy has a weight of 1, the value is split equally
+## but if one enemy has a weight of 2, it gets double as much as any other enemy
+@export var value_weight: float = 1
 @export var value: int = 500
+
+var last_grounded_position: Vector2 = Vector2()
 
 const coin_scene = preload("res://props/coin.tscn")
 
@@ -12,12 +18,19 @@ func _ready() -> void:
 	
 	collision_layer = 64
 	collision_mask = 5
+	last_grounded_position = global_position
+
+func _process(delta: float) -> void:
+	super(delta)
+	
+	if is_on_floor():
+		last_grounded_position = global_position
 
 
 func deploy_coin(this_value: int, size: float):
 	var new_coin = Game.create_instance(coin_scene)
 	new_coin.value = this_value
-	var pos: Vector2 = global_position
+	var pos: Vector2 = last_grounded_position
 	pos += Vector2(randf()*8, 0).rotated(randf() * 2*PI)
 	Game.deploy_instance(new_coin, pos)
 	new_coin.change_scale(size)
