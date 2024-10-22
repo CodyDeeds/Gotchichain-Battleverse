@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dqufq5lpfiuis"]
+[gd_scene load_steps=18 format=3 uid="uid://dqufq5lpfiuis"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_mrcsm"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="2_fjjf3"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c7m825vkhnx1y" path="res://props/prop_line.tscn" id="10_vr55q"]
 [ext_resource type="PackedScene" uid="uid://wngdx64y7qt8" path="res://props/crate.tscn" id="11_cjb46"]
 [ext_resource type="PackedScene" uid="uid://bnama2m0ylxhb" path="res://entities/enemies/firefrog.tscn" id="12_dh710"]
+[ext_resource type="PackedScene" uid="uid://k7q5ns6wn7gj" path="res://props/crate_money.tscn" id="12_e5mn6"]
 
 [sub_resource type="Curve2D" id="Curve2D_dii2p"]
 _data = {
@@ -106,6 +107,10 @@ interval = 12.0
 position = Vector2(0, -136)
 texture = ExtResource("8_uaiyw")
 
+[node name="crate_money" parent="platforms/path_left/moving_element_sin" index="3" instance=ExtResource("12_e5mn6")]
+position = Vector2(0, -40)
+solid = false
+
 [node name="path_right_lower" type="Path2D" parent="platforms" index="2"]
 curve = SubResource("Curve2D_kja1h")
 
@@ -193,6 +198,44 @@ texture = ExtResource("8_uaiyw")
 [node name="crane_hook1" type="Sprite2D" parent="props" index="9"]
 position = Vector2(256, -1856)
 texture = ExtResource("8_uaiyw")
+
+[node name="money_srates" type="Node2D" parent="props" index="10"]
+
+[node name="crate_money0" parent="props/money_srates" index="0" instance=ExtResource("12_e5mn6")]
+position = Vector2(-200, -384)
+
+[node name="crate_money1" parent="props/money_srates" index="1" instance=ExtResource("12_e5mn6")]
+position = Vector2(-304, 128)
+
+[node name="crate_money2" parent="props/money_srates" index="2" instance=ExtResource("12_e5mn6")]
+position = Vector2(392, -128)
+
+[node name="crate_money3" parent="props/money_srates" index="3" instance=ExtResource("12_e5mn6")]
+position = Vector2(-8, 384)
+
+[node name="crate_money4" parent="props/money_srates" index="4" instance=ExtResource("12_e5mn6")]
+position = Vector2(9, 340)
+
+[node name="crate_money5" parent="props/money_srates" index="5" instance=ExtResource("12_e5mn6")]
+position = Vector2(-80, -1600)
+
+[node name="crate_money6" parent="props/money_srates" index="6" instance=ExtResource("12_e5mn6")]
+position = Vector2(0, -1600)
+
+[node name="crate_money7" parent="props/money_srates" index="7" instance=ExtResource("12_e5mn6")]
+position = Vector2(48, -1600)
+
+[node name="crate_money8" parent="props/money_srates" index="8" instance=ExtResource("12_e5mn6")]
+position = Vector2(112, -1600)
+
+[node name="crate_money9" parent="props/money_srates" index="9" instance=ExtResource("12_e5mn6")]
+position = Vector2(-56, -1644)
+
+[node name="crate_money10" parent="props/money_srates" index="10" instance=ExtResource("12_e5mn6")]
+position = Vector2(8, -1644)
+
+[node name="crate_money11" parent="props/money_srates" index="11" instance=ExtResource("12_e5mn6")]
+position = Vector2(-32, -1688)
 
 [node name="enemies" type="Node2D" parent="." index="9"]
 

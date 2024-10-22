@@ -38,7 +38,8 @@ func get_hit_by(what: Hitbox):
 	#print("Hurtbox: Getting hit by ", what.name)
 	hit.emit(what)
 	what.hit.emit(self)
-	what.hit_being(father)
+	if father is Entity:
+		what.hit_being(father)
 	invuln_time = invuln_duration
 	if what.hit_interval > 0:
 		what.temporary_exceptions[self] = what.hit_interval

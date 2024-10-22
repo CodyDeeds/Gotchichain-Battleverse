@@ -9,6 +9,8 @@ var afoot := false
 var is_multiplayer: bool = false
 var has_distributed_value: bool = false
 
+const coin_scene = preload("res://props/coin.tscn")
+
 func _ready() -> void:
 	if !OS.is_debug_build():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -90,5 +92,28 @@ func distribute_value():
 	for i in all_sources:
 		var this_fraction: float = i.value_weight / total_weight
 		i.value = int( round( total_value * this_fraction ) )
+		#print("%s assigned %s of %s: %s" % [i.name, this_fraction, total_value, i.value])
 	
 	has_distributed_value = true
+
+func deploy_coin(value: int, size: float, where: Vector2):
+	var new_coin = Game.create_instance(coin_scene)
+	new_coin.value = value
+	var pos: Vector2 = where
+	pos += Vector2(randf()*8, 0).rotated(randf() * 2*PI)
+	deploy_instance(new_coin, pos)
+	new_coin.change_scale(size)
+
+func deploy_coin_payload(value: int, where: Vector2):
+	while value >= 1000:
+		deploy_coin(1000, 2.0, where)
+		value -= 1000
+	while value >= 100:
+		deploy_coin(100, 1.5, where)
+		value -= 100
+	while value >= 10:
+		deploy_coin(10, 1.0, where)
+		value -= 10
+	while value >= 1:
+		deploy_coin(1, 0.5, where)
+		value -= 1
