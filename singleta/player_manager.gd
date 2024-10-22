@@ -21,12 +21,8 @@ func end():
 
 ## Adding both players and assigning their addresses
 func add_players(count: int):
-	# Ensure we are adding two players
-	if count >= 2:
-		add_player(0, 1)
-		add_player(1, 1)
-	else:
-		print("Player count is less than 2, unable to add both players.")
+	for i in range(count):
+		add_player(i, 1)
 	player_stats_updated.emit()
 
 ## Modified add_player method to handle addresses
