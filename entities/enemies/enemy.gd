@@ -7,6 +7,7 @@ extends Entity
 ## but if one enemy has a weight of 2, it gets double as much as any other enemy
 @export var value_weight: float = 1
 @export var value: int = 500
+@export var flying: bool = false
 
 var last_grounded_position: Vector2 = Vector2()
 
@@ -30,7 +31,7 @@ func _process(delta: float) -> void:
 func deploy_coin(this_value: int, size: float):
 	var new_coin = Game.create_instance(coin_scene)
 	new_coin.value = this_value
-	var pos: Vector2 = last_grounded_position
+	var pos: Vector2 = global_position if flying else last_grounded_position
 	pos += Vector2(randf()*8, 0).rotated(randf() * 2*PI)
 	Game.deploy_instance(new_coin, pos)
 	new_coin.change_scale(size)
