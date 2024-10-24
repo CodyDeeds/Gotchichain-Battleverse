@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cyu5knnbsny5u"]
+[gd_scene load_steps=14 format=3 uid="uid://cyu5knnbsny5u"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_dtx8p"]
 [ext_resource type="PackedScene" uid="uid://38t5en2plwcs" path="res://environment/backgrounds/scenes/synth.tscn" id="2_irc2h"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cekm25jns2ryj" path="res://props/treeline.tscn" id="7_ct7r4"]
 [ext_resource type="PackedScene" uid="uid://c2cmh7vvadufw" path="res://props/gotchi_audience.tscn" id="9_vii7f"]
 [ext_resource type="PackedScene" uid="uid://blh0rv0tao166" path="res://props/banner_ghst.tscn" id="11_xgil8"]
+[ext_resource type="PackedScene" uid="uid://clfloi25mmp6f" path="res://entities/enemies/tentacle.tscn" id="12_1lwmn"]
+[ext_resource type="PackedScene" uid="uid://dmki70gr1kr3i" path="res://entities/enemies/jellyfish.tscn" id="13_354ma"]
 
 [node name="arena" instance=ExtResource("1_dtx8p")]
 
@@ -122,3 +124,20 @@ position = Vector2(-768, -88)
 
 [node name="banner_ghst1" parent="props" index="12" instance=ExtResource("11_xgil8")]
 position = Vector2(768, -88)
+
+[node name="enemies" type="Node2D" parent="." index="8"]
+
+[node name="tentacle0" parent="enemies" index="0" instance=ExtResource("12_1lwmn")]
+position = Vector2(-512, -448)
+
+[node name="tentacle1" parent="enemies" index="1" instance=ExtResource("12_1lwmn")]
+position = Vector2(512, -448)
+
+[node name="tentacle2" parent="enemies" index="2" instance=ExtResource("12_1lwmn")]
+position = Vector2(-128, -864)
+
+[node name="tentacle3" parent="enemies" index="3" instance=ExtResource("12_1lwmn")]
+position = Vector2(128, -864)
+
+[node name="jellyfish" parent="enemies" index="4" instance=ExtResource("13_354ma")]
+position = Vector2(0, 64)

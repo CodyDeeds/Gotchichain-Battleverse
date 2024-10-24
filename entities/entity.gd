@@ -9,6 +9,10 @@ extends CharacterBody2D
 
 @export var gravity := 500.0
 
+@export var acceleration := 2000.0
+
+@export var friction: float = 5.0
+
 var hp := max_hp
 var dead := false
 
@@ -24,6 +28,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	gravitate(delta)
+	frictutate(delta)
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -31,6 +36,12 @@ func _physics_process(delta: float) -> void:
 
 func gravitate(delta: float):
 	velocity.y += gravity * delta
+
+func frictutate(delta: float):
+	velocity.x -= velocity.x * friction * delta
+
+func accelerate(dir: float, delta: float):
+	velocity.x += acceleration * dir * delta
 
 func set_hp(what: float):
 	hp = what

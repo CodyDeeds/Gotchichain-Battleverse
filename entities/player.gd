@@ -9,7 +9,6 @@ extends Entity
 @export var max_speed := 400.0
 ## When jumping, horizontal speed is increased by this amount multiplicatively
 @export var jump_speed_boost := 0.5
-@export var acceleration := 2000.0
 @export var air_jumps := 1
 @export var jump_speed := 1500.0
 ## Speed with which the player drops through platforms
@@ -59,7 +58,6 @@ func _process(delta: float) -> void:
 	# Physics-y simulation aspects on server only
 	if !Game.is_multiplayer or is_multiplayer_authority():
 		super(delta)
-		frictutate(delta)
 		accelerate(traction, delta)
 		#move_and_slide()
 		if is_on_floor():
@@ -102,13 +100,10 @@ func rpc_tractutate(new_traction: float):
 	traction = new_traction
 
 func frictutate(delta: float):
-	var friction: float = 1.0 / delta
+	var _friction: float = 1.0 / delta
 	if max_speed > 0:
-		friction = acceleration / max_speed
-	velocity.x -= velocity.x * friction * delta
-
-func accelerate(dir: float, delta: float):
-	velocity.x += acceleration * dir * delta
+		_friction = acceleration / max_speed
+	velocity.x -= velocity.x * _friction * delta
 
 func gravitate(delta: float):
 	super(delta)

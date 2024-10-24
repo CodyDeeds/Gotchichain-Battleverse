@@ -3,6 +3,8 @@ extends Node
 
 
 @export var search_deep_for_animator := true
+## Whether or not to print state changes for debug purposes
+@export var print_state_changes := false
 
 var current_state: State = null
 var state_name := ""
@@ -74,6 +76,11 @@ func set_state_instance(what: State):
 	
 	current_state = what
 	state_name = what.name
+	if print_state_changes:
+		var _state_name = "null"
+		if is_instance_valid(what):
+			_state_name = what.name
+		print("%s: Changing state to %s" % [father.name, _state_name])
 	
 	if current_state.animation != "":
 		play_animation(current_state.animation)
