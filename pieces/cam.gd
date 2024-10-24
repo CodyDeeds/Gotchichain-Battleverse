@@ -4,7 +4,7 @@ extends Camera2D
 @export var move_speed := 5.0
 @export var zoom_speed := 10.0
 ## Amount of space around players that needs to remain visible
-@export var border := 256.0
+@export var border := 512.0
 
 func _ready() -> void:
 	Game.cam = self
