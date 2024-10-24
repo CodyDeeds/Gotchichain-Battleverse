@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5ch5l1ks7oal"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_5c7ne"]
+[ext_resource type="Script" path="res://items/baable_gum.gd" id="2_o1q0f"]
+[ext_resource type="PackedScene" uid="uid://d2s63m6obpyyu" path="res://projectiles/baable.tscn" id="3_i0il3"]
+[ext_resource type="Texture2D" uid="uid://bq3j8o2ryqj6o" path="res://items/baable_gum.png" id="4_uqtnj"]
+
+[node name="baable_gum" instance=ExtResource("1_5c7ne")]
+position = Vector2(-1, 0)
+can_sleep = false
+script = ExtResource("2_o1q0f")
+projectile_speed = 400.0
+projectile_spread = 5.0
+can_hit_shooter = false
+rof_interval = 3.0
+gun_kickback = 20.0
+player_kickback = 0.0
+projectile = ExtResource("3_i0il3")
+shoot_particle_scene = null
+bonk_speed_threshhold = 1000.0
+straighten_speed = 100.0
+hitbox_size = 12.0
+sprite_scale = 1.5
+pools = Array[int]([1])
+grab_sfx = &""
+throw_sfx = &""
+rare_throw_sfx = &""
+
+[node name="sprite" parent="flip" index="0"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_uqtnj")
+
+[node name="shape" parent="." index="1"]
+visible = true
+polygon = PackedVector2Array(11.0866, 4.5922, 4.5922, 11.0866, -4.5922, 11.0866, -11.0866, 4.5922, -11.0866, -4.5922, -4.5922, -11.0866, 4.5922, -11.0866, 11.0866, -4.5922)

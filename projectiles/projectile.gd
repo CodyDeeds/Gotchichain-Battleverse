@@ -93,7 +93,7 @@ func die():
 	active = false
 	
 	if death_scene:
-		if (!multiplayer.is_server()):
+		#if (!multiplayer.is_server()):
 			var instance = Game.create_instance(death_scene)
 			Game.deploy_instance(instance, global_position)
 	

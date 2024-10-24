@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2s63m6obpyyu"]
+
+[ext_resource type="Script" path="res://projectiles/baable.gd" id="1_71kas"]
+[ext_resource type="PackedScene" uid="uid://dg2okaoodrfss" path="res://projectiles/explosion.tscn" id="2_50uhq"]
+[ext_resource type="Texture2D" uid="uid://muhqsw3kwk48" path="res://projectiles/baable.png" id="3_5nqc8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1aumd"]
+radius = 7.07107
+
+[node name="baable" type="Area2D"]
+script = ExtResource("1_71kas")
+use_raycast = false
+death_scene = ExtResource("2_50uhq")
+teams = Array[int]([0, -1])
+radial_knockback = 3000.0
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1aumd")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_5nqc8")
