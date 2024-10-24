@@ -1,13 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://da5junaar6e3t"]
+[gd_scene load_steps=14 format=3 uid="uid://da5junaar6e3t"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_655hd"]
 [ext_resource type="PackedScene" uid="uid://38t5en2plwcs" path="res://environment/backgrounds/scenes/synth.tscn" id="2_7d3ux"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="3_va8nr"]
 [ext_resource type="PackedScene" uid="uid://bnrjue3yrwi3c" path="res://props/fountain.tscn" id="4_e3lij"]
+[ext_resource type="PackedScene" uid="uid://clfloi25mmp6f" path="res://entities/enemies/tentacle.tscn" id="4_ykon2"]
+[ext_resource type="PackedScene" uid="uid://dmki70gr1kr3i" path="res://entities/enemies/jellyfish.tscn" id="5_qlqkq"]
 [ext_resource type="PackedScene" uid="uid://blh0rv0tao166" path="res://props/banner_ghst.tscn" id="5_vvqkn"]
 [ext_resource type="PackedScene" uid="uid://cekm25jns2ryj" path="res://props/treeline.tscn" id="6_40eds"]
 [ext_resource type="PackedScene" uid="uid://c7m825vkhnx1y" path="res://props/prop_line.tscn" id="7_75wnh"]
 [ext_resource type="PackedScene" uid="uid://djfcga5sttkmg" path="res://props/grass.tscn" id="8_ufh4r"]
+[ext_resource type="PackedScene" uid="uid://k7q5ns6wn7gj" path="res://props/crate_money.tscn" id="9_52bry"]
 [ext_resource type="PackedScene" uid="uid://bmkqhiu8bpnlf" path="res://props/vine.tscn" id="9_ks10q"]
 [ext_resource type="PackedScene" uid="uid://dlh2fcbilafwe" path="res://props/chest.tscn" id="10_8m81f"]
 
@@ -35,7 +38,27 @@ layer_0/tile_data = PackedInt32Array(262130, 327682, 3, 262129, 65538, 2, 262128
 layer_1/tile_data = PackedInt32Array(327662, 4, 1, 393198, 4, 1, 458734, 4, 1, 524270, 4, 1, 524271, 65540, 1, 524272, 65540, 1, 524273, 65540, 1, 524274, 65540, 1, 524275, 131076, 1, 458739, 131076, 1, 393203, 131076, 1, 327667, 131076, 1, 327666, 65540, 1, 327665, 65540, 1, 327664, 65540, 1, 327663, 65540, 1, 393199, 65540, 1, 458735, 65540, 1, 458736, 65540, 1, 458737, 65540, 1, 458738, 65540, 1, 393202, 65540, 1, 393200, 65540, 1, 393201, 65540, 1, 262131, 131076, 0, 262130, 65540, 0, 262129, 65540, 0, 262128, 65540, 0, 262127, 65540, 0, 262126, 4, 0, 589806, 4, 2, 589807, 65540, 2, 589808, 65540, 2, 589809, 65540, 2, 589810, 65540, 2, 589811, 131076, 2, 196620, 4, 0, 262156, 4, 1, 327692, 4, 1, 393228, 4, 1, 458764, 4, 1, 524300, 4, 2, 524301, 65540, 2, 524302, 65540, 2, 524303, 65540, 2, 524304, 65540, 2, 524305, 131076, 2, 458769, 131076, 1, 393233, 131076, 1, 327697, 131076, 1, 262161, 131076, 1, 196625, 131076, 0, 196624, 65540, 0, 196623, 65540, 0, 196622, 65540, 0, 196621, 65540, 0, 262157, 65540, 1, 262158, 65540, 1, 262159, 65540, 1, 262160, 65540, 1, 327696, 65540, 1, 327695, 65540, 1, 327694, 65540, 1, 327693, 65540, 1, 393229, 65540, 1, 393230, 65540, 1, 393231, 65540, 1, 393232, 65540, 1, 458768, 65540, 1, 458767, 65540, 1, 458766, 65540, 1, 458765, 65540, 1)
 layer_2/tile_data = PackedInt32Array(458768, 131077, 2, 393232, 131077, 1, 327696, 131077, 1, 262160, 131077, 1, 196624, 131077, 1, 131088, 131077, 1, 65552, 131077, 0, 458767, 65541, 2, 393231, 65541, 1, 327695, 65541, 1, 262159, 65541, 1, 196623, 65541, 1, 131087, 65541, 1, 65551, 65541, 0, 458766, 65541, 2, 393230, 65541, 1, 327694, 65541, 1, 262158, 65541, 1, 196622, 65541, 1, 131086, 65541, 1, 65550, 65541, 0, 458765, 65541, 2, 393229, 65541, 1, 327693, 65541, 1, 262157, 65541, 1, 196621, 65541, 1, 131085, 65541, 1, 65549, 65541, 0, 458764, 65541, 2, 393228, 65541, 1, 327692, 65541, 1, 262156, 65541, 1, 196620, 65541, 1, 131084, 65541, 1, 65548, 65541, 0, 458763, 65541, 2, 393227, 65541, 1, 327691, 65541, 1, 262155, 65541, 1, 196619, 65541, 1, 131083, 393221, 2, 65547, 5, 0, 458762, 65541, 2, 393226, 65541, 1, 327690, 655365, 1, 262154, 655365, 0, 196618, 65541, 1, 458761, 65541, 2, 393225, 65541, 1, 327689, 65541, 1, 262153, 65541, 1, 196617, 65541, 1, 458760, 65541, 2, 393224, 65541, 1, 327688, 65541, 1, 262152, 65541, 1, 196616, 65541, 1, 131080, 327685, 2, 65544, 131077, 0, 458759, 65541, 2, 393223, 65541, 1, 327687, 655365, 1, 262151, 655365, 0, 196615, 65541, 1, 131079, 393221, 2, 65543, 5, 0, 458758, 65541, 2, 393222, 65541, 1, 327686, 65541, 1, 262150, 65541, 1, 196614, 65541, 1, 458757, 65541, 2, 393221, 65541, 1, 327685, 65541, 1, 262149, 65541, 1, 196613, 65541, 1, 458756, 65541, 2, 393220, 65541, 1, 327684, 655365, 1, 262148, 655365, 0, 196612, 65541, 1, 131076, 327685, 2, 65540, 131077, 0, 458755, 65541, 2, 393219, 65541, 1, 327683, 65541, 1, 262147, 65541, 1, 196611, 65541, 1, 131075, 393221, 2, 65539, 5, 0, 458754, 65541, 2, 393218, 65541, 1, 327682, 65541, 1, 262146, 65541, 1, 196610, 65541, 1, 458753, 65541, 2, 393217, 65541, 1, 327681, 65541, 1, 262145, 65541, 1, 196609, 65541, 1, 458752, 65541, 2, 393216, 65541, 1, 327680, 65541, 1, 262144, 65541, 1, 196608, 65541, 1, 131072, 327685, 2, 65536, 131077, 0, 524287, 65541, 2, 458751, 65541, 1, 393215, 65541, 1, 327679, 65541, 1, 262143, 65541, 1, 196607, 393221, 2, 131071, 5, 0, 524286, 65541, 2, 458750, 65541, 1, 393214, 65541, 1, 327678, 65541, 1, 262142, 65541, 1, 524285, 65541, 2, 458749, 65541, 1, 393213, 65541, 1, 327677, 65541, 1, 262141, 65541, 1, 524284, 65541, 2, 458748, 65541, 1, 393212, 65541, 1, 327676, 65541, 1, 262140, 65541, 1, 196604, 327685, 2, 131068, 131077, 0, 524283, 65541, 2, 458747, 65541, 1, 393211, 655365, 1, 327675, 655365, 0, 262139, 65541, 1, 196603, 393221, 2, 131067, 5, 0, 524282, 65541, 2, 458746, 65541, 1, 393210, 65541, 1, 327674, 65541, 1, 262138, 65541, 1, 524281, 65541, 2, 458745, 65541, 1, 393209, 65541, 1, 327673, 65541, 1, 262137, 65541, 1, 524280, 65541, 2, 458744, 65541, 1, 393208, 655365, 1, 327672, 655365, 0, 262136, 65541, 1, 196600, 327685, 2, 131064, 131077, 0, 524279, 65541, 2, 458743, 65541, 1, 393207, 65541, 1, 327671, 65541, 1, 262135, 65541, 1, 196599, 393221, 2, 131063, 5, 0, 524278, 65541, 2, 458742, 65541, 1, 393206, 65541, 1, 327670, 65541, 1, 262134, 65541, 1, 524277, 65541, 2, 458741, 65541, 1, 393205, 655365, 1, 327669, 655365, 0, 262133, 65541, 1, 524276, 65541, 2, 458740, 65541, 1, 393204, 65541, 1, 327668, 65541, 1, 262132, 65541, 1, 196596, 327685, 2, 131060, 131077, 0, 524275, 65541, 2, 458739, 65541, 1, 393203, 65541, 1, 327667, 65541, 1, 262131, 65541, 1, 196595, 65541, 1, 131059, 65541, 0, 524274, 65541, 2, 458738, 65541, 1, 393202, 65541, 1, 327666, 65541, 1, 262130, 65541, 1, 196594, 65541, 1, 131058, 65541, 0, 524273, 65541, 2, 458737, 65541, 1, 393201, 65541, 1, 327665, 65541, 1, 262129, 65541, 1, 196593, 65541, 1, 131057, 65541, 0, 524272, 65541, 2, 458736, 65541, 1, 393200, 65541, 1, 327664, 65541, 1, 262128, 65541, 1, 196592, 65541, 1, 131056, 65541, 0, 524271, 5, 2, 458735, 5, 1, 393199, 5, 1, 327663, 5, 1, 262127, 5, 1, 196591, 5, 1, 131055, 5, 0, 196597, 65541, 0, 196598, 65541, 0, 196601, 65541, 0, 196602, 65541, 0, 196605, 65541, 0, 196606, 65541, 0, 131073, 65541, 0, 131074, 65541, 0, 131077, 65541, 0, 131078, 65541, 0, 131081, 65541, 0, 131082, 65541, 0, 524270, 6, 0, 524269, 6, 0, 524268, 6, 0, 524267, 6, 0, 524266, 6, 0, 524265, 6, 0, 524264, 6, 0, 524263, 6, 0, 458769, 6, 0, 458770, 6, 0, 458771, 6, 0, 458772, 6, 0, 458773, 6, 0, 458774, 6, 0, 458775, 6, 0, 458776, 6, 0, 458777, 6, 0)
 
-[node name="props" type="Node2D" parent="." index="7"]
+[node name="enemies" type="Node2D" parent="." index="7"]
+
+[node name="tentacle0" parent="enemies" index="0" instance=ExtResource("4_ykon2")]
+position = Vector2(-48, 96)
+
+[node name="tentacle1" parent="enemies" index="1" instance=ExtResource("4_ykon2")]
+position = Vector2(48, 96)
+
+[node name="tentacle2" parent="enemies" index="2" instance=ExtResource("4_ykon2")]
+position = Vector2(-128, 192)
+
+[node name="tentacle3" parent="enemies" index="3" instance=ExtResource("4_ykon2")]
+position = Vector2(128, 192)
+
+[node name="jellyfish0" parent="enemies" index="4" instance=ExtResource("5_qlqkq")]
+position = Vector2(-480, -160)
+
+[node name="jellyfish1" parent="enemies" index="5" instance=ExtResource("5_qlqkq")]
+position = Vector2(480, -160)
+
+[node name="props" type="Node2D" parent="." index="8"]
 
 [node name="fountain" parent="props" index="0" instance=ExtResource("4_e3lij")]
 position = Vector2(0, 192)
@@ -64,40 +87,72 @@ position = Vector2(512, 192)
 line = Vector2(256, 0)
 randomness = 0.5
 
-[node name="grass" parent="props" index="7" instance=ExtResource("7_75wnh")]
+[node name="crates" type="Node2D" parent="props" index="7"]
+
+[node name="crate_money0" parent="props/crates" index="0" instance=ExtResource("9_52bry")]
+position = Vector2(-320, 224)
+
+[node name="crate_money1" parent="props/crates" index="1" instance=ExtResource("9_52bry")]
+position = Vector2(-272, 224)
+
+[node name="crate_money2" parent="props/crates" index="2" instance=ExtResource("9_52bry")]
+position = Vector2(-208, 224)
+
+[node name="crate_money3" parent="props/crates" index="3" instance=ExtResource("9_52bry")]
+position = Vector2(-288, 180)
+
+[node name="crate_money4" parent="props/crates" index="4" instance=ExtResource("9_52bry")]
+position = Vector2(-240, 180)
+
+[node name="crate_money5" parent="props/crates" index="5" instance=ExtResource("9_52bry")]
+position = Vector2(232, 224)
+
+[node name="crate_money6" parent="props/crates" index="6" instance=ExtResource("9_52bry")]
+position = Vector2(288, 224)
+
+[node name="crate_money7" parent="props/crates" index="7" instance=ExtResource("9_52bry")]
+position = Vector2(336, 224)
+
+[node name="crate_money8" parent="props/crates" index="8" instance=ExtResource("9_52bry")]
+position = Vector2(240, 180)
+
+[node name="crate_money9" parent="props/crates" index="9" instance=ExtResource("9_52bry")]
+position = Vector2(304, 180)
+
+[node name="grass" parent="props" index="8" instance=ExtResource("7_75wnh")]
 position = Vector2(-784, 256)
 props = Array[PackedScene]([ExtResource("8_ufh4r")])
 line = Vector2(1536, 0)
 interval = 16.0
 
-[node name="vine0" parent="props" index="8" instance=ExtResource("9_ks10q")]
+[node name="vine0" parent="props" index="9" instance=ExtResource("9_ks10q")]
 position = Vector2(-592, -64)
 
-[node name="vine1" parent="props" index="9" instance=ExtResource("9_ks10q")]
+[node name="vine1" parent="props" index="10" instance=ExtResource("9_ks10q")]
 position = Vector2(-368, -64)
 
-[node name="vine2" parent="props" index="10" instance=ExtResource("9_ks10q")]
+[node name="vine2" parent="props" index="11" instance=ExtResource("9_ks10q")]
 position = Vector2(368, -64)
 
-[node name="vine3" parent="props" index="11" instance=ExtResource("9_ks10q")]
+[node name="vine3" parent="props" index="12" instance=ExtResource("9_ks10q")]
 position = Vector2(592, -64)
 
-[node name="vine_line0" parent="props" index="12" instance=ExtResource("7_75wnh")]
+[node name="vine_line0" parent="props" index="13" instance=ExtResource("7_75wnh")]
 position = Vector2(-576, 128)
 props = Array[PackedScene]([ExtResource("9_ks10q")])
 line = Vector2(128, 0)
 interval = 16.0
 randomness = 1.0
 
-[node name="vine_line1" parent="props" index="13" instance=ExtResource("7_75wnh")]
+[node name="vine_line1" parent="props" index="14" instance=ExtResource("7_75wnh")]
 position = Vector2(384, 128)
 props = Array[PackedScene]([ExtResource("9_ks10q")])
 line = Vector2(128, 0)
 interval = 16.0
 randomness = 1.0
 
-[node name="chest0" parent="props" index="14" instance=ExtResource("10_8m81f")]
+[node name="chest0" parent="props" index="15" instance=ExtResource("10_8m81f")]
 position = Vector2(-528, -144)
 
-[node name="chest1" parent="props" index="15" instance=ExtResource("10_8m81f")]
+[node name="chest1" parent="props" index="16" instance=ExtResource("10_8m81f")]
 position = Vector2(528, -144)

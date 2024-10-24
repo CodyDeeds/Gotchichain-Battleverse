@@ -225,6 +225,7 @@ script = ExtResource("3_eupke")
 unique_name_in_owner = true
 
 [node name="shape" type="CollisionShape2D" parent="flippable/player_detector"]
+visible = false
 position = Vector2(428, -16)
 shape = SubResource("RectangleShape2D_emdnt")
 
