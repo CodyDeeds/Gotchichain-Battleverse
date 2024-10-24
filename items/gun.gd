@@ -19,6 +19,7 @@ extends Item
 
 var timer_rof := Timer.new()
 var can_shoot := true
+var shoot_veto := false
 var shots_taken: int = 0
 
 func _ready() -> void:
@@ -27,7 +28,7 @@ func _ready() -> void:
 	timer_rof.timeout.connect(_on_timer_rof_timeout)
 
 func attempt_shoot():
-	if can_shoot:
+	if can_shoot and !shoot_veto:
 		shoot()
 		
 		if shoot_particle_scene:

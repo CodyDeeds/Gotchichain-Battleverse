@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://dn2aqqdm6erbb"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_64oty"]
+[ext_resource type="Script" path="res://items/mechanical_claw.gd" id="2_0qymw"]
+[ext_resource type="Texture2D" uid="uid://d3id1nm6u5ln8" path="res://items/mechanical_claw.png" id="3_0h2xa"]
+[ext_resource type="Texture2D" uid="uid://c3x44kbx7mrae" path="res://fx/chain.png" id="3_3royk"]
+[ext_resource type="PackedScene" uid="uid://cks7wk366xdsl" path="res://projectiles/claw_grabber.tscn" id="3_w21id"]
+
+[node name="mechanical_claw" node_paths=PackedStringArray("barrel") instance=ExtResource("1_64oty")]
+can_sleep = false
+script = ExtResource("2_0qymw")
+max_grab_time = null
+pull_acceleration = null
+pull_speed = null
+pull_target_distance = null
+barrel = NodePath("flip/sprite/barrel")
+projectile_speed = 800.0
+projectile_spread = 5.0
+can_hit_shooter = false
+rof_interval = 0.25
+gun_kickback = 20.0
+player_kickback = 0.0
+projectile = ExtResource("3_w21id")
+shoot_particle_scene = null
+bonk_speed_threshhold = 1000.0
+straighten_speed = 100.0
+hitbox_size = 12.0
+sprite_scale = 1.5
+pools = Array[int]([1])
+
+[node name="chain" type="Sprite2D" parent="." index="0"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("3_3royk")
+region_enabled = true
+region_rect = Rect2(0, 0, 0, 16)
+
+[node name="sprite" parent="flip" index="0"]
+position = Vector2(0, -3)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_0h2xa")
+hframes = 2
+
+[node name="barrel" type="Marker2D" parent="flip/sprite" index="0"]
+unique_name_in_owner = true
+position = Vector2(6, 2)
+
+[node name="shape" parent="." index="2"]
+polygon = PackedVector2Array(11.0866, 4.5922, 4.5922, 11.0866, -4.5922, 11.0866, -11.0866, 4.5922, -11.0866, -4.5922, -4.5922, -11.0866, 4.5922, -11.0866, 11.0866, -4.5922)

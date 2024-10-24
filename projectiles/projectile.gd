@@ -29,6 +29,10 @@ var acceleration := Vector2()
 var age: float = 0
 var dead := false
 
+signal expired
+signal crashed
+
+
 func _ready() -> void:
 	super()
 	
@@ -73,6 +77,7 @@ func _process(delta: float) -> void:
 	
 	duration -= delta
 	if duration <= 0:
+		expired.emit()
 		die()
 
 
@@ -102,6 +107,7 @@ func die():
 
 func _on_body_entered(_what: Node2D):
 	if !through_walls:
+		crashed.emit()
 		die()
 
 func _on_area_entered(what: Node2D):

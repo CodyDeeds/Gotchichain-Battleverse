@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cks7wk366xdsl"]
+
+[ext_resource type="Script" path="res://projectiles/claw_grabber.gd" id="1_qcimu"]
+[ext_resource type="Texture2D" uid="uid://bnqa4574gs5f2" path="res://projectiles/claw_grabber.png" id="2_dt3at"]
+[ext_resource type="Script" path="res://pieces/rotator_to_motion.gd" id="3_qveay"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t2uf6"]
+
+[node name="claw_grabber" type="Area2D"]
+script = ExtResource("1_qcimu")
+duration = 2.0
+teams = Array[int]([0, -1])
+damage = 1.0
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t2uf6")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_dt3at")
+
+[node name="rotator_to_motion" type="Node" parent="."]
+script = ExtResource("3_qveay")
