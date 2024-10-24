@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://v88vyim1kcro"]
+
+[ext_resource type="Script" path="res://projectiles/explosion_multi.gd" id="1_hh7bh"]
+[ext_resource type="Script" path="res://pieces/camera_shaker.gd" id="2_f3k2h"]
+[ext_resource type="Script" path="res://pieces/spawner.gd" id="3_d1sum"]
+[ext_resource type="PackedScene" uid="uid://dg2okaoodrfss" path="res://projectiles/explosion.tscn" id="4_7ddvg"]
+
+[node name="explosion_multi" type="Node2D"]
+script = ExtResource("1_hh7bh")
+
+[node name="shaker" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_f3k2h")
+
+[node name="spawner" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_d1sum")
+scene = ExtResource("4_7ddvg")
+spawn_as_sibling = true
+sync_spawns = true
+
+[node name="timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="timer" to="." method="activate"]

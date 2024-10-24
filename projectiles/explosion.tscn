@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dg2okaoodrfss"]
+[gd_scene load_steps=8 format=3 uid="uid://dg2okaoodrfss"]
 
 [ext_resource type="Script" path="res://pieces/hitbox.gd" id="1_fnj6e"]
 [ext_resource type="PackedScene" uid="uid://dxmoq6yx5wdvw" path="res://pieces/destroyer.tscn" id="2_bh3ea"]
 [ext_resource type="PackedScene" uid="uid://c0bn1iccxpify" path="res://pieces/spawner.tscn" id="2_p32u6"]
 [ext_resource type="PackedScene" uid="uid://b5rj82xrkotmd" path="res://fx/blast.tscn" id="3_u33lq"]
 [ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSpawner.cs" id="5_nknpm"]
+[ext_resource type="Script" path="res://pieces/camera_shaker.gd" id="6_uptld"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3an8r"]
 radius = 48.0
@@ -30,5 +31,10 @@ autostart = true
 
 [node name="mattoha_spawner" type="Node2D" parent="."]
 script = ExtResource("5_nknpm")
+
+[node name="camera_shaker" type="Node" parent="."]
+script = ExtResource("6_uptld")
+auto_activate = true
+one_shot = true
 
 [connection signal="timeout" from="timer" to="destroyer" method="activate"]

@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://3y0libgsadyw"]
+[gd_scene load_steps=11 format=3 uid="uid://ccly4juafgxpy"]
 
-[ext_resource type="Script" path="res://items/grenade.gd" id="1_ayklw"]
-[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_qjc5o"]
-[ext_resource type="Texture2D" uid="uid://wqkv1s06i8qc" path="res://items/grenade.png" id="2_5kyqg"]
-[ext_resource type="PackedScene" uid="uid://c0bn1iccxpify" path="res://pieces/spawner.tscn" id="4_aev0m"]
-[ext_resource type="PackedScene" uid="uid://dg2okaoodrfss" path="res://projectiles/explosion.tscn" id="5_rdfiv"]
-[ext_resource type="PackedScene" uid="uid://bsbl45mbdyxqa" path="res://multiplayer/scenes/nodes/replication_node.tscn" id="6_1cvdm"]
-[ext_resource type="Script" path="res://pieces/camera_shaker.gd" id="7_rwugt"]
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_vo4e3"]
+[ext_resource type="Script" path="res://items/grenade_large.gd" id="2_x7qxb"]
+[ext_resource type="Texture2D" uid="uid://bp1j3w0skoi31" path="res://items/grenade_large.png" id="3_ddwd7"]
+[ext_resource type="PackedScene" uid="uid://c0bn1iccxpify" path="res://pieces/spawner.tscn" id="4_f6mk6"]
+[ext_resource type="PackedScene" uid="uid://dg2okaoodrfss" path="res://projectiles/explosion.tscn" id="5_knw5c"]
+[ext_resource type="PackedScene" uid="uid://bsbl45mbdyxqa" path="res://multiplayer/scenes/nodes/replication_node.tscn" id="6_j7ypp"]
+[ext_resource type="Script" path="res://pieces/camera_shaker.gd" id="7_aepp6"]
 
 [sub_resource type="Animation" id="Animation_leocu"]
 length = 0.001
@@ -83,32 +83,35 @@ _data = {
 "flash": SubResource("Animation_p5pnh")
 }
 
-[node name="grenade" instance=ExtResource("1_qjc5o")]
-script = ExtResource("1_ayklw")
+[node name="grenade_large" instance=ExtResource("1_vo4e3")]
+script = ExtResource("2_x7qxb")
 explosion_sound = &"blast_small"
 beep_sound = &"beep"
-hitbox_size = 10.0
+explosion_count = null
+explosion_delay = null
+explosion_reach = null
+hitbox_size = 16.0
 sprite_scale = 2.0
 
 [node name="sprite" parent="flip" index="0"]
-position = Vector2(0, -2)
-scale = Vector2(2, 2)
-texture = ExtResource("2_5kyqg")
+scale = Vector2(4, 4)
+texture = ExtResource("3_ddwd7")
 hframes = 2
 
 [node name="shape" parent="." index="1"]
-polygon = PackedVector2Array(9.2388, 3.82683, 3.82683, 9.2388, -3.82683, 9.2388, -9.2388, 3.82683, -9.2388, -3.82683, -3.82684, -9.2388, 3.82684, -9.23879, 9.2388, -3.82683)
+polygon = PackedVector2Array(14.7821, 6.12294, 6.12293, 14.7821, -6.12293, 14.7821, -14.7821, 6.12294, -14.7821, -6.12293, -6.12294, -14.7821, 6.12294, -14.7821, 14.7821, -6.12293)
 
-[node name="explosion_spawner" parent="." index="3" instance=ExtResource("4_aev0m")]
+[node name="explosion_spawner" parent="." index="3" instance=ExtResource("4_f6mk6")]
 unique_name_in_owner = true
-scene = ExtResource("5_rdfiv")
+scene = ExtResource("5_knw5c")
 
 [node name="animator" type="AnimationPlayer" parent="." index="5"]
 libraries = {
 "": SubResource("AnimationLibrary_x0v08")
 }
 
-[node name="replication_node2" parent="." index="7" instance=ExtResource("6_1cvdm")]
+[node name="replication_node2" parent="." index="7" instance=ExtResource("6_j7ypp")]
 
 [node name="camera_shaker" type="Node" parent="." index="9"]
-script = ExtResource("7_rwugt")
+script = ExtResource("7_aepp6")
+amount = 48.0
