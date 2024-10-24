@@ -9,17 +9,34 @@ extends Node2D
 @export var cost: int = 1000
 ## Amount of time the chest announces that the attempted opener is too poor if they try to open the chest without the necessary monies
 @export var too_poor_duration: float = 2
+## When the price of this chest is cheapened, it will be multiplied by this number
+@export var cheapen_ratio: float = 0.8
+## Minimum time between cheapenings
+@export var cheapen_min_time: float = 14
+## MAximum time between cheapenings
+@export var cheapen_max_time: float = 25
 
 var too_poor_time: float = 0
+var cheapen_time: float = 0
 
 
 func _ready() -> void:
 	show_cost()
+	cheapen_time = randf_range(cheapen_min_time, cheapen_max_time)
 
 func _process(delta: float) -> void:
 	if too_poor_time > 0:
 		too_poor_time -= delta
 		if too_poor_time <= 0:
+			show_cost()
+	
+	if cheapen_time > 0:
+		cheapen_time -= delta
+		
+		if cheapen_time <= 0:
+			cost *= cheapen_ratio
+			cost = round(cost)
+			cheapen_time = randf_range(cheapen_min_time, cheapen_max_time)
 			show_cost()
 
 
