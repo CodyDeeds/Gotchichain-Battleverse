@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://dqufq5lpfiuis"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_mrcsm"]
+[ext_resource type="PackedScene" uid="uid://0twpnex6pbr2" path="res://environment/backgrounds/scenes/skyline.tscn" id="2_7nkm2"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="2_fjjf3"]
-[ext_resource type="PackedScene" uid="uid://cmx6qvbdqkg5h" path="res://environment/backgrounds/scenes/city.tscn" id="2_qpqyb"]
 [ext_resource type="Script" path="res://pieces/spawner.gd" id="3_p3cbe"]
 [ext_resource type="PackedScene" uid="uid://svmeqwv5ueqr" path="res://maps/kong_platform.tscn" id="4_li2vk"]
 [ext_resource type="PackedScene" uid="uid://d335p47x0406a" path="res://props/barrel_fire.tscn" id="6_iqv8p"]
@@ -40,8 +40,8 @@ point_count = 2
 
 [node name="kong" instance=ExtResource("1_mrcsm")]
 
-[node name="city" parent="bac" index="0" instance=ExtResource("2_qpqyb")]
-modulate = Color(0.4536, 0.3472, 0.56, 1)
+[node name="skyline" parent="bac" index="0" instance=ExtResource("2_7nkm2")]
+position = Vector2(0, 184)
 
 [node name="spawn_point0" parent="spawns" index="0" instance=ExtResource("2_fjjf3")]
 position = Vector2(-384, -400)

@@ -1,0 +1,126 @@
+[gd_scene load_steps=6 format=3 uid="uid://0twpnex6pbr2"]
+
+[ext_resource type="Script" path="res://pieces/parallaxor.gd" id="1_00iom"]
+[ext_resource type="Texture2D" uid="uid://c5184asxo0whp" path="res://environment/backgrounds/skynoise.png" id="1_h3srn"]
+[ext_resource type="Texture2D" uid="uid://b06vc4uxl8q26" path="res://environment/backgrounds/stars0.png" id="2_qt6sm"]
+[ext_resource type="Texture2D" uid="uid://bbgbtdd72upf4" path="res://environment/backgrounds/skyline.png" id="3_csd7k"]
+[ext_resource type="Texture2D" uid="uid://cvxfow5kjukoh" path="res://environment/backgrounds/skyline1.png" id="5_dl442"]
+
+[node name="skyline" type="Node2D"]
+
+[node name="noise" type="Node2D" parent="."]
+script = ExtResource("1_00iom")
+
+[node name="noise0" type="Sprite2D" parent="noise"]
+modulate = Color(1, 1, 1, 0.498039)
+texture = ExtResource("1_h3srn")
+region_enabled = true
+region_rect = Rect2(0, 0, 102400, 102400)
+
+[node name="noise1" type="Sprite2D" parent="noise"]
+modulate = Color(1, 1, 1, 0.498039)
+rotation = 0.208999
+scale = Vector2(1.28869, 1.28869)
+texture = ExtResource("1_h3srn")
+region_enabled = true
+region_rect = Rect2(0, 0, 102400, 102400)
+
+[node name="noise2" type="Sprite2D" parent="noise"]
+modulate = Color(1, 1, 1, 0.498039)
+rotation = -1.13788
+scale = Vector2(2.27589, 2.27589)
+texture = ExtResource("1_h3srn")
+region_enabled = true
+region_rect = Rect2(0, 0, 102400, 102400)
+
+[node name="stars" type="Node2D" parent="."]
+script = ExtResource("1_00iom")
+move_scale = Vector2(0.99, 0.99)
+
+[node name="stars0" type="Sprite2D" parent="stars"]
+texture = ExtResource("2_qt6sm")
+region_enabled = true
+region_rect = Rect2(0, 0, 25600, 25600)
+
+[node name="stars1" type="Sprite2D" parent="stars"]
+rotation = -0.277484
+scale = Vector2(1.74981, 1.74981)
+texture = ExtResource("2_qt6sm")
+region_enabled = true
+region_rect = Rect2(0, 0, 25600, 25600)
+
+[node name="stars2" type="Sprite2D" parent="stars"]
+rotation = 0.226146
+scale = Vector2(2.52478, 2.52478)
+texture = ExtResource("2_qt6sm")
+region_enabled = true
+region_rect = Rect2(0, 0, 25600, 25600)
+
+[node name="towers0" type="Node2D" parent="."]
+modulate = Color(0.3584, 0.288, 0.48, 0.247059)
+script = ExtResource("1_00iom")
+move_scale = Vector2(0.96, 0.96)
+
+[node name="towers" type="Node2D" parent="towers0"]
+position = Vector2(128, 64)
+scale = Vector2(0.8, 0.8)
+
+[node name="bottom" type="Sprite2D" parent="towers0/towers"]
+position = Vector2(0, 50128)
+scale = Vector2(1, 100000)
+texture = ExtResource("3_csd7k")
+region_enabled = true
+region_rect = Rect2(0, 255, 25600, 1)
+
+[node name="top" type="Sprite2D" parent="towers0/towers"]
+texture = ExtResource("3_csd7k")
+region_enabled = true
+region_rect = Rect2(0, 0, 25600, 256)
+
+[node name="towers1" type="Node2D" parent="."]
+modulate = Color(0.56804, 0.5148, 0.66, 1)
+script = ExtResource("1_00iom")
+move_scale = Vector2(0.96, 0.96)
+
+[node name="towers" type="Node2D" parent="towers1"]
+position = Vector2(0, 128)
+
+[node name="bottom" type="Sprite2D" parent="towers1/towers"]
+position = Vector2(0, 50128)
+scale = Vector2(1, 100000)
+texture = ExtResource("3_csd7k")
+region_enabled = true
+region_rect = Rect2(0, 255, 25600, 1)
+
+[node name="top" type="Sprite2D" parent="towers1/towers"]
+texture = ExtResource("3_csd7k")
+region_enabled = true
+region_rect = Rect2(0, 0, 25600, 256)
+
+[node name="towers2" type="Node2D" parent="."]
+script = ExtResource("1_00iom")
+move_scale = Vector2(0.94, 0.94)
+
+[node name="towers" type="Node2D" parent="towers2"]
+position = Vector2(128, 192)
+scale = Vector2(1.3, 1.3)
+
+[node name="bottom" type="Sprite2D" parent="towers2/towers"]
+position = Vector2(0, 50128)
+scale = Vector2(1, 100000)
+texture = ExtResource("3_csd7k")
+region_enabled = true
+region_rect = Rect2(0, 255, 25600, 1)
+
+[node name="top" type="Sprite2D" parent="towers2/towers"]
+texture = ExtResource("3_csd7k")
+region_enabled = true
+region_rect = Rect2(0, 0, 25600, 256)
+
+[node name="foretowers" type="Node2D" parent="."]
+script = ExtResource("1_00iom")
+move_scale = Vector2(0.9, 0.9)
+
+[node name="tower" type="Sprite2D" parent="foretowers"]
+position = Vector2(24, 184)
+texture = ExtResource("5_dl442")
