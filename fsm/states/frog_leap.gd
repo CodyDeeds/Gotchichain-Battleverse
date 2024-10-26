@@ -24,6 +24,9 @@ func _enter():
 func _step(delta: float):
 	super(delta)
 	
+	#father.velocity.x = lerp(father.velocity.x, leap_velocity.x, 5*delta)
+	father.velocity.x = leap_velocity.x
+	
 	if age > 0.1 and father.is_on_floor():
 		enter_next_state()
 
@@ -64,7 +67,8 @@ func jump():
 	var duration: float = get_jump_duration(relative_position.y)
 	if duration > 0.1:
 		var dx: float = relative_position.x
-		father.velocity.x = dx/duration
+		leap_velocity.x = dx/duration
+		father.velocity.x = leap_velocity.x
 
 func get_jump_max_height() -> float:
 	var u = leap_velocity.y
