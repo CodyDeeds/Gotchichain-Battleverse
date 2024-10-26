@@ -87,14 +87,15 @@ _data = {
 script = ExtResource("2_x7qxb")
 explosion_sound = &"blast_small"
 beep_sound = &"beep"
-explosion_count = null
-explosion_delay = null
-explosion_reach = null
+explosion_count = 8
+explosion_delay = 0.1
+explosion_reach = 48.0
 hitbox_size = 16.0
 sprite_scale = 2.0
+pools = Array[int]([1])
 
 [node name="sprite" parent="flip" index="0"]
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 texture = ExtResource("3_ddwd7")
 hframes = 2
 
