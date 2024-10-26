@@ -1,15 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://k7q5ns6wn7gj"]
+[gd_scene load_steps=7 format=3 uid="uid://k7q5ns6wn7gj"]
 
 [ext_resource type="Script" path="res://props/crate_money.gd" id="1_6do5r"]
 [ext_resource type="Texture2D" uid="uid://bue6dgy58e8iq" path="res://props/crates_money.png" id="2_ekdsg"]
 [ext_resource type="Script" path="res://pieces/hurtbox.gd" id="2_vq4wo"]
 [ext_resource type="Script" path="res://pieces/random_sprite_2d.gd" id="3_ee6o2"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8i3o"]
+size = Vector2(55, 44)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7kv0k"]
 size = Vector2(64, 56)
 
 [node name="crate_money" type="Node2D"]
 script = ExtResource("1_6do5r")
+
+[node name="collision" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 67
+
+[node name="collision_shape" type="CollisionShape2D" parent="collision"]
+unique_name_in_owner = true
+position = Vector2(0.5, 10)
+shape = SubResource("RectangleShape2D_m8i3o")
+one_way_collision = true
 
 [node name="hurtbox" type="Area2D" parent="."]
 visible = false
