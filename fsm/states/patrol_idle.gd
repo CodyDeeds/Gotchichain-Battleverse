@@ -39,7 +39,7 @@ func attempt_walk_to_position(where: float):
 				return false
 		
 		enter_next_state()
-		fsm.current_state.target_position = where
+		fsm.current_state.target_position = father.global_position.x + where
 		return true
 
 func is_position_valid(where: float) -> bool:
@@ -58,12 +58,14 @@ func is_position_valid(where: float) -> bool:
 	
 	var shapecast: ShapeCast2D = ShapeCast2D.new()
 	shapecast.collision_mask = 4
+	shapecast.target_position = Vector2()
 	var circle: CircleShape2D = CircleShape2D.new()
 	circle.radius = 4
 	shapecast.shape = circle
 	father.add_child(shapecast)
 	shapecast.position = Vector2(where, entity_height_from_floor-6)
 	shapecast.force_shapecast_update()
+	has_wall = shapecast.is_colliding()
 	father.remove_child(shapecast)
 	shapecast.queue_free()
 	
