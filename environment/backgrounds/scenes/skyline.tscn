@@ -26,9 +26,9 @@ region_enabled = true
 region_rect = Rect2(0, 0, 102400, 102400)
 
 [node name="noise2" type="Sprite2D" parent="noise"]
-modulate = Color(1, 1, 1, 0.498039)
+modulate = Color(1, 1, 1, 0.74902)
 rotation = -1.13788
-scale = Vector2(2.27589, 2.27589)
+scale = Vector2(4.197, 4.197)
 texture = ExtResource("1_h3srn")
 region_enabled = true
 region_rect = Rect2(0, 0, 102400, 102400)

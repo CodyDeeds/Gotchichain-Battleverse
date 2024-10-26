@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="MapData" load_steps=3 format=3 uid="uid://dak0jdkl53dc2"]
 
-[ext_resource type="PackedScene" uid="uid://dqufq5lpfiuis" path="res://maps/kong.tscn" id="1_shypo"]
+[ext_resource type="PackedScene" uid="uid://dmo8xs6otf5fn" path="res://maps/twin_towers.tscn" id="1_q305x"]
 [ext_resource type="Script" path="res://data/maps/map_data.gd" id="2_o0lhp"]
 
 [resource]
 script = ExtResource("2_o0lhp")
-scene = ExtResource("1_shypo")
-name = "Kong"
+scene = ExtResource("1_q305x")
+name = "Twin Towers"

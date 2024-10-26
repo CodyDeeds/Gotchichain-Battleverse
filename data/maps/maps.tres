@@ -7,4 +7,4 @@ script = ExtResource("1_usu72")
 base_folder = "res://data/maps"
 includes = Array[String](["*.tres"])
 excludes = Array[String](["maps.tres"])
-paths = Array[String](["res://data/maps/arena.tres", "res://data/maps/central_tower.tres", "res://data/maps/kong.tres", "res://data/maps/mirror.tres"])
+paths = Array[String](["res://data/maps/arena.tres", "res://data/maps/central_tower.tres", "res://data/maps/kong.tres", "res://data/maps/mirror.tres", "res://data/maps/twin_towers.tres"])
