@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp682qa72dn77"]
+
+[ext_resource type="Texture2D" uid="uid://be4hf5osdqxat" path="res://fx/crate_break.png" id="1_gsnrv"]
+[ext_resource type="Script" path="res://fx/transient_particles.gd" id="2_mnsgo"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tfj1b"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_5akbn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.589947, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="crate_break" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_tfj1b")
+amount = 24
+lifetime = 2.0
+explosiveness = 1.0
+lifetime_randomness = 0.2
+texture = ExtResource("1_gsnrv")
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 100.0
+damping_min = 20.0
+damping_max = 20.0
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_5akbn")
+anim_offset_max = 1.0
+script = ExtResource("2_mnsgo")
