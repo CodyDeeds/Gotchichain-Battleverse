@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://da5junaar6e3t"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_655hd"]
-[ext_resource type="PackedScene" uid="uid://38t5en2plwcs" path="res://environment/backgrounds/scenes/synth.tscn" id="2_7d3ux"]
+[ext_resource type="PackedScene" uid="uid://ds1jw0a8kelqk" path="res://environment/backgrounds/scenes/synth2.tscn" id="2_kyo7g"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="3_va8nr"]
 [ext_resource type="PackedScene" uid="uid://bnrjue3yrwi3c" path="res://props/fountain.tscn" id="4_e3lij"]
 [ext_resource type="PackedScene" uid="uid://clfloi25mmp6f" path="res://entities/enemies/tentacle.tscn" id="4_ykon2"]
@@ -16,7 +16,7 @@
 
 [node name="mirror" instance=ExtResource("1_655hd")]
 
-[node name="synth" parent="bac" index="0" instance=ExtResource("2_7d3ux")]
+[node name="synth2" parent="bac" index="0" instance=ExtResource("2_kyo7g")]
 
 [node name="spawn_point0" parent="spawns" index="0" instance=ExtResource("3_va8nr")]
 position = Vector2(-896, 128)

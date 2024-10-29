@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://dk8dxksu1ve8l"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_alyma"]
-[ext_resource type="PackedScene" uid="uid://38t5en2plwcs" path="res://environment/backgrounds/scenes/synth.tscn" id="2_b75tb"]
+[ext_resource type="PackedScene" uid="uid://ds1jw0a8kelqk" path="res://environment/backgrounds/scenes/synth2.tscn" id="2_6tp01"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="2_yvgh4"]
 [ext_resource type="PackedScene" uid="uid://bqh5236050acv" path="res://props/banner_upright_ghst.tscn" id="4_0btt3"]
 [ext_resource type="PackedScene" uid="uid://cekm25jns2ryj" path="res://props/treeline.tscn" id="4_7f43k"]
@@ -20,7 +20,7 @@
 
 [node name="central_tower" instance=ExtResource("1_alyma")]
 
-[node name="synth" parent="bac" index="0" instance=ExtResource("2_b75tb")]
+[node name="synth2" parent="bac" index="0" instance=ExtResource("2_6tp01")]
 
 [node name="spawn_point0" parent="spawns" index="0" instance=ExtResource("2_yvgh4")]
 position = Vector2(-640, 320)

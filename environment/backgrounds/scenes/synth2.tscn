@@ -1,0 +1,183 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds1jw0a8kelqk"]
+
+[ext_resource type="Script" path="res://pieces/parallaxor.gd" id="1_ijosm"]
+[ext_resource type="Texture2D" uid="uid://c5184asxo0whp" path="res://environment/backgrounds/skynoise.png" id="2_wr5t1"]
+[ext_resource type="Texture2D" uid="uid://b06vc4uxl8q26" path="res://environment/backgrounds/stars0.png" id="3_swgdx"]
+[ext_resource type="Texture2D" uid="uid://d2ffgf12tr3h7" path="res://environment/backgrounds/synth2_sun.png" id="4_aibvp"]
+[ext_resource type="Texture2D" uid="uid://ox5l20odwtlw" path="res://environment/backgrounds/synth2_mountains_outline.png" id="5_j60e4"]
+[ext_resource type="Texture2D" uid="uid://buqn0tpuwfixx" path="res://environment/backgrounds/synth2_mountains.png" id="6_26j6i"]
+
+[node name="synth2" type="Node2D"]
+
+[node name="noise" type="Node2D" parent="."]
+script = ExtResource("1_ijosm")
+
+[node name="noise0" type="Sprite2D" parent="noise"]
+modulate = Color(1, 1, 1, 0.498039)
+texture = ExtResource("2_wr5t1")
+region_enabled = true
+region_rect = Rect2(0, 0, 102400, 102400)
+
+[node name="noise1" type="Sprite2D" parent="noise"]
+modulate = Color(1, 1, 1, 0.498039)
+rotation = 0.208999
+scale = Vector2(1.28869, 1.28869)
+texture = ExtResource("2_wr5t1")
+region_enabled = true
+region_rect = Rect2(0, 0, 102400, 102400)
+
+[node name="noise2" type="Sprite2D" parent="noise"]
+modulate = Color(1, 1, 1, 0.74902)
+rotation = -1.13788
+scale = Vector2(4.197, 4.197)
+texture = ExtResource("2_wr5t1")
+region_enabled = true
+region_rect = Rect2(0, 0, 102400, 102400)
+
+[node name="stars" type="Node2D" parent="."]
+script = ExtResource("1_ijosm")
+move_scale = Vector2(0.99, 0.99)
+
+[node name="stars0" type="Sprite2D" parent="stars"]
+texture = ExtResource("3_swgdx")
+region_enabled = true
+region_rect = Rect2(0, 0, 25600, 25600)
+
+[node name="stars1" type="Sprite2D" parent="stars"]
+rotation = -0.277484
+scale = Vector2(1.74981, 1.74981)
+texture = ExtResource("3_swgdx")
+region_enabled = true
+region_rect = Rect2(0, 0, 25600, 25600)
+
+[node name="stars2" type="Sprite2D" parent="stars"]
+rotation = 0.226146
+scale = Vector2(2.52478, 2.52478)
+texture = ExtResource("3_swgdx")
+region_enabled = true
+region_rect = Rect2(0, 0, 25600, 25600)
+
+[node name="sun" type="Node2D" parent="."]
+script = ExtResource("1_ijosm")
+move_scale = Vector2(0.98, 0.98)
+
+[node name="sprites" type="Node2D" parent="sun"]
+
+[node name="sun" type="Sprite2D" parent="sun/sprites"]
+modulate = Color(1, 1, 1, 0.498039)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_aibvp")
+
+[node name="bright_sun" type="Sprite2D" parent="sun/sprites"]
+modulate = Color(2, 2, 2, 1)
+texture = ExtResource("4_aibvp")
+
+[node name="mountains0" type="Node2D" parent="."]
+script = ExtResource("1_ijosm")
+move_scale = Vector2(0.95, 0.95)
+
+[node name="sprites" type="Node2D" parent="mountains0"]
+
+[node name="mountains" type="Sprite2D" parent="mountains0/sprites"]
+texture = ExtResource("5_j60e4")
+region_enabled = true
+region_rect = Rect2(0, 0, 5632, 250)
+
+[node name="under" type="Sprite2D" parent="mountains0/sprites"]
+position = Vector2(0, 624)
+scale = Vector2(1, 1000)
+texture = ExtResource("5_j60e4")
+region_enabled = true
+region_rect = Rect2(0, 255, 5632, 1)
+
+[node name="mountains1" type="Node2D" parent="."]
+script = ExtResource("1_ijosm")
+move_scale = Vector2(0.93, 0.93)
+
+[node name="sprites" type="Node2D" parent="mountains1"]
+position = Vector2(0, 16)
+scale = Vector2(1.19578, 1.19578)
+
+[node name="mountains" type="Sprite2D" parent="mountains1/sprites"]
+texture = ExtResource("6_26j6i")
+region_enabled = true
+region_rect = Rect2(0, 0, 5632, 250)
+
+[node name="under" type="Sprite2D" parent="mountains1/sprites"]
+position = Vector2(0, 624)
+scale = Vector2(1, 1000)
+texture = ExtResource("6_26j6i")
+region_enabled = true
+region_rect = Rect2(0, 255, 5632, 1)
+
+[node name="mountains2" type="Node2D" parent="."]
+script = ExtResource("1_ijosm")
+move_scale = Vector2(0.92, 0.92)
+
+[node name="sprites0" type="Node2D" parent="mountains2"]
+position = Vector2(-88, 56)
+scale = Vector2(0.463807, 0.652941)
+
+[node name="mountains" type="Sprite2D" parent="mountains2/sprites0"]
+texture = ExtResource("6_26j6i")
+region_enabled = true
+region_rect = Rect2(0, 0, 5632, 250)
+
+[node name="under" type="Sprite2D" parent="mountains2/sprites0"]
+position = Vector2(0, 624)
+scale = Vector2(1, 1000)
+texture = ExtResource("6_26j6i")
+region_enabled = true
+region_rect = Rect2(0, 255, 5632, 1)
+
+[node name="sprites1" type="Node2D" parent="mountains2"]
+position = Vector2(-1.90735e-06, 56)
+scale = Vector2(0.578403, 0.814268)
+
+[node name="mountains" type="Sprite2D" parent="mountains2/sprites1"]
+texture = ExtResource("6_26j6i")
+region_enabled = true
+region_rect = Rect2(0, 0, 5632, 250)
+
+[node name="under" type="Sprite2D" parent="mountains2/sprites1"]
+position = Vector2(0, 624)
+scale = Vector2(1, 1000)
+texture = ExtResource("6_26j6i")
+region_enabled = true
+region_rect = Rect2(0, 255, 5632, 1)
+
+[node name="mountains3" type="Node2D" parent="."]
+script = ExtResource("1_ijosm")
+move_scale = Vector2(0.9, 0.9)
+
+[node name="sprites0" type="Node2D" parent="mountains3"]
+position = Vector2(-416, 56)
+scale = Vector2(2.52578, 2.52578)
+
+[node name="mountains" type="Sprite2D" parent="mountains3/sprites0"]
+texture = ExtResource("6_26j6i")
+region_enabled = true
+region_rect = Rect2(0, 0, 5632, 250)
+
+[node name="under" type="Sprite2D" parent="mountains3/sprites0"]
+position = Vector2(0, 624)
+scale = Vector2(1, 1000)
+texture = ExtResource("6_26j6i")
+region_enabled = true
+region_rect = Rect2(0, 255, 5632, 1)
+
+[node name="sprites1" type="Node2D" parent="mountains3"]
+position = Vector2(-464, 152)
+scale = Vector2(1.2371, 1.2371)
+
+[node name="mountains" type="Sprite2D" parent="mountains3/sprites1"]
+texture = ExtResource("6_26j6i")
+region_enabled = true
+region_rect = Rect2(0, 0, 5632, 250)
+
+[node name="under" type="Sprite2D" parent="mountains3/sprites1"]
+position = Vector2(0, 624)
+scale = Vector2(1, 1000)
+texture = ExtResource("6_26j6i")
+region_enabled = true
+region_rect = Rect2(0, 255, 5632, 1)
