@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0twpnex6pbr2"]
+[gd_scene load_steps=8 format=3 uid="uid://0twpnex6pbr2"]
 
 [ext_resource type="Script" path="res://pieces/parallaxor.gd" id="1_00iom"]
 [ext_resource type="Texture2D" uid="uid://c5184asxo0whp" path="res://environment/backgrounds/skynoise.png" id="1_h3srn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bbgbtdd72upf4" path="res://environment/backgrounds/skyline.png" id="3_csd7k"]
 [ext_resource type="Texture2D" uid="uid://8e6ifveb0sjg" path="res://environment/backgrounds/constellation_ghost.png" id="4_654b4"]
 [ext_resource type="Texture2D" uid="uid://cvxfow5kjukoh" path="res://environment/backgrounds/skyline1.png" id="5_dl442"]
+[ext_resource type="Texture2D" uid="uid://dalx7hyka8yvl" path="res://environment/backgrounds/moon.png" id="5_wmxh0"]
 
 [node name="skyline" type="Node2D"]
 
@@ -64,6 +65,14 @@ move_scale = Vector2(0.99, 0.99)
 [node name="ghost" type="Sprite2D" parent="constellations"]
 position = Vector2(0, -160)
 texture = ExtResource("4_654b4")
+
+[node name="moon" type="Node2D" parent="."]
+script = ExtResource("1_00iom")
+move_scale = Vector2(0.99, 0.99)
+
+[node name="moon" type="Sprite2D" parent="moon"]
+position = Vector2(-352, -160)
+texture = ExtResource("5_wmxh0")
 
 [node name="towers0" type="Node2D" parent="."]
 modulate = Color(0.3584, 0.288, 0.48, 0.247059)
