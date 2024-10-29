@@ -38,7 +38,7 @@ projectile = ExtResource("3_datje")
 shoot_particle_scene = null
 hitbox_size = 16.0
 pools = Array[int]([1])
-activation_sfx = &"wand"
+activation_sfx = &"fireball_throw"
 
 [node name="particulation" type="CPUParticles2D" parent="flip" index="0"]
 modulate = Color(2, 2, 2, 1)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dufhf07ev652i"]
+
+[ext_resource type="Script" path="res://projectiles/projectile.gd" id="1_dim5y"]
+
+[node name="witch_ring" type="Area2D"]
+script = ExtResource("1_dim5y")
