@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cui6bgg85frhv"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_kt8ti"]
+[ext_resource type="Script" path="res://items/potion_money_item.gd" id="2_cqgkr"]
+[ext_resource type="Texture2D" uid="uid://ccgkntt0eiipr" path="res://items/potion_money.png" id="3_0qyq7"]
+
+[node name="potion_money" instance=ExtResource("1_kt8ti")]
+script = ExtResource("2_cqgkr")
+value = 150
+sprite_scale = 2.0
+pools = Array[int]([0])
+
+[node name="sprite" parent="flip" index="0"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_0qyq7")
+
+[node name="shape" parent="." index="1"]
+polygon = PackedVector2Array(29.5641, 12.2459, 12.2459, 29.5641, -12.2459, 29.5641, -29.5641, 12.2459, -29.5641, -12.2459, -12.2459, -29.5641, 12.2459, -29.5641, 29.5641, -12.2459)
