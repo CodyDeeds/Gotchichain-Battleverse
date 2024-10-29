@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://db3h3bqo5lt80"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_axdb0"]
+[ext_resource type="Script" path="res://items/gun_basic.gd" id="2_djgd7"]
+[ext_resource type="PackedScene" uid="uid://dufhf07ev652i" path="res://projectiles/witch_ring.tscn" id="3_5w8u6"]
+[ext_resource type="PackedScene" uid="uid://g8dpq5tk332o" path="res://fx/bullet_shoot.tscn" id="4_lalk3"]
+[ext_resource type="Texture2D" uid="uid://cwut5yfd0ndt4" path="res://items/witchy_wand.png" id="5_hm7mr"]
+
+[node name="witchy_wand" instance=ExtResource("1_axdb0")]
+can_sleep = false
+script = ExtResource("2_djgd7")
+projectile_speed = 400.0
+projectile_spread = 5.0
+can_hit_shooter = false
+rof_interval = 2.0
+gun_kickback = 20.0
+player_kickback = 0.0
+projectile = ExtResource("3_5w8u6")
+shoot_particle_scene = ExtResource("4_lalk3")
+hitbox_size = 16.0
+sprite_scale = 2.0
+pools = Array[int]([1])
+activation_sfx = &"laser"
+
+[node name="sprite" parent="flip" index="0"]
+texture = ExtResource("5_hm7mr")
+
+[node name="barrel" type="Marker2D" parent="flip/sprite" index="0"]
+unique_name_in_owner = true
+position = Vector2(8, -8)

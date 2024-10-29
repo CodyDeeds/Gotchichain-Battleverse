@@ -1,6 +1,182 @@
-[gd_scene load_steps=2 format=3 uid="uid://dufhf07ev652i"]
+[gd_scene load_steps=11 format=3 uid="uid://dufhf07ev652i"]
 
-[ext_resource type="Script" path="res://projectiles/projectile.gd" id="1_dim5y"]
+[ext_resource type="Script" path="res://projectiles/witch_ring.gd" id="1_gw6os"]
+[ext_resource type="Script" path="res://pieces/hitbox.gd" id="2_36vnl"]
+[ext_resource type="Texture2D" uid="uid://bketspivoyi6v" path="res://projectiles/bullet_witch.png" id="3_6uuli"]
+[ext_resource type="Script" path="res://pieces/random_sprite_2d.gd" id="4_wubke"]
+[ext_resource type="Script" path="res://pieces/rotation_randomiser.gd" id="5_bw8dm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o4gfd"]
+radius = 5.09902
+
+[sub_resource type="Animation" id="Animation_1ho1f"]
+resource_name = "arrive"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitboxes:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3.14159, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hitboxes:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6uulk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitboxes:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hitboxes:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u4a7g"]
+resource_name = "rotate"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitboxes:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nsmgu"]
+_data = {
+"RESET": SubResource("Animation_6uulk"),
+"arrive": SubResource("Animation_1ho1f"),
+"rotate": SubResource("Animation_u4a7g")
+}
 
 [node name="witch_ring" type="Area2D"]
-script = ExtResource("1_dim5y")
+script = ExtResource("1_gw6os")
+duration = 10.0
+
+[node name="hitboxes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="0" type="Area2D" parent="hitboxes"]
+position = Vector2(0, -80)
+script = ExtResource("2_36vnl")
+teams = Array[int]([0, -1])
+damage = 1.0
+hit_interval = 1.0
+
+[node name="sprite" type="Sprite2D" parent="hitboxes/0"]
+rotation = 5.66288
+texture = ExtResource("3_6uuli")
+hframes = 4
+script = ExtResource("4_wubke")
+
+[node name="rotation_randomiser" type="Node" parent="hitboxes/0/sprite"]
+script = ExtResource("5_bw8dm")
+
+[node name="shape" type="CollisionShape2D" parent="hitboxes/0"]
+shape = SubResource("CircleShape2D_o4gfd")
+
+[node name="1" type="Area2D" parent="hitboxes"]
+position = Vector2(80, 0)
+script = ExtResource("2_36vnl")
+teams = Array[int]([0, -1])
+damage = 1.0
+hit_interval = 1.0
+
+[node name="sprite" type="Sprite2D" parent="hitboxes/1"]
+rotation = 0.931761
+texture = ExtResource("3_6uuli")
+hframes = 4
+frame = 3
+script = ExtResource("4_wubke")
+
+[node name="rotation_randomiser" type="Node" parent="hitboxes/1/sprite"]
+script = ExtResource("5_bw8dm")
+
+[node name="shape" type="CollisionShape2D" parent="hitboxes/1"]
+shape = SubResource("CircleShape2D_o4gfd")
+
+[node name="2" type="Area2D" parent="hitboxes"]
+position = Vector2(0, 80)
+script = ExtResource("2_36vnl")
+teams = Array[int]([0, -1])
+damage = 1.0
+hit_interval = 1.0
+
+[node name="sprite" type="Sprite2D" parent="hitboxes/2"]
+rotation = 5.80358
+texture = ExtResource("3_6uuli")
+hframes = 4
+frame = 3
+script = ExtResource("4_wubke")
+
+[node name="rotation_randomiser" type="Node" parent="hitboxes/2/sprite"]
+script = ExtResource("5_bw8dm")
+
+[node name="shape" type="CollisionShape2D" parent="hitboxes/2"]
+shape = SubResource("CircleShape2D_o4gfd")
+
+[node name="3" type="Area2D" parent="hitboxes"]
+position = Vector2(-80, 0)
+script = ExtResource("2_36vnl")
+teams = Array[int]([0, -1])
+damage = 1.0
+hit_interval = 1.0
+
+[node name="sprite" type="Sprite2D" parent="hitboxes/3"]
+rotation = 6.23865
+texture = ExtResource("3_6uuli")
+hframes = 4
+frame = 1
+script = ExtResource("4_wubke")
+
+[node name="rotation_randomiser" type="Node" parent="hitboxes/3/sprite"]
+script = ExtResource("5_bw8dm")
+
+[node name="shape" type="CollisionShape2D" parent="hitboxes/3"]
+shape = SubResource("CircleShape2D_o4gfd")
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nsmgu")
+}
+autoplay = "arrive"
+next/arrive = &"rotate"

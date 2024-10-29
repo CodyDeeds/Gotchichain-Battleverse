@@ -29,6 +29,7 @@ func _ready() -> void:
 
 func attempt_shoot():
 	if can_shoot and !shoot_veto:
+		super.get_activated()
 		shoot()
 		
 		if shoot_particle_scene:
@@ -89,7 +90,6 @@ func deploy_projectile(angle: float=0.0, speed_mult: float=1.0):
 	return new_shot
 
 func get_activated():
-	super()
 	attempt_shoot()
 
 func reload():
