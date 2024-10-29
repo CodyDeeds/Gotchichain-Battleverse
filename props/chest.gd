@@ -18,6 +18,7 @@ extends Node2D
 
 var too_poor_time: float = 0
 var cheapen_time: float = 0
+var current_cost: int = cost
 
 
 func _ready() -> void:
@@ -34,8 +35,8 @@ func _process(delta: float) -> void:
 		cheapen_time -= delta
 		
 		if cheapen_time <= 0:
-			cost *= cheapen_ratio
-			cost = round(cost)
+			current_cost *= cheapen_ratio
+			current_cost = round(current_cost)
 			cheapen_time = randf_range(cheapen_min_time, cheapen_max_time)
 			show_cost()
 
@@ -56,7 +57,7 @@ func deploy_item(player: int = 0):
 
 func show_cost():
 	%cost.modulate = Color(1, 1, 1, 1)
-	%cost.text = "[center][wave]$%s[/wave][/center]" % cost
+	%cost.text = "[center][wave]$%s[/wave][/center]" % current_cost
 
 func open():
 	%sprite.frame = 1
@@ -70,10 +71,11 @@ func close():
 func _on_interactable_activated(player: int) -> void:
 	if PlayerManager.players.size() > player:
 		var available_money: int = PlayerManager.players[player].money
-		if available_money >= cost:
-			PlayerManager.players[player].money -= cost
+		if available_money >= current_cost:
+			PlayerManager.players[player].money -= current_cost
 			open()
 			deploy_item(player)
+			current_cost = cost
 			%timer.start()
 		else:
 			too_poor_time = too_poor_duration
