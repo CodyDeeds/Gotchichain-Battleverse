@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp3d6x40fev2t"]
+
+[ext_resource type="Script" path="res://projectiles/fireball_pitchfork.gd" id="1_q84wu"]
+[ext_resource type="Texture2D" uid="uid://c5oxqq2nysyku" path="res://items/fireball.png" id="3_sn2xe"]
+[ext_resource type="Script" path="res://pieces/rotator_to_motion.gd" id="4_rj8r7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tguig"]
+radius = 8.0
+
+[node name="fireball_pitchfork" type="Area2D"]
+script = ExtResource("1_q84wu")
+damage = 1.0
+
+[node name="visual" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite2D" parent="visual"]
+rotation = -1.5708
+scale = Vector2(1.45571, 1.48072)
+texture = ExtResource("3_sn2xe")
+
+[node name="rotator_to_motion" type="Node" parent="visual"]
+script = ExtResource("4_rj8r7")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tguig")
+
+[node name="ground_finder" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+target_position = Vector2(0, 96)
+collision_mask = 4

@@ -1,0 +1,155 @@
+[gd_scene load_steps=10 format=3 uid="uid://bm6hwp6ex8ja6"]
+
+[ext_resource type="Script" path="res://pieces/hitbox.gd" id="1_xae4b"]
+[ext_resource type="Texture2D" uid="uid://bo8eu1d3gfiil" path="res://fx/fire_ground.png" id="2_6gk76"]
+[ext_resource type="Script" path="res://pieces/auto_sprite_2d.gd" id="3_5ntw6"]
+[ext_resource type="Script" path="res://pieces/destroyer.gd" id="4_8ldne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g51ji"]
+size = Vector2(24, 4)
+
+[sub_resource type="Animation" id="Animation_xii44"]
+resource_name = "flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2, 2, 2, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_idffm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j1yhf"]
+resource_name = "arrive"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(4, 4, 4, 1), Color(1.6, 1.6, 1.6, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -64), Vector2(0, -25.6), Vector2(0, -16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 4), Vector2(1, 1.6), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_568dc"]
+_data = {
+"RESET": SubResource("Animation_idffm"),
+"arrive": SubResource("Animation_j1yhf"),
+"flash": SubResource("Animation_xii44")
+}
+
+[node name="fire_ground" type="Node2D"]
+
+[node name="hitbox" type="Area2D" parent="."]
+script = ExtResource("1_xae4b")
+teams = Array[int]([0, -1])
+damage = 1.0
+hit_interval = 0.1
+radial_knockback = 0.0
+directional_knockback = Vector2(0, -200)
+
+[node name="shape" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_g51ji")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_6gk76")
+hframes = 8
+script = ExtResource("3_5ntw6")
+
+[node name="faint_sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(0, -64)
+scale = Vector2(1, 4)
+texture = ExtResource("2_6gk76")
+hframes = 8
+script = ExtResource("3_5ntw6")
+
+[node name="destroyer" type="Node" parent="."]
+script = ExtResource("4_8ldne")
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_568dc")
+}
+autoplay = "arrive"
+next/arrive = &"flash"
+
+[connection signal="timeout" from="timer" to="destroyer" method="activate"]

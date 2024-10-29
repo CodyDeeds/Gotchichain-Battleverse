@@ -7,4 +7,4 @@ script = ExtResource("1_s140p")
 base_folder = "res://items"
 includes = Array[String](["*.tscn"])
 excludes = Array[String](["item.tscn", "embiggener.tscn"])
-paths = Array[String](["res://items/aantenna_bot.tscn", "res://items/baable_gum.tscn", "res://items/captain_aave_shield.tscn", "res://items/fireball_item.tscn", "res://items/grenade.tscn", "res://items/grenade_large.tscn", "res://items/gun_basic.tscn", "res://items/gun_triple.tscn", "res://items/mechanical_claw.tscn", "res://items/rekt_sign.tscn", "res://items/sushi_knife.tscn", "res://items/uranium_rod.tscn"])
+paths = Array[String](["res://items/aantenna_bot.tscn", "res://items/baable_gum.tscn", "res://items/captain_aave_shield.tscn", "res://items/fireball_item.tscn", "res://items/grenade.tscn", "res://items/grenade_large.tscn", "res://items/gun_basic.tscn", "res://items/gun_triple.tscn", "res://items/mechanical_claw.tscn", "res://items/pitchfork.tscn", "res://items/rekt_sign.tscn", "res://items/sushi_knife.tscn", "res://items/uranium_rod.tscn"])

@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5m53tin4xgom"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_2f1dk"]
+[ext_resource type="Script" path="res://items/pitchfork.gd" id="2_65pg6"]
+[ext_resource type="PackedScene" uid="uid://bp3d6x40fev2t" path="res://projectiles/fireball_pitchfork.tscn" id="3_datje"]
+[ext_resource type="Texture2D" uid="uid://c5oxqq2nysyku" path="res://items/fireball.png" id="6_hrgqi"]
+[ext_resource type="Material" uid="uid://ce58aat00she4" path="res://materials/screen.tres" id="6_klboq"]
+[ext_resource type="Texture2D" uid="uid://baxhp2ks5qiyl" path="res://items/pitchfork.png" id="7_tb52n"]
+
+[sub_resource type="Curve" id="Curve_gkdlq"]
+_data = [Vector2(0, 0.501887), 0.0, 0.0, 0, 0, Vector2(0.133588, 1), 0.0, 0.0, 0, 0, Vector2(0.790076, 0.864151), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Animation" id="Animation_scmx2"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_inyk8"]
+resource_name = "pulsate"
+length = 2.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w46w4"]
+_data = {
+"RESET": SubResource("Animation_scmx2"),
+"pulsate": SubResource("Animation_inyk8")
+}
+
+[node name="pitchfork" instance=ExtResource("1_2f1dk")]
+can_sleep = false
+script = ExtResource("2_65pg6")
+projectile_speed = 300.0
+projectile_spread = 5.0
+can_hit_shooter = false
+rof_interval = 1.0
+gun_kickback = 20.0
+player_kickback = 0.0
+projectile = ExtResource("3_datje")
+shoot_particle_scene = null
+hitbox_size = 16.0
+pools = Array[int]([1])
+activation_sfx = &"wand"
+
+[node name="particulation" type="CPUParticles2D" parent="flip" index="0"]
+modulate = Color(2, 2, 2, 1)
+material = ExtResource("6_klboq")
+position = Vector2(13, 0)
+amount = 30
+lifetime = 2.0
+lifetime_randomness = 0.5
+texture = ExtResource("6_hrgqi")
+emission_shape = 1
+emission_sphere_radius = 9.0
+gravity = Vector2(0, -9.8)
+angle_min = -30.0
+angle_max = 30.0
+scale_amount_min = 0.25
+scale_amount_max = 0.25
+scale_amount_curve = SubResource("Curve_gkdlq")
+color = Color(1, 1, 1, 0.247059)
+
+[node name="sprite" parent="flip" index="1"]
+texture = ExtResource("7_tb52n")
+
+[node name="barrel" type="Marker2D" parent="flip/sprite" index="0"]
+unique_name_in_owner = true
+position = Vector2(32, 0)
+
+[node name="animator" type="AnimationPlayer" parent="flip/sprite" index="1"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_w46w4")
+}
+autoplay = "pulsate"
