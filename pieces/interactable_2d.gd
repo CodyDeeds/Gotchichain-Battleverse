@@ -22,6 +22,8 @@ func _init() -> void:
 func _process(delta: float) -> void:
 	if active and is_nearest_interactable():
 		deploy_tooltip()
+		
+		current_tooltip.global_position = global_position - Vector2(0, tooltip_offset)
 	else:
 		cull_tooltip()
 
