@@ -6,6 +6,7 @@
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_yqixj")
 map_ui = ExtResource("2_s87yv")
+force_map = "magmatic"
 
 [node name="map" type="Node2D" parent="."]
 unique_name_in_owner = true

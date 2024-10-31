@@ -7,17 +7,17 @@
 
 [node name="cave" type="Node2D"]
 
-[node name="darkness" type="ColorRect" parent="."]
+[node name="bac" type="Node2D" parent="."]
+modulate = Color(0.51, 0.306, 0.459, 1)
+script = ExtResource("1_pm34t")
+move_scale = Vector2(0.95, 0.95)
+
+[node name="darkness" type="ColorRect" parent="bac"]
 offset_left = -960.0
 offset_top = -536.0
 offset_right = 960.0
 offset_bottom = 536.0
 color = Color(0.0784314, 0.0627451, 0.0745098, 1)
-
-[node name="bac" type="Node2D" parent="."]
-modulate = Color(0.51, 0.306, 0.459, 1)
-script = ExtResource("1_pm34t")
-move_scale = Vector2(0.95, 0.95)
 
 [node name="stalagmites0" type="Sprite2D" parent="bac"]
 position = Vector2(-536, -184)
