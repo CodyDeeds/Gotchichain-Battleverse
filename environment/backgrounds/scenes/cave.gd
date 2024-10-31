@@ -11,6 +11,11 @@ func _ready() -> void:
 	register_lavafalls()
 	set_lavafall_width_multiplier(0)
 
+func _process(delta: float) -> void:
+	if lavafall_width_multiplier > 0:
+		for i in lavafalls:
+			i.uv_offset -= delta * 64
+
 
 func register_lavafalls():
 	for i in Util.get_all_descendents(self):
