@@ -63,7 +63,7 @@ script = ExtResource("1_00iom")
 move_scale = Vector2(0.99, 0.99)
 
 [node name="ghost" type="Sprite2D" parent="constellations"]
-position = Vector2(0, -160)
+position = Vector2(296, 24)
 texture = ExtResource("4_654b4")
 
 [node name="moon" type="Node2D" parent="."]
