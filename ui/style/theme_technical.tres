@@ -3,3 +3,5 @@
 [resource]
 Label/colors/font_color = Color(0.811765, 0.654902, 0.984314, 1)
 Label/font_sizes/font_size = 12
+RichTextLabel/colors/default_color = Color(0.811765, 0.654902, 0.984314, 1)
+RichTextLabel/font_sizes/normal_font_size = 12

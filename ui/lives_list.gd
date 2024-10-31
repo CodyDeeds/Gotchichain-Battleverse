@@ -26,7 +26,6 @@ func _ready() -> void:
 		%title.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		%lives.alignment = ALIGNMENT_END
 		%health.alignment = ALIGNMENT_END
-		%money.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 
 func _process(delta: float) -> void:
 	age += delta
@@ -53,7 +52,10 @@ func clear_lives():
 func update_money():
 	if PlayerManager.players.size() > player:
 		var money: int = PlayerManager.players[player].money
-		%money.text = "$%s" % [money]
+		var text = "[wave]$%s[/wave]" % [money]
+		if flipped_h:
+			text = "[right]%s[/right]" % text
+		%money.text = text
 
 func add_lives(lives: Array):
 	var lives_to_delete: Array = []
