@@ -1,0 +1,200 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv84w2n2orj6y"]
+
+[ext_resource type="Script" path="res://pieces/parallaxor.gd" id="1_pm34t"]
+[ext_resource type="Texture2D" uid="uid://si0flahpuhtg" path="res://environment/backgrounds/cave_rocks.png" id="2_brkp2"]
+[ext_resource type="Script" path="res://pieces/stretch_sprite_2d.gd" id="3_t155s"]
+[ext_resource type="Texture2D" uid="uid://dn65pvplaevuf" path="res://environment/backgrounds/cave_stalagmites.png" id="4_hsx35"]
+
+[node name="cave" type="Node2D"]
+
+[node name="darkness" type="ColorRect" parent="."]
+offset_left = -960.0
+offset_top = -536.0
+offset_right = 960.0
+offset_bottom = 536.0
+color = Color(0.0784314, 0.0627451, 0.0745098, 1)
+
+[node name="bac" type="Node2D" parent="."]
+modulate = Color(0.51, 0.306, 0.459, 1)
+script = ExtResource("1_pm34t")
+move_scale = Vector2(0.95, 0.95)
+
+[node name="stalagmites0" type="Sprite2D" parent="bac"]
+position = Vector2(-536, -184)
+scale = Vector2(3.14444, 3.14444)
+texture = ExtResource("4_hsx35")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="stalactites0" type="Sprite2D" parent="bac"]
+position = Vector2(-392, 136)
+scale = Vector2(2.40442, -2.40442)
+texture = ExtResource("4_hsx35")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="lower0" type="Sprite2D" parent="bac"]
+position = Vector2(0, 121.512)
+scale = Vector2(0.497951, 0.497951)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="lower1" type="Sprite2D" parent="bac"]
+position = Vector2(128, 145.512)
+scale = Vector2(0.824312, 0.824312)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="upper0" type="Sprite2D" parent="bac"]
+position = Vector2(-232, -86.7079)
+scale = Vector2(0.824, -0.824)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="upper1" type="Sprite2D" parent="bac"]
+position = Vector2(-80, -102.708)
+scale = Vector2(1.26009, -1.26009)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="mid" type="Node2D" parent="."]
+modulate = Color(0.78, 0.6942, 0.75712, 1)
+script = ExtResource("1_pm34t")
+move_scale = Vector2(0.9, 0.9)
+
+[node name="lower0" type="Sprite2D" parent="mid"]
+position = Vector2(0, 153.342)
+scale = Vector2(0.758569, 0.758569)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="lower1" type="Sprite2D" parent="mid"]
+position = Vector2(128, 177.342)
+scale = Vector2(1.32298, 1.32298)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="lower2" type="Sprite2D" parent="mid"]
+position = Vector2(32, 240)
+scale = Vector2(0.341662, 0.341662)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="upper0" type="Sprite2D" parent="mid"]
+position = Vector2(-232, -174.708)
+scale = Vector2(1.10517, -1.10517)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="upper1" type="Sprite2D" parent="mid"]
+position = Vector2(-32, -192)
+scale = Vector2(1.57663, -1.57663)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="upper2" type="Sprite2D" parent="mid"]
+position = Vector2(-144, -264)
+scale = Vector2(0.595579, -0.595579)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="stalactites0" type="Sprite2D" parent="mid"]
+position = Vector2(-128, -144)
+scale = Vector2(1.3959, -1.3959)
+texture = ExtResource("4_hsx35")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="fore" type="Node2D" parent="."]
+script = ExtResource("1_pm34t")
+move_scale = Vector2(0.8, 0.8)
+
+[node name="lower0" type="Sprite2D" parent="fore"]
+position = Vector2(-88, 224)
+scale = Vector2(1.23891, 1.23891)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="lower1" type="Sprite2D" parent="fore"]
+position = Vector2(16, 272)
+scale = Vector2(0.957406, 0.957406)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="stalagmites0" type="Sprite2D" parent="fore"]
+position = Vector2(-184, 16)
+scale = Vector2(2.63, 2.63)
+texture = ExtResource("4_hsx35")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="upper0" type="Sprite2D" parent="fore"]
+position = Vector2(-160, -240)
+scale = Vector2(2.08891, -2.08891)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="upper1" type="Sprite2D" parent="fore"]
+position = Vector2(-24, -296)
+scale = Vector2(0.575064, -0.575064)
+texture = ExtResource("2_brkp2")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
+
+[node name="stalactites0" type="Sprite2D" parent="fore"]
+position = Vector2(64, -24)
+scale = Vector2(2.62979, -2.62979)
+texture = ExtResource("4_hsx35")
+region_enabled = true
+region_rect = Rect2(0, 0, 51200, 256)
+script = ExtResource("3_t155s")
+stretch_direction = 2
