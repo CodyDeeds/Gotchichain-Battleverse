@@ -31,6 +31,10 @@ func disable():
 	$sprite.frame = 1
 
 func activate():
+	rpc_activate.rpc()
+
+@rpc("call_local", "reliable")
+func rpc_activate():
 	activated.emit()
 
 
@@ -47,7 +51,7 @@ func set_enabled(what: bool):
 
 func _on_player_detector_player_within() -> void:
 	if enabled:
-		activate()
+		Game.call_server(activate)
 		
 		if auto_disable:
 			disable()
