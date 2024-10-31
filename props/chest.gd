@@ -77,6 +77,7 @@ func _on_interactable_activated(player: int) -> void:
 			deploy_item(player)
 			current_cost = cost
 			%timer.start()
+			show_cost()
 		else:
 			too_poor_time = too_poor_duration
 			%cost.text = "[center]TOO POOR![/center]"
