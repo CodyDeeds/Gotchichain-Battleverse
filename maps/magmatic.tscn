@@ -55,6 +55,7 @@ _data = {
 script = ExtResource("2_0ggkj")
 
 [node name="cave" parent="bac" index="0" instance=ExtResource("2_v61xy")]
+unique_name_in_owner = true
 
 [node name="spawn_point0" parent="spawns" index="0" instance=ExtResource("3_p4yfs")]
 position = Vector2(-784, -640)
@@ -102,8 +103,6 @@ unique_name_in_owner = true
 position = Vector2(0, -784)
 texture = ExtResource("9_ae5a4")
 collision_shape = NodePath("shape")
-auto_disable = null
-auto_reenable_time = null
 
 [node name="shape" type="CollisionShape2D" parent="props/lava_button" index="2"]
 position = Vector2(0, 40)
