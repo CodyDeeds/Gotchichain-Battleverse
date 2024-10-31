@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0vf1m3hwqcia"]
+
+[ext_resource type="Script" path="res://props/button.gd" id="1_txnen"]
+[ext_resource type="PackedScene" uid="uid://ckuixxcu173kv" path="res://pieces/player_detector.tscn" id="2_abbqd"]
+
+[node name="button" type="Node2D"]
+script = ExtResource("1_txnen")
+
+[node name="sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+hframes = 2
+
+[node name="player_detector" parent="." instance=ExtResource("2_abbqd")]
+unique_name_in_owner = true
+
+[connection signal="player_within" from="player_detector" to="." method="_on_player_detector_player_within"]
