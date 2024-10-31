@@ -34,6 +34,23 @@ health_icon = ExtResource("4_p74mj")
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="centrer" type="VBoxContainer" parent="all/upperbar/control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="controls" type="RichTextLabel" parent="all/upperbar/control/centrer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center][wave amp=1 freq=1][img]ui/button_a.png[/img]: jump - [img]ui/button_b.png[/img]: pick up/throw item - [img]ui/button_x.png[/img]: use item[/wave][/center]"
+fit_content = true
+
 [node name="lives_list_1" parent="all/upperbar" instance=ExtResource("1_fetkw")]
 layout_mode = 2
 alignment = 2
@@ -45,19 +62,6 @@ player = 1
 [node name="middle_bit" type="Control" parent="all"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="controls" type="RichTextLabel" parent="all/middle_bit"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 51.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
-text = "[wave][A]: jump
-[B]: pick up/throw item
-[X]: use item[/wave]"
-fit_content = true
 
 [node name="underbar" type="HBoxContainer" parent="all"]
 custom_minimum_size = Vector2(0, 32)
