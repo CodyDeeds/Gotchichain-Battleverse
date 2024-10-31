@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bv84w2n2orj6y"]
+[gd_scene load_steps=14 format=3 uid="uid://bv84w2n2orj6y"]
 
 [ext_resource type="Script" path="res://environment/backgrounds/scenes/cave.gd" id="1_0lndc"]
 [ext_resource type="Script" path="res://pieces/parallaxor.gd" id="1_pm34t"]
@@ -6,13 +6,7 @@
 [ext_resource type="Script" path="res://pieces/stretch_sprite_2d.gd" id="3_t155s"]
 [ext_resource type="Texture2D" uid="uid://dn65pvplaevuf" path="res://environment/backgrounds/cave_stalagmites.png" id="4_hsx35"]
 [ext_resource type="PackedScene" uid="uid://cfs68xxnrbdmi" path="res://environment/lavafall.tscn" id="4_vlisu"]
-
-[sub_resource type="Gradient" id="Gradient_sk26j"]
-offsets = PackedFloat32Array(0, 0.497297, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0.87451, 0.243137, 0.137255, 0.247059, 0.976471, 0.639216, 0.105882, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_d5a8u"]
-gradient = SubResource("Gradient_sk26j")
+[ext_resource type="Texture2D" uid="uid://dhp8057s0avjj" path="res://fx/lava_gradient.tres" id="7_i3yyf"]
 
 [sub_resource type="Curve" id="Curve_wugul"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.632813, 0.803774), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -311,7 +305,7 @@ offset_top = -48.0
 offset_right = 1419.0
 offset_bottom = 1871.0
 rotation = 1.57079
-texture = SubResource("GradientTexture1D_d5a8u")
+texture = ExtResource("7_i3yyf")
 
 [node name="lava_particles" type="CPUParticles2D" parent="mid"]
 unique_name_in_owner = true

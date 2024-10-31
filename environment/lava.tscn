@@ -1,11 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://m8iwyag5o0g3"]
+[gd_scene load_steps=10 format=3 uid="uid://m8iwyag5o0g3"]
 
 [ext_resource type="Script" path="res://environment/lava.gd" id="1_7r575"]
 [ext_resource type="Script" path="res://pieces/hitbox.gd" id="2_fsx06"]
+[ext_resource type="Texture2D" uid="uid://dhp8057s0avjj" path="res://fx/lava_gradient.tres" id="3_6f466"]
 [ext_resource type="Texture2D" uid="uid://c0aktnyawixf7" path="res://environment/lava.png" id="3_c7olk"]
 [ext_resource type="Script" path="res://pieces/auto_sprite_2d.gd" id="4_wp22o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j5jqn"]
+
+[sub_resource type="Animation" id="Animation_bkv74"]
+resource_name = "pulsate"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glow:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.498039)]
+}
+
+[sub_resource type="Animation" id="Animation_a2sgs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6473o"]
+_data = {
+"RESET": SubResource("Animation_a2sgs"),
+"pulsate": SubResource("Animation_bkv74")
+}
 
 [node name="lava" type="Node2D"]
 script = ExtResource("1_7r575")
@@ -18,15 +57,29 @@ damage = 999999.0
 [node name="shape" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("WorldBoundaryShape2D_j5jqn")
 
+[node name="glow" type="TextureRect" parent="."]
+offset_left = 4144.0
+offset_top = -248.0
+offset_right = 4401.0
+offset_bottom = 8046.0
+rotation = 1.57079
+texture = ExtResource("3_6f466")
+
 [node name="sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture = ExtResource("3_c7olk")
 hframes = 16
 script = ExtResource("4_wp22o")
 
-[node name="color_rect" type="ColorRect" parent="."]
+[node name="filling" type="ColorRect" parent="."]
 offset_left = -4160.0
 offset_top = 16.0
 offset_right = 4160.0
 offset_bottom = 3200.0
 color = Color(0.87451, 0.243137, 0.137255, 1)
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6473o")
+}
+autoplay = "pulsate"
