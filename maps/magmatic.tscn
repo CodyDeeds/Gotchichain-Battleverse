@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddv1jwg0qfve5"]
+[gd_scene load_steps=7 format=3 uid="uid://ddv1jwg0qfve5"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_qd8q5"]
 [ext_resource type="PackedScene" uid="uid://bv84w2n2orj6y" path="res://environment/backgrounds/scenes/cave.tscn" id="2_v61xy"]
 [ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="3_p4yfs"]
 [ext_resource type="PackedScene" uid="uid://clfloi25mmp6f" path="res://entities/enemies/tentacle.tscn" id="4_t1rbm"]
 [ext_resource type="PackedScene" uid="uid://dmki70gr1kr3i" path="res://entities/enemies/jellyfish.tscn" id="5_bhfyq"]
+[ext_resource type="PackedScene" uid="uid://m8iwyag5o0g3" path="res://environment/lava.tscn" id="6_a5egl"]
 
 [node name="magmatic" instance=ExtResource("1_qd8q5")]
 
@@ -47,3 +48,8 @@ position = Vector2(-128, -768)
 
 [node name="jellyfish1" parent="enemies" index="5" instance=ExtResource("5_bhfyq")]
 position = Vector2(128, -768)
+
+[node name="props" type="Node2D" parent="." index="8"]
+
+[node name="lava" parent="props" index="0" instance=ExtResource("6_a5egl")]
+position = Vector2(0, 496)
