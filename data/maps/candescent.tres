@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapData" load_steps=3 format=3 uid="uid://d1ri0obhioptc"]
+
+[ext_resource type="PackedScene" uid="uid://s56t7lmryg0w" path="res://maps/candescent.tscn" id="1_fxtvh"]
+[ext_resource type="Script" path="res://data/maps/map_data.gd" id="2_slvjp"]
+
+[resource]
+script = ExtResource("2_slvjp")
+scene = ExtResource("1_fxtvh")
+name = "Candescent"
