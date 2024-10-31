@@ -8,6 +8,7 @@ class_name LivesList
 @export var player: int = 0
 
 var hearts: Array = []
+var age: float = 0
 
 
 func _ready() -> void:
@@ -27,6 +28,9 @@ func _ready() -> void:
 		%health.alignment = ALIGNMENT_END
 		%money.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 
+func _process(delta: float) -> void:
+	age += delta
+
 
 func update_title():
 	if PlayerManager.players.size() > player:
@@ -39,7 +43,6 @@ func update_title():
 			%title.text = "P%s - %s...%s" % [(player+1), start, end]
 
 func update_lives():
-	clear_lives()
 	if PlayerManager.players.size() > player:
 		add_lives( PlayerManager.players[player].lives )
 
@@ -53,9 +56,26 @@ func update_money():
 		%money.text = "$%s" % [money]
 
 func add_lives(lives: Array):
-	for i in lives.size():
-		var new_icon = life_icon.instantiate()
-		%lives.add_child(new_icon)
+	var lives_to_delete: Array = []
+	
+	# Loop to the maximum of the new life count and the existing one
+	# So there's space to add new lives or delete old ones
+	for i in max( lives.size(), %lives.get_child_count() ):
+		# If there are not enough icons in the lives container
+		# add a new one and advance its animation based on our age
+		# in order to match existing lives
+		if i >= %lives.get_child_count():
+			var new_icon = life_icon.instantiate()
+			%lives.add_child(new_icon)
+			new_icon.advance_animation(age + i*0.8)
+		# If the player's lives are less than the current count
+		# delete an icon to match
+		if i >= lives.size():
+			var this_life = %lives.get_child(i)
+			lives_to_delete.append(this_life)
+	
+	for this_life in lives_to_delete:
+		this_life.queue_free()
 
 func update_health():
 	if PlayerManager.players.size() > player:
