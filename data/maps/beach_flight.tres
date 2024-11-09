@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapData" load_steps=3 format=3 uid="uid://b51aiuilldin4"]
+
+[ext_resource type="PackedScene" uid="uid://np3wemw7v643" path="res://maps/beach_flight.tscn" id="1_4350r"]
+[ext_resource type="Script" path="res://data/maps/map_data.gd" id="2_bbhvo"]
+
+[resource]
+script = ExtResource("2_bbhvo")
+scene = ExtResource("1_4350r")
+name = "Beach flight"

@@ -31,9 +31,10 @@ func identify_camera():
 
 func reposition():
 	if is_instance_valid(cam):
-		global_position = (cam.global_position + offset) * move_scale
 		var modified_zoom: Vector2 = Vector2(1, 1).lerp(cam.zoom, scale_scale)
 		global_scale = Vector2(1, 1) / (modified_zoom)
+		global_position = (cam.global_position) * move_scale
+		global_position += (offset * global_scale) * (Vector2(1, 1) - move_scale)
 		
 		if limits != Rect2():
 			var relative_position: Vector2 = cam.global_position - global_position
