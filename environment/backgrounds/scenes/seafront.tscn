@@ -19,6 +19,45 @@ colors = PackedColorArray(0.156863, 0.360784, 0.768627, 1, 0.141176, 0.623529, 0
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_edl5c"]
 gradient = SubResource("Gradient_ec0c1")
 
+[sub_resource type="Animation" id="Animation_io44t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("road/road:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("beach/beach:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sky/glow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_r2pr5"]
 resource_name = "drive"
 loop_mode = 1
@@ -59,45 +98,6 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_io44t"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("road/road:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("beach/beach:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("sky/glow:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x02q2"]
 _data = {
 "RESET": SubResource("Animation_io44t"),
@@ -110,9 +110,9 @@ scroll_speed = 400.0
 
 [node name="bac" type="TextureRect" parent="."]
 offset_left = 3324.0
-offset_top = -496.0
-offset_right = 4080.0
-offset_bottom = 6136.0
+offset_top = -795.0
+offset_right = 4819.0
+offset_bottom = 5837.0
 rotation = 1.57079
 texture = SubResource("GradientTexture1D_edl5c")
 
@@ -120,11 +120,11 @@ texture = SubResource("GradientTexture1D_edl5c")
 script = ExtResource("1_kqupp")
 
 [node name="glow" type="Sprite2D" parent="sky"]
-position = Vector2(0, -64)
+position = Vector2(-296, -168)
 texture = ExtResource("3_vs6g6")
 
 [node name="sun" type="Sprite2D" parent="sky"]
-position = Vector2(0, -64)
+position = Vector2(-296, -168)
 texture = ExtResource("2_qsfbf")
 
 [node name="clouds" type="Node2D" parent="."]

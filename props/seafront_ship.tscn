@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://os110wqvjm2e"]
+
+[ext_resource type="Texture2D" uid="uid://rb32d0r04454" path="res://props/seafront_ship.png" id="1_jo7rh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qacl1"]
+size = Vector2(448, 128)
+
+[sub_resource type="Curve" id="Curve_p4y0y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.606771, 0.939623), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_dggod"]
+offsets = PackedFloat32Array(0, 0.43956, 1)
+colors = PackedColorArray(1, 0.988235, 0.25098, 1, 0.980392, 0.415686, 0.0392157, 1, 0.705882, 0.12549, 0.164706, 1)
+
+[node name="seafront_ship" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 67
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qacl1")
+
+[node name="exhaust0" type="CPUParticles2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(-208, -40)
+amount = 24
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(-1, 0)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angle_max = 360.0
+scale_amount_min = 5.0
+scale_amount_max = 14.0
+scale_amount_curve = SubResource("Curve_p4y0y")
+color_ramp = SubResource("Gradient_dggod")
+
+[node name="exhaust1" type="CPUParticles2D" parent="."]
+position = Vector2(-208, -24)
+amount = 24
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(-1, 0)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angle_max = 360.0
+scale_amount_min = 5.0
+scale_amount_max = 14.0
+scale_amount_curve = SubResource("Curve_p4y0y")
+color_ramp = SubResource("Gradient_dggod")
+
+[node name="exhaust2" type="CPUParticles2D" parent="."]
+position = Vector2(-208, 24)
+amount = 24
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(-1, 0)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angle_max = 360.0
+scale_amount_min = 5.0
+scale_amount_max = 14.0
+scale_amount_curve = SubResource("Curve_p4y0y")
+color_ramp = SubResource("Gradient_dggod")
+
+[node name="exhaust3" type="CPUParticles2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(-208, 40)
+amount = 24
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(-1, 0)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angle_max = 360.0
+scale_amount_min = 5.0
+scale_amount_max = 14.0
+scale_amount_curve = SubResource("Curve_p4y0y")
+color_ramp = SubResource("Gradient_dggod")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_jo7rh")
