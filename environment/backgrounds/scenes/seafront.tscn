@@ -1,0 +1,233 @@
+[gd_scene load_steps=15 format=3 uid="uid://b6rvvxe366wfb"]
+
+[ext_resource type="Script" path="res://environment/backgrounds/scenes/seafront.gd" id="1_fq8hy"]
+[ext_resource type="Script" path="res://pieces/parallaxor.gd" id="1_kqupp"]
+[ext_resource type="Texture2D" uid="uid://bu5h8463238v6" path="res://environment/backgrounds/sea.png" id="2_bpslf"]
+[ext_resource type="Texture2D" uid="uid://bg8tr4ea1xhe8" path="res://environment/backgrounds/day_sun.png" id="2_qsfbf"]
+[ext_resource type="Script" path="res://pieces/stretch_sprite_2d.gd" id="3_apgcy"]
+[ext_resource type="Texture2D" uid="uid://bqgobahtrlqvf" path="res://fx/glow.png" id="3_vs6g6"]
+[ext_resource type="PackedScene" uid="uid://c7m825vkhnx1y" path="res://props/prop_line.tscn" id="4_a43mi"]
+[ext_resource type="Texture2D" uid="uid://bx7sgfoui5rge" path="res://environment/backgrounds/seafront_beach.png" id="5_6wntc"]
+[ext_resource type="PackedScene" uid="uid://fk1spvxgxrqu" path="res://environment/backgrounds/cloud.tscn" id="5_ovgv0"]
+[ext_resource type="Texture2D" uid="uid://c2u2ywho4i2pe" path="res://environment/backgrounds/seafront_road.png" id="6_f8ulp"]
+[ext_resource type="PackedScene" uid="uid://bulm8idqs5ron" path="res://environment/backgrounds/seafront_boat.tscn" id="8_ul53u"]
+
+[sub_resource type="Animation" id="Animation_r2pr5"]
+resource_name = "drive"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("road/road:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-512, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("beach/beach:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-64, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sky/glow:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_io44t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("road/road:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("beach/beach:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sky/glow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x02q2"]
+_data = {
+"RESET": SubResource("Animation_io44t"),
+"drive": SubResource("Animation_r2pr5")
+}
+
+[node name="seafront" type="Node2D"]
+script = ExtResource("1_fq8hy")
+scroll_speed = 400.0
+
+[node name="color_rect" type="ColorRect" parent="."]
+offset_left = -2129.0
+offset_top = -1560.0
+offset_right = 2170.0
+offset_bottom = 1130.0
+color = Color(0.141176, 0.623529, 0.870588, 1)
+
+[node name="sky" type="Node2D" parent="."]
+script = ExtResource("1_kqupp")
+
+[node name="glow" type="Sprite2D" parent="sky"]
+position = Vector2(0, -64)
+texture = ExtResource("3_vs6g6")
+
+[node name="sun" type="Sprite2D" parent="sky"]
+position = Vector2(0, -64)
+texture = ExtResource("2_qsfbf")
+
+[node name="clouds" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_kqupp")
+move_scale = Vector2(0.99, 0.99)
+
+[node name="cloud_line" parent="clouds" instance=ExtResource("4_a43mi")]
+position = Vector2(-616, 88)
+props = Array[PackedScene]([ExtResource("5_ovgv0")])
+line = Vector2(16384, 0)
+interval = 128.0
+
+[node name="sea" type="Node2D" parent="."]
+script = ExtResource("1_kqupp")
+
+[node name="sea" type="Sprite2D" parent="sea"]
+position = Vector2(0, 192)
+texture = ExtResource("2_bpslf")
+region_enabled = true
+region_rect = Rect2(0, 0, 12800, 128)
+script = ExtResource("3_apgcy")
+stretch_direction = 2
+
+[node name="boats0" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_kqupp")
+move_scale = Vector2(0.98, 0.98)
+
+[node name="boats0" parent="boats0" instance=ExtResource("4_a43mi")]
+position = Vector2(-632, 160)
+scale = Vector2(0.5, 0.5)
+props = Array[PackedScene]([ExtResource("8_ul53u")])
+line = Vector2(16384, 0)
+interval = 1024.0
+randomness = 0.5
+
+[node name="boats1" parent="boats0" instance=ExtResource("4_a43mi")]
+position = Vector2(-648, 176)
+scale = Vector2(0.5, 0.5)
+props = Array[PackedScene]([ExtResource("8_ul53u")])
+line = Vector2(16384, 0)
+interval = 1024.0
+randomness = 0.5
+
+[node name="boats1" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_kqupp")
+move_scale = Vector2(0.96, 0.96)
+
+[node name="boats0" parent="boats1" instance=ExtResource("4_a43mi")]
+position = Vector2(-696, 200)
+scale = Vector2(0.75, 0.75)
+props = Array[PackedScene]([ExtResource("8_ul53u")])
+line = Vector2(12288, 0)
+interval = 1536.0
+randomness = 0.5
+
+[node name="boats1" parent="boats1" instance=ExtResource("4_a43mi")]
+position = Vector2(-712, 216)
+scale = Vector2(0.75, 0.75)
+props = Array[PackedScene]([ExtResource("8_ul53u")])
+line = Vector2(12288, 0)
+interval = 1536.0
+randomness = 0.5
+
+[node name="boats2" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_kqupp")
+move_scale = Vector2(0.96, 0.96)
+
+[node name="boats0" parent="boats2" instance=ExtResource("4_a43mi")]
+position = Vector2(-832, 232)
+props = Array[PackedScene]([ExtResource("8_ul53u")])
+line = Vector2(8192, 0)
+interval = 2048.0
+randomness = 0.5
+
+[node name="boats1" parent="boats2" instance=ExtResource("4_a43mi")]
+position = Vector2(-848, 248)
+props = Array[PackedScene]([ExtResource("8_ul53u")])
+line = Vector2(8192, 0)
+interval = 2048.0
+randomness = 0.5
+
+[node name="beach" type="Node2D" parent="."]
+script = ExtResource("1_kqupp")
+move_scale = Vector2(0.95, 0.95)
+
+[node name="beach" type="Sprite2D" parent="beach"]
+position = Vector2(0, 312)
+texture = ExtResource("5_6wntc")
+region_enabled = true
+region_rect = Rect2(0, 0, 12800, 64)
+script = ExtResource("3_apgcy")
+stretch_direction = 2
+
+[node name="road" type="Node2D" parent="."]
+script = ExtResource("1_kqupp")
+move_scale = Vector2(0.9, 0.9)
+
+[node name="road" type="Sprite2D" parent="road"]
+position = Vector2(0, 328)
+texture = ExtResource("6_f8ulp")
+region_enabled = true
+region_rect = Rect2(0, 0, 12800, 64)
+script = ExtResource("3_apgcy")
+stretch_direction = 2
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x02q2")
+}
+autoplay = "drive"

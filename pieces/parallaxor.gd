@@ -6,6 +6,8 @@ extends Node2D
 ## Amount that this layer follows the camera. Actual movement, not apparent movement. So 1 follows the camera exactly with no apparent movement
 ## where 0 stays still and appears attached to the foreground
 @export var move_scale := Vector2(1, 1)
+## Amount that this layer's position is offset before [code]move_scale[/code] is applied
+@export var offset := Vector2()
 ## Amount that this layer's scaling follows the zoom level of the camera
 @export var scale_scale := 1.0
 ## Limits within which this layer must stay relative to the camera. An empty rect imposes no limits
@@ -29,7 +31,7 @@ func identify_camera():
 
 func reposition():
 	if is_instance_valid(cam):
-		global_position = cam.global_position * move_scale
+		global_position = (cam.global_position + offset) * move_scale
 		var modified_zoom: Vector2 = Vector2(1, 1).lerp(cam.zoom, scale_scale)
 		global_scale = Vector2(1, 1) / (modified_zoom)
 		

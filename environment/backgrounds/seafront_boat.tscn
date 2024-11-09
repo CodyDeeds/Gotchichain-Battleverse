@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bulm8idqs5ron"]
+
+[ext_resource type="Texture2D" uid="uid://cg38hfdadbaa5" path="res://environment/backgrounds/seafront_boats.png" id="1_t7nbg"]
+[ext_resource type="Script" path="res://pieces/random_sprite_2d.gd" id="2_ewawx"]
+
+[node name="boat" type="Sprite2D"]
+texture = ExtResource("1_t7nbg")
+hframes = 4
+script = ExtResource("2_ewawx")
