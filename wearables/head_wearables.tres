@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://d3bjbivfk5v72"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_5ngdm"]
+
+[resource]
+script = ExtResource("1_5ngdm")
+base_folder = "res://wearables/head"
+includes = Array[String](["*.tres"])
+excludes = Array[String]([])
+paths = Array[String](["res://wearables/head/straw_hat.tres", "res://wearables/head/witchy_hat.tres"])

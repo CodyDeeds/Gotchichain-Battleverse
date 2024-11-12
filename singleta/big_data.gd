@@ -5,13 +5,18 @@ extends Node
 var items: Dictionary = {}
 ## All items arranged by pool. Key: Pool as int, Value: Array of item IDs
 var item_pools: Dictionary = {}
+var body_wearables := {}
+var head_wearables := {}
 
 const maps = preload("res://data/maps/maps.tres")
 const all_items = preload("res://items/_all_items.tres")
+const all_body_wearables = preload("res://wearables/body_wearables.tres")
+const all_head_wearables = preload("res://wearables/head_wearables.tres")
 
 
 func _ready() -> void:
 	register_items()
+	register_wearables()
 
 
 func register_items():
@@ -43,6 +48,12 @@ func get_random_item_from_pool(pool: int):
 		push_error("Attempting to get nonexistent item %s from pool %s" % [item_id, pool])
 		return
 	return items[item_id]
+
+func register_wearables():
+	for this_body in all_body_wearables.load_all():
+		body_wearables[this_body.get_id()] = this_body
+	for this_head in all_head_wearables.load_all():
+		head_wearables[this_head.get_id()] = this_head
 
 
 func get_map_from_name(what: String) -> MapData:

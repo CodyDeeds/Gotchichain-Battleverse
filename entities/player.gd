@@ -255,6 +255,12 @@ func get_id() -> int:
 	else:
 		return controller
 
+func add_wearable(what: Texture):
+	var new_sprite := Sprite2D.new()
+	new_sprite.texture = what
+	%wearables.add_child(new_sprite)
+
+
 # Ensure to call this function when the player picks up an item
 func _on_item_pickup(item):
 	if item is RigidBody2D and item.name == "sushi_knife":

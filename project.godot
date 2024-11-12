@@ -77,7 +77,8 @@ folder_colors={
 "res://singleta/": "gray",
 "res://tools/": "gray",
 "res://ui/": "green",
-"res://ui/style/": "teal"
+"res://ui/style/": "teal",
+"res://wearables/": "purple"
 }
 
 [input]

@@ -70,24 +70,10 @@ properties/3/replication_mode = 2
 [node name="player" type="CharacterBody2D"]
 collision_mask = 69
 script = ExtResource("1_ld4xh")
-gravity_fast_fall_mult = null
-move_speed = null
 max_speed = 500.0
-jump_speed_boost = null
-air_jumps = null
 jump_speed = 550.0
-drop_speed = null
-controller = null
-grab_range = null
 throw_speed = 750.0
 death_sfx = &"player_death"
-hit_sfx = null
-jump_sfx = null
-jump_particles = null
-multiplayer_owner = null
-max_hp = null
-limit_hp = null
-gravity = null
 acceleration = 5000.0
 
 [node name="shape" type="CollisionShape2D" parent="."]
@@ -104,6 +90,9 @@ texture = ExtResource("3_nlxg4")
 [node name="hand" type="Marker2D" parent="flippable"]
 unique_name_in_owner = true
 position = Vector2(48, 0)
+
+[node name="wearables" type="Node2D" parent="flippable"]
+unique_name_in_owner = true
 
 [node name="hurtbox" parent="." instance=ExtResource("4_yufjj")]
 unique_name_in_owner = true

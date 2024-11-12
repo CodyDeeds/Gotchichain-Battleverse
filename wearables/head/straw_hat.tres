@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://b0j8v33yl4fyb"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_x0ari"]
+[ext_resource type="Texture2D" uid="uid://cn7f72bysnnuo" path="res://wearables/body/witchy_cloak.png" id="2_v8op0"]
+
+[resource]
+script = ExtResource("1_x0ari")
+id = ""
+name = "Witchy Cloak"
+sprite = ExtResource("2_v8op0")
+offset = Vector2(0, 0)

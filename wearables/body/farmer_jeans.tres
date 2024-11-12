@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=2 format=3 uid="uid://dtjnih4nuxd4t"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_bxgi3"]
+
+[resource]
+script = ExtResource("1_bxgi3")
+id = ""
+name = ""
+offset = Vector2(0, 0)
