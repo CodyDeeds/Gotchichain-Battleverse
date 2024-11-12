@@ -13,7 +13,7 @@ func _ready():
 		MattohaSystem.StartServer()
 		call_deferred("to_placeholder")
 	_setup_animation()
-	%client.grab_focus()
+	%local.grab_focus()
 	%host.visible = OS.is_debug_build()
 	#$AnimationPlayer.play("logo_effect")
 	#$AnimationPlayer.play("button_effect")
@@ -38,7 +38,13 @@ func enter_arcade_mode():
 
 func enter_local_game() -> void:
 	Game.is_multiplayer = false
-	get_tree().change_scene_to_file("res://multiplayer/scenes/qr_scene.tscn")  # Change this line to navigate to the QR code scene
+	
+	if OS.has_feature("arcade"):
+		get_tree().change_scene_to_file("res://multiplayer/scenes/qr_scene.tscn")  # Change this line to navigate to the QR code scene
+	else:
+		PlayerManager.get_player(0).bet = 2000
+		PlayerManager.get_player(1).bet = 2000
+		get_tree().change_scene_to_file("res://multiplayer/maps/multiplayer_arena.tscn")
 
 func to_placeholder():
 	Game.is_multiplayer = true
