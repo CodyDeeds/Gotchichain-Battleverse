@@ -107,7 +107,7 @@ func _start_game() -> void:
 	print("Starting game in local mode...")
 	Game.is_multiplayer = false  # Ensure local mode is set
 	
-	var scene_path = "res://multiplayer/maps/multiplayer_arena.tscn"
+	var scene_path = "res://ui/wearable_selection.tscn"
 	var result = get_tree().change_scene_to_file(scene_path)
 	print("Change scene result: ", result)
 	if result != OK:

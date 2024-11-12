@@ -44,7 +44,7 @@ func enter_local_game() -> void:
 	else:
 		PlayerManager.get_player(0).bet = 2000
 		PlayerManager.get_player(1).bet = 2000
-		get_tree().change_scene_to_file("res://multiplayer/maps/multiplayer_arena.tscn")
+		get_tree().change_scene_to_file("res://ui/wearable_selection.tscn")
 
 func to_placeholder():
 	Game.is_multiplayer = true
