@@ -24,7 +24,7 @@ func _init():
 	add_to_group(&"entities")
 
 func _ready() -> void:
-	pass
+	hp = max_hp
 
 func _process(delta: float) -> void:
 	gravitate(delta)

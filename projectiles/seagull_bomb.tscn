@@ -8,6 +8,9 @@ radius = 8.0
 
 [node name="seagull_bomb" type="Area2D"]
 script = ExtResource("1_fe3uk")
+jump_speed = 200.0
+gravity_acceleration = 200.0
+speed_threshhold = 80.0
 teams = Array[int]([0, -1])
 
 [node name="shape" type="CollisionShape2D" parent="."]
