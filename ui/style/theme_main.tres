@@ -1,10 +1,21 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cq70oxn5vov4x"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cq70oxn5vov4x"]
+
+[ext_resource type="Texture2D" uid="uid://el3nj61yqjhk" path="res://ui/style/panel_basic.png" id="1_tr8tm"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_pd6ty"]
 color = Color(1, 0.68, 0.984, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tb6vx"]
+texture = ExtResource("1_tr8tm")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
 [resource]
 HSeparator/styles/separator = SubResource("StyleBoxLine_pd6ty")
 Label/colors/font_color = Color(1, 0.68, 0.984, 1)
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_tb6vx")
+RichTextLabel/colors/default_color = Color(1, 0.68, 0.984, 1)
 RichTextLabelLarge/base_type = &"RichTextLabel"
 RichTextLabelLarge/font_sizes/normal_font_size = 32
