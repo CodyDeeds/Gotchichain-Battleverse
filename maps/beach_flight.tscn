@@ -95,10 +95,10 @@ position = Vector2(0, 40)
 shape = SubResource("RectangleShape2D_yi8lv")
 
 [node name="seagull_spawner" type="Node2D" parent="." index="8"]
-position = Vector2(2368, -120)
+position = Vector2(2376, -408)
 script = ExtResource("10_r5hh8")
 enemy = ExtResource("11_y51hr")
 interval = 6.0
-chance = 0.005
+chance = 0.002
 
 [connection signal="activated" from="props/laser_button" to="." method="activate_lasers"]

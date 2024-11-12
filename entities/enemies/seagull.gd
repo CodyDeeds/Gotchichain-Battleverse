@@ -18,6 +18,9 @@ func _ready() -> void:
 	%timer.start(randf() * bomb_interval)
 	%timer.wait_time = bomb_interval
 	velocity = Vector2(-300, randf_range(-50, 50))
+	
+	render_intangible_to_players()
+	PlayerManager.player_spawned.connect(render_intangible_to_players)
 
 func _physics_process(delta: float) -> void:
 	super(delta)
@@ -36,17 +39,29 @@ func _physics_process(delta: float) -> void:
 		expire()
 
 
+func render_intangible_to_players():
+	for this_player in get_tree().get_nodes_in_group(&"players"):
+		add_collision_exception_with(this_player)
+		this_player.add_collision_exception_with(self)
+
 func drop_bomb():
 	var new_bomb = Game.create_instance(bomb_scene)
 	new_bomb.add_exception(%hurtbox)
 	Game.deploy_instance(new_bomb, global_position)
 
+func deploy_feathers():
+	var new_feathers = feathers_scene.instantiate()
+	Game.deploy_instance(new_feathers, global_position)
+
 func expire():
 	if is_instance_valid(source):
 		source.value += value
-	var new_feathers = feathers_scene.instantiate()
-	Game.deploy_instance(new_feathers, global_position)
+	deploy_feathers()
 	queue_free()
+
+func die():
+	super()
+	deploy_feathers()
 
 
 func _on_timer_timeout() -> void:

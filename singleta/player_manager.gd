@@ -8,6 +8,7 @@ var player_count := 2
 const obj_player = preload("res://entities/player.tscn")
 
 signal player_stats_updated
+signal player_spawned
 
 func _ready() -> void:
 	Events.player_died.connect(_on_player_died)
@@ -64,6 +65,8 @@ func spawn_player(which: int):
 	var furthest_spawn = get_furthest_spawn()
 	if is_instance_valid(furthest_spawn):
 		rpc_spawn_player.bind(which, players[which].multiplayer_owner, furthest_spawn.global_position).rpc()
+	
+	player_spawned.emit()
 
 func get_player(which: int) -> PlayerStats:
 	while players.size() < which + 1:
