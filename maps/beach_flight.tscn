@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://np3wemw7v643"]
+[gd_scene load_steps=14 format=3 uid="uid://np3wemw7v643"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_fgqs6"]
 [ext_resource type="Script" path="res://maps/beach_flight.gd" id="2_y38jg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://pieces/spawner.gd" id="5_sna5a"]
 [ext_resource type="PackedScene" uid="uid://b0vf1m3hwqcia" path="res://props/button.tscn" id="7_nbssv"]
 [ext_resource type="Texture2D" uid="uid://badmtdhilycmg" path="res://props/button_warning.png" id="8_2r2dy"]
+[ext_resource type="PackedScene" uid="uid://d4k6crqabykoi" path="res://props/seafront_ship_small.tscn" id="8_6j7jm"]
 [ext_resource type="Script" path="res://pieces/enemy_spawner.gd" id="10_r5hh8"]
 [ext_resource type="PackedScene" uid="uid://bebod5evbaoiv" path="res://entities/enemies/seagull.tscn" id="11_y51hr"]
 
@@ -34,7 +35,7 @@ position = Vector2(1024, -32)
 position = Vector2(0, -288)
 
 [node name="tilemap" parent="." index="3"]
-layer_0/tile_data = PackedInt32Array(524269, 0, 131072, 458761, 0, 131072, -524293, 0, 131072, -65509, 0, 131072, 458770, 0, 65536, -65500, 0, 65536, -589820, 0, 65536, 524278, 0, 65536)
+layer_0/tile_data = PackedInt32Array(524269, 0, 131072, -524293, 0, 131072, -65509, 0, 131072, -65500, 0, 65536, -589820, 0, 65536, 524278, 0, 65536, 524306, 0, 65536, 524297, 0, 131072)
 
 [node name="props" type="Node2D" parent="." index="7"]
 
@@ -57,12 +58,12 @@ script = ExtResource("5_sna5a")
 scene = ExtResource("4_jgy0m")
 
 [node name="laser_spawner3" type="Node2D" parent="props/lasers" index="3"]
-position = Vector2(224, 320)
+position = Vector2(224, 352)
 script = ExtResource("5_sna5a")
 scene = ExtResource("4_jgy0m")
 
 [node name="laser_spawner4" type="Node2D" parent="props/lasers" index="4"]
-position = Vector2(1376, 320)
+position = Vector2(1376, 384)
 script = ExtResource("5_sna5a")
 scene = ExtResource("4_jgy0m")
 
@@ -73,10 +74,10 @@ z_index = -1
 position = Vector2(-448, 320)
 
 [node name="seafront_ship1" parent="props/ships" index="1" instance=ExtResource("4_nt74w")]
-position = Vector2(448, 320)
+position = Vector2(448, 352)
 
 [node name="seafront_ship2" parent="props/ships" index="2" instance=ExtResource("4_nt74w")]
-position = Vector2(1600, 320)
+position = Vector2(1600, 384)
 
 [node name="seafront_ship3" parent="props/ships" index="3" instance=ExtResource("4_nt74w")]
 position = Vector2(1024, 64)
@@ -84,9 +85,21 @@ position = Vector2(1024, 64)
 [node name="seafront_ship4" parent="props/ships" index="4" instance=ExtResource("4_nt74w")]
 position = Vector2(0, -192)
 
+[node name="seafront_ship_small0" parent="props/ships" index="5" instance=ExtResource("8_6j7jm")]
+position = Vector2(-800, -80)
+
+[node name="seafront_ship_small1" parent="props/ships" index="6" instance=ExtResource("8_6j7jm")]
+position = Vector2(0, -592)
+
+[node name="seafront_ship_small2" parent="props/ships" index="7" instance=ExtResource("8_6j7jm")]
+position = Vector2(1024, 208)
+
+[node name="seafront_ship_small3" parent="props/ships" index="8" instance=ExtResource("8_6j7jm")]
+position = Vector2(992, 336)
+
 [node name="laser_button" parent="props" index="2" node_paths=PackedStringArray("collision_shape") instance=ExtResource("7_nbssv")]
 unique_name_in_owner = true
-position = Vector2(1688, 208)
+position = Vector2(1688, 272)
 texture = ExtResource("8_2r2dy")
 collision_shape = NodePath("shape")
 
@@ -98,6 +111,7 @@ shape = SubResource("RectangleShape2D_yi8lv")
 position = Vector2(2376, -408)
 script = ExtResource("10_r5hh8")
 enemy = ExtResource("11_y51hr")
+value_per_enemy = 250
 interval = 6.0
 chance = 0.002
 
