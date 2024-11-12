@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapData" load_steps=3 format=3 uid="uid://0iede4hb5rsr"]
+
+[ext_resource type="PackedScene" uid="uid://c08hd46fcfvaw" path="res://maps/rocket_ride.tscn" id="1_jk267"]
+[ext_resource type="Script" path="res://data/maps/map_data.gd" id="2_junbl"]
+
+[resource]
+script = ExtResource("2_junbl")
+scene = ExtResource("1_jk267")
+name = "Rocket ride"

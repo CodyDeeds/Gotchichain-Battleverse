@@ -1,0 +1,110 @@
+[gd_scene load_steps=14 format=3 uid="uid://c08hd46fcfvaw"]
+
+[ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_j52pl"]
+[ext_resource type="Script" path="res://maps/beach_flight.gd" id="2_1gbce"]
+[ext_resource type="PackedScene" uid="uid://b6rvvxe366wfb" path="res://environment/backgrounds/scenes/seafront.tscn" id="3_1gb8h"]
+[ext_resource type="PackedScene" uid="uid://dh1dborjhdnjl" path="res://props/spawn_point.tscn" id="4_wm7b0"]
+[ext_resource type="Script" path="res://pieces/spawner.gd" id="5_kia67"]
+[ext_resource type="PackedScene" uid="uid://7n4av7mieija" path="res://projectiles/seafront_laser.tscn" id="6_06dmk"]
+[ext_resource type="PackedScene" uid="uid://os110wqvjm2e" path="res://props/seafront_ship.tscn" id="7_74uwx"]
+[ext_resource type="PackedScene" uid="uid://d4k6crqabykoi" path="res://props/seafront_ship_small.tscn" id="8_rees1"]
+[ext_resource type="PackedScene" uid="uid://b0vf1m3hwqcia" path="res://props/button.tscn" id="9_mcknc"]
+[ext_resource type="Texture2D" uid="uid://badmtdhilycmg" path="res://props/button_warning.png" id="10_f1qjr"]
+[ext_resource type="Script" path="res://pieces/enemy_spawner.gd" id="11_tm0qh"]
+[ext_resource type="PackedScene" uid="uid://bebod5evbaoiv" path="res://entities/enemies/seagull.tscn" id="12_f34hj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yi8lv"]
+size = Vector2(36, 16)
+
+[node name="rocket_ride" instance=ExtResource("1_j52pl")]
+script = ExtResource("2_1gbce")
+button_interval = 10.0
+
+[node name="seafront" parent="bac" index="0" instance=ExtResource("3_1gb8h")]
+
+[node name="spawn_point0" parent="spawns" index="0" instance=ExtResource("4_wm7b0")]
+position = Vector2(-960, 224)
+
+[node name="spawn_point1" parent="spawns" index="1" instance=ExtResource("4_wm7b0")]
+position = Vector2(-576, 336)
+
+[node name="spawn_point2" parent="spawns" index="2" instance=ExtResource("4_wm7b0")]
+position = Vector2(-128, -448)
+
+[node name="spawn_point3" parent="spawns" index="3" instance=ExtResource("4_wm7b0")]
+position = Vector2(640, -128)
+
+[node name="tilemap" parent="." index="3"]
+layer_0/tile_data = PackedInt32Array(131057, 0, 65536, 131066, 0, 65536, -196607, 0, 65536, -196598, 0, 65536, 131060, 0, 131072, -196604, 0, 131072, -851920, 0, 65536, 131063, 0, 65536, -196601, 0, 65536)
+
+[node name="props" type="Node2D" parent="." index="7"]
+
+[node name="lasers" type="Node2D" parent="props" index="0"]
+unique_name_in_owner = true
+
+[node name="laser_spawner0" type="Node2D" parent="props/lasers" index="0"]
+position = Vector2(-256, -320)
+script = ExtResource("5_kia67")
+scene = ExtResource("6_06dmk")
+
+[node name="laser_spawner1" type="Node2D" parent="props/lasers" index="1"]
+position = Vector2(-544, 128)
+script = ExtResource("5_kia67")
+scene = ExtResource("6_06dmk")
+
+[node name="laser_spawner2" type="Node2D" parent="props/lasers" index="2"]
+position = Vector2(-32, 0)
+script = ExtResource("5_kia67")
+scene = ExtResource("6_06dmk")
+
+[node name="laser_spawner3" type="Node2D" parent="props/lasers" index="3"]
+position = Vector2(1216, -320)
+script = ExtResource("5_kia67")
+scene = ExtResource("6_06dmk")
+
+[node name="ships" type="Node2D" parent="props" index="1"]
+z_index = -1
+
+[node name="seafront_ship0" parent="props/ships" index="0" instance=ExtResource("7_74uwx")]
+position = Vector2(-32, -320)
+
+[node name="seafront_ship1" parent="props/ships" index="1" instance=ExtResource("7_74uwx")]
+position = Vector2(-320, 128)
+
+[node name="seafront_ship2" parent="props/ships" index="2" instance=ExtResource("7_74uwx")]
+position = Vector2(192, 0)
+
+[node name="seafront_ship3" parent="props/ships" index="3" instance=ExtResource("7_74uwx")]
+position = Vector2(1440, -320)
+
+[node name="seafront_ship_small0" parent="props/ships" index="4" instance=ExtResource("8_rees1")]
+position = Vector2(608, -16)
+
+[node name="seafront_ship_small1" parent="props/ships" index="5" instance=ExtResource("8_rees1")]
+position = Vector2(1024, -192)
+
+[node name="seafront_ship_small2" parent="props/ships" index="6" instance=ExtResource("8_rees1")]
+position = Vector2(-576, 448)
+
+[node name="seafront_ship_small3" parent="props/ships" index="7" instance=ExtResource("8_rees1")]
+position = Vector2(-960, 336)
+
+[node name="laser_button" parent="props" index="2" node_paths=PackedStringArray("collision_shape") instance=ExtResource("9_mcknc")]
+unique_name_in_owner = true
+position = Vector2(1440, -432)
+texture = ExtResource("10_f1qjr")
+collision_shape = NodePath("shape")
+
+[node name="shape" type="CollisionShape2D" parent="props/laser_button" index="2"]
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_yi8lv")
+
+[node name="seagull_spawner" type="Node2D" parent="." index="8"]
+position = Vector2(2176, -640)
+script = ExtResource("11_tm0qh")
+enemy = ExtResource("12_f34hj")
+value_per_enemy = 250
+interval = 6.0
+chance = 0.002
+
+[connection signal="activated" from="props/laser_button" to="." method="activate_lasers"]
