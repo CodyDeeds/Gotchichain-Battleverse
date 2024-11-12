@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvv4aykce3630"]
+
+[ext_resource type="PackedScene" uid="uid://c2orgk6obuhmt" path="res://ui/wearable_selection_individual.tscn" id="1_b7leu"]
+[ext_resource type="Script" path="res://ui/wearable_selection.gd" id="1_r7ty4"]
+
+[node name="wearable_selection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r7ty4")
+
+[node name="panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin" type="MarginContainer" parent="panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="all" type="VBoxContainer" parent="panel/margin"]
+layout_mode = 2
+alignment = 1
+
+[node name="title" type="RichTextLabel" parent="panel/margin/all"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center][wave freq=1]SELECT YOUR GARB![/wave][/center]"
+fit_content = true
+
+[node name="list" type="HBoxContainer" parent="panel/margin/all"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="wearable_selection_individual" parent="panel/margin/all/list" instance=ExtResource("1_b7leu")]
+layout_mode = 2
+
+[node name="wearable_selection_individual2" parent="panel/margin/all/list" instance=ExtResource("1_b7leu")]
+layout_mode = 2
+
+[node name="status" type="RichTextLabel" parent="panel/margin/all"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][wave freq=1]Players not yet ready![/wave][/center]"
+fit_content = true
+
+[node name="ready_timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="ready_timer" to="." method="_on_ready_timer_timeout"]

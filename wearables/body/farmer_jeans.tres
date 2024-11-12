@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Wearable" load_steps=2 format=3 uid="uid://dtjnih4nuxd4t"]
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://dtjnih4nuxd4t"]
 
 [ext_resource type="Script" path="res://wearables/wearable.gd" id="1_bxgi3"]
+[ext_resource type="Texture2D" uid="uid://cubuqb3sivoao" path="res://wearables/body/farmer_jeans.png" id="2_1qwuo"]
 
 [resource]
 script = ExtResource("1_bxgi3")
 id = ""
-name = ""
+name = "Farmer Jeans"
+sprite = ExtResource("2_1qwuo")
 offset = Vector2(0, 0)

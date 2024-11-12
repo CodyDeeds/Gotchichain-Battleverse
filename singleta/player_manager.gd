@@ -65,8 +65,6 @@ func spawn_player(which: int):
 	var furthest_spawn = get_furthest_spawn()
 	if is_instance_valid(furthest_spawn):
 		rpc_spawn_player.bind(which, players[which].multiplayer_owner, furthest_spawn.global_position).rpc()
-	
-	player_spawned.emit()
 
 func get_player(which: int) -> PlayerStats:
 	while players.size() < which + 1:
@@ -89,9 +87,12 @@ func rpc_spawn_player(which: int, player_owner: int, where: Vector2):
 	new_player.controller = which
 	players[which].object = new_player
 	players[which].health = new_player.get_health_array()
+	new_player.add_wearable(players[which].body_wearable)
+	new_player.add_wearable(players[which].head_wearable)
 	
 	Game.deploy_instance(new_player, where)
 	player_stats_updated.emit()
+	player_spawned.emit()
 
 func get_total_bet() -> int:
 	var output: int = 0

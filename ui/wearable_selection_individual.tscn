@@ -1,0 +1,142 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2orgk6obuhmt"]
+
+[ext_resource type="Script" path="res://ui/wearable_selection_individual.gd" id="1_mgklm"]
+[ext_resource type="Texture2D" uid="uid://clfitr3fd6le1" path="res://entities/gotchi.png" id="1_venf0"]
+[ext_resource type="Texture2D" uid="uid://cibub712iekg3" path="res://wearables/head/witchy_hat.png" id="2_r7jtt"]
+[ext_resource type="Texture2D" uid="uid://cn7f72bysnnuo" path="res://wearables/body/witchy_cloak.png" id="3_lq74r"]
+
+[sub_resource type="Animation" id="Animation_blspx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("margin/all/sprite_area:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("margin/all/sprite_area:theme_override_constants/margin_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_nvdc2"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("margin/all/sprite_area:theme_override_constants/margin_top")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, 2, 8, 14, 16, 14, 8, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("margin/all/sprite_area:theme_override_constants/margin_bottom")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 14, 8, 2, null, 2, 8, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgv2v"]
+_data = {
+"RESET": SubResource("Animation_blspx"),
+"float": SubResource("Animation_nvdc2")
+}
+
+[node name="wearable_selection_individual" type="PanelContainer"]
+offset_right = 320.0
+offset_bottom = 384.0
+size_flags_horizontal = 3
+script = ExtResource("1_mgklm")
+
+[node name="margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="all" type="VBoxContainer" parent="margin"]
+layout_mode = 2
+alignment = 1
+
+[node name="title" type="Label" parent="margin/all"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player 1"
+horizontal_alignment = 1
+
+[node name="sprite_area" type="MarginContainer" parent="margin/all"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="gotchi" type="TextureRect" parent="margin/all/sprite_area"]
+layout_mode = 2
+texture = ExtResource("1_venf0")
+stretch_mode = 5
+
+[node name="headholder" type="Control" parent="margin/all/sprite_area"]
+layout_mode = 2
+
+[node name="head" type="TextureRect" parent="margin/all/sprite_area/headholder"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_r7jtt")
+stretch_mode = 5
+
+[node name="bodyholder" type="Control" parent="margin/all/sprite_area"]
+layout_mode = 2
+
+[node name="body" type="TextureRect" parent="margin/all/sprite_area/bodyholder"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lq74r")
+stretch_mode = 5
+
+[node name="status" type="RichTextLabel" parent="margin/all"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Ready? [img]res://ui/button_a.png[/img][/center]"
+fit_content = true
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cgv2v")
+}
+autoplay = "float"

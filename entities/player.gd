@@ -255,9 +255,10 @@ func get_id() -> int:
 	else:
 		return controller
 
-func add_wearable(what: Texture):
+func add_wearable(what: Wearable):
 	var new_sprite := Sprite2D.new()
-	new_sprite.texture = what
+	new_sprite.texture = what.sprite
+	new_sprite.position = what.offset
 	%wearables.add_child(new_sprite)
 
 

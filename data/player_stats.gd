@@ -15,6 +15,9 @@ extends Resource
 @export var multiplayer_owner: int = 1
 @export var address: String = ""
 
+@export var head_wearable: Wearable = null
+@export var body_wearable: Wearable = null
+
 var object: Player = null
 
 signal money_changed
