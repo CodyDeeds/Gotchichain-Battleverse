@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bebod5evbaoiv"]
+
+[ext_resource type="Script" path="res://entities/enemies/seagull.gd" id="1_cppgt"]
+[ext_resource type="Script" path="res://pieces/flippable.gd" id="2_nnvoj"]
+[ext_resource type="Texture2D" uid="uid://bwcgpi80ypbre" path="res://entities/enemies/seagull.png" id="3_fabrc"]
+[ext_resource type="Script" path="res://pieces/auto_sprite_2d.gd" id="4_pvbqf"]
+[ext_resource type="Script" path="res://pieces/hurtbox.gd" id="5_ucgvl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6exv"]
+size = Vector2(48, 18)
+
+[node name="seagull" type="CharacterBody2D"]
+collision_layer = 64
+script = ExtResource("1_cppgt")
+bomb_interval = 5.0
+value_weight = 0.0
+flying = true
+max_hp = 2.0
+gravity = 0.0
+friction = 0.0
+
+[node name="flippable" type="Node2D" parent="."]
+script = ExtResource("2_nnvoj")
+
+[node name="sprite" type="Sprite2D" parent="flippable"]
+texture = ExtResource("3_fabrc")
+hframes = 8
+script = ExtResource("4_pvbqf")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_v6exv")
+
+[node name="hurtbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_ucgvl")
+teams = Array[int]([-1])
+
+[node name="shape" type="CollisionShape2D" parent="hurtbox"]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_v6exv")
+
+[node name="timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxlf3ea8f5pbr"]
+
+[ext_resource type="Script" path="res://projectiles/seagull_bomb.gd" id="1_fe3uk"]
+[ext_resource type="Texture2D" uid="uid://dmq4weibnr68g" path="res://projectiles/seagull_bomb.png" id="2_e3dqk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ae8jr"]
+radius = 8.0
+
+[node name="seagull_bomb" type="Area2D"]
+script = ExtResource("1_fe3uk")
+teams = Array[int]([0, -1])
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ae8jr")
+
+[node name="sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_e3dqk")
+hframes = 6
+frame = 2

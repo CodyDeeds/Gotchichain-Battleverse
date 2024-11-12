@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://np3wemw7v643"]
+[gd_scene load_steps=13 format=3 uid="uid://np3wemw7v643"]
 
 [ext_resource type="PackedScene" uid="uid://bbji28y68eptm" path="res://maps/_world.tscn" id="1_fgqs6"]
 [ext_resource type="Script" path="res://maps/beach_flight.gd" id="2_y38jg"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://pieces/spawner.gd" id="5_sna5a"]
 [ext_resource type="PackedScene" uid="uid://b0vf1m3hwqcia" path="res://props/button.tscn" id="7_nbssv"]
 [ext_resource type="Texture2D" uid="uid://badmtdhilycmg" path="res://props/button_warning.png" id="8_2r2dy"]
+[ext_resource type="Script" path="res://pieces/enemy_spawner.gd" id="10_r5hh8"]
+[ext_resource type="PackedScene" uid="uid://bebod5evbaoiv" path="res://entities/enemies/seagull.tscn" id="11_y51hr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yi8lv"]
 size = Vector2(36, 16)
@@ -91,5 +93,12 @@ collision_shape = NodePath("shape")
 [node name="shape" type="CollisionShape2D" parent="props/laser_button" index="2"]
 position = Vector2(0, 40)
 shape = SubResource("RectangleShape2D_yi8lv")
+
+[node name="seagull_spawner" type="Node2D" parent="." index="8"]
+position = Vector2(2368, -120)
+script = ExtResource("10_r5hh8")
+enemy = ExtResource("11_y51hr")
+interval = 6.0
+chance = 0.005
 
 [connection signal="activated" from="props/laser_button" to="." method="activate_lasers"]

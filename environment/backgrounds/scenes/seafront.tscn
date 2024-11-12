@@ -108,11 +108,18 @@ _data = {
 script = ExtResource("1_fq8hy")
 scroll_speed = 400.0
 
-[node name="bac" type="TextureRect" parent="."]
+[node name="colour" type="ColorRect" parent="."]
+offset_left = -3328.0
+offset_top = -3632.0
+offset_right = 3336.0
+offset_bottom = 336.0
+color = Color(0.156863, 0.360784, 0.768627, 1)
+
+[node name="gradient" type="TextureRect" parent="."]
 offset_left = 3324.0
-offset_top = -795.0
-offset_right = 4819.0
-offset_bottom = 5837.0
+offset_top = -656.0
+offset_right = 4537.0
+offset_bottom = 5976.0
 rotation = 1.57079
 texture = SubResource("GradientTexture1D_edl5c")
 
