@@ -9,6 +9,7 @@ extends Enemy
 var source: Node = null
 
 const bomb_scene = preload("res://projectiles/seagull_bomb.tscn")
+const feathers_scene = preload("res://fx/seagull_feathers.tscn")
 
 
 func _ready() -> void:
@@ -43,6 +44,8 @@ func drop_bomb():
 func expire():
 	if is_instance_valid(source):
 		source.value += value
+	var new_feathers = feathers_scene.instantiate()
+	Game.deploy_instance(new_feathers, global_position)
 	queue_free()
 
 
