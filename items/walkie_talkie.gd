@@ -37,7 +37,6 @@ func deploy_airstrikes():
 		new_strike.damage = damage
 		new_strike.duration = initial_delay + delay_interval*i
 		var pos := global_position
-		pos.y -= new_strike.get_max_floor_distance() / 2
 		var xpos := initial_distance + distance_interval*i
 		pos.x += xpos if %flip.scale.y > 0 else -xpos
 		Game.deploy_instance(new_strike, pos)

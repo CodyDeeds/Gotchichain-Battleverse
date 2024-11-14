@@ -152,8 +152,10 @@ script = ExtResource("1_ea52o")
 
 [node name="groundfinder" type="RayCast2D" parent="."]
 unique_name_in_owner = true
-target_position = Vector2(0, 1024)
+position = Vector2(0, -512)
+target_position = Vector2(0, 4096)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="glow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.498039)
