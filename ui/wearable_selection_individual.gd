@@ -36,8 +36,8 @@ func _ready() -> void:
 	all_heads = BigData.head_wearables.values()
 	all_bodies = BigData.body_wearables.values()
 	
-	set_head_index(-1)
-	set_body_index(-1)
+	set_head_index( randi() % all_heads.size() )
+	set_body_index( randi() % all_bodies.size() )
 	
 	increment_head()
 	increment_body()
