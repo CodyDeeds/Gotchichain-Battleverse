@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://cqsfd02v1r4il"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_a56a2"]
+[ext_resource type="Texture2D" uid="uid://7nc2n5q6kv0h" path="res://wearables/head/camo_cap_snow.png" id="2_bf812"]
+
+[resource]
+script = ExtResource("1_a56a2")
+id = "camo_cap_snow"
+name = "Snow Camo Cap"
+sprite = ExtResource("2_bf812")
+offset = Vector2(0, 0)

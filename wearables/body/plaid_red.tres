@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://jl3oe33u5g88"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_bmcq8"]
+[ext_resource type="Texture2D" uid="uid://cyrvkb5jkk74j" path="res://wearables/body/plaid_red.png" id="2_nb6ay"]
+
+[resource]
+script = ExtResource("1_bmcq8")
+id = "plaid_red"
+name = "Red Plaid"
+sprite = ExtResource("2_nb6ay")
+offset = Vector2(0, 0)

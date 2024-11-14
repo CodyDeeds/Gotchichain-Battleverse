@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://c0wsrwxin2tr3"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_3g7wk"]
+[ext_resource type="Texture2D" uid="uid://bqqt85h1kcqbg" path="res://wearables/head/sergey_combo.png" id="2_vm8kc"]
+
+[resource]
+script = ExtResource("1_3g7wk")
+id = ""
+name = "Sergey Combo"
+sprite = ExtResource("2_vm8kc")
+offset = Vector2(0, 0)

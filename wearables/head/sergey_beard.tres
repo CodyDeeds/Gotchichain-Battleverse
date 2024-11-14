@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://dtruwcichiyly"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_b0grp"]
+[ext_resource type="Texture2D" uid="uid://b7mcxeqm2ffm0" path="res://wearables/head/sergey_beard.png" id="2_s67h3"]
+
+[resource]
+script = ExtResource("1_b0grp")
+id = ""
+name = "Sergey Beard"
+sprite = ExtResource("2_s67h3")
+offset = Vector2(0, 0)

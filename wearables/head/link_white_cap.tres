@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://bi7yrgtxfeoth"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_7vtof"]
+[ext_resource type="Texture2D" uid="uid://ci6rlje8cb1r8" path="res://wearables/head/link_white_cap.png" id="2_fp1v7"]
+
+[resource]
+script = ExtResource("1_7vtof")
+id = ""
+name = "Link White Cap"
+sprite = ExtResource("2_fp1v7")
+offset = Vector2(0, 0)

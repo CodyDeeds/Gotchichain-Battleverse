@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://bxeim3ylod88u"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_u6r1w"]
+[ext_resource type="Texture2D" uid="uid://j7ybo6tlxrw3" path="res://wearables/body/link_mess_dress.png" id="2_w5tih"]
+
+[resource]
+script = ExtResource("1_u6r1w")
+id = ""
+name = "Link Mess Dress"
+sprite = ExtResource("2_w5tih")
+offset = Vector2(0, 0)

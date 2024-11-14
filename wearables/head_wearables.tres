@@ -7,4 +7,4 @@ script = ExtResource("1_5ngdm")
 base_folder = "res://wearables/head/"
 includes = Array[String](["*.tres"])
 excludes = Array[String]([])
-paths = Array[String](["res://wearables/head//aagent_shades.tres", "res://wearables/head//straw_hat.tres", "res://wearables/head//witchy_hat.tres"])
+paths = Array[String](["res://wearables/head//aagent_shades.tres", "res://wearables/head//camo_cap.tres", "res://wearables/head//camo_cap_snow.tres", "res://wearables/head//link_white_cap.tres", "res://wearables/head//marine_cap.tres", "res://wearables/head//sergey_beard.tres", "res://wearables/head//sergey_combo.tres", "res://wearables/head//sergey_eyes.tres", "res://wearables/head//straw_hat.tres", "res://wearables/head//witchy_hat.tres"])
