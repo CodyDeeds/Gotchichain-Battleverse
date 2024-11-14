@@ -48,6 +48,7 @@ enum POOLS {
 var holder: Player = null
 var previous_holder: Player = null
 var can_hit_previous_holder: bool = false
+var enabled: bool = true
 
 func _init() -> void:
 	add_to_group("items")

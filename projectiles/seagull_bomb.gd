@@ -38,5 +38,6 @@ func die():
 	super()
 	
 	var new_explosion = Game.create_instance(explosion_scene)
+	new_explosion.damage = 1
 	Game.deploy_instance(new_explosion, global_position)
 

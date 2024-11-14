@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl4hygk0t47ka"]
+
+[ext_resource type="PackedScene" uid="uid://di80tn4e0x21d" path="res://items/item.tscn" id="1_j7lbe"]
+[ext_resource type="Script" path="res://items/walkie_talkie.gd" id="2_08x0e"]
+[ext_resource type="Texture2D" uid="uid://dhlsmsg20la24" path="res://items/walkie_talkie.png" id="3_kjlw4"]
+
+[node name="walkie_talkie" instance=ExtResource("1_j7lbe")]
+position = Vector2(-1, 0)
+can_sleep = false
+script = ExtResource("2_08x0e")
+airstrike_count = null
+initial_delay = null
+delay_interval = null
+initial_distance = null
+distance_interval = null
+damage = null
+bonk_speed_threshhold = null
+bonk_damage = null
+follow_speed = null
+straighten_speed = null
+hitbox_size = null
+sprite_scale = 2.5
+flip_sprite = null
+grabable = null
+auto_grab = null
+id = null
+pools = Array[int]([1])
+activation_sfx = null
+destruction_sfx = null
+grab_sfx = null
+throw_sfx = null
+rare_throw_sfx = null
+
+[node name="sprite" parent="flip" index="0"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_kjlw4")
+hframes = 2
+
+[node name="shape" parent="." index="1"]
+visible = true
+polygon = PackedVector2Array(11.0866, 4.5922, 4.5922, 11.0866, -4.5922, 11.0866, -11.0866, 4.5922, -11.0866, -4.5922, -4.5922, -11.0866, 4.5922, -11.0866, 11.0866, -4.5922)
+
+[node name="disable_timer" type="Timer" parent="." index="6"]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="disable_timer" to="." method="_on_disable_timer_timeout"]

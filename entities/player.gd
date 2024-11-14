@@ -178,7 +178,7 @@ func rpc_grab_item_by_path(item_path: NodePath):
 ## Run on server only
 @rpc("any_peer", "call_remote", "reliable")
 func activate_item():
-	if is_instance_valid(held_item):
+	if is_instance_valid(held_item) and held_item.enabled:
 		rpc_activate_item.rpc(held_item.global_position, held_item.global_rotation)
 
 ## This function assumes there is a valid held item
@@ -186,7 +186,7 @@ func activate_item():
 func rpc_activate_item(pos: Vector2, rot: float):
 	# Position and rotation are that of the held item
 	# They are sent in order to ensure consistent placement of the item before activation
-	if is_instance_valid(held_item):
+	if is_instance_valid(held_item) and held_item.enabled:
 		held_item.global_position = pos
 		held_item.global_rotation = rot
 		held_item.get_activated()
