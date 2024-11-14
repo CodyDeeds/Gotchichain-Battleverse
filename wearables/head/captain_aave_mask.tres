@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://dxo2j6d35ownd"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_xrk20"]
+[ext_resource type="Texture2D" uid="uid://n1xd14g830mw" path="res://wearables/head/captain_aave_mask.png" id="2_fbmlo"]
+
+[resource]
+script = ExtResource("1_xrk20")
+id = "captain_aave_mask"
+name = "Captain Aave Mask"
+sprite = ExtResource("2_fbmlo")
+offset = Vector2(0, 0)

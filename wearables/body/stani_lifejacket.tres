@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://8l86fm20x0ph"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_44pex"]
+[ext_resource type="Texture2D" uid="uid://bedwd772kd7qq" path="res://wearables/body/stani_lifejacket.png" id="2_ig4pj"]
+
+[resource]
+script = ExtResource("1_44pex")
+id = "stani_lifejacket"
+name = "Stani Lifejacket"
+sprite = ExtResource("2_ig4pj")
+offset = Vector2(0, 0)

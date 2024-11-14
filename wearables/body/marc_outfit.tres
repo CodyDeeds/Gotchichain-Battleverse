@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://cvjnogki872mk"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_8ah10"]
+[ext_resource type="Texture2D" uid="uid://dg1mevwy88vm8" path="res://wearables/body/marc_outfit.png" id="2_37njt"]
+
+[resource]
+script = ExtResource("1_8ah10")
+id = "marc_outfit"
+name = "Marc Outfit"
+sprite = ExtResource("2_37njt")
+offset = Vector2(0, 0)

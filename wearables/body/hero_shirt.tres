@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://clr5srmdtd054"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_tikvq"]
+[ext_resource type="Texture2D" uid="uid://viy3f67ldqqw" path="res://wearables/body/hero_shirt.png" id="2_bwkc7"]
+
+[resource]
+script = ExtResource("1_tikvq")
+id = "hero_shirt"
+name = "Hero Shirt"
+sprite = ExtResource("2_bwkc7")
+offset = Vector2(0, 0)

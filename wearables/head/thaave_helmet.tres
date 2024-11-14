@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wearable" load_steps=3 format=3 uid="uid://duxdtey51j0d2"]
+
+[ext_resource type="Script" path="res://wearables/wearable.gd" id="1_0fc7y"]
+[ext_resource type="Texture2D" uid="uid://d1tw2ealqkyrm" path="res://wearables/head/thaave_helmet.png" id="2_5h2fg"]
+
+[resource]
+script = ExtResource("1_0fc7y")
+id = "thaave_helmet"
+name = "Thaave Helmet"
+sprite = ExtResource("2_5h2fg")
+offset = Vector2(0, 0)
