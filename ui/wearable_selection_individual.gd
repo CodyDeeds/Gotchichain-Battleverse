@@ -18,6 +18,8 @@ var controller := 0
 var is_ready := false
 var age := 0.0
 var locked := false
+var father = null
+static var active_wearables: Array[Wearable] = []
 
 var all_heads = BigData.head_wearables.values()
 var all_bodies = BigData.body_wearables.values()
@@ -34,8 +36,11 @@ func _ready() -> void:
 	all_heads = BigData.head_wearables.values()
 	all_bodies = BigData.body_wearables.values()
 	
-	set_head(all_heads[0])
-	set_body(all_bodies[0])
+	set_head_index(-1)
+	set_body_index(-1)
+	
+	increment_head()
+	increment_body()
 	
 	controller = get_index()
 	%title.text = "Player %s" % (controller + 1)
@@ -64,38 +69,90 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("move_left"):
 			match selected_row:
 				ROW.HEAD:
-					set_head_index(head_index - 1)
+					decrement_head()
 				ROW.BODY:
-					set_body_index(body_index - 1)
+					decrement_body()
 		
 		if event.is_action_pressed("move_right"):
 			match selected_row:
 				ROW.HEAD:
-					set_head_index(head_index + 1)
+					increment_head()
 				ROW.BODY:
-					set_body_index(body_index + 1)
+					increment_body()
 		
 		if event.is_action_pressed("jump"):
 			set_ready(!is_ready)
 
 
+func increment_head():
+	var this_index: int = head_index
+	this_index += 1
+	this_index = posmod(this_index, all_heads.size())
+	while !is_wearable_available( all_heads[this_index] ) and this_index != head_index:
+		this_index += 1
+		this_index = posmod(this_index, all_heads.size())
+	
+	if this_index != head_index:
+		set_head_index(this_index)
+
+func decrement_head():
+	var this_index: int = head_index
+	this_index -= 1
+	this_index = posmod(this_index, all_bodies.size())
+	while !is_wearable_available( all_heads[this_index] ) and this_index != head_index:
+		this_index -= 1
+		this_index = posmod(this_index, all_heads.size())
+	
+	if this_index != head_index:
+		set_head_index(this_index)
+
+func increment_body():
+	var this_index: int = body_index
+	this_index += 1
+	this_index = posmod(this_index, all_bodies.size())
+	while !is_wearable_available( all_bodies[this_index] ) and this_index != body_index:
+		this_index += 1
+		this_index = posmod(this_index, all_bodies.size())
+	
+	if this_index != body_index:
+		set_body_index(this_index)
+
+func decrement_body():
+	var this_index: int = body_index
+	this_index -= 1
+	this_index = posmod(this_index, all_bodies.size())
+	while !is_wearable_available( all_bodies[this_index] ) and this_index != body_index:
+		this_index -= 1
+		this_index = posmod(this_index, all_bodies.size())
+	
+	if this_index != body_index:
+		set_body_index(this_index)
+
 func set_head_index(what: int):
-	head_index = wrapi(what, 0, all_heads.size())
+	head_index = posmod(what, all_heads.size())
 	set_head(all_heads[head_index])
 
 func set_body_index(what: int):
-	body_index = wrapi(what, 0, all_bodies.size())
+	body_index = posmod(what, all_bodies.size())
 	set_body(all_bodies[body_index])
 
 func set_head(what: Wearable):
+	remove_active_wearable(head_wearable)
+	
 	head_wearable = what
 	%head.texture = what.sprite
 	reposition_head.call_deferred()
+	
+	add_active_wearable(head_wearable)
 
 func set_body(what: Wearable):
+	remove_active_wearable(body_wearable)
+	
 	body_wearable = what
 	%body.texture = what.sprite
 	reposition_body.call_deferred()
+	
+	add_active_wearable(body_wearable)
 
 func set_ready(what: bool):
 	is_ready = what
@@ -122,6 +179,17 @@ func get_texture_scale(what: TextureRect) -> float:
 	
 	var texture_scale := what.size / what.texture.get_size()
 	return min(texture_scale.x, texture_scale.y)
+
+func add_active_wearable(what):
+	if what and !active_wearables.has(what):
+		active_wearables.append(what)
+
+func remove_active_wearable(what):
+	if what and active_wearables.has(what):
+		active_wearables.erase(what)
+
+func is_wearable_available(what: Wearable):
+	return !what in active_wearables
 
 
 func _on_resized():

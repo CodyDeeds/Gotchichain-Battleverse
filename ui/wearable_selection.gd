@@ -13,6 +13,7 @@ const ready_texts = [
 func _ready() -> void:
 	for this_selection in %list.get_children():
 		this_selection.ready_changed.connect(_on_ready_changed)
+		this_selection.father = self
 
 
 func ready_countdown():
