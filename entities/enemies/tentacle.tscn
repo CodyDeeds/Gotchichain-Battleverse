@@ -89,6 +89,7 @@ _data = {
 
 [node name="tentacle" type="CharacterBody2D"]
 script = ExtResource("1_redww")
+max_hp = 3.0
 
 [node name="shape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-16, 32, -8, 16, 8, 16, 16, 32)
