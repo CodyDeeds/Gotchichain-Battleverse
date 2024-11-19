@@ -21,4 +21,5 @@ func _process(delta: float) -> void:
 
 func _on_crash(_body):
 	Game.deploy_coin_payload.call_deferred(value, global_position)
+	GlobalSound.play_sfx_2d(&"glass_break", global_position)
 	queue_free()

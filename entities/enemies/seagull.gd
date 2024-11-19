@@ -57,11 +57,13 @@ func expire():
 	if is_instance_valid(source):
 		source.value += value
 	deploy_feathers()
+	GlobalSound.play_sfx_2d(&"bird_die", global_position)
 	queue_free()
 
 func die():
 	super()
 	deploy_feathers()
+	GlobalSound.play_sfx_2d(&"bird_die", global_position)
 
 
 func _on_timer_timeout() -> void:
