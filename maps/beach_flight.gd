@@ -10,3 +10,6 @@ func activate_lasers():
 	
 	var new_timer := get_tree().create_timer(button_interval)
 	new_timer.timeout.connect( %laser_button.enable )
+	
+	var new_audio = load("res://fx/seafront_laser_audio.tscn").instantiate()
+	add_child(new_audio)

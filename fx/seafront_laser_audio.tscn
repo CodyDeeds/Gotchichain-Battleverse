@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dveen3xkr2ejj"]
+
+[ext_resource type="Script" path="res://fx/seafront_laser_audio.gd" id="1_sysfk"]
+
+[node name="seafront_laser_audio" type="Node"]
+script = ExtResource("1_sysfk")
