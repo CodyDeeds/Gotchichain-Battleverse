@@ -1,12 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://m8iwyag5o0g3"]
+[gd_scene load_steps=12 format=3 uid="uid://m8iwyag5o0g3"]
 
 [ext_resource type="Script" path="res://environment/lava.gd" id="1_7r575"]
 [ext_resource type="Script" path="res://pieces/hitbox.gd" id="2_fsx06"]
 [ext_resource type="Texture2D" uid="uid://dhp8057s0avjj" path="res://fx/lava_gradient.tres" id="3_6f466"]
 [ext_resource type="Texture2D" uid="uid://c0aktnyawixf7" path="res://environment/lava.png" id="3_c7olk"]
 [ext_resource type="Script" path="res://pieces/auto_sprite_2d.gd" id="4_wp22o"]
+[ext_resource type="AudioStream" uid="uid://wptrmlfrhet6" path="res://audio/sfx/lava_rising.wav" id="6_h6g75"]
+[ext_resource type="AudioStream" uid="uid://b5lluwqbnh2aa" path="res://audio/sfx/lava_sinking.wav" id="7_qnolh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j5jqn"]
+
+[sub_resource type="Animation" id="Animation_a2sgs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_bkv74"]
 resource_name = "pulsate"
@@ -23,21 +40,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.498039)]
-}
-
-[sub_resource type="Animation" id="Animation_a2sgs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("glow:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6473o"]
@@ -83,3 +85,15 @@ libraries = {
 "": SubResource("AnimationLibrary_6473o")
 }
 autoplay = "pulsate"
+
+[node name="sfx_rising" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_h6g75")
+volume_db = -80.0
+autoplay = true
+
+[node name="sfx_sinking" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_qnolh")
+volume_db = -80.0
+autoplay = true
