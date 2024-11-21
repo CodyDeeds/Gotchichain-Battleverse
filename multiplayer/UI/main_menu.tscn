@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bov2gw34h5hrj"]
+[gd_scene load_steps=18 format=3 uid="uid://bov2gw34h5hrj"]
 
 [ext_resource type="Script" path="res://multiplayer/UI/main_menu.gd" id="1_nbq3q"]
 [ext_resource type="Texture2D" uid="uid://bb6dl50v7hj2i" path="res://multiplayer/UI/backdrop.png" id="2_qwni7"]
 [ext_resource type="PackedScene" uid="uid://bc3bmou81qqv6" path="res://multiplayer/maps/multiplayer_arena.tscn" id="2_rhaxb"]
-[ext_resource type="Texture2D" uid="uid://dijkbyhcgoxqi" path="res://multiplayer/UI/logo.png" id="3_abcd"]
+[ext_resource type="Texture2D" uid="uid://dqhqqu85sksim" path="res://ui/title2_geist.png" id="4_3l058"]
 [ext_resource type="Texture2D" uid="uid://ch220m010oin8" path="res://multiplayer/UI/Gotchi-1.png" id="4_hmh6v"]
+[ext_resource type="Texture2D" uid="uid://cneu4t54dplhi" path="res://ui/title2_fight.png" id="5_nfali"]
 [ext_resource type="Texture2D" uid="uid://cl2j3po14wv64" path="res://multiplayer/UI/Gotchi-2.png" id="5_oirsd"]
 [ext_resource type="Texture2D" uid="uid://d0doof25qm08h" path="res://multiplayer/UI/Gotchi-3.png" id="6_pltkv"]
 [ext_resource type="Texture2D" uid="uid://cqsydj75h56tg" path="res://multiplayer/UI/Gotchi-4.png" id="7_665qu"]
@@ -12,6 +13,211 @@
 [ext_resource type="Texture2D" uid="uid://dab40xj2lrc6b" path="res://multiplayer/UI/Gotchi-6.png" id="9_drhrr"]
 [ext_resource type="Texture2D" uid="uid://btpm37fod2cp4" path="res://multiplayer/UI/Gotchi-7.png" id="10_hbsvu"]
 [ext_resource type="Texture2D" uid="uid://v6o0pmukw4hc" path="res://multiplayer/UI/Gotchi-8.png" id="11_w7kkm"]
+
+[sub_resource type="Animation" id="Animation_1xifq"]
+resource_name = "vibrate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("geist:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-32, -48), Vector2(-36, -48), Vector2(-32, -48), Vector2(-36, -48), Vector2(-32, -48), Vector2(-36, -48), Vector2(-32, -48), Vector2(-36, -48), Vector2(-32, -48), Vector2(-36, -48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(32, 32), Vector2(36, 32), Vector2(32, 32), Vector2(36, 32), Vector2(32, 32), Vector2(36, 32), Vector2(32, 32), Vector2(36, 32), Vector2(32, 32), Vector2(36, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("geist:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(2, 2, 2, 1), Color(1, 1, 1, 1), Color(2, 2, 2, 1), Color(1, 1, 1, 1), Color(4, 4, 4, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fight:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(4, 4, 4, 1), Color(1, 1, 1, 1), Color(2, 2, 2, 1), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("geist_shadow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 5, 1, 0), Color(1, 5, 1, 0), Color(1, 5, 1, 1), Color(1, 5, 1, 1), Color(1, 5, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("geist_shadow:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-32, -48), Vector2(-32, -48), Vector2(-117.333, -48), Vector2(-160, -48)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("fight_shadow:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 5, 1, 0), Color(1, 5, 1, 0), Color(1, 5, 1, 1), Color(1, 5, 1, 1), Color(1, 5, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("fight_shadow:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(32, 32), Vector2(32, 32), Vector2(112, 32), Vector2(152, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_raxuj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("geist:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("geist:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fight:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("geist_shadow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 5, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("geist_shadow:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -48)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("fight_shadow:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 5, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("fight_shadow:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqpr2"]
+_data = {
+"RESET": SubResource("Animation_raxuj"),
+"vibrate": SubResource("Animation_1xifq")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mc63u"]
 animations = [{
@@ -65,20 +271,35 @@ grow_vertical = 2
 texture = ExtResource("2_qwni7")
 expand_mode = 3
 
-[node name="logo" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.1
-anchor_right = 0.5
-anchor_bottom = 0.1
-offset_left = -256.0
-offset_top = -13.0
-offset_right = 262.0
-offset_bottom = 198.0
-grow_horizontal = 0
-texture = ExtResource("3_abcd")
-expand_mode = 3
+[node name="title" type="Node2D" parent="."]
+position = Vector2(480, 112)
+
+[node name="geist_shadow" type="Sprite2D" parent="title"]
+modulate = Color(1, 5, 1, 0)
+position = Vector2(-32, -48)
+scale = Vector2(1.473, 1.473)
+texture = ExtResource("4_3l058")
+
+[node name="fight_shadow" type="Sprite2D" parent="title"]
+modulate = Color(1, 5, 1, 0)
+position = Vector2(32, 32)
+scale = Vector2(1.473, 1.473)
+texture = ExtResource("5_nfali")
+
+[node name="geist" type="Sprite2D" parent="title"]
+position = Vector2(-32, -48)
+scale = Vector2(1.47343, 1.47343)
+texture = ExtResource("4_3l058")
+
+[node name="fight" type="Sprite2D" parent="title"]
+position = Vector2(32, 32)
+scale = Vector2(1.47343, 1.47343)
+texture = ExtResource("5_nfali")
+
+[node name="animator" type="AnimationPlayer" parent="title"]
+libraries = {
+"": SubResource("AnimationLibrary_kqpr2")
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(485, 355)
@@ -127,7 +348,8 @@ offset_left = 392.0
 offset_top = 3.0
 offset_right = 727.0
 offset_bottom = 125.0
-text = "NO CONTROLLER = REKT"
+bbcode_enabled = true
+text = "[wave]NO CONTROLLER = REKT[/wave]"
 
 [node name="pc_controls" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
