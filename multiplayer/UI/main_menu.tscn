@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://multiplayer/UI/main_menu.gd" id="1_nbq3q"]
 [ext_resource type="Texture2D" uid="uid://bb6dl50v7hj2i" path="res://multiplayer/UI/backdrop.png" id="2_qwni7"]
 [ext_resource type="PackedScene" uid="uid://bc3bmou81qqv6" path="res://multiplayer/maps/multiplayer_arena.tscn" id="2_rhaxb"]
-[ext_resource type="Script" path="res://ui/pulasting_noise.gd" id="3_exxl3"]
+[ext_resource type="Script" path="res://ui/pulsating_noise.gd" id="3_exxl3"]
 [ext_resource type="Gradient" uid="uid://cs3ue7oii4e15" path="res://ui/style/grd_purp.tres" id="3_ju40a"]
 [ext_resource type="Texture2D" uid="uid://dqhqqu85sksim" path="res://ui/title2_geist.png" id="4_3l058"]
 [ext_resource type="Texture2D" uid="uid://ch220m010oin8" path="res://multiplayer/UI/Gotchi-1.png" id="4_hmh6v"]

@@ -15,7 +15,7 @@ extends Sprite2D
 
 @export var gradient_offset := 0.0
 
-@export var gradient: Gradient = null
+@export var gradient: Gradient = null: set = set_gradient
 
 
 var _gradient: Gradient = null
@@ -23,7 +23,7 @@ var age := 0.0
 
 
 func _ready() -> void:
-	assign_gradient()
+	assign_gradient(true)
 
 func _process(delta: float) -> void:
 	age += delta
@@ -49,11 +49,18 @@ func change_pulsation():
 	for i in range(_gradient.offsets.size()):
 		_gradient.offsets[i] = gradient.offsets[i] + pulsation - gradient_offset
 
-func assign_gradient():
+func assign_gradient(force_recreate: bool = false):
 	if !gradient:
 		return
 	
 	_gradient = gradient.duplicate()
-	if !(texture is NoiseTexture2D):
+	if !(texture is NoiseTexture2D) or force_recreate:
 		texture = NoiseTexture2D.new()
+		texture.seamless = true
+		texture.noise = FastNoiseLite.new()
 	texture.color_ramp = _gradient
+
+
+func set_gradient(what: Gradient):
+	gradient = what
+	assign_gradient(true)
