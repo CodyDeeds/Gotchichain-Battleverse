@@ -1,18 +1,131 @@
-[gd_scene load_steps=18 format=3 uid="uid://bov2gw34h5hrj"]
+[gd_scene load_steps=28 format=3 uid="uid://bov2gw34h5hrj"]
 
 [ext_resource type="Script" path="res://multiplayer/UI/main_menu.gd" id="1_nbq3q"]
 [ext_resource type="Texture2D" uid="uid://bb6dl50v7hj2i" path="res://multiplayer/UI/backdrop.png" id="2_qwni7"]
 [ext_resource type="PackedScene" uid="uid://bc3bmou81qqv6" path="res://multiplayer/maps/multiplayer_arena.tscn" id="2_rhaxb"]
+[ext_resource type="Script" path="res://ui/pulasting_noise.gd" id="3_exxl3"]
+[ext_resource type="Gradient" uid="uid://cs3ue7oii4e15" path="res://ui/style/grd_purp.tres" id="3_ju40a"]
 [ext_resource type="Texture2D" uid="uid://dqhqqu85sksim" path="res://ui/title2_geist.png" id="4_3l058"]
 [ext_resource type="Texture2D" uid="uid://ch220m010oin8" path="res://multiplayer/UI/Gotchi-1.png" id="4_hmh6v"]
 [ext_resource type="Texture2D" uid="uid://cneu4t54dplhi" path="res://ui/title2_fight.png" id="5_nfali"]
 [ext_resource type="Texture2D" uid="uid://cl2j3po14wv64" path="res://multiplayer/UI/Gotchi-2.png" id="5_oirsd"]
+[ext_resource type="Texture2D" uid="uid://bqgobahtrlqvf" path="res://fx/glow.png" id="6_pb4jj"]
 [ext_resource type="Texture2D" uid="uid://d0doof25qm08h" path="res://multiplayer/UI/Gotchi-3.png" id="6_pltkv"]
 [ext_resource type="Texture2D" uid="uid://cqsydj75h56tg" path="res://multiplayer/UI/Gotchi-4.png" id="7_665qu"]
 [ext_resource type="Texture2D" uid="uid://bcavl5b5fusyc" path="res://multiplayer/UI/Gotchi-5.png" id="8_8c3ao"]
 [ext_resource type="Texture2D" uid="uid://dab40xj2lrc6b" path="res://multiplayer/UI/Gotchi-6.png" id="9_drhrr"]
 [ext_resource type="Texture2D" uid="uid://btpm37fod2cp4" path="res://multiplayer/UI/Gotchi-7.png" id="10_hbsvu"]
 [ext_resource type="Texture2D" uid="uid://v6o0pmukw4hc" path="res://multiplayer/UI/Gotchi-8.png" id="11_w7kkm"]
+
+[sub_resource type="Gradient" id="Gradient_lm2cs"]
+offsets = PackedFloat32Array(-0.0340924, 0.440484, 0.813366, 0.919298)
+colors = PackedColorArray(0.131775, 0.1095, 0.15, 1, 0.324065, 0.1457, 0.47, 1, 0.935833, 0.23, 1, 1, 1, 0.664, 0.52, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ylk8n"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wqser"]
+seamless = true
+color_ramp = SubResource("Gradient_lm2cs")
+noise = SubResource("FastNoiseLite_ylk8n")
+
+[sub_resource type="Animation" id="Animation_raxuj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("geist:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("geist:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fight:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("geist_shadow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 5, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("geist_shadow:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -48)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("fight_shadow:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 5, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("fight_shadow:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 32)]
+}
 
 [sub_resource type="Animation" id="Animation_1xifq"]
 resource_name = "vibrate"
@@ -114,31 +227,32 @@ tracks/7/keys = {
 "values": [Vector2(32, 32), Vector2(32, 32), Vector2(112, 32), Vector2(152, 32)]
 }
 
-[sub_resource type="Animation" id="Animation_raxuj"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_gh28h"]
+resource_name = "arrive"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("geist:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.5, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-32, -48)]
+"values": [Vector2(664, -48), Vector2(90.0835, -48), Vector2(-32, -48)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("fight:position")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.5, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(32, 32)]
+"values": [Vector2(-656, 32), Vector2(-88.6803, 32), Vector2(32, 32)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -147,10 +261,10 @@ tracks/2/path = NodePath("geist:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.5, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -159,63 +273,64 @@ tracks/3/path = NodePath("fight:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.5, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("geist_shadow:modulate")
-tracks/4/interp = 1
+tracks/4/path = NodePath("geist_shadow:position")
+tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 5, 1, 0)]
+"values": [Vector2(664, -48), Vector2(65.4654, -48), Vector2(-32, -48)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("geist_shadow:position")
+tracks/5/path = NodePath("geist_shadow:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 1.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-32, -48)]
+"values": [Color(1, 5, 1, 0), Color(1, 5, 1, 1), Color(1, 5, 1, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("fight_shadow:modulate")
-tracks/6/interp = 1
+tracks/6/path = NodePath("fight_shadow:position")
+tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 5, 1, 0)]
+"values": [Vector2(-656, 32), Vector2(-64.3452, 32), Vector2(32, 32)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("fight_shadow:position")
+tracks/7/path = NodePath("fight_shadow:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 1.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(32, 32)]
+"values": [Color(1, 5, 1, 0), Color(1, 5, 1, 1), Color(1, 5, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kqpr2"]
 _data = {
 "RESET": SubResource("Animation_raxuj"),
+"arrive": SubResource("Animation_gh28h"),
 "vibrate": SubResource("Animation_1xifq")
 }
 
@@ -251,6 +366,91 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_qq6rw"]
+resource_name = "flash"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glo:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(4.5, 4.5), Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 0, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("noise/pulasting_noise:gradient_offset")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 0.078125, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fsmfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("noise/pulasting_noise:gradient_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n00it"]
+_data = {
+"RESET": SubResource("Animation_fsmfs"),
+"flash": SubResource("Animation_qq6rw")
+}
+
 [node name="main_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -261,6 +461,35 @@ grow_vertical = 2
 script = ExtResource("1_nbq3q")
 gameholder_scene = ExtResource("2_rhaxb")
 
+[node name="noise" type="Node2D" parent="."]
+
+[node name="pulasting_noise" type="Sprite2D" parent="noise"]
+position = Vector2(480, 296)
+rotation = 73.5932
+scale = Vector2(0.93124, 0.93124)
+texture = SubResource("NoiseTexture2D_wqser")
+region_enabled = true
+region_rect = Rect2(0, 0, 5120, 5120)
+script = ExtResource("3_exxl3")
+rotation_speed = 2.0
+scale_amplitude = 0.1
+scale_interval = 23.0
+pulsate_interval = 7.1
+gradient = ExtResource("3_ju40a")
+
+[node name="background_dark" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.498039)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qwni7")
+expand_mode = 3
+
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -270,6 +499,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_qwni7")
 expand_mode = 3
+
+[node name="glo" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(480, 248)
+scale = Vector2(3, 3)
+texture = ExtResource("6_pb4jj")
 
 [node name="title" type="Node2D" parent="."]
 position = Vector2(480, 112)
@@ -300,6 +535,8 @@ texture = ExtResource("5_nfali")
 libraries = {
 "": SubResource("AnimationLibrary_kqpr2")
 }
+autoplay = "arrive"
+next/arrive = &"vibrate"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(485, 355)
@@ -307,7 +544,15 @@ scale = Vector2(0.474237, 0.533413)
 sprite_frames = SubResource("SpriteFrames_mc63u")
 frame_progress = 0.162759
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n00it")
+}
+
+[node name="timer" type="Timer" parent="animator"]
+wait_time = 1.6
+one_shot = true
+autostart = true
 
 [node name="v_box_container" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -376,6 +621,7 @@ text = "[A]: jump
 [B]: pick up/throw
 [X]: use item"
 
+[connection signal="timeout" from="animator/timer" to="animator" method="play" binds= ["flash"]]
 [connection signal="pressed" from="v_box_container/local" to="." method="_on_local_pressed"]
 [connection signal="pressed" from="v_box_container/client" to="." method="_on_client_button_pressed"]
 [connection signal="pressed" from="v_box_container/host" to="." method="_on_host_pressed"]
