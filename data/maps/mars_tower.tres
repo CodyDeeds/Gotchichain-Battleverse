@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapData" load_steps=3 format=3 uid="uid://lpbwoory0s4s"]
+
+[ext_resource type="PackedScene" uid="uid://blk0qcd4jpbm3" path="res://maps/mars_tower.tscn" id="1_6g5ie"]
+[ext_resource type="Script" path="res://data/maps/map_data.gd" id="2_5topx"]
+
+[resource]
+script = ExtResource("2_5topx")
+scene = ExtResource("1_6g5ie")
+name = "Mars Tower"

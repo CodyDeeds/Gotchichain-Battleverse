@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcxvtlceoaymt"]
+[gd_scene load_steps=15 format=3 uid="uid://bcxvtlceoaymt"]
 
 [ext_resource type="Script" path="res://ui/pulsating_noise.gd" id="1_1ovam"]
 [ext_resource type="Script" path="res://pieces/parallaxor.gd" id="1_2q3hp"]
@@ -6,18 +6,42 @@
 [ext_resource type="Texture2D" uid="uid://b06vc4uxl8q26" path="res://environment/backgrounds/stars0.png" id="3_ijuan"]
 [ext_resource type="Gradient" uid="uid://b7upy0mww4lan" path="res://ui/style/grd_cosmos_fore.tres" id="3_m11sy"]
 
-[sub_resource type="Gradient" id="Gradient_uw6dq"]
-offsets = PackedFloat32Array(0.170857, 0.253582, 0.355772, 0.625845, 0.711003, 0.801027)
+[sub_resource type="Gradient" id="Gradient_ynn5u"]
+offsets = PackedFloat32Array(0, 0.256809, 0.280156, 0.307393, 0.435572, 0.451906, 0.562613, 0.586207, 0.604356, 0.796733, 1)
+colors = PackedColorArray(0.0784314, 0.0627451, 0.0745098, 1, 0.141176, 0.133333, 0.203922, 1, 0.25098, 0.2, 0.32549, 1, 0.141176, 0.133333, 0.203922, 1, 0.141176, 0.133333, 0.203922, 1, 0.25098, 0.2, 0.32549, 1, 0.25098, 0.2, 0.32549, 1, 0.47451, 0.227451, 0.501961, 1, 0.25098, 0.2, 0.32549, 1, 0.47451, 0.227451, 0.501961, 1, 0.976471, 0.639216, 0.105882, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v78ti"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iubyu"]
+seamless = true
+color_ramp = SubResource("Gradient_ynn5u")
+noise = SubResource("FastNoiseLite_v78ti")
+
+[sub_resource type="Gradient" id="Gradient_6iqap"]
+offsets = PackedFloat32Array(0.187348, 0.270073, 0.372263, 0.642336, 0.727494, 0.817518)
 colors = PackedColorArray(0.25098, 0.2, 0.32549, 0, 0.25098, 0.2, 0.32549, 1, 0.25098, 0.2, 0.32549, 0, 0.25098, 0.2, 0.32549, 0, 0.25098, 0.2, 0.32549, 1, 0.25098, 0.2, 0.32549, 0)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_1qf7d"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_txqb8"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1g0c0"]
-width = 1024
-height = 1024
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2227l"]
 seamless = true
-color_ramp = SubResource("Gradient_uw6dq")
-noise = SubResource("FastNoiseLite_1qf7d")
+color_ramp = SubResource("Gradient_6iqap")
+noise = SubResource("FastNoiseLite_txqb8")
+
+[sub_resource type="Animation" id="Animation_wsx7f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("noise2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.247059)]
+}
 
 [sub_resource type="Animation" id="Animation_xtqe8"]
 resource_name = "pulsate"
@@ -37,21 +61,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0.247059), Color(1, 1, 1, 0.498039)]
 }
 
-[sub_resource type="Animation" id="Animation_wsx7f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("noise2:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.247059)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wolfp"]
 _data = {
 "RESET": SubResource("Animation_wsx7f"),
@@ -64,8 +73,8 @@ _data = {
 script = ExtResource("1_2q3hp")
 
 [node name="noise" type="Sprite2D" parent="noise"]
-position = Vector2(496, 238)
-texture = SubResource("NoiseTexture2D_1g0c0")
+position = Vector2(10.9941, -32.0059)
+texture = SubResource("NoiseTexture2D_iubyu")
 region_enabled = true
 region_rect = Rect2(0, 0, 5120, 5120)
 script = ExtResource("1_1ovam")
@@ -77,18 +86,18 @@ pulsate_interval = 23.1
 gradient = ExtResource("2_ehx4f")
 
 [node name="overlay" type="ColorRect" parent="noise"]
-offset_left = -39.0
-offset_top = -42.0
-offset_right = 1039.0
-offset_bottom = 588.0
+offset_left = -747.0
+offset_top = -455.0
+offset_right = 735.0
+offset_bottom = 460.0
 color = Color(0.141176, 0.133333, 0.203922, 0.87451)
 
 [node name="noise2" type="Sprite2D" parent="noise"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(496, 238)
-rotation = -0.923411
-scale = Vector2(0.952804, 0.952804)
-texture = SubResource("NoiseTexture2D_1g0c0")
+position = Vector2(10.9941, -32.0059)
+rotation = -51.1175
+scale = Vector2(0.969999, 0.969999)
+texture = SubResource("NoiseTexture2D_2227l")
 region_enabled = true
 region_rect = Rect2(0, 0, 5120, 5120)
 script = ExtResource("1_1ovam")
@@ -109,13 +118,13 @@ autoplay = "pulsate"
 script = ExtResource("1_2q3hp")
 
 [node name="0" type="Sprite2D" parent="stars"]
-position = Vector2(491, 153)
+position = Vector2(-74.3777, -7.37769)
 texture = ExtResource("3_ijuan")
 region_enabled = true
 region_rect = Rect2(0, 0, 1024, 1024)
 
 [node name="1" type="Sprite2D" parent="stars"]
-position = Vector2(530, 86)
+position = Vector2(-35.3776, -74.3777)
 rotation = -0.394804
 scale = Vector2(1.69034, 1.69034)
 texture = ExtResource("3_ijuan")
@@ -123,7 +132,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1024, 1024)
 
 [node name="2" type="Sprite2D" parent="stars"]
-position = Vector2(624, 168)
+position = Vector2(58.6223, 7.62231)
 rotation = 1.32911
 scale = Vector2(2.82029, 2.82029)
 texture = ExtResource("3_ijuan")

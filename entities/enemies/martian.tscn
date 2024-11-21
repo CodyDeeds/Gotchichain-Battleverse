@@ -1,0 +1,262 @@
+[gd_scene load_steps=23 format=3 uid="uid://du5jcljemibmy"]
+
+[ext_resource type="Script" path="res://entities/enemies/firefrog.gd" id="1_q84fy"]
+[ext_resource type="Script" path="res://pieces/hurtbox.gd" id="2_qtaj3"]
+[ext_resource type="Script" path="res://pieces/hitbox.gd" id="3_tuis3"]
+[ext_resource type="Script" path="res://pieces/flippable.gd" id="4_faixl"]
+[ext_resource type="Texture2D" uid="uid://bqgobahtrlqvf" path="res://fx/glow.png" id="4_hb4k0"]
+[ext_resource type="Texture2D" uid="uid://r5oxd737olxj" path="res://entities/enemies/martian.png" id="5_y41o4"]
+[ext_resource type="Script" path="res://fsm/fsm.gd" id="6_av70m"]
+[ext_resource type="Script" path="res://fsm/states/state_temporary.gd" id="7_ukqpp"]
+[ext_resource type="Script" path="res://fsm/states/frog_leap.gd" id="8_itt8f"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="9_8tkhg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0dbt"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63jfy"]
+size = Vector2(40, 48)
+
+[sub_resource type="Curve" id="Curve_jb100"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.621693, 0.864151), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_272o3"]
+offsets = PackedFloat32Array(0, 0.0883838, 0.317829, 0.348837, 0.392765, 0.581395, 0.612403, 0.656331, 0.79845, 0.837209, 0.878553, 1)
+colors = PackedColorArray(1, 0.988235, 0.25098, 0, 1, 0.988235, 0.25098, 1, 0.836154, 0.930001, 0.240123, 1, 0.141176, 0.321569, 0.231373, 1, 0.782643, 0.910982, 0.236577, 1, 0.647943, 0.863107, 0.227651, 1, 0.0784314, 0.203922, 0.392157, 1, 0.594432, 0.844088, 0.224105, 1, 0.492946, 0.808017, 0.21738, 1, 1, 1, 1, 1, 0.435744, 0.787687, 0.21359, 1, 0.34902, 0.756863, 0.207843, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m6jdr"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="Animation" id="Animation_jbf27"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3husr"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_4mhvd"]
+resource_name = "leap"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flippable/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqak2"]
+_data = {
+"RESET": SubResource("Animation_jbf27"),
+"idle": SubResource("Animation_3husr"),
+"leap": SubResource("Animation_4mhvd")
+}
+
+[sub_resource type="Animation" id="Animation_5eayt"]
+resource_name = "pulaste"
+length = 3.0
+loop_mode = 1
+step = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glow:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.988235, 0.25098, 1), Color(0.34902, 0.756863, 0.207843, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glow:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(0.4, 0.4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("particulation:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.75, 2.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.74902)]
+}
+
+[sub_resource type="Animation" id="Animation_mlshs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.34902, 0.756863, 0.207843, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("particulation:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jx2d1"]
+_data = {
+"RESET": SubResource("Animation_mlshs"),
+"pulaste": SubResource("Animation_5eayt")
+}
+
+[node name="martian" type="CharacterBody2D"]
+collision_layer = 64
+script = ExtResource("1_q84fy")
+value = 1300
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r0dbt")
+
+[node name="hurtbox" type="Area2D" parent="."]
+script = ExtResource("2_qtaj3")
+teams = Array[int]([-1])
+
+[node name="shape" type="CollisionShape2D" parent="hurtbox"]
+visible = false
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_63jfy")
+
+[node name="hitbox" type="Area2D" parent="." node_paths=PackedStringArray("exceptions")]
+script = ExtResource("3_tuis3")
+damage = 1.0
+hit_interval = 0.5
+exceptions = [NodePath("../hurtbox")]
+
+[node name="shape" type="CollisionShape2D" parent="hitbox"]
+visible = false
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_63jfy")
+
+[node name="glow" type="Sprite2D" parent="."]
+modulate = Color(0.34902, 0.756863, 0.207843, 1)
+position = Vector2(0, -16)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_hb4k0")
+
+[node name="flippable" type="Node2D" parent="."]
+script = ExtResource("4_faixl")
+
+[node name="sprite" type="Sprite2D" parent="flippable"]
+position = Vector2(0, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("5_y41o4")
+hframes = 3
+
+[node name="particulation" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(0, -16)
+amount = 24
+emission_shape = 3
+emission_rect_extents = Vector2(24, 24)
+gravity = Vector2(0, -100)
+damping_max = 20.0
+angle_max = 360.0
+scale_amount_min = 2.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_jb100")
+color_ramp = SubResource("Gradient_272o3")
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource("6_av70m")
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource("7_ukqpp")
+animation = "idle"
+next_state = "leap"
+auto_proceed = false
+
+[node name="leap" type="Node" parent="fsm"]
+unique_name_in_owner = true
+script = ExtResource("8_itt8f")
+leap_velocity = Vector2(150, -200)
+animation = "leap"
+next_state = "idle"
+auto_proceed = false
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_m6jdr")
+script = ExtResource("9_8tkhg")
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nqak2")
+}
+
+[node name="effects_animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jx2d1")
+}
+autoplay = "pulaste"
+
+[connection signal="hit" from="hitbox" to="." method="_on_hitbox_hit"]
