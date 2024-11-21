@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvv0na05umgsi"]
+
+[ext_resource type="Script" path="res://entities/enemies/barrel.gd" id="1_0mwrm"]
+[ext_resource type="Texture2D" uid="uid://b55ur3v86jm05" path="res://entities/enemies/barrel.png" id="1_ln7pi"]
+[ext_resource type="Script" path="res://pieces/auto_sprite_2d.gd" id="2_52ho2"]
+[ext_resource type="Script" path="res://addons/mattoha_lobby_system/core/nodes/MattohaSynchronizerModifier.cs" id="3_7g5ou"]
+[ext_resource type="Script" path="res://pieces/hitbox.gd" id="4_iersi"]
+[ext_resource type="Script" path="res://pieces/hurtbox.gd" id="5_cchua"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8pceu"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rhn17"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2fqes"]
+radius = 16.0
+
+[node name="barrel" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 4
+script = ExtResource("1_0mwrm")
+speed = 140.0
+value_weight = 0.0
+max_hp = 1.0
+
+[node name="wall_detector" type="ShapeCast2D" parent="."]
+unique_name_in_owner = true
+enabled = false
+shape = SubResource("CircleShape2D_8pceu")
+target_position = Vector2(8, 0)
+collision_mask = 4
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rhn17")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_ln7pi")
+hframes = 4
+script = ExtResource("2_52ho2")
+animation_speed = 5.0
+
+[node name="hitbox" type="Area2D" parent="."]
+script = ExtResource("4_iersi")
+damage = 1.0
+hit_interval = 0.1
+
+[node name="shape" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_2fqes")
+
+[node name="hurtbox" type="Area2D" parent="."]
+script = ExtResource("5_cchua")
+teams = Array[int]([-1])
+
+[node name="shape" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("CircleShape2D_2fqes")
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+script = ExtResource("3_7g5ou")

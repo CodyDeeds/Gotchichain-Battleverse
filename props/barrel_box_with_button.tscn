@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5tjru77dkev0"]
+
+[ext_resource type="PackedScene" uid="uid://bljrr678svqi5" path="res://props/barrel_box.tscn" id="1_82tvt"]
+[ext_resource type="PackedScene" uid="uid://b0vf1m3hwqcia" path="res://props/button.tscn" id="2_x2tpb"]
+[ext_resource type="Texture2D" uid="uid://bivfrvrpxpfw6" path="res://props/button_plain.png" id="3_hv1kp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35atw"]
+size = Vector2(48, 16)
+
+[node name="barrel_box_with_button" type="Node2D"]
+
+[node name="barrel_box" parent="." instance=ExtResource("1_82tvt")]
+position = Vector2(0, 16)
+
+[node name="button" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("2_x2tpb")]
+position = Vector2(0, -48)
+texture = ExtResource("3_hv1kp")
+collision_shape = NodePath("../button_shape")
+
+[node name="button_shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_35atw")
+
+[connection signal="enabled" from="barrel_box" to="button" method="enable"]
+[connection signal="activated" from="button" to="barrel_box" method="activate"]

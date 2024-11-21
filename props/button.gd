@@ -19,7 +19,7 @@ signal activated
 
 func _ready() -> void:
 	if !Engine.is_editor_hint():
-		collision_shape.reparent(%player_detector)
+		collision_shape.reparent.call_deferred(%player_detector)
 
 
 func enable():

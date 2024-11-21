@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://bljrr678svqi5"]
+
+[ext_resource type="Script" path="res://props/barrel_box.gd" id="1_cchq8"]
+[ext_resource type="Texture2D" uid="uid://14v5w0fvcifl" path="res://props/barrel_box.png" id="1_q8sva"]
+[ext_resource type="Script" path="res://pieces/spawner.gd" id="3_muib4"]
+[ext_resource type="PackedScene" uid="uid://dvv0na05umgsi" path="res://entities/enemies/barrel.tscn" id="4_rqqdb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7kmo"]
+size = Vector2(64, 32)
+
+[sub_resource type="Animation" id="Animation_8h47p"]
+resource_name = "open"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_barrel"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_kd516"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cjt2h"]
+resource_name = "shut"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enable"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8mkk4"]
+_data = {
+"RESET": SubResource("Animation_kd516"),
+"open": SubResource("Animation_8h47p"),
+"shut": SubResource("Animation_cjt2h")
+}
+
+[node name="barrel_box" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 67
+script = ExtResource("1_cchq8")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q7kmo")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+texture = ExtResource("1_q8sva")
+hframes = 8
+vframes = 2
+
+[node name="spawner" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 16)
+script = ExtResource("3_muib4")
+scene = ExtResource("4_rqqdb")
+spawn_as_sibling = true
+sync_spawns = true
+
+[node name="animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_8mkk4")
+}
