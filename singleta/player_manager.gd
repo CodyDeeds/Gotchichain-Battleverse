@@ -33,8 +33,6 @@ func add_player(index: int, player_owner: int = 1, address: String = "") -> Play
 	var new_player: PlayerStats = get_player(index)
 	
 	new_player.controller = index
-	#if controller >= 0:
-		#new_player.controller = controller
 	new_player.name = "Player %s" % (index + 1)
 	new_player.multiplayer_owner = player_owner
 	
@@ -47,7 +45,7 @@ func add_player(index: int, player_owner: int = 1, address: String = "") -> Play
 	spawn_player(index)
 	send_player_stats()
 	
-	if is_instance_valid( new_player.object ):
+	if is_instance_valid(new_player.object):
 		new_player.object.animation_lock(0.25)
 	
 	Events.player_added.emit(index)
@@ -91,6 +89,9 @@ func rpc_spawn_player(which: int, player_owner: int, where: Vector2):
 	new_player.add_wearable(players[which].head_wearable)
 	
 	Game.deploy_instance(new_player, where)
+	# NEW: Reset the movement state so that the player starts neutral.
+	new_player.reset_movement()
+	
 	player_stats_updated.emit()
 	player_spawned.emit()
 
