@@ -1,14 +1,15 @@
 @tool
 extends State
 
-
-# This data probably doesn't belong in the player_normal state. consider movint it elsewhere
+# This data probably doesn't belong in the player_normal state; consider moving it elsewhere.
 var left_pressed: bool = false
 var right_pressed: bool = false
 
-
 func _enter():
 	super()
+	# NEW: Clear any previous input state when entering this state.
+	left_pressed = false
+	right_pressed = false
 	
 	for i in Input.get_connected_joypads():
 		if i == father.controller and father.is_owner():
@@ -16,7 +17,7 @@ func _enter():
 			if abs(laterality) > InputMap.action_get_deadzone(&"move_left"):
 				if laterality < 0:
 					left_pressed = true
-				if laterality > 0:
+				elif laterality > 0:
 					right_pressed = true
 			else:
 				left_pressed = Input.is_action_pressed("move_left")
@@ -37,7 +38,6 @@ func _handle_input(event: InputEvent):
 	# Ensure that inputs are processed only if they match the player's controller
 	if event.device == father.controller:
 		if event.is_action_pressed("jump"):
-			#Game.print_multiplayer("Player jumps")
 			if Input.is_action_pressed("move_down"):
 				Game.call_server( father.attempt_drop )
 			else:
