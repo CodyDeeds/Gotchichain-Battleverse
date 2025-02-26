@@ -18,14 +18,13 @@ extends Entity
 @export var grab_range := 64.0
 @export var throw_speed := 2000.0
 
-# Preload the death sound effect
 @export_group("Resources")
 @export var death_sfx: StringName = &"death"
 @export var hit_sfx: StringName = &"player_hit"
 @export var jump_sfx: StringName = &"player_jump"
 @export var jump_particles: PackedScene = preload("res://fx/jump.tscn")
 
-## The session ID that controls this player, one of the clients.
+## The session ID that controls this player (different from the multiplayer authority)
 @export var multiplayer_owner: int = 1
 ## Speed with which this player is intentionally moving
 var traction: float = 0
@@ -45,6 +44,7 @@ func _init() -> void:
 func _ready() -> void:
 	super()
 	
+	# Connect HP changes (using get_id() to obtain this player's identifier)
 	hp_changed.connect(PlayerManager._on_player_hp_changed.bind(get_id()))
 	
 	set_multiplayer_authority(1)
@@ -59,7 +59,6 @@ func _process(delta: float) -> void:
 	if !Game.is_multiplayer or is_multiplayer_authority():
 		super(delta)
 		accelerate(traction, delta)
-		#move_and_slide()
 		if is_on_floor():
 			current_air_jumps = air_jumps
 			has_dropped = false
@@ -79,4 +78,11 @@ func reset_movement() -> void:
 	has_dropped = false
 	current_air_jumps = air_jumps
 
-# ... (rest of the player.gd functions remain unchanged)
+## NEW: Added get_id() so that the player instance can report its ID.
+func get_id() -> int:
+	if Game.is_multiplayer:
+		return PlayerManager.get_player_index(self)
+	else:
+		return controller
+
+# (Rest of your player.gd functionality remains unchanged)
