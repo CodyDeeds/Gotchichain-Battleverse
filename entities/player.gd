@@ -34,6 +34,9 @@ var has_dropped: bool = false
 var held_item: Item = null
 var sound_player: AudioStreamPlayer = null
 var has_died: bool = false
+# Input state variables - moved from player_normal.gd to player instance
+var left_pressed: bool = false
+var right_pressed: bool = false
 
 # INITIALISATION
 func _init() -> void:
@@ -76,6 +79,9 @@ func reset_movement() -> void:
 	floating = false
 	has_dropped = false
 	current_air_jumps = air_jumps
+	# Reset input state when respawning
+	left_pressed = false
+	right_pressed = false
 
 # IDENTIFIER & OWNERSHIP
 func get_id() -> int:
