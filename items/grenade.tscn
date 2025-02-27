@@ -89,6 +89,7 @@ explosion_sound = &"blast_small"
 beep_sound = &"beep"
 hitbox_size = 10.0
 sprite_scale = 2.0
+pools = Array[int]([])
 
 [node name="sprite" parent="flip" index="0"]
 position = Vector2(0, -2)

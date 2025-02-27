@@ -92,7 +92,7 @@ explosion_delay = 0.1
 explosion_reach = 48.0
 hitbox_size = 16.0
 sprite_scale = 2.0
-pools = Array[int]([1])
+pools = Array[int]([])
 
 [node name="sprite" parent="flip" index="0"]
 scale = Vector2(2, 2)
