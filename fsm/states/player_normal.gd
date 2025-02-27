@@ -1,14 +1,15 @@
 @tool
 extends State
 
-var left_pressed: bool = false
-var right_pressed: bool = false
+# This data probably doesn't belong in the player_normal state; consider moving it elsewhere.
+# var left_pressed: bool = false
+# var right_pressed: bool = false
 
 func _enter():
 	super()
-	# Clear any previous input state when entering this state.
-	left_pressed = false
-	right_pressed = false
+	# Reset the player's input state when entering this state
+	father.left_pressed = false
+	father.right_pressed = false
 	
 	# Optionally initialize based on current physical input.
 	for i in Input.get_connected_joypads():
@@ -16,12 +17,12 @@ func _enter():
 			var laterality: float = Input.get_joy_axis(i, JOY_AXIS_LEFT_X)
 			if abs(laterality) > InputMap.action_get_deadzone("move_left"):
 				if laterality < 0:
-					left_pressed = true
+					father.left_pressed = true
 				elif laterality > 0:
-					right_pressed = true
+					father.right_pressed = true
 			else:
-				left_pressed = Input.is_action_pressed("move_left")
-				right_pressed = Input.is_action_pressed("move_right")
+				father.left_pressed = Input.is_action_pressed("move_left")
+				father.right_pressed = Input.is_action_pressed("move_right")
 
 func _step(delta: float):
 	super(delta)
@@ -57,20 +58,21 @@ func _handle_input(event: InputEvent):
 			Game.call_server(father.activate_item)
 		
 		if event.is_action_pressed("move_left"):
-			left_pressed = true
+			father.left_pressed = true
 		if event.is_action_released("move_left"):
-			left_pressed = false
+			father.left_pressed = false
 		
 		if event.is_action_pressed("move_right"):
-			right_pressed = true
+			father.right_pressed = true
 		if event.is_action_released("move_right"):
-			right_pressed = false
+			father.right_pressed = false
 
 func tractutate():
 	var traction: float = 0
-	if left_pressed:
+	
+	if father.left_pressed:
 		traction -= 1
-	if right_pressed:
+	if father.right_pressed:
 		traction += 1
 	traction += Input.get_joy_axis(father.controller, JOY_AXIS_LEFT_X)
 	traction = clamp(traction, -1, 1)
