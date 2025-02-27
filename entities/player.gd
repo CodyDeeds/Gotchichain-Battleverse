@@ -11,7 +11,7 @@ extends Entity
 @export var air_jumps := 1
 @export var jump_speed := 1500.0
 @export var drop_speed := 300.0
-@export var controller := 0  # Default to 0 for Player 1, change to 1 for Player 2, etc.
+@export var controller := 0  # Default: 0 for Player 1, 1 for Player 2, etc.
 
 # INTERACTION SETTINGS
 @export_group("Interaction")
@@ -20,9 +20,9 @@ extends Entity
 
 # RESOURCE SETTINGS
 @export_group("Resources")
-@export var death_sfx: StringName = &"death"
-@export var hit_sfx: StringName = &"player_hit"
-@export var jump_sfx: StringName = &"player_jump"
+@export var death_sfx: StringName = "death"
+@export var hit_sfx: StringName = "player_hit"
+@export var jump_sfx: StringName = "player_jump"
 @export var jump_particles: PackedScene = preload("res://fx/jump.tscn")
 
 # MULTIPLAYER & PHYSICS STATE
@@ -38,41 +38,45 @@ var has_died: bool = false
 var left_pressed: bool = false
 var right_pressed: bool = false
 
-# INITIALISATION
+# NEW: Track time since (re)spawn locally (in seconds).
+var time_since_spawn: float = 0.0
+
 func _init() -> void:
 	super()
-	add_to_group(&"players")
+	add_to_group("players")
 
 func _ready() -> void:
 	super()
-	# Connect HP change signal (using get_id() as the player's identifier)
 	hp_changed.connect(PlayerManager._on_player_hp_changed.bind(get_id()))
-	
 	set_multiplayer_authority(1)
-	
+
 	if Game.is_multiplayer:
 		%number.hide()
 	else:
 		%number.text = "P%s" % (controller + 1)
 
+# Instead of _process, you may have _physics_process depending on your setup.
+# We'll assume _process is enough here. If you are using _physics_process, move this increment there.
 func _process(delta: float) -> void:
-	# Process physics on server (or local in single-player)
-	if !Game.is_multiplayer or is_multiplayer_authority():
+	# Increment time_since_spawn each frame.
+	time_since_spawn += delta
+
+	# Only run physics-like code if single-player or if this instance is the server authority.
+	if not Game.is_multiplayer or is_multiplayer_authority():
 		super(delta)
 		accelerate(traction, delta)
 		if is_on_floor():
 			current_air_jumps = air_jumps
 			has_dropped = false
-	
-	# Debug: allow Player One to die manually
+
+	# Debug: allow Player 0 to die manually.
 	if controller == 0 and Input.is_action_just_pressed("debug_die"):
 		die()
 
-# HAND POSITION (for grabbing items)
 func get_hand_position() -> Vector2:
 	return %hand.global_position
 
-# RESET MOVEMENT STATE (call this on spawn)
+# Resets movement and re-initializes time_since_spawn = 0.
 func reset_movement() -> void:
 	velocity = Vector2.ZERO
 	traction = 0
@@ -82,8 +86,8 @@ func reset_movement() -> void:
 	# Reset input state when respawning
 	left_pressed = false
 	right_pressed = false
+	time_since_spawn = 0.0
 
-# IDENTIFIER & OWNERSHIP
 func get_id() -> int:
 	if Game.is_multiplayer:
 		return PlayerManager.get_player_index(self)
@@ -146,7 +150,7 @@ func rpc_drop():
 func rpc_set_floating(what: bool):
 	floating = what
 
-# ITEM MANAGEMENT METHODS
+# ITEM MANAGEMENT
 
 @rpc("any_peer", "call_remote", "reliable")
 func attempt_grab():
@@ -157,10 +161,11 @@ func attempt_grab():
 
 @rpc("any_peer", "call_local", "reliable")
 func throw_item():
-	held_item.get_thrown()
-	held_item.set_holder(null)
-	held_item.apply_central_impulse(Vector2(throw_speed, 0) * $flippable.scale)
-	held_item = null
+	if is_instance_valid(held_item):
+		held_item.get_thrown()
+		held_item.set_holder(null)
+		held_item.apply_central_impulse(Vector2(throw_speed, 0) * $flippable.scale)
+		held_item = null
 
 func grab_nearest_item() -> bool:
 	var hand_position = get_hand_position()
@@ -179,8 +184,9 @@ func grab_nearest_item() -> bool:
 @rpc("authority", "call_local", "reliable")
 func rpc_grab_item_by_path(item_path: NodePath):
 	var target_item: Item = get_node(item_path)
-	target_item.set_holder(self)
-	held_item = target_item
+	if is_instance_valid(target_item):
+		target_item.set_holder(self)
+		held_item = target_item
 
 @rpc("any_peer", "call_remote", "reliable")
 func activate_item():
