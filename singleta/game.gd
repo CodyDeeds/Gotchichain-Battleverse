@@ -8,6 +8,7 @@ var map: PackedScene = null
 var afoot := false
 var is_multiplayer: bool = false
 var has_distributed_value: bool = false
+var show_tooltips: bool = true  # Global setting to control tooltip visibility
 
 const coin_scene = preload("res://props/coin.tscn")
 
@@ -42,6 +43,9 @@ func end():
 		MattohaSystem.Server.RemovedSceneNodes = {}
 		afoot = false
 		has_distributed_value = false
+
+func toggle_tooltips() -> void:
+	show_tooltips = !show_tooltips
 
 func return_to_menu():
 	get_tree().change_scene_to_file("res://ui/main_menu.tscn")

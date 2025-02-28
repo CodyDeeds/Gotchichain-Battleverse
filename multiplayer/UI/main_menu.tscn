@@ -562,7 +562,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -134.0
-offset_top = 170.0
+offset_top = 130.0
 offset_right = 141.0
 offset_bottom = 250.0
 grow_horizontal = 2
@@ -585,6 +585,18 @@ unique_name_in_owner = true
 modulate = Color(1, 0.596078, 1, 1)
 layout_mode = 2
 text = "Host server"
+
+[node name="HSeparator" type="HSeparator" parent="v_box_container"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = null
+
+[node name="tooltips_toggle" type="Button" parent="v_box_container"]
+unique_name_in_owner = true
+modulate = Color(1, 0.596078, 1, 1)
+layout_mode = 2
+focus_mode = 0
+text = "Tooltips: On"
 
 [node name="no_controller" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
