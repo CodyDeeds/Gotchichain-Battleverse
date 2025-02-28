@@ -18,6 +18,11 @@ func _ready():
 	#$AnimationPlayer.play("logo_effect")
 	#$AnimationPlayer.play("button_effect")
 	
+	# Set up the tooltips toggle button
+	if has_node("%tooltips_toggle"):
+		update_tooltip_button_text()
+		%tooltips_toggle.pressed.connect(_on_tooltips_toggled)
+	
 	if OS.has_feature("arcade"):
 		enter_arcade_mode()
 
@@ -40,7 +45,7 @@ func enter_local_game() -> void:
 	Game.is_multiplayer = false
 	
 	if OS.has_feature("arcade"):
-		get_tree().change_scene_to_file("res://multiplayer/scenes/qr_scene.tscn")  # Change this line to navigate to the QR code scene
+		get_tree().change_scene_to_file("res://multiplayer/UI/qr_scene.tscn")  
 	else:
 		PlayerManager.get_player(0).bet = 2000
 		PlayerManager.get_player(1).bet = 2000
@@ -80,4 +85,13 @@ func _setup_animation():
 	animated_sprite.frames = sprite_frames
 	animated_sprite.play()
 
+# Update tooltip button text based on its state
+func update_tooltip_button_text() -> void:
+	if %tooltips_toggle:
+		%tooltips_toggle.text = "TOOLTIPS: ON" if Game.show_tooltips else "TOOLTIPS: OFF"
 
+# Called when the tooltips toggle button is pressed
+func _on_tooltips_toggled() -> void:
+	Game.show_tooltips = !Game.show_tooltips
+	update_tooltip_button_text()
+	print("Tooltips " + ("enabled" if Game.show_tooltips else "disabled"))
